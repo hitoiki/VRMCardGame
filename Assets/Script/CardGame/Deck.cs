@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Deck : SupervisedObject
+[System.Serializable]
+public class Deck : MonoBehaviour
 {
+#pragma warning disable 0649
+    //カードを纏める所
     public List<Card> cards;
-    public List<Card> disCards;
 
     public List<Card> shuffle(List<Card> c)
     {
@@ -27,10 +29,8 @@ public class Deck : SupervisedObject
             }
             else
             {
-                disCards = shuffle(disCards);
-                cards.AddRange(disCards);
-                List<Card> returnCards = cards.GetRange(0, i - 1);
-                cards = cards.GetRange(i, cards.Count);
+                List<Card> returnCards = cards;
+                cards = null;
                 return returnCards;
 
             }
@@ -40,22 +40,8 @@ public class Deck : SupervisedObject
 
     public Card OneDraw()
     {
-        if (0 <= cards.Count)
-        {
-            Card returnCard = cards.First();
-            cards = cards.GetRange(1, cards.Count);
-            return returnCard;
-        }
-        else
-        {
-            disCards = shuffle(disCards);
-            cards.AddRange(disCards);
-            Card returnCard = cards.First();
-            cards = cards.GetRange(1, cards.Count);
-            return returnCard;
-
-        }
-
+        Card returncard = Draw(1).First();
+        return returncard;
     }
 
 

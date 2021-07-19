@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardList : SupervisedObject
+public class Effect
 {
-    public List<Card> cards;
 }

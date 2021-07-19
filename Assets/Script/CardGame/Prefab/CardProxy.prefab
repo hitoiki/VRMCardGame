@@ -266,7 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4312309113591667930}
   - component: {fileID: 4272219429525154030}
-  - component: {fileID: 7191307393204248086}
+  - component: {fileID: 2685685852143602898}
   m_Layer: 0
   m_Name: CardProxy
   m_TagString: Untagged
@@ -339,7 +339,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7191307393204248086
+--- !u!114 &2685685852143602898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,9 +348,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7411250812891258952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 293d1c14decb3c749b311a5b29b06767, type: 3}
+  m_Script: {fileID: 11500000, guid: 58c18179c64651d40b8ea945ea14afde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  nameText: {fileID: 0}
-  effectText: {fileID: 0}
+  spriteRenderer: {fileID: 4272219429525154030}
+  nameText: {fileID: 8081236224037657904}
+  effectText: {fileID: 3494441710657522085}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-public class KeyPad : SupervisedObject, IKeyPad
+public class KeyPad : MonoBehaviour, IGameStated, IKeyPad
 {
     ReactiveProperty<bool> leftClick = new ReactiveProperty<bool>();
     ReactiveProperty<bool> rightClick = new ReactiveProperty<bool>();
@@ -11,12 +11,9 @@ public class KeyPad : SupervisedObject, IKeyPad
     ReactiveProperty<bool> phaseChangeKey = new ReactiveProperty<bool>();
     ReactiveProperty<Vector3> inputVector = new ReactiveProperty<Vector3>();
     ReactiveProperty<Vector2> mouseDisplasement = new ReactiveProperty<Vector2>();
-    public override void SupervisedUpdate(SuperviserData d)
+    public void StateUpdate()
     {
-        if (d.Active == true)
-        {
-            KeyPadCheck();
-        }
+        KeyPadCheck();
     }
     private void KeyPadCheck()
     {
@@ -73,6 +70,9 @@ public class KeyPad : SupervisedObject, IKeyPad
     {
         return mouseDisplasement;
     }
+
+    public void CrankIn() { }
+    public void CrankUp() { }
 
 
 }

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "Card")]
-public class Card : ScriptableObject
+public class CardData : ScriptableObject
 {
-    // カードゲーム作ることにした
-    //Cardのクラスと、それを扱うデッキを作る
-    //仮組なので文字列とシャッフルできればOK
-    //Actionじゃないって？しらん
+    //カードの静的データを取り扱うクラス
+    //コイツ→Card→CardGeneと続く感じ
     public CardType type;
     public string cardName;
     public string text;
