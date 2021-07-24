@@ -6,7 +6,7 @@ using UniRx;
 public interface IKeyPad
 {
     //左クリック
-    ReactiveProperty<bool> JumpKey();
+    ReactiveProperty<bool> AKey();
     //Escキー
     ReactiveProperty<bool> MenuKey();
     //Spaceキー

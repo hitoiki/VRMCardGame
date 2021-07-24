@@ -7,10 +7,12 @@ public class CardData : ScriptableObject
 {
     //カードの静的データを取り扱うクラス
     //コイツ→Card→CardGeneと続く感じ
-    public CardType type;
+    public CardType type { get; }
     public string cardName;
     public string text;
     public Sprite sprite;
+
+    public
 
     void Using()
     {

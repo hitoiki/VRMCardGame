@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-public interface IGameStated
+public interface IGameState
 {
     //これから書く全てのオブジェクトはこれを継承する
     //Stateクラスデザインによる革新的なゲーム体験を齎してやるぜ

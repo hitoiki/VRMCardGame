@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-public class KeyPad : MonoBehaviour, IGameStated, IKeyPad
+public class KeyPad : MonoBehaviour, IGameState, IKeyPad
 {
     ReactiveProperty<bool> leftClick = new ReactiveProperty<bool>();
     ReactiveProperty<bool> rightClick = new ReactiveProperty<bool>();
@@ -46,7 +46,7 @@ public class KeyPad : MonoBehaviour, IGameStated, IKeyPad
         return rightClick;
     }
 
-    public ReactiveProperty<bool> JumpKey()
+    public ReactiveProperty<bool> AKey()
     {
         return jumpKey;
     }
