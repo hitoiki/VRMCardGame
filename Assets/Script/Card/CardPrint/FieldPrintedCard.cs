@@ -14,8 +14,8 @@ public class FieldPrintedCard : MonoBehaviour, ICardPrinted
     public void Print(Card card)
     {
         printingCard = card;
-        nameText.text = card.data.cardName;
-        effectText.text = card.data.text;
+        nameText.text = card.cardName;
+        effectText.text = card.text;
 
     }
 

@@ -18,5 +18,5 @@ public interface IKeyPad
     //WASDキー
     ReactiveProperty<Vector3> InputVector();
     //マウスカーソル
-    ReactiveProperty<Vector2> MouseDisplacement();
+    ReactiveProperty<Vector2> MousePoint();
 }

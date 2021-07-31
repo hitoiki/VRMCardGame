@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
-  m_Name: attack
+  m_Name: Demo
   m_EditorClassIdentifier: 
-  type: 0
-  cardName: attack
-  text: 3damage
+  cardName: demo
+  text: demo
   sprite: {fileID: 0}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect
+public class VRMPrintCard : MonoBehaviour
 {
+    // VRMのカードをやる
 }

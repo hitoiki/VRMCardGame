@@ -33,7 +33,7 @@ public class KeyPad : MonoBehaviour, IGameState, IKeyPad
         if (Input.GetKey(KeyCode.A)) recept += Vector3.left;
 
         inputVector.Value = recept.normalized;
-        Vector2 mouth = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        Vector2 mouth = Input.mousePosition;
         mouseDisplasement.Value = mouth;
     }
     public ReactiveProperty<bool> LeftClick()
@@ -66,7 +66,7 @@ public class KeyPad : MonoBehaviour, IGameState, IKeyPad
         return inputVector;
     }
 
-    public ReactiveProperty<Vector2> MouseDisplacement()
+    public ReactiveProperty<Vector2> MousePoint()
     {
         return mouseDisplasement;
     }
