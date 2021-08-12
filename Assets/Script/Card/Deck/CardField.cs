@@ -12,8 +12,8 @@ public class CardField : MonoBehaviour
     [SerializeField] public Deck field;
     public Card draft;
 
-    private void Start()
+    public void OnClick()
     {
-
+        hands.Add(draft);
     }
 }

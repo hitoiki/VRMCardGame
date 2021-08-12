@@ -51,6 +51,11 @@ public class Deck : MonoBehaviour
 
     }
 
+    public void Add(Card c)
+    {
+        _cards.Add(c);
+    }
+
     public List<Card> Draw(int i)
     {
         if (0 <= i)

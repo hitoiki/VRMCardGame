@@ -14,8 +14,10 @@ public class Card : ScriptableObject
     //Linqを安直に挟むか？
     public CardType type { get; }
     public string cardName;
-    public string text;
-    public Sprite sprite;
+    [TextArea] public string text;
+    public Sprite frontSprite;
+    public Sprite backSprite;
+    public Sprite iconSprite;
 
     public void cardUse()
     {

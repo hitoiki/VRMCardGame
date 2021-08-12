@@ -6,7 +6,6 @@ public class DrugObject : MonoBehaviour, ICursolable
 {
     public void Click(Vector3 point, ContactMode mode)
     {
-        Debug.Log(mode);
         if (mode == ContactMode.Stay)
         {
             Vector3 drugPos = Camera.main.ScreenToWorldPoint(point);
@@ -16,6 +15,6 @@ public class DrugObject : MonoBehaviour, ICursolable
     }
     public void Cursol(Vector3 point)
     {
-        Debug.Log("Cursol");
+
     }
 }

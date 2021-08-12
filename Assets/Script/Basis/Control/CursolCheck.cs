@@ -13,7 +13,7 @@ public class CursolCheck : MonoBehaviour, IGameState
     //ドラッグして違和感のないように書いてある
 
     private IKeyPad key;
-    [SerializeField] GameObject initKey;
+    [SerializeField] GameObject initKey = null;
     ICursolable[] cursolObj;
     Vector2 cursolPoint;
     bool bufClick = false;
