@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,10 +15,10 @@ public class VRMPrintCard : MonoBehaviour, ICardPrinted
     public void Print(Card card)
     {
         printingCard = card;
-        nameText.text = card.cardName;
-        effectText.text = card.text;
-        BackImage.sprite = card.backSprite;
-        FrontImage.sprite = card.frontSprite;
+        nameText.text = card.data.cardName;
+        effectText.text = card.data.text;
+        BackImage.sprite = card.data.backSprite;
+        FrontImage.sprite = card.data.frontSprite;
     }
 
 

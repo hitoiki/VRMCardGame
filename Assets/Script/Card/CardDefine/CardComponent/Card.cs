@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "Card")]
-public class Card : ScriptableObject
+[System.Serializable]
+public class Card
 {
-    //カードを取り扱うクラス
-    //基本的にここには静的データと、呼び出される処理を書く
-    //効果はデコレーターを重ねて作る感じだろうか？
+    // 実際に扱われるカード
+    //エフェクトの欄をDataに足す
 
-    //CardDealerがいちいち読み取ってカードを処理する
-    //だからこの条件ならこの効果を発動しますよって形式であってほしい
-    //Linqを安直に挟むか？
-    public CardType type { get; }
-    public string cardName;
-    [TextArea] public string text;
-    public Sprite frontSprite;
-    public Sprite backSprite;
-    public Sprite iconSprite;
+    public CardData data;
+    public Dictionary<Coin, short> coins;
 
-    public void cardUse()
+    public Card(CardData d)
     {
+        data = d;
+    }
+
+    public void AddCoin(Coin c, short n)
+    {
+        if (coins.ContainsKey(c)) coins[c] += n;
+        else coins.Add(c, n);
 
     }
-}
 
-public enum CardType
-{
-    Item, Event
+    public List<IUseEffect> UseEffect()
+    {
+        return data.useEffects;
+    }
+
 }

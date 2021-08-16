@@ -1,41 +1,51 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
+using System;
 using System.Linq;
+using UniRx;
 #pragma warning disable 0649
 public class FieldViewer : MonoBehaviour, IGameState
 {
-    //CardFieldを表示する
-    //CardPrefabを用いてインスタンス化する
-    //UI辺りの兼ね合いはよく分からん
-    [SerializeField] private CardField cardField;
-    [SerializeField] private List<GameObject> InitField = new List<GameObject>(1);
-    private List<ICardPrinted> fieldPrinted;
+    //手札を上手い事表示するやつ
+    //fieldViewerに対して、上手くインスタンス化も挟みたい
 
-    private IDisposable _fieldPrint;
-
-
-    private void OnValidate()
-    {
-        if (InitField != null) InitField = InitField.Where(x => { return (x == null) || (x.GetComponent<ICardPrinted>() != null); }).ToList();
-    }
-
+    [SerializeField] private Stage stage;
+    [SerializeField] private FieldCard fieldCard = null;
+    private List<ICardPrinted> printedList = new List<ICardPrinted>();
+    private ObjectFlyer<FieldCard> flyer;
+    [SerializeField] Grid grid;
+    private IDisposable _FieldReplace;
+    private IDisposable _FieldAdd;
+    private IDisposable _FieldRemove;
     private void Start()
     {
-        fieldPrinted = InitField.Select(x => { return x.GetComponent<ICardPrinted>(); }).ToList();
+        //InitHandがICardPrintedである事が前提条件なアレ
+        if (fieldCard != null) flyer = new ObjectFlyer<FieldCard>(fieldCard);
     }
 
     //Start
     public void CrankIn()
     {
-        cardField.field.ObservableCards.Subscribe(x =>
+        //Deckに変更が起きた際、これが実行される
+        stage.field.ObservableReplace.Subscribe(x =>
         {
-            DeckCheck(cardField.field.cards);
+            printedList[x.Index].Print(x.NewValue);
 
         });
-        DeckCheck(cardField.field.cards);
+        stage.field.ObservableAdd.Subscribe(x =>
+        {
+            ICardPrinted printedObj = flyer.GetMob(grid.Point(x.Index, 0), y => { }).GetComponent<ICardPrinted>();
+            printedList.Add(printedObj);
+            printedObj.Print(x.Value);
+        });
+        stage.field.ObservableRemove.Subscribe(x =>
+        {
+            printedList[x.Index].Active(false);
+            printedList.RemoveAt(x.Index);
+
+        });
+        DeckInit(stage.field.cards);
     }
     //Update
     public void StateUpdate()
@@ -47,20 +57,23 @@ public class FieldViewer : MonoBehaviour, IGameState
     {
         Debug.Log("CrankUp");
         //購読停止
-        _fieldPrint.Dispose();
+        _FieldReplace.Dispose();
+        _FieldAdd.Dispose();
+        _FieldRemove.Dispose();
     }
 
-    private void DeckCheck(List<Card> c)
+    private void DeckInit(List<Card> c)
     {
         if (c != null)
         {
-            Debug.Log("FieldViewer:Updated");
             foreach (var i in c.Select((Card card, int index) => new { card, index }))
             {
-                if (i.index < fieldPrinted.Count()) fieldPrinted[i.index].Print(i.card);
-                else break;
+                //デッキの初期化
+                ICardPrinted printedObj = flyer.GetMob(grid.Point(i.index, 0), x => { }).GetComponent<ICardPrinted>();
+                printedList.Add(printedObj);
+                printedObj.Print(i.card);
+
             }
         }
     }
-
 }

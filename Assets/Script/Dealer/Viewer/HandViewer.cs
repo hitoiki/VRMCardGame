@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -10,14 +10,16 @@ public class HandViewer : MonoBehaviour, IGameState
     //手札を上手い事表示するやつ
     //fieldViewerに対して、上手くインスタンス化も挟みたい
 
-    [SerializeField] private CardField cardField;
+    [SerializeField] private Stage stage;
     [SerializeField] private GameObject initVRM = null;
     [SerializeField] private HandCard handCard = null;
     private ICardPrinted vrmPrinted = null;
     private List<ICardPrinted> printedList = new List<ICardPrinted>();
     private ObjectFlyer<HandCard> flyer;
     [SerializeField] Grid grid;
-    private IDisposable _fieldPrint;
+    private IDisposable _HandReplace;
+    private IDisposable _HandAdd;
+    private IDisposable _HandRemove;
 
 
     private void OnValidate()
@@ -36,12 +38,25 @@ public class HandViewer : MonoBehaviour, IGameState
     //Start
     public void CrankIn()
     {
-        cardField.hands.ObservableCards.Subscribe(x =>
+        //Deckに変更が起きた際、これが実行される
+        stage.hands.ObservableReplace.Subscribe(x =>
         {
-            DeckCheck(cardField.hands.cards);
+            printedList[x.Index].Print(x.NewValue);
 
         });
-        DeckCheck(cardField.hands.cards);
+        stage.hands.ObservableAdd.Subscribe(x =>
+        {
+            ICardPrinted printedObj = flyer.GetMob(grid.Point(x.Index, 0), y => { y.vrmPrinted = vrmPrinted; y.anchor = grid.Point(x.Index, 0); }).GetComponent<ICardPrinted>();
+            printedList.Add(printedObj);
+            printedObj.Print(x.Value);
+        });
+        stage.hands.ObservableRemove.Subscribe(x =>
+        {
+            printedList[x.Index].Active(false);
+            printedList.RemoveAt(x.Index);
+
+        });
+        DeckInit(stage.hands.cards);
     }
     //Update
     public void StateUpdate()
@@ -53,29 +68,21 @@ public class HandViewer : MonoBehaviour, IGameState
     {
         Debug.Log("CrankUp");
         //購読停止
-        _fieldPrint.Dispose();
+        _HandReplace.Dispose();
+        _HandAdd.Dispose();
+        _HandRemove.Dispose();
     }
 
-    private void DeckCheck(List<Card> c)
+    private void DeckInit(List<Card> c)
     {
         if (c != null)
         {
             foreach (var i in c.Select((Card card, int index) => new { card, index }))
             {
-                //いなかったら生成
-                //格子状にしたいなら適当なmodを挟めばヨロシ
-
-                if (i.index < printedList.Count())
-                {
-                    printedList[i.index].Print(i.card);
-                }
-                else
-                {
-                    ICardPrinted printedObj = flyer.GetMob(grid.Point(i.index, 0), x => { x.vrmPrinted = vrmPrinted; x.anchor = grid.Point(i.index, 0); }).GetComponent<ICardPrinted>();
-                    printedList.Add(printedObj);
-                    printedObj.Print(i.card);
-
-                }
+                //デッキの初期化
+                ICardPrinted printedObj = flyer.GetMob(grid.Point(i.index, 0), x => { x.vrmPrinted = vrmPrinted; x.anchor = grid.Point(i.index, 0); }).GetComponent<ICardPrinted>();
+                printedList.Add(printedObj);
+                printedObj.Print(i.card);
 
             }
         }
