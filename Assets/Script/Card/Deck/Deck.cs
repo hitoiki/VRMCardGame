@@ -57,14 +57,23 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public List<Card> Draw(int i)
+    public void Remove(Card c) { _cards.Remove(c); }
+    public void Remove(List<Card> cs)
     {
-        if (0 <= i)
+        foreach (Card c in cs)
         {
-            if (i <= _cards.Count)
+            _cards.Remove(c);
+        };
+    }
+
+    public List<Card> Draw(int n)
+    {
+        if (1 <= n)
+        {
+            if (n <= _cards.Count)
             {
-                List<Card> returnCards = _cards.ToList().GetRange(0, i - 1);
-                for (int x = i; x <= _cards.Count(); x++)
+                List<Card> returnCards = _cards.ToList().GetRange(0, n);
+                for (int i = 0; i < n; i++)
                 {
                     _cards.RemoveAt(i);
                 }
@@ -76,6 +85,22 @@ public class Deck : MonoBehaviour
                 _cards.Clear();
                 return returnCards;
 
+            }
+        }
+        return null;
+    }
+
+    public List<Card> DrawCheck(int i)
+    {
+        if (1 <= i)
+        {
+            if (i <= _cards.Count)
+            {
+                return _cards.ToList().GetRange(0, i - 1);
+            }
+            else
+            {
+                return _cards.ToList();
             }
         }
         return null;

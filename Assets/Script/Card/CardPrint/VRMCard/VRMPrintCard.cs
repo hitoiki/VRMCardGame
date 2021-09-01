@@ -15,10 +15,11 @@ public class VRMPrintCard : MonoBehaviour, ICardPrinted
     public void Print(Card card)
     {
         printingCard = card;
-        nameText.text = card.data.cardName;
-        effectText.text = card.data.text;
-        BackImage.sprite = card.data.backSprite;
-        FrontImage.sprite = card.data.frontSprite;
+        nameText.text = card.mainData.cardName;
+        //effectText.text = card.mainData.text;
+        effectText.text=card.CardText();
+        BackImage.sprite = card.mainData.backSprite;
+        FrontImage.sprite = card.mainData.frontSprite;
     }
 
 

@@ -23,7 +23,7 @@ public class HandCard : MonoBehaviour, ICardPrinted, ICursolable
     public void Print(Card c)
     {
         card = c;
-        spriteRenderer.sprite = c.data.iconSprite;
+        spriteRenderer.sprite = c.mainData.iconSprite;
     }
 
     public void Active(bool b)

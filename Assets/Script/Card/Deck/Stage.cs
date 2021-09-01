@@ -11,21 +11,27 @@ public class Stage : MonoBehaviour
     [SerializeField] public Deck field;
     [SerializeField] public Deck disCard;
     [SerializeField] public Deck trace;
-    [SerializeField] public Pack otherDeck;
+    [SerializeField] public Deck Senter;
+    [SerializeField] public Deck Right;
+    [SerializeField] public Deck Left;
 
-    public Deck DeckKey(FieldDecksEnum e)
+    public Deck DeckKey(StageDeck e)
     {
-        if (e == FieldDecksEnum.hands) return hands;
-        if (e == FieldDecksEnum.field) return field;
-        if (e == FieldDecksEnum.discard) return disCard;
-        if (e == FieldDecksEnum.trace) return trace;
+        if (e == StageDeck.hands) return hands;
+        if (e == StageDeck.field) return field;
+        if (e == StageDeck.discard) return disCard;
+        if (e == StageDeck.trace) return trace;
+        if (e == StageDeck.senter) return Senter;
+        if (e == StageDeck.right) return Right;
+        if (e == StageDeck.left) return Left;
+
         return null;
 
     }
 
 }
 
-public enum FieldDecksEnum
+public enum StageDeck
 {
-    hands, field, discard, trace
+    hands, field, discard, trace, senter, right, left
 }

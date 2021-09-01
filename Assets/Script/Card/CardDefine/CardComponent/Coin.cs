@@ -6,9 +6,9 @@ public class Coin : ScriptableObject
 {
     //ダメージ、炎など、カードが受け取る効果量を示すクラス
     //カウンターになぞらえてコインと呼ばさせていただく
-    [SerializeField] public string coinName { get; }
-    [SerializeField] public bool storable { get; }
-    [SerializeField] public Sprite icon { get; }
+    [SerializeField] public string coinName;
+    [SerializeField] public bool storable;
+    [SerializeField] public Sprite icon;
 
     // Dictionaryで使うためにイコールをオーバーライド
     //名前だけで判断しているのはご愛嬌

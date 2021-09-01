@@ -13,7 +13,7 @@ public class FieldCard : MonoBehaviour, ICardPrinted
     {
         printingCard = card;
 
-        spriteRenderer.sprite = card.data.iconSprite;
+        spriteRenderer.sprite = card.mainData.iconSprite;
 
     }
     public void Active(bool b)
