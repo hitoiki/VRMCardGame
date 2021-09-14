@@ -75,7 +75,7 @@ public class Deck : MonoBehaviour
                 List<Card> returnCards = _cards.ToList().GetRange(0, n);
                 for (int i = 0; i < n; i++)
                 {
-                    _cards.RemoveAt(i);
+                    _cards.RemoveAt(0);
                 }
                 return returnCards;
             }

@@ -13,6 +13,7 @@ public class HandViewer : MonoBehaviour, IGameState
     [SerializeField] private Stage stage;
     [SerializeField] private GameObject initVRM = null;
     [SerializeField] private HandCard handCard = null;
+    [SerializeField] private CardPlayRecepter recepter = null;
     private ICardPrinted vrmPrinted = null;
     private List<ICardPrinted> printedList = new List<ICardPrinted>();
     private ObjectFlyer<HandCard> flyer;
@@ -46,9 +47,7 @@ public class HandViewer : MonoBehaviour, IGameState
         });
         stage.hands.ObservableAdd.Subscribe(x =>
         {
-            ICardPrinted printedObj = flyer.GetMob(grid.Point(x.Index, 0), y => { y.vrmPrinted = vrmPrinted; y.anchor = grid.Point(x.Index, 0); }).GetComponent<ICardPrinted>();
-            printedList.Add(printedObj);
-            printedObj.Print(x.Value);
+            CardMake(x.Value, x.Index);
         });
         stage.hands.ObservableRemove.Subscribe(x =>
         {
@@ -73,17 +72,26 @@ public class HandViewer : MonoBehaviour, IGameState
         _HandRemove.Dispose();
     }
 
+    private void CardMake(Card card, int index)
+    {
+        ICardPrinted printedObj = flyer.GetMob(grid.Point(index, 0), y =>
+        {
+            y.vrmPrinted = vrmPrinted;
+            y.anchor = grid.Point(index, 0);
+            y.recepter = recepter;
+        }).GetComponent<ICardPrinted>();
+        printedList.Add(printedObj);
+        printedObj.Print(card);
+    }
+
     private void DeckInit(List<Card> c)
     {
         if (c != null)
         {
-            foreach (var i in c.Select((Card card, int index) => new { card, index }))
+            foreach (var x in c.Select((Card card, int index) => new { card, index }))
             {
                 //デッキの初期化
-                ICardPrinted printedObj = flyer.GetMob(grid.Point(i.index, 0), x => { x.vrmPrinted = vrmPrinted; x.anchor = grid.Point(i.index, 0); }).GetComponent<ICardPrinted>();
-                printedList.Add(printedObj);
-                printedObj.Print(i.card);
-
+                CardMake(x.card, x.index);
             }
         }
     }

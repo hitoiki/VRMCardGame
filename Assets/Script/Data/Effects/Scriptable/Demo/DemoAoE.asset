@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: DamegeToAll
-  m_EditorClassIdentifier: Assembly-CSharp::CoinToDeckText
+  m_Script: {fileID: 11500000, guid: 3c7be30b15db58c439acb8ee72909bed, type: 3}
+  m_Name: DemoAoE
+  m_EditorClassIdentifier: 
   c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
-  amount: 10
+  amount: 5
   deck: 1

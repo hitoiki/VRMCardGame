@@ -7,9 +7,14 @@ public class CardDealer : MonoBehaviour
 {
     //Cardが出来る処理を書く   
     //CardのEffect群にこいつが渡される
+    [SerializeField] private TextPrinter effectTextPrint = null;
     [SerializeField] private Stage stage = null;
 
     //カードを引いて、適当な場所に移動
+    public void TextView(Card card)
+    {
+        effectTextPrint.Print(card);
+    }
     public void DeckDraw(StageDeck from, StageDeck to, int amount)
     {
         stage.DeckKey(to).Add(stage.DeckKey(from).Draw(amount));
@@ -56,7 +61,7 @@ public class CardDealer : MonoBehaviour
     //あるカードにコインを渡す
     public void CoinToCard(Card card, Coin coin, short i)
     {
-        card.AddCoin(this,coin, i);
+        card.AddCoin(this, coin, i);
     }
 
     //あるデッキ全てにCoinを渡す
@@ -64,7 +69,7 @@ public class CardDealer : MonoBehaviour
     {
         foreach (Card c in stage.DeckKey(f).cards)
         {
-            c.AddCoin(this,coin, i);
+            c.AddCoin(this, coin, i);
         };
     }
 
