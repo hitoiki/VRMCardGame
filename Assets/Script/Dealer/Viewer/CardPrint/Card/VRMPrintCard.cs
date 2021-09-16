@@ -12,18 +12,16 @@ public class VRMPrintCard : MonoBehaviour, ICardPrinted, ICardObservable
     [SerializeField] private Image BackImage;
     [SerializeField] private Image FrontImage;
     [SerializeField] private Text nameText;
-    [SerializeField] private Text effectText;
     public void Print(Card card)
     {
         this.card.Value = card;
         nameText.text = card.mainData.cardName;
-        //effectText.text = card.mainData.text;
-        effectText.text = card.CardText();
+        //effectText.text = card.Cardtext();
         BackImage.sprite = card.mainData.backSprite;
         FrontImage.sprite = card.mainData.frontSprite;
     }
 
-    public ReactiveProperty<Card> ObservableCard()
+    public IReadOnlyReactiveProperty<Card> ObservableCard()
     {
         return card;
     }

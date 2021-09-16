@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinName: time
   storable: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 905d26c249ab74743bfe9e030399a61f, type: 3}

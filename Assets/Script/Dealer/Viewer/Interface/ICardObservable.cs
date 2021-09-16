@@ -5,5 +5,5 @@ using UniRx;
 
 public interface ICardObservable
 {
-    ReactiveProperty<Card> ObservableCard();
+    IReadOnlyReactiveProperty<Card> ObservableCard();
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 #pragma warning disable 0649
-public class TextPrinter : MonoBehaviour, ICardPrinted
+public class EffectTextPrinter : MonoBehaviour, ICardPrinted
 {
     //スッと出てくる
     [SerializeField] private Text effectText;

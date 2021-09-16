@@ -74,10 +74,10 @@ public class HandViewer : MonoBehaviour, IGameState
 
     private void CardMake(Card card, int index)
     {
-        ICardPrinted printedObj = flyer.GetMob(grid.Point(index, 0), y =>
+        ICardPrinted printedObj = flyer.GetMob(grid.NumberGrid(index), y =>
         {
             y.vrmPrinted = vrmPrinted;
-            y.anchor = grid.Point(index, 0);
+            y.anchor = grid.NumberGrid(index);
             y.recepter = recepter;
         }).GetComponent<ICardPrinted>();
         printedList.Add(printedObj);

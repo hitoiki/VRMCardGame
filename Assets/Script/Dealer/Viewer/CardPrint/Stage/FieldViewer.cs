@@ -74,7 +74,7 @@ public class FieldViewer : MonoBehaviour, IGameState
 
     private void CardMake(Card card, int index)
     {
-        ICardPrinted printedObj = flyer.GetMob(grid.Point(index, 0), y => { y.vrmPrinted = vrmPrinted; }).GetComponent<ICardPrinted>();
+        ICardPrinted printedObj = flyer.GetMob(grid.NumberGrid(index), y => { y.vrmPrinted = vrmPrinted; }).GetComponent<ICardPrinted>();
         printedList.Add(printedObj);
         printedObj.Print(card);
     }
