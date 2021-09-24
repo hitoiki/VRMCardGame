@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 #pragma warning disable 0649
-public class UnderCardPrinter : MonoBehaviour, ICardPrinted, IGameState
+public class UnderCardPrinter : MonoBehaviour, ICardPrintable, IGameState
 {
     //Vrmに付いて下のカードの情報を知らせる奴
     [SerializeField] private VRMPrintCard vrm;
@@ -53,6 +53,10 @@ public class UnderCardPrinter : MonoBehaviour, ICardPrinted, IGameState
     public void Print(Card card)
     {
         effectText.text = card.CardText();
+    }
+    public void UnPrint()
+    {
+
     }
     public void Active(bool boo)
     {

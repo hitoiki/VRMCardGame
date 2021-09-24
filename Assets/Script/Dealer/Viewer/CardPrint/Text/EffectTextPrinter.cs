@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 #pragma warning disable 0649
-public class EffectTextPrinter : MonoBehaviour, ICardPrinted
+public class EffectTextPrinter : MonoBehaviour, ICardPrintable
 {
     //スッと出てくる
     [SerializeField] private Text effectText;
@@ -19,6 +19,10 @@ public class EffectTextPrinter : MonoBehaviour, ICardPrinted
         effectText.text = card.CardText();
         this.position.DOAnchorPos(displayPoint, easingTime);
         this.position.DOAnchorPos(anchorPoint, easingTime).SetDelay(displayTime);
+    }
+    public void UnPrint()
+    {
+
     }
     public void Active(bool boo)
     {

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using UniRx;
+
 
 [System.Serializable]
 public class Card : IUseEffect, IDrawEffect, ISelectEffect//,ICoinEffect
@@ -11,7 +12,7 @@ public class Card : IUseEffect, IDrawEffect, ISelectEffect//,ICoinEffect
 
     public CardData mainData;
     public List<CardData> underCards = new List<CardData>();
-    public Dictionary<Coin, short> coins { get; } = new Dictionary<Coin, short>();
+    public ReactiveDictionary<Coin, short> coins = new ReactiveDictionary<Coin, short>();
 
     public Card(CardData d)
     {

@@ -1,20 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 #pragma warning disable 0649
 [SerializeField]
-public class FieldCard : MonoBehaviour, ICardPrinted, ICursolable, ICardObservable
+public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObservable
 {
     //field上のカードPrefabに付けるクラス
     private ReactiveProperty<Card> card = new ReactiveProperty<Card>();
     [SerializeField] private SpriteRenderer spriteRenderer;
-    public ICardPrinted vrmPrinted;
+    public ICardPrintable vrmPrinted;
+    public CoinCard coinCard;
+
     public void Print(Card c)
     {
         this.card.Value = c;
         spriteRenderer.sprite = c?.mainData.iconSprite;
+        if (coinCard != null) coinCard.Print(c);
+
+    }
+    public void UnPrint()
+    {
+        coinCard.UnPrint();
     }
     public void Active(bool b)
     {
@@ -32,7 +41,8 @@ public class FieldCard : MonoBehaviour, ICardPrinted, ICursolable, ICardObservab
     }
     public void Cursol(Vector3 pos)
     {
-        vrmPrinted.Print(card.Value);
+        if (card.Value == null) Debug.Log("noCard!");
+        else vrmPrinted.Print(card.Value);
     }
 
 }

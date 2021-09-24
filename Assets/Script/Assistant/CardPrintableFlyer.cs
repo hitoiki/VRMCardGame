@@ -1,18 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class ObjectFlyer<T> where T : Component
+public class CardPrintableFlyer<T> where T : Component, ICardPrintable
 {
-    //一種類毎に扱う感じ
-    //コイツを介してObject生成をする事で、処理が軽くなる魔法のコード
+    //CardPrintable専用のFlyer
     public T DealMob;
     private List<T> MobList;
 
     public delegate void GeneTask(T t);
 
-    public ObjectFlyer(T mob)
+    public CardPrintableFlyer(T mob)
     {
         DealMob = mob;
         MobList = new List<T>();

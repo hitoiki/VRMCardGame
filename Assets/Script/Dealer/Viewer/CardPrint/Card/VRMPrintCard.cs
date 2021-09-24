@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UniRx;
 
 #pragma warning disable 0649
-public class VRMPrintCard : MonoBehaviour, ICardPrinted, ICardObservable
+public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
 {
     // VRMのカードをやる
     private ReactiveProperty<Card> card = new ReactiveProperty<Card>();
@@ -19,6 +19,11 @@ public class VRMPrintCard : MonoBehaviour, ICardPrinted, ICardObservable
         //effectText.text = card.Cardtext();
         BackImage.sprite = card.mainData.backSprite;
         FrontImage.sprite = card.mainData.frontSprite;
+    }
+
+    public void UnPrint()
+    {
+
     }
 
     public IReadOnlyReactiveProperty<Card> ObservableCard()
