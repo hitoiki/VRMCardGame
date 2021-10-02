@@ -317,11 +317,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91870506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02752714, y: 3.3580751, z: -2.1748273}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2140630054}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128778841
 GameObject:
@@ -364,7 +364,7 @@ Transform:
   m_LocalPosition: {x: -0.027527332, y: 3.358075, z: -2.1748276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2135460887}
+  m_Father: {fileID: 2140630054}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &132488687
@@ -486,7 +486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152ccfcc2ce356747ad81073521f4c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: {fileID: 0}
   dealer: {fileID: 200107284}
+  changeStateName: CardSelect
   areaFrom: {x: -2, y: 0}
   areaTo: {x: 9, y: 6}
 --- !u!114 &200107284
@@ -503,6 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectTextPrint: {fileID: 549688501}
   stage: {fileID: 400381648}
+  coinToCost: {fileID: 11400000, guid: e1c265da72ddba04bb831e1c2b9cdd45, type: 2}
 --- !u!1 &322472140
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +686,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365238107}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.027527332, y: 3.358075, z: -2.1748276}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400381650}
@@ -704,6 +707,7 @@ MonoBehaviour:
   initCards:
   - {fileID: 11400000, guid: 88df83a871fc673459b31694bd4ccfd7, type: 2}
   - {fileID: 11400000, guid: 948d7da96f5c62144925eb9c4f79f304, type: 2}
+  - {fileID: 11400000, guid: 2205dcb07e3521640be9f7ef6b2925e2, type: 2}
 --- !u!1 &400381647
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -700.00006, y: -300}
+  m_AnchoredPosition: {x: -700, y: -300}
   m_SizeDelta: {x: 100, y: 1196}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &549688501
@@ -907,7 +911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectText: {fileID: 1540968527}
-  displayTime: 1.5
+  displayTime: 2
   easingTime: 0.5
   displayPoint: {x: -370, y: -300}
   anchorPoint: {x: -700, y: -300}
@@ -1144,7 +1148,7 @@ Transform:
   - {fileID: 1870451250}
   - {fileID: 1841415131}
   m_Father: {fileID: 2135460887}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &770397461
 GameObject:
@@ -1656,6 +1660,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135537043}
   m_CullTransparentMesh: 0
+--- !u!1 &1233751807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1233751808}
+  - component: {fileID: 1233751809}
+  m_Layer: 0
+  m_Name: SelectingSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &1233751808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233751807}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2140630054}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1233751809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233751807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a323df92cd3bcf4ea83d79fe53cbecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateName: CardSelect
+  Initforrower:
+  - {fileID: 1487268927}
+  - {fileID: 128778841}
 --- !u!1 &1321803981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,7 +1807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330936876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.027527332, y: 3.358075, z: -2.1748276}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400381650}
@@ -1892,7 +1943,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2135460887}
+  m_Father: {fileID: 2140630054}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1487268929
@@ -2164,7 +2215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775347994}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.027527332, y: 3.358075, z: -2.1748276}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400381650}
@@ -2277,7 +2328,7 @@ MonoBehaviour:
   grid:
     originPos: {x: -2, y: 3, z: 0}
     distanceX: 2
-    distanceY: 1
+    distanceY: -3
     maxXGrid: 5
 --- !u!114 &1841415133
 MonoBehaviour:
@@ -2667,11 +2718,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1487268928}
-  - {fileID: 128778844}
   - {fileID: 629223420}
   m_Father: {fileID: 2140630054}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2140630052
 GameObject:
@@ -2701,7 +2750,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1487268928}
+  - {fileID: 128778844}
   - {fileID: 2135460887}
+  - {fileID: 1233751808}
   - {fileID: 91870509}
   m_Father: {fileID: 0}
   m_RootOrder: 2

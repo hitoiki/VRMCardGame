@@ -62,6 +62,10 @@ public class UnderCardPrinter : MonoBehaviour, ICardPrintable, IGameState
     {
 
     }
+    public Transform GetTransform()
+    {
+        return this.transform;
+    }
 
 
 }

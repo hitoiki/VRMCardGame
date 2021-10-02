@@ -9,6 +9,8 @@ public class Coin : ScriptableObject
     [SerializeField] public string coinName;
     [SerializeField] public bool storable;
     [SerializeField] public Sprite icon;
+    [SerializeField] public Vector3 spritePos;
+    [SerializeField] public float spriteScale;
 
     // Dictionaryで使うためにイコールをオーバーライド
     //名前だけで判断しているのはご愛嬌

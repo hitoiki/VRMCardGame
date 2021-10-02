@@ -30,7 +30,7 @@ public class Card : IUseEffect, IDrawEffect, ISelectEffect//,ICoinEffect
     {
         if (coins.ContainsKey(c))
         {
-            if (coins[c] > n) coins.Remove(c);
+            if (coins[c] > n) coins[c] = 0;
             else coins[c] -= n;
         }
         CoinEffect(dealer, c, n);
@@ -42,6 +42,11 @@ public class Card : IUseEffect, IDrawEffect, ISelectEffect//,ICoinEffect
         str += mainData.cardName + "「" + mainData.CardText() + "」\n";
         foreach (CardData data in underCards) str += data.cardName + "「" + mainData.CardText() + "」\n";
         return str;
+    }
+
+    public bool SelectActive()
+    {
+        return mainData.selectText != null;
     }
 
     //CardDetaの"Text"を読み取って効果を発動する

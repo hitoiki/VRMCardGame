@@ -21,6 +21,11 @@ public class CoinCard : MonoBehaviour, ICardPrintable
         this.gameObject.SetActive(b);
     }
 
+    public Transform GetTransform()
+    {
+        return this.transform;
+    }
+
     public void UnPrint()
     {
 
@@ -28,21 +33,22 @@ public class CoinCard : MonoBehaviour, ICardPrintable
 
     public void Print(Card c)
     {
-        _replace = c.coins.ObserveReplace().Subscribe(x =>
+        _replace = c.coins.ObserveReplace().Subscribe(changeCoin =>
         {
-            sprites.Where(y => { return y.printingCoin == x.Key; }).First().CoinPrint(x.Key, x.NewValue);
+            sprites.Where(y => { return y.printingCoin == changeCoin.Key; }).First().CoinPrint(changeCoin.Key, changeCoin.NewValue);
         });
-        _add = c.coins.ObserveAdd().Subscribe(x =>
+        _add = c.coins.ObserveAdd().Subscribe(addCoin =>
           {
               CoinSprite newSprite = flyer.GetMob(new Vector3(100, 0, 0));
               newSprite.gameObject.transform.SetParent(this.transform);
               sprites.Add(newSprite);
-              newSprite.CoinPrint(x.Key, x.Value);
-              newSprite.rect.position = grid.NumberGrid(0);
+              newSprite.CoinPrint(addCoin.Key, addCoin.Value);
+              newSprite.rect.localScale = new Vector3(newSprite.rect.localScale.x * addCoin.Key.spriteScale, newSprite.rect.localScale.y * addCoin.Key.spriteScale, 1);
+              newSprite.rect.position = this.transform.position + addCoin.Key.spritePos;
           });
-        _remove = c.coins.ObserveRemove().Subscribe(x =>
+        _remove = c.coins.ObserveRemove().Subscribe(removeCoin =>
          {
-             sprites.Where(y => { return y.printingCoin == x.Key; }).First().gameObject.SetActive(false);
+             sprites.Where(y => { return y.printingCoin == removeCoin.Key; }).First().gameObject.SetActive(false);
          });
 
 

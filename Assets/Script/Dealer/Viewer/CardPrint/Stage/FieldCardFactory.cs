@@ -12,6 +12,8 @@ public class FieldCardFactory : MonoBehaviour, ICardFactory
     private ObjectFlyer<FieldCard> fieldCardFlyer = null;
     private ObjectFlyer<CoinSprite> coinSpriteFlyer = null;
 
+    private List<ICardPrintable> printableList = new List<ICardPrintable>();
+
     private void OnValidate()
     {
         if (initVRM == null || initVRM.GetComponent<ICardPrintable>() == null) initVRM = null;
@@ -32,6 +34,7 @@ public class FieldCardFactory : MonoBehaviour, ICardFactory
         FieldCard f = fieldCardFlyer.GetMob(position);
         f.vrmPrinted = vrmPrintable;
         f.coinCard.flyer = coinSpriteFlyer;
+        printableList.Add(f);
         return (ICardPrintable)f;
     }
 
@@ -39,5 +42,11 @@ public class FieldCardFactory : MonoBehaviour, ICardFactory
     {
         printable.UnPrint();
         printable.Active(false);
+        printableList.Remove(printable);
+    }
+
+    public List<ICardPrintable> GetCards()
+    {
+        return printableList;
     }
 }

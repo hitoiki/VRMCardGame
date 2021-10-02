@@ -25,6 +25,10 @@ public class HandCard : MonoBehaviour, ICardPrintable, ICursolable
     {
         this.gameObject.SetActive(b);
     }
+    public Transform GetTransform()
+    {
+        return this.transform;
+    }
     public void Click(Vector3 pos, ContactMode mode)
     {
         if (mode == ContactMode.Exit)

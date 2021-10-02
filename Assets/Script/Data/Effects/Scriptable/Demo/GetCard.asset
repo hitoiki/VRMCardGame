@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3242b3450eb6d34e8d9bdb77e953ebd, type: 3}
-  m_Name: Time
+  m_Script: {fileID: 11500000, guid: b3754a57f573567449dc3b9629865ae6, type: 3}
+  m_Name: GetCard
   m_EditorClassIdentifier: 
-  coinName: time
-  storable: 0
-  icon: {fileID: 21300000, guid: 905d26c249ab74743bfe9e030399a61f, type: 3}
-  spritePos: {x: -0.7, y: 1, z: 0}
-  spriteScale: 1
+  getAmo: 1

@@ -13,9 +13,11 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
     [SerializeField] private SpriteRenderer spriteRenderer;
     public ICardPrintable vrmPrinted;
     public CoinCard coinCard;
+    private bool activate;
 
     public void Print(Card c)
     {
+        activate = true;
         this.card.Value = c;
         spriteRenderer.sprite = c?.mainData.iconSprite;
         if (coinCard != null) coinCard.Print(c);
@@ -23,11 +25,17 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
     }
     public void UnPrint()
     {
+        activate = false;
         coinCard.UnPrint();
     }
     public void Active(bool b)
     {
         this.gameObject.SetActive(b);
+    }
+
+    public Transform GetTransform()
+    {
+        return this.transform;
     }
 
     public IReadOnlyReactiveProperty<Card> ObservableCard()
@@ -41,8 +49,11 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
     }
     public void Cursol(Vector3 pos)
     {
-        if (card.Value == null) Debug.Log("noCard!");
-        else vrmPrinted.Print(card.Value);
+        if (activate)
+        {
+            if (card.Value == null) Debug.Log("noCard!");
+            else vrmPrinted.Print(card.Value);
+        }
     }
 
 }

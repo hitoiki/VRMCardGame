@@ -6,22 +6,34 @@ public class CardPlayRecepter : MonoBehaviour
 {
     //カードの使用を取り扱う
     //Rayかなんかで受け取る
-
+    [SerializeField] private StateDealer state;
     [SerializeField] private CardDealer dealer = null;
+    [SerializeField] private string changeStateName;
 
     [SerializeField] private Vector2 areaFrom = Vector2.zero;
     [SerializeField] private Vector2 areaTo = Vector2.zero;
 
     public void CardPlayRecept(Vector3 pos, Card card)
     {
-        //長方形の中にいるかを判定するイケてないif文
-        if (areaFrom.x < pos.x == pos.x < areaTo.x)
+
+        if (!card.SelectActive() && areaCheck(pos))
         {
-            if (areaFrom.y < pos.y == pos.y < areaTo.y)
-            {
-                card.UseEffect(dealer);
-            }
+            card.UseEffect(dealer);
+            dealer.CostPay(card);
         }
+        if (card.SelectActive() && areaCheck(pos))
+        {
+            state.StateSwitch(changeStateName);
+            card.UseEffect(dealer);
+            dealer.CostPay(card);
+        }
+
+
+    }
+    private bool areaCheck(Vector3 pos)
+    {
+        //長方形の中にいるかを判定するif文
+        return areaFrom.x < pos.x == pos.x < areaTo.x && areaFrom.y < pos.y == pos.y < areaTo.y;
     }
 
     private void OnDrawGizmos()

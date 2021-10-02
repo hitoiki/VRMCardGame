@@ -8,9 +8,19 @@ public class CardDealer : MonoBehaviour
     //Cardが出来る処理を書く   
     //CardのEffect群にこいつが渡される
     [SerializeField] private EffectTextPrinter effectTextPrint = null;
+
     [SerializeField] private Stage stage = null;
+    [SerializeField] private Coin coinToCost;
 
     //カードを引いて、適当な場所に移動
+
+    public virtual void CostPay(Card card)
+    {
+        foreach (Card c in stage.field.cards)
+        {
+            c.AddCoin(this, coinToCost, card.mainData.cost);
+        };
+    }
     public void TextView(Card card)
     {
         effectTextPrint.Print(card);

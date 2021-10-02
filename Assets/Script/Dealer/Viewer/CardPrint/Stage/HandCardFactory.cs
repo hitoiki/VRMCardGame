@@ -11,6 +11,8 @@ public class HandCardFactory : MonoBehaviour, ICardFactory
     private ICardPrintable vrmPrinted = null;
     private ObjectFlyer<HandCard> flyer;
 
+    private List<ICardPrintable> printableList = new List<ICardPrintable>();
+
     private void OnValidate()
     {
         if ((initVRM != null) && initVRM.GetComponent<ICardPrintable>() == null) initVRM = null;
@@ -32,6 +34,7 @@ public class HandCardFactory : MonoBehaviour, ICardFactory
             y.recepter = recepter;
         }
         , y => { y.Active(true); });
+        printableList.Add(printedObj);
         return printedObj;
     }
 
@@ -39,5 +42,11 @@ public class HandCardFactory : MonoBehaviour, ICardFactory
     {
         printable.UnPrint();
         printable.Active(false);
+        printableList.Remove(printable);
+    }
+
+    public List<ICardPrintable> GetCards()
+    {
+        return printableList;
     }
 }

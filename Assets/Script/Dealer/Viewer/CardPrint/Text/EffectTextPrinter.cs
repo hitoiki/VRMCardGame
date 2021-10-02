@@ -28,4 +28,8 @@ public class EffectTextPrinter : MonoBehaviour, ICardPrintable
     {
 
     }
+    public Transform GetTransform()
+    {
+        return this.transform;
+    }
 }

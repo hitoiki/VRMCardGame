@@ -15,3 +15,5 @@ MonoBehaviour:
   coinName: damage
   storable: 1
   icon: {fileID: 21300000, guid: 1204d54cda1e6ca43a697092235f346b, type: 3}
+  spritePos: {x: -0.7, y: -1, z: 0}
+  spriteScale: 1

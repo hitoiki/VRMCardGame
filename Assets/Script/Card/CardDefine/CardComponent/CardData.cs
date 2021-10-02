@@ -10,8 +10,9 @@ public class CardData : ScriptableObject, IUseEffect, IDrawEffect
     //基本的にここには静的データと、呼び出される処理を書く
     //ここは呼び出すだけに努めること
 
-    public HashSet<CardType> type { get; }
     public string cardName;
+    public HashSet<CardType> type;
+    public short cost;
     [TextArea] public string flavorText;
     public Sprite frontSprite;
     public Sprite backSprite;

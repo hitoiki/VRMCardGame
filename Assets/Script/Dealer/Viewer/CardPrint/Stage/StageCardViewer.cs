@@ -9,12 +9,10 @@ public class StageCardViewer : MonoBehaviour, IGameState
 {
     // fieldViewerなどを抽象化する
     // Deckに合わせて格子状に表示していくってだけ
-    // Init処理を購読したいのだが型が問題か
     [SerializeField] private GameObject initFactory;
     [SerializeField] private Stage stage;
     [SerializeField] private StageDeck observeDeck;
     [SerializeField] private Grid grid;
-    private List<ICardPrintable> printableList = new List<ICardPrintable>();
     private ICardFactory factory;
     private IDisposable _Replace;
     private IDisposable _Add;
@@ -39,22 +37,20 @@ public class StageCardViewer : MonoBehaviour, IGameState
         {
             //消して（購読を解除して）から、もう一度Print
             //printableList[x.Index].UnPrint();
-            printableList[x.Index].Print(x.NewValue);
+            factory.GetCards()[x.Index].Print(x.NewValue);
 
         });
         stage.DeckKey(observeDeck).ObservableAdd.Subscribe(x =>
         {
             //Flyerから新しくICardPrintableを貰って、自分のリストに加える
             ICardPrintable newCard = factory.CardMake(x.Value, grid.NumberGrid(x.Index));
-            printableList.Add(newCard);
             newCard.Print(x.Value);
         });
         stage.DeckKey(observeDeck).ObservableRemove.Subscribe(x =>
         {
             //Flyerにカードを使われていない状態にしてもらって、リストから消す
-            factory.CardErace(printableList[x.Index]);
-            printableList.RemoveAt(x.Index);
-
+            factory.CardErace(factory.GetCards()[x.Index]);
+            PrintableAlign();
         });
         DeckInit(stage.DeckKey(observeDeck).cards);
     }
@@ -78,17 +74,23 @@ public class StageCardViewer : MonoBehaviour, IGameState
         {
             //デッキの初期化
             ICardPrintable newCard = factory.CardMake(x.Value, grid.NumberGrid(x.Index));
-            printableList.Add(newCard);
             newCard.Print(x.Value);
+        }
+    }
+
+    private void PrintableAlign()
+    {
+        foreach (var p in factory.GetCards()?.Select((ICardPrintable Value, int Index) => new { Value, Index }))
+        {
+            p.Value.GetTransform().position = grid.NumberGrid(p.Index);
         }
     }
 
     public void CardReset()
     {
-        foreach (ICardPrintable p in printableList)
+        foreach (ICardPrintable p in factory.GetCards())
         {
             factory.CardErace(p);
-            printableList.Remove(p);
         }
     }
 }
