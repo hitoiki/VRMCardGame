@@ -1,52 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FieldCardFactory : MonoBehaviour, ICardFactory
 {
     //FieldCardを作って渡すやつ
     [SerializeField] private FieldCard fieldCard;
-    [SerializeField] private GameObject initVRM = null;
+    [SerializeField] private List<GameObject> initCursol = new List<GameObject>();
     [SerializeField] private GameObject initCoinSprite = null;
-    private ICardPrintable vrmPrintable = null;
-    private ObjectFlyer<FieldCard> fieldCardFlyer = null;
+    private List<ICursolableCard> firstCursols = new List<ICursolableCard>();
+    public ObjectFlyer<FieldCard> fieldCardFlyer = null;
     private ObjectFlyer<CoinSprite> coinSpriteFlyer = null;
 
-    private List<ICardPrintable> printableList = new List<ICardPrintable>();
+    public List<FieldCard> printableList = new List<FieldCard>();
 
     private void OnValidate()
     {
-        if (initVRM == null || initVRM.GetComponent<ICardPrintable>() == null) initVRM = null;
+        if (initCursol != null) initCursol = initCursol.Where(x => { return (x == null) || (x.GetComponent<ICursolableCard>() != null); }).ToList();
+
         if (initCoinSprite == null || initCoinSprite?.GetComponent<CoinSprite>() == null) initCoinSprite = null;
     }
 
     private void Start()
     {
         //InitHandがICardPrintedである事が前提条件なアレ
-        vrmPrintable = initVRM?.GetComponent<ICardPrintable>();
+        firstCursols = initCursol.SelectMany(x => { return x.GetComponents<ICursolableCard>(); }).ToList();
         fieldCardFlyer = new ObjectFlyer<FieldCard>(fieldCard);
         coinSpriteFlyer = new ObjectFlyer<CoinSprite>(initCoinSprite.GetComponent<CoinSprite>());
-
     }
 
     public ICardPrintable CardMake(Card card, Vector3 position)
     {
-        FieldCard f = fieldCardFlyer.GetMob(position);
-        f.vrmPrinted = vrmPrintable;
-        f.coinCard.flyer = coinSpriteFlyer;
+        FieldCard f = fieldCardFlyer.GetMob(position, y =>
+        {
+            y.cursolable.AddRange(firstCursols);
+            y.coinCard.flyer = coinSpriteFlyer;
+        });
         printableList.Add(f);
         return (ICardPrintable)f;
     }
 
-    public void CardErace(ICardPrintable printable)
+    public void CardEraceAt(int index)
     {
-        printable.UnPrint();
-        printable.Active(false);
-        printableList.Remove(printable);
+        printableList[index].UnPrint();
+        printableList[index].Active(false);
+        printableList.RemoveAt(index);
     }
 
     public List<ICardPrintable> GetCards()
     {
-        return printableList;
+        return printableList.Select(x => { return x as ICardPrintable; }).ToList();
     }
 }

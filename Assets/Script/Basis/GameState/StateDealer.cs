@@ -9,7 +9,6 @@ public class StateDealer : MonoBehaviour
     //IStateを継承して、それを取り扱う仕組みにする
     [SerializeField] public List<GameStateSet> states;
     private GameStateSet loadingState;
-    [SerializeField] public bool isPose = false;
 
     private void Start()
     {
@@ -19,10 +18,10 @@ public class StateDealer : MonoBehaviour
 
     private void Update()
     {
-        if (!isPose) loadingState.StateUpdate();
+        loadingState.StateUpdate();
     }
 
-    public void StateSwitch(string nextState)
+    public void ChangeState(string nextState)
     {
         if (states.First(x => { return x.stateName == nextState; }) != null)
         {

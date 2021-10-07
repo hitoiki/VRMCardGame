@@ -123,6 +123,64 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1915910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1915911}
+  - component: {fileID: 1915913}
+  - component: {fileID: 1915912}
+  m_Layer: 0
+  m_Name: HandCursol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1915911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915910}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1870451250}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1915912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2b2eacbf6ceb54a896505f279f553c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrmPrintCard: {fileID: 322472141}
+--- !u!114 &1915913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b5d5d851a60554197db0642b7b6b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recepter: {fileID: 200107283}
 --- !u!1 &54079515
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +354,8 @@ MonoBehaviour:
   stateName: alpha
   Initforrower:
   - {fileID: 91870506}
+  - {fileID: 1487268927}
+  - {fileID: 128778841}
 --- !u!114 &91870508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +513,7 @@ GameObject:
   - component: {fileID: 200107282}
   - component: {fileID: 200107284}
   - component: {fileID: 200107283}
+  - component: {fileID: 200107281}
   m_Layer: 0
   m_Name: CardDealer
   m_TagString: Untagged
@@ -460,6 +521,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &200107281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200107280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33042d23009b6bc4e9b73ee6d47fe72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: {fileID: 2140630055}
+  dealer: {fileID: 200107284}
+  changeStateName: CardSelect
 --- !u!4 &200107282
 Transform:
   m_ObjectHideFlags: 0
@@ -486,9 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152ccfcc2ce356747ad81073521f4c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: {fileID: 0}
-  dealer: {fileID: 200107284}
-  changeStateName: CardSelect
+  checker: {fileID: 200107281}
   areaFrom: {x: -2, y: 0}
   areaTo: {x: 9, y: 6}
 --- !u!114 &200107284
@@ -504,8 +578,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectTextPrint: {fileID: 549688501}
+  player: {fileID: 0}
   stage: {fileID: 400381648}
   coinToCost: {fileID: 11400000, guid: e1c265da72ddba04bb831e1c2b9cdd45, type: 2}
+--- !u!1 &212116651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 212116652}
+  - component: {fileID: 212116653}
+  m_Layer: 0
+  m_Name: FieldCursol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &212116652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212116651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1841415131}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &212116653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212116651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2b2eacbf6ceb54a896505f279f553c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrmPrintCard: {fileID: 322472141}
 --- !u!1 &322472140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,6 +2350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1828729575}
   - component: {fileID: 1828729574}
+  - component: {fileID: 1828729576}
   m_Layer: 0
   m_Name: DeckEditor
   m_TagString: Untagged
@@ -2278,6 +2398,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1828729576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828729573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2d753961f686d48bbe79006ce3da11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dealer: {fileID: 2140630055}
+  statename: alpha
 --- !u!1 &1841415130
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,7 +2440,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.37723064, y: 4.6711893, z: 10.242018}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 212116652}
   m_Father: {fileID: 629223420}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2344,9 +2479,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldCard: {fileID: 3998338738587770798, guid: 190e21ddae3144c40a4309e3ef492f6b,
     type: 3}
-  initVRM: {fileID: 322472140}
+  initCursol:
+  - {fileID: 212116651}
   initCoinSprite: {fileID: 7289762398079551930, guid: 31ba0fc47142614468ceeb0acd7fe054,
     type: 3}
+  printableList: []
 --- !u!1 &1870451248
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,7 +2532,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.9, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1915911}
   m_Father: {fileID: 629223420}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2411,10 +2549,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb54ebf7547c27a40b8a3e1991d8eee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initVRM: {fileID: 322472140}
+  initCursol:
+  - {fileID: 1915910}
   handCard: {fileID: 5493066297844848919, guid: bfe820483062f23459790d170dde14f5,
     type: 3}
-  recepter: {fileID: 200107283}
 --- !u!1 &1937032018
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,4 +2911,3 @@ MonoBehaviour:
   states:
   - {fileID: 2135460886}
   - {fileID: 91870507}
-  isPose: 0

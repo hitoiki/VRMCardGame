@@ -6,9 +6,7 @@ public class CardPlayRecepter : MonoBehaviour
 {
     //カードの使用を取り扱う
     //Rayかなんかで受け取る
-    [SerializeField] private StateDealer state;
-    [SerializeField] private CardDealer dealer = null;
-    [SerializeField] private string changeStateName;
+    [SerializeField] private CardPlayChecker checker;
 
     [SerializeField] private Vector2 areaFrom = Vector2.zero;
     [SerializeField] private Vector2 areaTo = Vector2.zero;
@@ -16,17 +14,7 @@ public class CardPlayRecepter : MonoBehaviour
     public void CardPlayRecept(Vector3 pos, Card card)
     {
 
-        if (!card.SelectActive() && areaCheck(pos))
-        {
-            card.UseEffect(dealer);
-            dealer.CostPay(card);
-        }
-        if (card.SelectActive() && areaCheck(pos))
-        {
-            state.StateSwitch(changeStateName);
-            card.UseEffect(dealer);
-            dealer.CostPay(card);
-        }
+        if (areaCheck(pos)) checker.CardPlay(card);
 
 
     }

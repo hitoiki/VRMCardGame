@@ -2,51 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using System.Linq;
 
 public class HandCardFactory : MonoBehaviour, ICardFactory
 {
-    [SerializeField] private GameObject initVRM = null;
+    [SerializeField] private List<GameObject> initCursol = new List<GameObject>();
     [SerializeField] private HandCard handCard = null;
-    [SerializeField] private CardPlayRecepter recepter = null;
-    private ICardPrintable vrmPrinted = null;
+    private List<ICursolableCard> firstCursols = new List<ICursolableCard>();
     private ObjectFlyer<HandCard> flyer;
 
-    private List<ICardPrintable> printableList = new List<ICardPrintable>();
+    private List<HandCard> printableList = new List<HandCard>();
 
     private void OnValidate()
     {
-        if ((initVRM != null) && initVRM.GetComponent<ICardPrintable>() == null) initVRM = null;
+        if (initCursol != null) initCursol = initCursol.Where(x => { return (x == null) || (x.GetComponent<ICursolableCard>() != null); }).ToList();
 
     }
 
     private void Start()
     {
         //InitHandがICardPrintedである事が前提条件なアレ
-        if (initVRM != null) vrmPrinted = initVRM.GetComponent<ICardPrintable>();
+        firstCursols = initCursol.SelectMany(x => { return x.GetComponents<ICursolableCard>(); }).ToList();
         if (handCard != null) flyer = new ObjectFlyer<HandCard>(handCard);
     }
     public ICardPrintable CardMake(Card card, Vector3 position)
     {
         HandCard printedObj = flyer.GetMob(position, y =>
         {
-            y.vrmPrinted = vrmPrinted;
+            y.cursolable.AddRange(firstCursols);
             y.anchor = position;
-            y.recepter = recepter;
         }
         , y => { y.Active(true); });
         printableList.Add(printedObj);
         return printedObj;
     }
 
-    public void CardErace(ICardPrintable printable)
+    public void CardEraceAt(int index)
     {
-        printable.UnPrint();
-        printable.Active(false);
-        printableList.Remove(printable);
+        printableList[index].UnPrint();
+        printableList[index].Active(false);
+        printableList.RemoveAt(index);
     }
 
     public List<ICardPrintable> GetCards()
     {
-        return printableList;
+        return printableList.Select(x => { return x as ICardPrintable; }).ToList(); ;
     }
 }

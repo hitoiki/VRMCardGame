@@ -35,6 +35,11 @@ public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
         return this.transform;
     }
 
+    public Card GetCard()
+    {
+        return card.Value;
+    }
+
     public void Active(bool boo)
     {
 

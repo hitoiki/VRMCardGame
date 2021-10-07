@@ -33,25 +33,25 @@ public class StageCardViewer : MonoBehaviour, IGameState
     public void CrankIn()
     {
         //Deckに変更が起きた際、これが実行される
-        stage.DeckKey(observeDeck).ObservableReplace.Subscribe(x =>
-        {
-            //消して（購読を解除して）から、もう一度Print
-            //printableList[x.Index].UnPrint();
-            factory.GetCards()[x.Index].Print(x.NewValue);
+        _Replace = stage.DeckKey(observeDeck).ObservableReplace.Subscribe(x =>
+         {
+             //消して（購読を解除して）から、もう一度Print
+             //printableList[x.Index].UnPrint();
+             factory.GetCards()[x.Index].Print(x.NewValue);
 
-        });
-        stage.DeckKey(observeDeck).ObservableAdd.Subscribe(x =>
-        {
-            //Flyerから新しくICardPrintableを貰って、自分のリストに加える
-            ICardPrintable newCard = factory.CardMake(x.Value, grid.NumberGrid(x.Index));
-            newCard.Print(x.Value);
-        });
-        stage.DeckKey(observeDeck).ObservableRemove.Subscribe(x =>
-        {
-            //Flyerにカードを使われていない状態にしてもらって、リストから消す
-            factory.CardErace(factory.GetCards()[x.Index]);
-            PrintableAlign();
-        });
+         });
+        _Add = stage.DeckKey(observeDeck).ObservableAdd.Subscribe(x =>
+         {
+             //Flyerから新しくICardPrintableを貰って、自分のリストに加える
+             ICardPrintable newCard = factory.CardMake(x.Value, grid.NumberGrid(x.Index));
+             newCard.Print(x.Value);
+         });
+        _Remove = stage.DeckKey(observeDeck).ObservableRemove.Subscribe(x =>
+         {
+             //Flyerにカードを使われていない状態にしてもらって、リストから消す
+             factory.CardEraceAt(x.Index);
+             PrintableAlign();
+         });
         DeckInit(stage.DeckKey(observeDeck).cards);
     }
     //Update
@@ -70,12 +70,28 @@ public class StageCardViewer : MonoBehaviour, IGameState
     }
     private void DeckInit(List<Card> c)
     {
-        foreach (var x in c?.Select((Card Value, int Index) => new { Value, Index }))
+        //デッキの初期化
+        foreach (var i in c.Select((Value, Index) => new { Value, Index }))
         {
-            //デッキの初期化
-            ICardPrintable newCard = factory.CardMake(x.Value, grid.NumberGrid(x.Index));
-            newCard.Print(x.Value);
+            if (i.Index < factory.GetCards().Count)
+            {
+                factory.GetCards()[i.Index].Print(i.Value);
+            }
+            else
+            {
+                ICardPrintable newCard = factory.CardMake(i.Value, grid.NumberGrid(i.Index));
+                newCard.Print(i.Value);
+            }
         }
+
+        if (factory.GetCards().Count > c.Count)
+        {
+            for (int i = factory.GetCards().Count - 1; i > c.Count - 1; i--)
+            {
+                factory.CardEraceAt(i);
+            }
+        }
+
     }
 
     private void PrintableAlign()
@@ -88,9 +104,9 @@ public class StageCardViewer : MonoBehaviour, IGameState
 
     public void CardReset()
     {
-        foreach (ICardPrintable p in factory.GetCards())
+        for (int i = 0; i < factory.GetCards().Count; i++)
         {
-            factory.CardErace(p);
+            factory.CardEraceAt(i);
         }
     }
 }

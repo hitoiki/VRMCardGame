@@ -8,7 +8,7 @@ public class CardDealer : MonoBehaviour
     //Cardが出来る処理を書く   
     //CardのEffect群にこいつが渡される
     [SerializeField] private EffectTextPrinter effectTextPrint = null;
-
+    [SerializeField] private PlayerData player;
     [SerializeField] private Stage stage = null;
     [SerializeField] private Coin coinToCost;
 

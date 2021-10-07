@@ -11,7 +11,7 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
     //field上のカードPrefabに付けるクラス
     private ReactiveProperty<Card> card = new ReactiveProperty<Card>();
     [SerializeField] private SpriteRenderer spriteRenderer;
-    public ICardPrintable vrmPrinted;
+    public List<ICursolableCard> cursolable = new List<ICursolableCard>();
     public CoinCard coinCard;
     private bool activate;
 
@@ -38,6 +38,11 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
         return this.transform;
     }
 
+    public Card GetCard()
+    {
+        return card.Value;
+    }
+
     public IReadOnlyReactiveProperty<Card> ObservableCard()
     {
         return card;
@@ -45,14 +50,22 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
 
     public void Click(Vector3 pos, ContactMode mode)
     {
-
+        if (activate)
+        {
+            foreach (ICursolableCard c in cursolable)
+            {
+                c.CardClick(this, pos, mode);
+            }
+        }
     }
     public void Cursol(Vector3 pos)
     {
         if (activate)
         {
-            if (card.Value == null) Debug.Log("noCard!");
-            else vrmPrinted.Print(card.Value);
+            foreach (ICursolableCard c in cursolable)
+            {
+                c.CardCursol(this, pos);
+            }
         }
     }
 

@@ -67,5 +67,10 @@ public class UnderCardPrinter : MonoBehaviour, ICardPrintable, IGameState
         return this.transform;
     }
 
+    public Card GetCard()
+    {
+        return vrm.GetCard();
+    }
+
 
 }

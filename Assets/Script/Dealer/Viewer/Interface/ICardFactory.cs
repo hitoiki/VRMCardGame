@@ -9,6 +9,6 @@ public interface ICardFactory
 
     //生成して、指定の位置において、渡す
     ICardPrintable CardMake(Card card, Vector3 position);
-    void CardErace(ICardPrintable printable);
+    void CardEraceAt(int index);
     List<ICardPrintable> GetCards();
 }

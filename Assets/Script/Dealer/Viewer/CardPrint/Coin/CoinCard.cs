@@ -25,17 +25,26 @@ public class CoinCard : MonoBehaviour, ICardPrintable
     {
         return this.transform;
     }
+    public Card GetCard()
+    {
+        return null;
+    }
 
     public void UnPrint()
     {
-
+        _replace.Dispose();
+        _add.Dispose();
+        _remove.Dispose();
     }
 
     public void Print(Card c)
     {
         _replace = c.coins.ObserveReplace().Subscribe(changeCoin =>
         {
-            sprites.Where(y => { return y.printingCoin == changeCoin.Key; }).First().CoinPrint(changeCoin.Key, changeCoin.NewValue);
+            foreach (CoinSprite s in sprites.Where(y => { return y.printingCoin == changeCoin.Key; }))
+            {
+                s.CoinPrint(changeCoin.Key, changeCoin.NewValue);
+            };
         });
         _add = c.coins.ObserveAdd().Subscribe(addCoin =>
           {
@@ -48,9 +57,40 @@ public class CoinCard : MonoBehaviour, ICardPrintable
           });
         _remove = c.coins.ObserveRemove().Subscribe(removeCoin =>
          {
-             sprites.Where(y => { return y.printingCoin == removeCoin.Key; }).First().gameObject.SetActive(false);
+             foreach (CoinSprite s in sprites.Where(y => { return y.printingCoin == removeCoin.Key; }))
+             {
+                 s.gameObject.SetActive(false);
+             };
          });
 
+        CoinInit(c.coins.ToDictionary(pair => pair.Key, pair => pair.Value));
+    }
 
+    private void CoinInit(Dictionary<Coin, short> c)
+    {
+        foreach (var i in c.Select((Value, Index) => new { Value, Index }))
+        {
+            if (i.Index < sprites.Count)
+            {
+                sprites[i.Index].CoinPrint(i.Value.Key, i.Value.Value);
+            }
+            else
+            {
+                CoinSprite newSprite = flyer.GetMob(new Vector3(100, 0, 0));
+                newSprite.gameObject.transform.SetParent(this.transform);
+                sprites.Add(newSprite);
+                newSprite.CoinPrint(i.Value.Key, i.Value.Value);
+                newSprite.rect.localScale = new Vector3(newSprite.rect.localScale.x * i.Value.Key.spriteScale, newSprite.rect.localScale.y * i.Value.Key.spriteScale, 1);
+                newSprite.rect.position = this.transform.position + i.Value.Key.spritePos; ;
+            }
+        }
+
+        if (sprites.Count > c.Count)
+        {
+            for (int i = sprites.Count - 1; i > c.Count - 1; i--)
+            {
+                sprites[i].gameObject.SetActive(false);
+            }
+        }
     }
 }

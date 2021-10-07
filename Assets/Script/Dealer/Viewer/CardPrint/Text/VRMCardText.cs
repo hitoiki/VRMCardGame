@@ -26,10 +26,10 @@ public class VRMCardText : MonoBehaviour, IGameState
 
     public void CrankIn()
     {
-        vrm.ObservableCard().Where(x => { return x != null; }).Subscribe(x =>
-           {
-               Print(x);
-           });
+        _Vrm = vrm.ObservableCard().Where(x => { return x != null; }).Subscribe(x =>
+            {
+                Print(x);
+            });
 
     }
 

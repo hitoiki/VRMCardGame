@@ -14,8 +14,10 @@ public class EffectTextPrinter : MonoBehaviour, ICardPrintable
     [SerializeField] private Vector2 displayPoint;
     [SerializeField] private Vector2 anchorPoint;
     [SerializeField] private RectTransform position;
+    private Card c;
     public void Print(Card card)
     {
+        c = card;
         effectText.text = card.CardText();
         this.position.DOAnchorPos(displayPoint, easingTime);
         this.position.DOAnchorPos(anchorPoint, easingTime).SetDelay(displayTime);
@@ -31,5 +33,9 @@ public class EffectTextPrinter : MonoBehaviour, ICardPrintable
     public Transform GetTransform()
     {
         return this.transform;
+    }
+    public Card GetCard()
+    {
+        return c;
     }
 }
