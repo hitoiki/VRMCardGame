@@ -7,15 +7,17 @@ public class DrawTextSet : DrawText
 {
     [SerializeField] private DrawText[] texts;
 
-    public override string Text(){
+    public override string Text()
+    {
         string str = "";
         foreach (DrawText t in texts)
         {
-            str += "\n"+t.Text();
+            str += "\n" + t.Text();
         }
         return str;
     }
-    public override void Effect(CardDealer dealer, Card target, StageDeck from, StageDeck to){
-        foreach (DrawText t in texts) t.Effect(dealer, target, from, to);
+    public override void Skill(CardDealer dealer, Card target, StageDeck from, StageDeck to)
+    {
+        foreach (DrawText t in texts) t.Skill(dealer, target, from, to);
     }
 }

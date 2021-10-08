@@ -5,7 +5,7 @@ using UniRx;
 
 
 [System.Serializable]
-public class Card : IUseEffect, IDrawEffect, ISelectEffect//,ICoinEffect
+public class Card : IUseSkill, IDrawSkill, ISelectSkill//,ICoinSkill
 {
     // 実際に扱われるカード
     //エフェクトの欄をDataに足す
@@ -23,7 +23,7 @@ public class Card : IUseEffect, IDrawEffect, ISelectEffect//,ICoinEffect
     {
         if (coins.ContainsKey(c)) coins[c] += n;
         else coins.Add(c, n);
-        CoinEffect(dealer, c, n);
+        CoinSkill(dealer, c, n);
     }
 
     public void RemoveCoin(CardDealer dealer, Coin c, short n)
@@ -33,7 +33,7 @@ public class Card : IUseEffect, IDrawEffect, ISelectEffect//,ICoinEffect
             if (coins[c] > n) coins[c] = 0;
             else coins[c] -= n;
         }
-        CoinEffect(dealer, c, n);
+        CoinSkill(dealer, c, n);
     }
 
     public string CardText()
@@ -53,30 +53,30 @@ public class Card : IUseEffect, IDrawEffect, ISelectEffect//,ICoinEffect
     //CoinはCoinの変更時に
     //Dealerとかで発動タイミングの統括を図ったほうが良いような感じもする
     //非同期処理でないはずなので多分大丈夫きっと恐らく
-    public void CoinEffect(CardDealer dealer, Coin coin, short n)
+    public void CoinSkill(CardDealer dealer, Coin coin, short n)
     {
-        if (mainData.coinText != null) mainData.coinText.Effect(dealer, this, coin, n);
-        foreach (CardData data in underCards) if (data.coinText != null) data.coinText.Effect(dealer, this, coin, n);
+        if (mainData.coinText != null) mainData.coinText.Skill(dealer, this, coin, n);
+        foreach (CardData data in underCards) if (data.coinText != null) data.coinText.Skill(dealer, this, coin, n);
     }
 
-    public void UseEffect(CardDealer dealer)
+    public void UseSkill(CardDealer dealer)
     {
         dealer.TextView(this);
-        if (mainData.useText != null) mainData.useText.Effect(dealer, this);
-        foreach (CardData data in underCards) if (data.useText != null) data.useText.Effect(dealer, this);
+        if (mainData.useText != null) mainData.useText.Skill(dealer, this);
+        foreach (CardData data in underCards) if (data.useText != null) data.useText.Skill(dealer, this);
     }
 
-    public void DrawEffect(CardDealer dealer, StageDeck from, StageDeck to)
+    public void DrawSkill(CardDealer dealer, StageDeck from, StageDeck to)
     {
         dealer.TextView(this);
-        if (mainData.drawText != null) mainData.drawText.Effect(dealer, this, from, to);
-        foreach (CardData data in underCards) if (data.drawText != null) data.drawText.Effect(dealer, this, from, to);
+        if (mainData.drawText != null) mainData.drawText.Skill(dealer, this, from, to);
+        foreach (CardData data in underCards) if (data.drawText != null) data.drawText.Skill(dealer, this, from, to);
     }
-    public void SelectEffect(CardDealer dealer, Card target)
+    public void SelectSkill(CardDealer dealer, Card target)
     {
         dealer.TextView(this);
-        if (mainData.selectText != null) mainData.selectText.Effect(dealer, this, target);
-        foreach (CardData data in underCards) if (data.selectText != null) data.selectText.Effect(dealer, this, target);
+        if (mainData.selectText != null) mainData.selectText.Skill(dealer, this, target);
+        foreach (CardData data in underCards) if (data.selectText != null) data.selectText.Skill(dealer, this, target);
     }
 
 }

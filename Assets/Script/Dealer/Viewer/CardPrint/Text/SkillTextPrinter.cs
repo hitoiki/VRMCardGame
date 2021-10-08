@@ -5,10 +5,10 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 #pragma warning disable 0649
-public class EffectTextPrinter : MonoBehaviour, ICardPrintable
+public class SkillTextPrinter : MonoBehaviour, ICardPrintable
 {
     //スッと出てくる
-    [SerializeField] private Text effectText;
+    [SerializeField] private Text SkillText;
     [SerializeField] private float displayTime;
     [SerializeField] private float easingTime;
     [SerializeField] private Vector2 displayPoint;
@@ -18,7 +18,7 @@ public class EffectTextPrinter : MonoBehaviour, ICardPrintable
     public void Print(Card card)
     {
         c = card;
-        effectText.text = card.CardText();
+        SkillText.text = card.CardText();
         this.position.DOAnchorPos(displayPoint, easingTime);
         this.position.DOAnchorPos(anchorPoint, easingTime).SetDelay(displayTime);
     }

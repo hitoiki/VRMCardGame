@@ -16,7 +16,7 @@ public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
     {
         this.card.Value = card;
         nameText.text = card.mainData.cardName;
-        //effectText.text = card.Cardtext();
+        //SkillText.text = card.Cardtext();
         BackImage.sprite = card.mainData.backSprite;
         FrontImage.sprite = card.mainData.frontSprite;
     }

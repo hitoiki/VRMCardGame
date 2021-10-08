@@ -6,8 +6,8 @@ using UnityEngine;
 public class CardDealer : MonoBehaviour
 {
     //Cardが出来る処理を書く   
-    //CardのEffect群にこいつが渡される
-    [SerializeField] private EffectTextPrinter effectTextPrint = null;
+    //CardのSkill群にこいつが渡される
+    [SerializeField] private SkillTextPrinter SkillTextPrint = null;
     [SerializeField] private PlayerData player;
     [SerializeField] private Stage stage = null;
     [SerializeField] private Coin coinToCost;
@@ -23,7 +23,7 @@ public class CardDealer : MonoBehaviour
     }
     public void TextView(Card card)
     {
-        effectTextPrint.Print(card);
+        SkillTextPrint.Print(card);
     }
     public void DeckDraw(StageDeck from, StageDeck to, int amount)
     {

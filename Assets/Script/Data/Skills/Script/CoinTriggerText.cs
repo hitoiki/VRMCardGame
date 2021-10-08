@@ -9,14 +9,15 @@ public class CoinTriggerText : CoinText
     [SerializeField] private short threshold = 0;
     [SerializeField] private UseText useText;
 
-    public override void Effect(CardDealer dealer, Card target, Coin c, short n)
+    public override void Skill(CardDealer dealer, Card target, Coin c, short n)
     {
         if (target.coins[ReactiveCoin] >= threshold)
         {
-            useText.Effect(dealer,target);
+            useText.Skill(dealer, target);
         }
     }
-    public override string Text(){
-        return ReactiveCoin.coinName +" "+ threshold.ToString()+":"+useText.Text();
+    public override string Text()
+    {
+        return ReactiveCoin.coinName + " " + threshold.ToString() + ":" + useText.Text();
     }
 }

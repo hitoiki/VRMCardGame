@@ -11,7 +11,7 @@ public class UnderCardPrinter : MonoBehaviour, ICardPrintable, IGameState
 {
     //Vrmに付いて下のカードの情報を知らせる奴
     [SerializeField] private VRMPrintCard vrm;
-    [SerializeField] private Text effectText;
+    [SerializeField] private Text SkillText;
     [SerializeField] private float easingTime;
     [SerializeField] private Vector2 displayPoint;
     [SerializeField] private Vector2 anchorPoint;
@@ -52,7 +52,7 @@ public class UnderCardPrinter : MonoBehaviour, ICardPrintable, IGameState
 
     public void Print(Card card)
     {
-        effectText.text = card.CardText();
+        SkillText.text = card.CardText();
     }
     public void UnPrint()
     {

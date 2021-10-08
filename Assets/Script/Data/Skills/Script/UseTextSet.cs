@@ -7,15 +7,17 @@ public class UseTextSet : UseText
 {
     [SerializeField] private UseText[] texts;
 
-    public override string Text(){
+    public override string Text()
+    {
         string str = "";
         foreach (UseText t in texts)
         {
-            str += "\n"+t.Text();
+            str += "\n" + t.Text();
         }
         return str;
     }
-    public override void Effect(CardDealer dealer, Card target){
-        foreach (UseText t in texts) t.Effect(dealer, target);
+    public override void Skill(CardDealer dealer, Card target)
+    {
+        foreach (UseText t in texts) t.Skill(dealer, target);
     }
 }

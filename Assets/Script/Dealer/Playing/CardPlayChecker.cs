@@ -7,7 +7,7 @@ public class CardPlayChecker : MonoBehaviour
     [SerializeField] private StateDealer state;
     [SerializeField] private CardDealer dealer = null;
     [SerializeField] private string selectingState;
-    [SerializeField] private string effectingState;
+    [SerializeField] private string SkillingState;
 
 
     public void CardPlay(Card card)
@@ -18,15 +18,15 @@ public class CardPlayChecker : MonoBehaviour
         }
         else
         {
-            card.UseEffect(dealer);
+            card.UseSkill(dealer);
         }
     }
 
     public void CardSelecting(Card card)
     {
-        state.ChangeState(effectingState);
-        card.SelectEffect(dealer, card);
-        card.UseEffect(dealer);
+        state.ChangeState(SkillingState);
+        card.SelectSkill(dealer, card);
+        card.UseSkill(dealer);
     }
 
 

@@ -9,7 +9,7 @@ public class VRMCardText : MonoBehaviour, IGameState
 {
     [SerializeField] private GameObject initVRM;
     private ICardObservable vrm;
-    [SerializeField] private Text effectText;
+    [SerializeField] private Text SkillText;
     [SerializeField] private Scrollbar bar;
 
     private IDisposable _Vrm;
@@ -46,7 +46,7 @@ public class VRMCardText : MonoBehaviour, IGameState
 
     public void Print(Card card)
     {
-        effectText.text = card.CardText();
+        SkillText.text = card.CardText();
         bar.value = 1;
     }
 

@@ -10,7 +10,7 @@ public class BasicReactiveDraw : CoinText
     [SerializeField] private StageDeck drawFrom;
     [SerializeField] private StageDeck drawTo;
     [SerializeField] private short drawAmount = 0;
-    public override void Effect(CardDealer dealer, Card target, Coin c, short n)
+    public override void Skill(CardDealer dealer, Card target, Coin c, short n)
     {
         if (target.coins.ContainsKey(ReactiveCoin) && target.coins[ReactiveCoin] >= threshold)
         {

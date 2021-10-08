@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class UseText : ScriptableObject
 {
     public abstract string Text();
-    public abstract void Effect(CardDealer dealer, Card source);
+    public abstract void Skill(CardDealer dealer, Card source);
 }

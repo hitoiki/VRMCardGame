@@ -9,7 +9,7 @@ public class GetCard : UseText
     {
         return "場のカードを右端から" + getAmo.ToString() + "枚回収する。";
     }
-    public override void Effect(CardDealer dealer, Card source)
+    public override void Skill(CardDealer dealer, Card source)
     {
         dealer.DeckDraw(StageDeck.field, StageDeck.hands, getAmo);
     }
