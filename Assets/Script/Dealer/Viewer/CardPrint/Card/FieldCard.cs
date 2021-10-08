@@ -6,12 +6,12 @@ using UnityEngine.UI;
 using UniRx;
 #pragma warning disable 0649
 [SerializeField]
-public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObservable
+public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObservable, ICardCursolEventUser
 {
     //field上のカードPrefabに付けるクラス
     private ReactiveProperty<Card> card = new ReactiveProperty<Card>();
     [SerializeField] private SpriteRenderer spriteRenderer;
-    public List<ICursolableCard> cursolable = new List<ICursolableCard>();
+    public List<ICardCursolEvent> cursolEvent = new List<ICardCursolEvent>();
     public CoinCard coinCard;
     private bool activate;
 
@@ -47,12 +47,24 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
     {
         return card;
     }
+    public void AddCardCursolEvent(ICardCursolEvent c)
+    {
+        cursolEvent.Add(c);
+    }
+    public void RemoveCardCursolEvent(ICardCursolEvent c)
+    {
+        cursolEvent.Remove(c);
+    }
+    public void SubstitutionCardCursolEvent(List<ICardCursolEvent> c)
+    {
+        cursolEvent = c;
+    }
 
     public void Click(Vector3 pos, ContactMode mode)
     {
         if (activate)
         {
-            foreach (ICursolableCard c in cursolable)
+            foreach (ICardCursolEvent c in cursolEvent)
             {
                 c.CardClick(this, pos, mode);
             }
@@ -62,7 +74,7 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
     {
         if (activate)
         {
-            foreach (ICursolableCard c in cursolable)
+            foreach (ICardCursolEvent c in cursolEvent)
             {
                 c.CardCursol(this, pos);
             }

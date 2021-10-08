@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class FieldCardFactory : MonoBehaviour, ICardFactory
+public class FieldCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUser
 {
     //FieldCardを作って渡すやつ
     [SerializeField] private FieldCard fieldCard;
     [SerializeField] private List<GameObject> initCursol = new List<GameObject>();
     [SerializeField] private GameObject initCoinSprite = null;
-    private List<ICursolableCard> firstCursols = new List<ICursolableCard>();
+    private List<ICardCursolEvent> firstCursols = new List<ICardCursolEvent>();
     public ObjectFlyer<FieldCard> fieldCardFlyer = null;
     private ObjectFlyer<CoinSprite> coinSpriteFlyer = null;
 
@@ -17,7 +17,7 @@ public class FieldCardFactory : MonoBehaviour, ICardFactory
 
     private void OnValidate()
     {
-        if (initCursol != null) initCursol = initCursol.Where(x => { return (x == null) || (x.GetComponent<ICursolableCard>() != null); }).ToList();
+        if (initCursol != null) initCursol = initCursol.Where(x => { return (x == null) || (x.GetComponent<ICardCursolEvent>() != null); }).ToList();
 
         if (initCoinSprite == null || initCoinSprite?.GetComponent<CoinSprite>() == null) initCoinSprite = null;
     }
@@ -25,7 +25,7 @@ public class FieldCardFactory : MonoBehaviour, ICardFactory
     private void Start()
     {
         //InitHandがICardPrintedである事が前提条件なアレ
-        firstCursols = initCursol.SelectMany(x => { return x.GetComponents<ICursolableCard>(); }).ToList();
+        firstCursols = initCursol.SelectMany(x => { return x.GetComponents<ICardCursolEvent>(); }).ToList();
         fieldCardFlyer = new ObjectFlyer<FieldCard>(fieldCard);
         coinSpriteFlyer = new ObjectFlyer<CoinSprite>(initCoinSprite.GetComponent<CoinSprite>());
     }
@@ -34,7 +34,7 @@ public class FieldCardFactory : MonoBehaviour, ICardFactory
     {
         FieldCard f = fieldCardFlyer.GetMob(position, y =>
         {
-            y.cursolable.AddRange(firstCursols);
+            y.cursolEvent.AddRange(firstCursols);
             y.coinCard.flyer = coinSpriteFlyer;
         });
         printableList.Add(f);
@@ -51,5 +51,30 @@ public class FieldCardFactory : MonoBehaviour, ICardFactory
     public List<ICardPrintable> GetCards()
     {
         return printableList.Select(x => { return x as ICardPrintable; }).ToList();
+    }
+
+    public void AddCardCursolEvent(ICardCursolEvent cursolEvent)
+    {
+        firstCursols.Add(cursolEvent);
+        foreach (ICardCursolEventUser u in printableList.Select(x => { return x as ICardCursolEventUser; }))
+        {
+            u.AddCardCursolEvent(cursolEvent);
+        }
+    }
+    public void RemoveCardCursolEvent(ICardCursolEvent cursolEvent)
+    {
+        firstCursols.Remove(cursolEvent);
+        foreach (ICardCursolEventUser u in printableList.Select(x => { return x as ICardCursolEventUser; }))
+        {
+            u.RemoveCardCursolEvent(cursolEvent);
+        }
+    }
+    public void SubstitutionCardCursolEvent(List<ICardCursolEvent> cursolEvent)
+    {
+        firstCursols = cursolEvent;
+        foreach (ICardCursolEventUser u in printableList.Select(x => { return x as ICardCursolEventUser; }))
+        {
+            u.SubstitutionCardCursolEvent(cursolEvent);
+        }
     }
 }

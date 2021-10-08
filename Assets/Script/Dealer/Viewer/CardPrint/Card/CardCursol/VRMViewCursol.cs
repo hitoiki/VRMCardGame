@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VRMViewCursol : MonoBehaviour, ICursolableCard
+public class VRMViewCursol : MonoBehaviour, ICardCursolEvent
 {
     public VRMPrintCard vrmPrintCard;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)

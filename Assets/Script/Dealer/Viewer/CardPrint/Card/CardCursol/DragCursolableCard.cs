@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragCursolableCard : MonoBehaviour, ICursolableCard
+public class DragCursolableCard : MonoBehaviour, ICardCursolEvent
 {
     Vector3 anchor;
     [SerializeField] CardPlayRecepter recepter;
