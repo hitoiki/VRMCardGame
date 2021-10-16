@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UniRx;
 
 
 [System.Serializable]
-public class Card : IUseSkill, IDrawSkill, ISelectSkill//,ICoinSkill
+public class Card
 {
     // 実際に扱われるカード
     //エフェクトの欄をDataに足す
 
     public CardData mainData;
+    private List<SkillComponent> mainSkills => mainData.skillTexts;
     public List<CardData> underCards = new List<CardData>();
+    private List<SkillComponent> underSkills => underCards.SelectMany(x => { return x.skillTexts; }).ToList();
     public ReactiveDictionary<Coin, short> coins = new ReactiveDictionary<Coin, short>();
+
+    delegate CardSkill SkillDeal(SkillComponent text);
 
     public Card(CardData d)
     {
@@ -21,19 +26,21 @@ public class Card : IUseSkill, IDrawSkill, ISelectSkill//,ICoinSkill
     //効果が反応するようなCoin操作
     public void AddCoin(CardDealer dealer, Coin c, short n)
     {
+        CoinSkill(SkillPriority.beforeCoin, c, n).skill(dealer);
         if (coins.ContainsKey(c)) coins[c] += n;
         else coins.Add(c, n);
-        CoinSkill(dealer, c, n);
+        CoinSkill(SkillPriority.afterCoin, c, n).skill(dealer);
     }
 
     public void RemoveCoin(CardDealer dealer, Coin c, short n)
     {
+        CoinSkill(SkillPriority.beforeCoin, c, n).skill(dealer);
         if (coins.ContainsKey(c))
         {
             if (coins[c] > n) coins[c] = 0;
             else coins[c] -= n;
         }
-        CoinSkill(dealer, c, n);
+        CoinSkill(SkillPriority.afterCoin, c, n).skill(dealer);
     }
 
     public string CardText()
@@ -44,39 +51,55 @@ public class Card : IUseSkill, IDrawSkill, ISelectSkill//,ICoinSkill
         return str;
     }
 
-    public bool SelectActive()
-    {
-        return mainData.selectText != null;
-    }
-
     //CardDetaの"Text"を読み取って効果を発動する
     //CoinはCoinの変更時に
     //Dealerとかで発動タイミングの統括を図ったほうが良いような感じもする
     //非同期処理でないはずなので多分大丈夫きっと恐らく
-    public void CoinSkill(CardDealer dealer, Coin coin, short n)
+
+    private CardSkill SkillListRun(SkillDeal type, SkillPriority priority)
     {
-        if (mainData.coinText != null) mainData.coinText.Skill(dealer, this, coin, n);
-        foreach (CardData data in underCards) if (data.coinText != null) data.coinText.Skill(dealer, this, coin, n);
+        //SkillTextから状況に応じてCardSkillを抽出する
+        return new CardSkill(priority, SkillPhase.Composite, x =>
+          {
+              IEnumerable<CardSkill> mainSkill = mainData.skillTexts.Select(y => { return type(y); })
+              .Where(y => { return y.priority == priority && ((y.activePhase == SkillPhase.top) || (y.activePhase == SkillPhase.always)); });
+              if (mainSkill != null)
+              {
+                  foreach (CardSkill s in mainSkill)
+                  {
+                      s.skill(x);
+                  }
+              }
+              IEnumerable<CardSkill> underSkill = underSkills.Select(y => { return type(y); })
+              .Where(y => { return y.priority == priority && ((y.activePhase == SkillPhase.top) || (y.activePhase == SkillPhase.always)); });
+              if (underSkill != null)
+              {
+                  foreach (CardSkill s in underSkill)
+                  {
+                      s.skill(x);
+                  }
+              }
+          }
+        );
     }
 
-    public void UseSkill(CardDealer dealer)
+    public CardSkill CoinSkill(SkillPriority priority, Coin coin, short n)
     {
-        dealer.TextView(this);
-        if (mainData.useText != null) mainData.useText.Skill(dealer, this);
-        foreach (CardData data in underCards) if (data.useText != null) data.useText.Skill(dealer, this);
+        return SkillListRun(x => { return x.GetCoinSkill(this, coin, n); }, priority);
     }
 
-    public void DrawSkill(CardDealer dealer, StageDeck from, StageDeck to)
+    public CardSkill UseSkill(SkillPriority priority)
     {
-        dealer.TextView(this);
-        if (mainData.drawText != null) mainData.drawText.Skill(dealer, this, from, to);
-        foreach (CardData data in underCards) if (data.drawText != null) data.drawText.Skill(dealer, this, from, to);
+        return SkillListRun(x => { return x.GetUseSkill(this); }, priority);
     }
-    public void SelectSkill(CardDealer dealer, Card target)
+
+    public CardSkill DrawSkill(SkillPriority priority, StageDeck from, StageDeck to)
     {
-        dealer.TextView(this);
-        if (mainData.selectText != null) mainData.selectText.Skill(dealer, this, target);
-        foreach (CardData data in underCards) if (data.selectText != null) data.selectText.Skill(dealer, this, target);
+        return SkillListRun(x => { return x.GetDrawSkill(this, from, to); }, priority);
+    }
+    public CardSkill SelectSkill(SkillPriority priority, List<Card> target)
+    {
+        return SkillListRun(x => { return x.GetSelectSkill(this, target); }, priority);
     }
 
 }

@@ -23,12 +23,16 @@ public class StateDealer : MonoBehaviour
 
     public void ChangeState(string nextState)
     {
-        if (states.First(x => { return x.stateName == nextState; }) != null)
+        if (states.First(x => { return x.stateName == nextState; }) == null) return;
+        if (nextState == loadingState.stateName)
         {
-            loadingState.CrankUp();
-            loadingState = states.First(x => { return x.stateName == nextState; });
-            loadingState.CrankIn();
+            Debug.Log("Have Loaded");
+            return;
         }
+        loadingState.CrankUp();
+        loadingState = states.First(x => { return x.stateName == nextState; });
+        loadingState.CrankIn();
+
     }
 
 }

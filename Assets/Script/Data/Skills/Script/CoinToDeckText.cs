@@ -5,19 +5,19 @@ using UnityEngine;
 //ここに効果を書き続ける
 
 [CreateAssetMenu(fileName = "Data", menuName = "CardText/CoinToDeckText")]
-public class CoinToDeckText : UseText
+public class CoinToDeckText : ScriptableUseSkill
 {
 
     [SerializeField] private Coin c;
     [SerializeField] private short amount = 0;
     [SerializeField] private StageDeck deck;
-    public override void Skill(CardDealer dealer, Card target)
+    protected override void Skill(CardDealer dealer, Card target)
     {
         dealer.CoinToDeck(deck, c, amount);
         Debug.Log("CoinToDeck");
     }
-    public override string Text()
+    public override bool UseAble(CardDealer dealer, Card source)
     {
-        return StageDeckMethod.ToCardText(deck) + "全体に" + c.coinName + "を" + amount.ToString() + "つ与える。";
+        return true;
     }
 }

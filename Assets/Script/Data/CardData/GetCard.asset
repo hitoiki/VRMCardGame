@@ -17,7 +17,7 @@ MonoBehaviour:
   flavorText: "\u76E4\u9762\u306E\u30AB\u30FC\u30C9\u3092\u624B\u672D\u306B\u5F15\u304D\u5165\u308C\u308B\u3084\u3064"
   frontSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   backSprite: {fileID: 21300000, guid: ecfbb39c0368a87448ae76de222ace32, type: 3}
-  iconSprite: {fileID: 21300000, guid: 1198c44b314578e43a18a9355601b7e9, type: 3}
+  iconSprite: {fileID: 21300000, guid: 84f583929b466f644a64a5ba1206374a, type: 3}
   useText: {fileID: 11400000, guid: 3256037d66ae92e4cbde9b8bfada1b45, type: 2}
   coinText: {fileID: 0}
   drawText: {fileID: 0}

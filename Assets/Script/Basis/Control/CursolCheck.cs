@@ -1,54 +1,63 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System.Linq;
 
-public class CursolCheck : MonoBehaviour, IGameState
+public class CursolCheck : MonoBehaviour
 {
     //Cardを手で動かすクラス
     //手で動かせる物を動かすだけ
     //動かした先がどんな場所かを判定して、返り値として返す
 
     //ドラッグして違和感のないように書いてある
+    //カーソルは動かしてないけど射線に物が入って来た時は呼ばれない
 
     private IKeyPad key;
     [SerializeField] GameObject initKey = null;
     ICursolable[] cursolObj;
     Vector2 cursolPoint;
     bool bufClick = false;
+    bool isEnterCalled = false;
+
+    IDisposable _leftClick;
+    IDisposable _mousePoint;
     private void Awake()
     {
         //initKeyから取る
         key = initKey.GetComponent<IKeyPad>();
-    }
-    public void CrankIn()
-    {
-        key.LeftClick().Subscribe(x =>
+        _leftClick = key.LeftClick().Subscribe(x =>
         {
             //前回のクリック状況に合わせてイベントを呼び出す
-            if (cursolObj != null)
+            //カーソルしてる物があり、前回クリックしていない
+            if (cursolObj != null && !bufClick && x && !isEnterCalled)
             {
-                if (!bufClick && x)
+                foreach (ICursolable cursolable in cursolObj)
                 {
-                    foreach (ICursolable cursolable in cursolObj)
-                    {
-                        cursolable.Click(cursolPoint, ContactMode.Enter);
-                    }
+                    cursolable.Click(cursolPoint, ContactMode.Enter);
                 }
-                if (bufClick && !x)
+                isEnterCalled = true;
+            }
+            //カーソルしてる物があり、Enterが呼ばれていて、クリックが離れた
+            if (cursolObj != null && isEnterCalled && bufClick && !x)
+            {
+                foreach (ICursolable cursolable in cursolObj)
                 {
-                    foreach (ICursolable cursolable in cursolObj)
-                    {
-                        cursolable.Click(cursolPoint, ContactMode.Exit);
-                    }
+                    cursolable.Click(cursolPoint, ContactMode.Exit);
                 }
             }
-            //クリック状態にあわせて色々保存
+            //クリックしていないなら、カーソルを離す
             if (!x) cursolObj = null;
+            //何もカーソルしてないか、クリックされていないならEnter履歴を消す
+            if (cursolObj == null)
+            {
+                isEnterCalled = false;
+            }
+            //前回のクリック状態を保存
             bufClick = x;
         });
-        key.MousePoint().Subscribe(x =>
+        _mousePoint = key.MousePoint().Subscribe(x =>
         {
             cursolPoint = x;
             Ray ray = Camera.main.ScreenPointToRay(x);
@@ -62,34 +71,29 @@ public class CursolCheck : MonoBehaviour, IGameState
             }
             else
             {
-                if (!key.LeftClick().Value) cursolObj = null;
+                if (!isEnterCalled) cursolObj = null;
             }
 
         }
         );
     }
     //Update
-    public void StateUpdate()
+    public void Update()
     {
         //Stay,CursolはUpdateなので
-        if (cursolObj != null)
+        //なんもないなら何もしない
+        if (cursolObj == null) return;
+        if (bufClick && isEnterCalled)
         {
-            if (bufClick && key.LeftClick().Value)
-            {
-                foreach (ICursolable cursolable in cursolObj)
-                {
-                    cursolable.Click(cursolPoint, ContactMode.Stay);
-                }
-            }
             foreach (ICursolable cursolable in cursolObj)
             {
-                cursolable.Cursol(cursolPoint);
+                cursolable.Click(cursolPoint, ContactMode.Stay);
             }
         }
-    }
-    //End
-    public void CrankUp()
-    {
+        foreach (ICursolable cursolable in cursolObj)
+        {
+            cursolable.Cursol(cursolPoint);
+        }
 
     }
 

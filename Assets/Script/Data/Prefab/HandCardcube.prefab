@@ -9,12 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5493066297844848917}
-  - component: {fileID: 5493066297844848916}
   - component: {fileID: 5493066297844848919}
   - component: {fileID: 5493066297844848912}
   - component: {fileID: 372734523290344600}
   m_Layer: 0
-  m_Name: Cardcube
+  m_Name: HandCardcube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,24 +27,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5493066297844848915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.37, y: 1.5353516, z: -2.80894}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5493066297844848916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5493066297844848915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78412627e92c21e498739a4a48bec611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5493066297844848919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,10 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac9b7303ca9dca46a33e0c0aa623c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
   anchor: {x: 0, y: 0, z: 0}
   spriteRenderer: {fileID: 372734523290344600}
-  InitVRM: {fileID: 0}
+  recepter: {fileID: 0}
 --- !u!65 &5493066297844848912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73,7 +59,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &372734523290344600
 SpriteRenderer:
@@ -90,6 +76,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 [CreateAssetMenu(fileName = "Data", menuName = "CardData")]
-public class CardData : ScriptableObject, IUseSkill, IDrawSkill
+public class CardData : ScriptableObject
 {
     //カードを取り扱うクラス
     //基本的にここには静的データと、呼び出される処理を書く
@@ -19,24 +19,10 @@ public class CardData : ScriptableObject, IUseSkill, IDrawSkill
     public Sprite iconSprite;
 
     //効果を入れるクラス
-    public UseText useText;
-    public CoinText coinText;
-    public DrawText drawText;
-    public SelectText selectText;
-
-    //一応ISkillに対応させておく
-    public void UseSkill(CardDealer dealer) { if (useText != null) useText.Skill(dealer, new Card(this)); }
-    //public void CoinSkill(CardDealer dealer, Coin coin, short n) { if (coinText != null) coinText.Skill(dealer, new Card(this), coin, n); }
-    public void DrawSkill(CardDealer dealer, StageDeck from, StageDeck to) { if (drawText != null) drawText.Skill(dealer, new Card(this), from, to); }
-
+    public List<SkillComponent> skillTexts;
     public string CardText()
     {
-        string str = "";
-        if (useText != null) str += useText.Text();
-        if (coinText != null) str += coinText.Text();
-        if (drawText != null) str += drawText.Text();
-        if (selectText != null) str += selectText.Text();
-        return str;
+        return skillTexts.Select(x => { return x.GetText(); }).Aggregate((str1, str2) => str1 + str2);
     }
 
 }

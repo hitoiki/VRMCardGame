@@ -6,6 +6,7 @@ using System.Linq;
 
 public class HandCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUser
 {
+    [SerializeField] private Transform bundle;
     [SerializeField] private List<GameObject> initCursol = new List<GameObject>();
     [SerializeField] private HandCard handCard = null;
     private List<ICardCursolEvent> firstCursols = new List<ICardCursolEvent>();
@@ -29,6 +30,7 @@ public class HandCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUser
     {
         HandCard printedObj = flyer.GetMob(position, y =>
         {
+            if (bundle != null) y.transform.SetParent(bundle);
             y.cursolEvent.AddRange(firstCursols);
             y.anchor = position;
         }

@@ -2,29 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+//カード能力の形態をinterfaceで纏めておく。
 public interface IUseSkill
 {
     //手札から使われる能力。
-    void UseSkill(CardDealer dealer);
+    bool UseAble(CardDealer dealer, Card source);
+    CardSkill UseSkill(Card source);
 }
 
 
 public interface ISelectSkill
 {
-    void SelectSkill(CardDealer dealer, Card c);
+    (StageDeck, sbyte)? SelectCard(CardDealer dealer, Card source);
+    CardSkill SelectSkill(Card source, List<Card> c);
 }
 
 public interface ICoinSkill
 {
     //Coinを受け取って発動する能力。
-    void CoinSkill(CardDealer dealer, Coin c, short n);
+    CardSkill CoinSkill(Card source, Coin c, short n);
 }
 
 public interface IDrawSkill
 {
     //Deck間を移動した時に発動する能力。
-    void DrawSkill(CardDealer dealer, StageDeck from, StageDeck to);
+    CardSkill DrawSkill(Card source, StageDeck from, StageDeck to);
 }
 
 //下にカードが追加された時
+public interface ILaySkill
+{
+    //UnderCardに変更があった時に呼ばれる能力…の予定
+    CardSkill LaySkill(Card source, List<Card> newUnderCard);
+}

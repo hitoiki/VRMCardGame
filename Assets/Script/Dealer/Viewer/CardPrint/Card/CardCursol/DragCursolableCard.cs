@@ -12,11 +12,17 @@ public class DragCursolableCard : MonoBehaviour, ICardCursolEvent
         {
             anchor = card.GetTransform().position;
         }
+        if (mode == ContactMode.Stay)
+        {
+            Vector3 drugPos = Camera.main.ScreenToWorldPoint(pos);
+            card.GetTransform().position = new Vector3(drugPos.x, drugPos.y, transform.position.z);
+        }
 
         if (mode == ContactMode.Exit)
         {
-            recepter.CardPlayRecept(card.GetTransform().position, card.GetCard());
+            Vector3 buf = card.GetTransform().position;
             card.GetTransform().position = anchor;
+            recepter.CardPlayRecept(buf, card.GetCard());
         }
     }
     public void CardCursol(ICardPrintable card, Vector3 pos)

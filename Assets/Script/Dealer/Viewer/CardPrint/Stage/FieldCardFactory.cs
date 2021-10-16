@@ -6,6 +6,7 @@ using System.Linq;
 public class FieldCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUser
 {
     //FieldCardを作って渡すやつ
+    [SerializeField] private Transform bundle;
     [SerializeField] private FieldCard fieldCard;
     [SerializeField] private List<GameObject> initCursol = new List<GameObject>();
     [SerializeField] private GameObject initCoinSprite = null;
@@ -34,6 +35,7 @@ public class FieldCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUse
     {
         FieldCard f = fieldCardFlyer.GetMob(position, y =>
         {
+            if (bundle != null) y.transform.SetParent(bundle);
             y.cursolEvent.AddRange(firstCursols);
             y.coinCard.flyer = coinSpriteFlyer;
         });
