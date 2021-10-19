@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
   m_Name: CyanDemo
   m_EditorClassIdentifier: 
-  cardName: Cyandemo
+  cardName: CyanDemo
+  type: 
   cost: 0
   flavorText: 
   frontSprite: {fileID: 21300000, guid: 92457c02592f7884aa04467f378db341, type: 3}
   backSprite: {fileID: 21300000, guid: ace107564c4b66c4caad874d5500ab98, type: 3}
   iconSprite: {fileID: 21300000, guid: 8c2d25ee9fffa4f49818088d7035aa51, type: 3}
-  useText: {fileID: 0}
-  coinText: {fileID: 0}
-  drawText: {fileID: 0}
-  selectText: {fileID: 11400000, guid: ab8a45fb118bf704285c7a7e71c6271a, type: 2}
+  skillComponents:
+  - {fileID: 11400000, guid: 80b378331b491d0458960f99b265dcf7, type: 2}

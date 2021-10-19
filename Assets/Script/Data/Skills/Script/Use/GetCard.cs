@@ -14,5 +14,10 @@ public class GetCard : ScriptableUseSkill
         return true;
     }
 
+    public override string Text()
+    {
+        return "場のカードを古い方から" + getAmo.ToString() + "枚手札に加える。";
+    }
+
 
 }

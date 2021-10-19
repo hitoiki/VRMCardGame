@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
-  m_Name: BasicDrawDemo
+  m_Name: RedDemo
   m_EditorClassIdentifier: 
-  cardName: BasicDrawDemo
-  text: 
+  cardName: RedDemo
+  cost: 0
+  flavorText: 
   frontSprite: {fileID: 21300000, guid: ecc42eae08288a7488775924aa3d517b, type: 3}
-  backSprite: {fileID: 21300000, guid: b1fca92c1318eb542a6bd866d6ba52b3, type: 3}
-  iconSprite: {fileID: 21300000, guid: c598eedb5d49d564dbfec129fc63ec40, type: 3}
-  useText: {fileID: 11400000, guid: 16d7de4cc97007348b310d89e00907cf, type: 2}
-  coinText: {fileID: 11400000, guid: 07d21c6eb636d4b428553999c9a21ded, type: 2}
-  drawText: {fileID: 0}
-  selectText: {fileID: 0}
+  backSprite: {fileID: 21300000, guid: 7a0dfcd1bf254f14b91a7a8dcda21b9a, type: 3}
+  iconSprite: {fileID: 21300000, guid: e07bc9025e3f0e244895640f709c87b0, type: 3}
+  skillComponents:
+  - {fileID: 11400000, guid: 9b6c246fa21369f4fa2fad7f032d14ef, type: 2}

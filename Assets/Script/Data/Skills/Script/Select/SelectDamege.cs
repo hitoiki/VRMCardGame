@@ -11,8 +11,12 @@ public class SelectDamege : ScriptableSelectSkill
     {
         target[0].AddCoin(dealer, c, damegeAmo);
     }
-    public override (StageDeck, sbyte)? SelectCard(CardDealer dealer, Card source)
+    public override (StageDeck, sbyte) SelectCard(CardDealer dealer, Card source)
     {
         return (StageDeck.field, 1);
+    }
+    public override string Text()
+    {
+        return "場のカード1枚に" + c.name + "を" + damegeAmo.ToString() + "枚与える";
     }
 }

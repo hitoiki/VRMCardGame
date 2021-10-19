@@ -11,7 +11,7 @@ public class CardData : ScriptableObject
     //ここは呼び出すだけに努めること
 
     public string cardName;
-    public HashSet<CardType> type;
+    public CardType[] type;
     public short cost;
     [TextArea] public string flavorText;
     public Sprite frontSprite;
@@ -19,10 +19,15 @@ public class CardData : ScriptableObject
     public Sprite iconSprite;
 
     //効果を入れるクラス
-    public List<SkillComponent> skillTexts;
+    public List<SkillComponent> skillComponents;
     public string CardText()
     {
-        return skillTexts.Select(x => { return x.GetText(); }).Aggregate((str1, str2) => str1 + str2);
+        if (!skillComponents.Any())
+        {
+            Debug.Log("nullCardsText");
+            return "";
+        }
+        return skillComponents.Select(x => { return x.GetText(); }).Aggregate((str1, str2) => str1 + str2);
     }
 
 }

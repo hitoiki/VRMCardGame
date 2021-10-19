@@ -20,4 +20,9 @@ public class CoinToDeckText : ScriptableUseSkill
     {
         return true;
     }
+
+    public override string Text()
+    {
+        return StageDeckMethod.ToCardText(deck) + "の全てのカードに" + c.name + "を" + amount.ToString() + "枚与える。";
+    }
 }

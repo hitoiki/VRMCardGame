@@ -18,4 +18,11 @@ public class BasicReactiveDraw : ScriptableCoinSkill
             target.RemoveCoin(dealer, ReactiveCoin, threshold);
         }
     }
+
+    public override string Text()
+    {
+        return ReactiveCoin.name + "が" + threshold.ToString() + "枚を超えた時、" + StageDeckMethod.ToCardText(drawFrom) +
+        "から" + StageDeckMethod.ToCardText(drawFrom) + "枚引く。\nその後、" +
+        ReactiveCoin.name + "を" + threshold.ToString() + "枚このカードから取り除く。";
+    }
 }

@@ -5,24 +5,28 @@ using UnityEngine;
 public class CardPlayChecker : MonoBehaviour
 {
     [SerializeField] private StateDealer state;
+    [SerializeField] private CardDealer dealer;
     [SerializeField] private CardPlayRunner runner = null;
     [SerializeField] private CardSelectCursolEvent cardSelect;
     [SerializeField] private string selectingState;
 
     public void CardCheck(Card card)
     {
-        /*
-        if (card.SelectSkill() != null)
+        if (card.IsPlayable(dealer))
         {
-            cardSelect.selectingCard = card;
-            state.ChangeState(selectingState);
-        }
-        else
-        {
-            runner.CardPlay(card.UseSkill(SkillPriority.beforeCoin));
-            runner.CardPlay(card.UseSkill(SkillPriority.afterCoin));
+            if (card.IsSelect())
+            {
+                cardSelect.selectingCard = card;
+                Debug.Log(cardSelect.selectingCard.mainData.name);
+                state.ChangeState(selectingState);
+            }
+            else
+            {
+                Debug.Log("Run");
+                runner.CardPlay(card.UseSkill());
 
-        }*/
+            }
+        }
     }
 
 

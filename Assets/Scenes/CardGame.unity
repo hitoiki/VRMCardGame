@@ -582,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 2140630055}
+  dealer: {fileID: 0}
   runner: {fileID: 200107285}
   cardSelect: {fileID: 1178394795}
   selectingState: CardSelect
@@ -2113,6 +2114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runner: {fileID: 200107285}
+  selectingCard:
+    mainData: {fileID: 0}
+    underCards: []
+  state: {fileID: 2140630055}
+  selectingState: GamePlay
 --- !u!114 &1178394796
 MonoBehaviour:
   m_ObjectHideFlags: 0

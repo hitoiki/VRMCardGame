@@ -11,7 +11,8 @@ public class CardPlayRunner : MonoBehaviour
 
     public void CardPlay(CardSkill skill)
     {
+        Debug.Log("Runner");
         skill.skill(dealer);
-        state.ChangeState(skillingState);
+        //state.ChangeState(skillingState);
     }
 }

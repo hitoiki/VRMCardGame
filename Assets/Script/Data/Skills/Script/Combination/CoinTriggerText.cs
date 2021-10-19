@@ -17,4 +17,9 @@ public class CoinTriggerText : ScriptableCoinSkill
         }
     }
 
+    public override string Text()
+    {
+        return ReactiveCoin.name + "が" + threshold.ToString() + "以上になった時、" + useText.Text();
+    }
+
 }

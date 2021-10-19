@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
-  m_Name: RedDemo
+  m_Name: BasicDrawDemo
   m_EditorClassIdentifier: 
-  cardName: RedDemo
-  text: "\u8D64\u3044\u30C7\u30E2\u30AB\u30FC\u30C9\u3002\n\u3053\u308C\u304C\u6CA1\u30C7\u30FC\u30BF\u3068\u3057\u3066\u7D39\u4ECB\u3055\u308C\u308B\u3053\u3068\u3082\u3042\u308B\u306E\u3060\u308D\u3046\u304B\u3002"
+  cardName: BasicDrawDemo
+  cost: 0
+  flavorText: 
   frontSprite: {fileID: 21300000, guid: ecc42eae08288a7488775924aa3d517b, type: 3}
-  backSprite: {fileID: 21300000, guid: 7a0dfcd1bf254f14b91a7a8dcda21b9a, type: 3}
-  iconSprite: {fileID: 21300000, guid: e07bc9025e3f0e244895640f709c87b0, type: 3}
+  backSprite: {fileID: 21300000, guid: b1fca92c1318eb542a6bd866d6ba52b3, type: 3}
+  iconSprite: {fileID: 21300000, guid: c598eedb5d49d564dbfec129fc63ec40, type: 3}
+  skillComponents:
+  - {fileID: 11400000, guid: 42fe8837563c277468d4bc7fae4b73ef, type: 2}

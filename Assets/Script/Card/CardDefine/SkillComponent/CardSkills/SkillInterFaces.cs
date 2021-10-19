@@ -13,7 +13,7 @@ public interface IUseSkill
 
 public interface ISelectSkill
 {
-    (StageDeck, sbyte)? SelectCard(CardDealer dealer, Card source);
+    (StageDeck, sbyte) SelectCard(CardDealer dealer, Card source);
     CardSkill SelectSkill(Card source, List<Card> c);
 }
 
