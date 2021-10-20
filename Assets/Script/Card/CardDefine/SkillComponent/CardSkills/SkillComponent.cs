@@ -57,19 +57,19 @@ public class SkillComponent : ScriptableObject
         return condition;
     }
 
-    public bool IsPlayable(CardDealer dealer, Card source)
+    public bool IsPlayable(GamePlayData data, Card source)
     {
         if (useSkill == null) return true;
-        return useSkill.UseAble(dealer, source);
+        return useSkill.UseAble(data, source);
     }
 
-    public bool IsSelect()
+    public bool IsSelect(GamePlayData data)
     {
         return selectSkill != null;
     }
 
-    public (StageDeck, sbyte) PlayPrepare(CardDealer dealer, Card source)
+    public (StageDeck, sbyte) PlayPrepare(GamePlayData data, Card source)
     {
-        return selectSkill.SelectCard(dealer, source);
+        return selectSkill.SelectCard(data, source);
     }
 }

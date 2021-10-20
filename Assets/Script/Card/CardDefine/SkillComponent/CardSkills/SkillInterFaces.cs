@@ -6,14 +6,14 @@ using UnityEngine;
 public interface IUseSkill
 {
     //手札から使われる能力。
-    bool UseAble(CardDealer dealer, Card source);
+    bool UseAble(GamePlayData data, Card source);
     CardSkill UseSkill(Card source);
 }
 
 
 public interface ISelectSkill
 {
-    (StageDeck, sbyte) SelectCard(CardDealer dealer, Card source);
+    (StageDeck, sbyte) SelectCard(GamePlayData data, Card source);
     CardSkill SelectSkill(Card source, List<Card> c);
 }
 

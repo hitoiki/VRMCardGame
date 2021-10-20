@@ -9,7 +9,7 @@ public class CoinTriggerText : ScriptableCoinSkill
     [SerializeField] private short threshold = 0;
     [SerializeField] private ScriptableUseSkill useText;
 
-    protected override void Skill(CardDealer dealer, Card source, Coin c, short n)
+    protected override void Skill(CardFacade dealer, Card source, Coin c, short n)
     {
         if (source.coins[ReactiveCoin] >= threshold)
         {

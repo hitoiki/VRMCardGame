@@ -5,16 +5,16 @@ using UnityEngine;
 public class CardPlayChecker : MonoBehaviour
 {
     [SerializeField] private StateDealer state;
-    [SerializeField] private CardDealer dealer;
     [SerializeField] private CardPlayRunner runner = null;
     [SerializeField] private CardSelectCursolEvent cardSelect;
+    [SerializeField] private GamePlayData data;
     [SerializeField] private string selectingState;
 
     public void CardCheck(Card card)
     {
-        if (card.IsPlayable(dealer))
+        if (card.IsPlayable(data))
         {
-            if (card.IsSelect())
+            if (card.IsSelect(data))
             {
                 cardSelect.selectingCard = card;
                 Debug.Log(cardSelect.selectingCard.mainData.name);

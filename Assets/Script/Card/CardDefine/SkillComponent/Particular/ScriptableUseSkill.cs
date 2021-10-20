@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class ScriptableUseSkill : ScriptableObject, IUseSkill
 {
-    protected abstract void Skill(CardDealer dealer, Card source);
-    public abstract bool UseAble(CardDealer dealer, Card source);
+    protected abstract void Skill(CardFacade dealer, Card source);
+    public abstract bool UseAble(GamePlayData data, Card source);
     public CardSkill UseSkill(Card source)
     {
         return new CardSkill(
-        (CardDealer dealer) => { Skill(dealer, source); }
+        (CardFacade dealer) => { Skill(dealer, source); }
         );
     }
     public abstract string Text();

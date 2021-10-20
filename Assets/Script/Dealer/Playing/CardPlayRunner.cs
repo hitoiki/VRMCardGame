@@ -9,10 +9,11 @@ public class CardPlayRunner : MonoBehaviour
     [SerializeField] private string skillingState;
     [SerializeField] private CardDealer dealer;
 
-    public void CardPlay(CardSkill skill)
+    public void CardPlay(List<CardSkill> skills)
     {
         Debug.Log("Runner");
-        skill.skill(dealer);
+        dealer.SkillStacking(skills);
+        dealer.StackRun();
         //state.ChangeState(skillingState);
     }
 }

@@ -1,87 +1,28 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using System.Linq;
 
 public class CardDealer : MonoBehaviour
 {
-    //Cardが出来る処理を書く   
-    //CardのSkill群にこいつが渡される
-    [SerializeField] private SkillTextPrinter SkillTextPrint = null;
-    [SerializeField] private PlayerData player;
-    [SerializeField] private Stage stage = null;
-    [SerializeField] private Coin coinToCost;
+    //CardSkillをStackに入れて順次実行するクラス
 
-    //カードを引いて、適当な場所に移動
+    List<CardSkill> skillList = new List<CardSkill>();
+    CardFacade facade;
 
-    public virtual void CostPay(Card card)
+    public void SkillStacking(List<CardSkill> skill)
     {
-        foreach (Card c in stage.field.cards)
+        Debug.Log("Concat");
+        skillList.Concat(skill).Where(x => { return x != null; });
+    }
+
+    public void StackRun()
+    {
+        if (skillList.Any())
         {
-            c.AddCoin(this, coinToCost, card.mainData.cost);
-        };
+            Debug.Log("nulled");
+            return;
+        }
+        skillList[0].skill(facade);
     }
-    public void TextView(Card card)
-    {
-        SkillTextPrint.Print(card);
-    }
-    public void DeckDraw(StageDeck from, StageDeck to, int amount)
-    {
-        stage.DeckKey(to).Add(stage.DeckKey(from).Draw(amount));
-    }
-
-    //指定されたカードを適当な場所に追加
-    public void DeckAdd(StageDeck to, Card card)
-    {
-        stage.DeckKey(to).Add(card);
-    }
-    public void DeckAdd(StageDeck to, List<Card> card)
-    {
-        stage.DeckKey(to).Add(card);
-    }
-    //適当な場所から指定されたカードを削除
-    public void DeckRemove(StageDeck to, Card card)
-    {
-        stage.DeckKey(to).Remove(card);
-    }
-    public void DeckRemove(StageDeck to, List<Card> card)
-    {
-        stage.DeckKey(to).Remove(card);
-    }
-
-    //指定されたカードデータを指定されたカードに敷く
-    public void cardPut(Card cardTop, CardData cardBottom)
-    {
-        cardTop.underCards.Add(cardBottom);
-    }
-    //指定されたカードデータを指定されたカードの下から取り除く
-    public void cardUnPut(Card cardTop, CardData cardBottom)
-    {
-        cardTop.underCards.Remove(cardBottom);
-    }
-    //条件を満たすカードのリストを渡す
-    public List<Card> DeckFilter(StageDeck f, System.Func<Card, bool> ch)
-    {
-        return stage.DeckKey(f).cards.Where(ch).ToList();
-    }
-    public List<CardData> UnderCardFilter(Card c, System.Func<CardData, bool> ch)
-    {
-        return c.underCards.Where(ch).ToList();
-    }
-    //あるカードにコインを渡す
-    public void CoinToCard(Card card, Coin coin, short i)
-    {
-        card.AddCoin(this, coin, i);
-    }
-
-    //あるデッキ全てにCoinを渡す
-    public void CoinToDeck(StageDeck f, Coin coin, short i)
-    {
-        foreach (Card c in stage.DeckKey(f).cards)
-        {
-            c.AddCoin(this, coin, i);
-        };
-    }
-
 }
-

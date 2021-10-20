@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class ScriptableCoinSkill : ScriptableObject, ICoinSkill
 {
-    protected abstract void Skill(CardDealer dealer, Card source, Coin c, short n);
+    protected abstract void Skill(CardFacade dealer, Card source, Coin c, short n);
 
     public CardSkill CoinSkill(Card source, Coin coin, short n)
     {
         return new CardSkill(
-        (CardDealer dealer) => { Skill(dealer, source, coin, n); }
+        (CardFacade dealer) => { Skill(dealer, source, coin, n); }
         );
     }
 
