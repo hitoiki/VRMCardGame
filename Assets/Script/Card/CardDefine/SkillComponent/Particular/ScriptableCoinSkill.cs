@@ -6,9 +6,9 @@ public abstract class ScriptableCoinSkill : ScriptableObject, ICoinSkill
 {
     protected abstract void Skill(CardFacade dealer, Card source, Coin c, short n);
 
-    public CardSkill CoinSkill(Card source, Coin coin, short n)
+    public SkillProcess CoinSkill(Card source, Coin coin, short n)
     {
-        return new CardSkill(
+        return new SkillProcess(
         (CardFacade dealer) => { Skill(dealer, source, coin, n); }
         );
     }

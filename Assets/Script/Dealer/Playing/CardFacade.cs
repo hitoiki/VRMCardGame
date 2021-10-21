@@ -10,6 +10,7 @@ public class CardFacade : MonoBehaviour
     [SerializeField] private PlayerData player;
     [SerializeField] private Stage stage = null;
     [SerializeField] private Coin coinToCost;
+    [SerializeField] private CardPlayDealer dealer;
 
     public virtual void CostPay(Card card)
     {
@@ -75,6 +76,7 @@ public class CardFacade : MonoBehaviour
         foreach (Card c in stage.DeckKey(f).cards)
         {
             c.AddCoin(this, coin, i);
+            dealer.SkillPush(c.CoinSkill(coin, i));
         };
     }
 

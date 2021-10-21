@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardSkill
+public class SkillProcess
 {
     //Cardの処理を示すクラス
 
     public delegate void SkillType(CardFacade dealer);
     public SkillType skill;
-    public CardSkill(SkillType s)
+    public SkillProcess(SkillType s)
     {
         skill = s;
     }

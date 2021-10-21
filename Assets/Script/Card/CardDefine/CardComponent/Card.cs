@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,28 +16,34 @@ public class Card
     private List<SkillComponent> mainSkills => mainData.skillComponents;
     public List<CardData> underCards = new List<CardData>();
     private List<SkillComponent> underSkills => underCards.SelectMany(x => { return x.skillComponents; }).ToList();
-    public ReactiveDictionary<Coin, short> coins = new ReactiveDictionary<Coin, short>();
+    private readonly ReactiveDictionary<Coin, short> _coins = new ReactiveDictionary<Coin, short>();
 
-    delegate CardSkill SkillDeal(SkillComponent text);
+    //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)
+    public Dictionary<Coin, short> coins => _coins.ToDictionary(pair => pair.Key, pair => pair.Value);
+    //ReactiveCollectionのうちIObservableだけを公開し、処理を登録できるように
+    public IObservable<DictionaryReplaceEvent<Coin, short>> CoinsReplace => _coins.ObserveReplace();
+    public IObservable<DictionaryAddEvent<Coin, short>> CoinsAdd => _coins.ObserveAdd();
+    public IObservable<DictionaryRemoveEvent<Coin, short>> CoinsRemove => _coins.ObserveRemove();
+
+    delegate SkillProcess SkillDeal(SkillComponent text);
 
     public Card(CardData d)
     {
         mainData = d;
     }
-    //効果が反応するようなCoin操作
-    //Coinに反応してSkillが走ってそれにCoinが反応して…なのであんま良くない
     public void AddCoin(CardFacade dealer, Coin c, short n)
     {
-        if (coins.ContainsKey(c)) coins[c] += n;
-        else coins.Add(c, n);
+        if (_coins.ContainsKey(c)) _coins[c] += n;
+        else _coins.Add(c, n);
+        Debug.Log(_coins[c]);
     }
 
     public void RemoveCoin(CardFacade dealer, Coin c, short n)
     {
-        if (coins.ContainsKey(c))
+        if (_coins.ContainsKey(c))
         {
-            if (coins[c] > n) coins[c] = 0;
-            else coins[c] -= n;
+            if (_coins[c] > n) _coins[c] = 0;
+            else _coins[c] -= n;
         }
     }
 
@@ -58,35 +65,35 @@ public class Card
         return component.GetCondition().activePhase == phase;
     }
 
-    private List<CardSkill> SkillListRun(SkillDeal type)
+    private List<SkillProcess> SkillListRun(SkillDeal type)
     {
         //SkillTextから状況に応じてCardSkillを抽出する
-        IEnumerable<CardSkill> mainSkill = mainData.skillComponents
+        IEnumerable<SkillProcess> mainSkill = mainData.skillComponents
         .Where(y => { return (PhaseCheck(y, SkillPhase.top) || PhaseCheck(y, SkillPhase.always)); })
         .Select(y => { return type(y); }).Where(x => { return x != null; });
 
-        IEnumerable<CardSkill> underSkill = underSkills
+        IEnumerable<SkillProcess> underSkill = underSkills
         .Where(y => { return (PhaseCheck(y, SkillPhase.under) || PhaseCheck(y, SkillPhase.always)); })
         .Select(y => { return type(y); }).Where(x => { return x != null; });
 
         return mainSkill.Concat(underSkill).ToList();
     }
 
-    public List<CardSkill> CoinSkill(Coin coin, short n)
+    public List<SkillProcess> CoinSkill(Coin coin, short n)
     {
         return SkillListRun(x => { return x.GetCoinSkill(this, coin, n); });
     }
 
-    public List<CardSkill> UseSkill()
+    public List<SkillProcess> UseSkill()
     {
         return SkillListRun(x => { return x.GetUseSkill(this); });
     }
 
-    public List<CardSkill> DrawSkill(StageDeck from, StageDeck to)
+    public List<SkillProcess> DrawSkill(StageDeck from, StageDeck to)
     {
         return SkillListRun(x => { return x.GetDrawSkill(this, from, to); });
     }
-    public List<CardSkill> SelectSkill(List<Card> target)
+    public List<SkillProcess> SelectSkill(List<Card> target)
     {
         return SkillListRun(x => { return x.GetSelectSkill(this, target); });
     }

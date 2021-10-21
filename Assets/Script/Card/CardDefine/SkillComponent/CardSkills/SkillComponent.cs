@@ -13,6 +13,7 @@ public class SkillComponent : ScriptableObject
     //効果を説明するあれ
     [SerializeField] GameObject initDisPlay;
     [SerializeField] ISkillDisPlay disPlay => initDisPlay.GetComponent<ISkillDisPlay>();
+    [SerializeField] string skillText;
     //効果の纏まりなので、一Componentに一つ持つ
     [Header("Skill")]
     [SerializeField] ScriptableUseSkill useSkill;
@@ -27,6 +28,13 @@ public class SkillComponent : ScriptableObject
     }
     public string GetText()
     {
+        //疾走、等キーワード能力ならその説明を返し、そうでないなら厳密に返す
+        if (skillText != null) return skillText;
+        else return GetStrictText();
+    }
+
+    public string GetStrictText()
+    {
         List<string> str = new List<string>();
         if (useSkill != null) str.Add(useSkill.Text());
         if (coinSkill != null) str.Add(coinSkill.Text());
@@ -35,19 +43,19 @@ public class SkillComponent : ScriptableObject
         return string.Join("\n", str);
     }
 
-    public CardSkill GetUseSkill(Card source)
+    public SkillProcess GetUseSkill(Card source)
     {
         return useSkill?.UseSkill(source);
     }
-    public CardSkill GetCoinSkill(Card source, Coin c, short n)
+    public SkillProcess GetCoinSkill(Card source, Coin c, short n)
     {
         return coinSkill?.CoinSkill(source, c, n);
     }
-    public CardSkill GetDrawSkill(Card source, StageDeck from, StageDeck to)
+    public SkillProcess GetDrawSkill(Card source, StageDeck from, StageDeck to)
     {
         return drawSkill?.DrawSkill(source, from, to);
     }
-    public CardSkill GetSelectSkill(Card source, List<Card> targets)
+    public SkillProcess GetSelectSkill(Card source, List<Card> targets)
     {
         return selectSkill?.SelectSkill(source, targets);
     }

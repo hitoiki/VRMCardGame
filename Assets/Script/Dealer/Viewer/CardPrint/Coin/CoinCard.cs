@@ -39,14 +39,14 @@ public class CoinCard : MonoBehaviour, ICardPrintable
 
     public void Print(Card c)
     {
-        _replace = c.coins.ObserveReplace().Subscribe(changeCoin =>
+        _replace = c.CoinsReplace.Subscribe(changeCoin =>
         {
             foreach (CoinSprite s in sprites.Where(y => { return y.printingCoin == changeCoin.Key; }))
             {
                 s.CoinPrint(changeCoin.Key, changeCoin.NewValue);
             };
         });
-        _add = c.coins.ObserveAdd().Subscribe(addCoin =>
+        _add = c.CoinsAdd.Subscribe(addCoin =>
           {
               CoinSprite newSprite = flyer.GetMob(new Vector3(100, 0, 0));
               newSprite.gameObject.transform.SetParent(this.transform);
@@ -55,7 +55,7 @@ public class CoinCard : MonoBehaviour, ICardPrintable
               newSprite.rect.localScale = new Vector3(newSprite.rect.localScale.x * addCoin.Key.spriteScale, newSprite.rect.localScale.y * addCoin.Key.spriteScale, 1);
               newSprite.rect.position = this.transform.position + addCoin.Key.spritePos;
           });
-        _remove = c.coins.ObserveRemove().Subscribe(removeCoin =>
+        _remove = c.CoinsRemove.Subscribe(removeCoin =>
          {
              foreach (CoinSprite s in sprites.Where(y => { return y.printingCoin == removeCoin.Key; }))
              {

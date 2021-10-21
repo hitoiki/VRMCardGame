@@ -62,7 +62,6 @@ public class StageCardViewer : MonoBehaviour, IGameState
     //End
     public void CrankUp()
     {
-        Debug.Log("CrankUp");
         //購読停止
         _Replace.Dispose();
         _Add.Dispose();

@@ -7,9 +7,9 @@ public abstract class ScriptableDrawSkill : ScriptableObject, IDrawSkill
 
     protected abstract void Skill(CardFacade dealer, Card source, StageDeck from, StageDeck to);
 
-    public CardSkill DrawSkill(Card source, StageDeck from, StageDeck to)
+    public SkillProcess DrawSkill(Card source, StageDeck from, StageDeck to)
     {
-        return new CardSkill(
+        return new SkillProcess(
         (CardFacade dealer) => { Skill(dealer, source, from, to); }
         );
     }

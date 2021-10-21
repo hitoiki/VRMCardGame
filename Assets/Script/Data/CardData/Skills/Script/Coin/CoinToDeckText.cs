@@ -11,9 +11,9 @@ public class CoinToDeckText : ScriptableUseSkill
     [SerializeField] private Coin c;
     [SerializeField] private short amount = 0;
     [SerializeField] private StageDeck deck;
-    protected override void Skill(CardFacade dealer, Card target)
+    protected override void Skill(CardFacade facade, Card target)
     {
-        dealer.CoinToDeck(deck, c, amount);
+        facade.CoinToDeck(deck, c, amount);
         Debug.Log("CoinToDeck");
     }
     public override bool UseAble(GamePlayData data, Card source)
