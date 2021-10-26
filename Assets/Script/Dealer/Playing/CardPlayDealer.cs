@@ -9,32 +9,23 @@ public class CardPlayDealer : MonoBehaviour
 
     [SerializeField] private StateDealer state;
     [SerializeField] private string skillingState;
-
-    Queue<SkillProcess> skillQueue = new Queue<SkillProcess>();
+    [SerializeField] SkillQueueObject skillQueueObject;
     [SerializeField] CardFacade facade;
-
-    public void SkillPush(List<SkillProcess> skills)
-    {
-        if (!skills.Any()) return;
-        Debug.Log("Pushed");
-        foreach (SkillProcess s in skills)
-        {
-            skillQueue.Enqueue(s);
-        }
-    }
 
     public void SkillExecute()
     {
-        if (!skillQueue.Any())
+        if (!skillQueueObject.skillQueue.Any())
         {
             Debug.Log("nulled");
             return;
         }
         int SkillCount = 0;
-        while (skillQueue.Any())
+        while (skillQueueObject.skillQueue.Any())
         {
             Debug.Log("skilling");
-            skillQueue.Dequeue().skill(facade);
+            Skill runningSkill = skillQueueObject.skillQueue.Dequeue();
+
+            runningSkill.process.skill(facade);
             Debug.Log("skilled");
             SkillCount++;
             if (SkillCount > 99)
@@ -45,9 +36,9 @@ public class CardPlayDealer : MonoBehaviour
         }
     }
 
-    public void CardPlay(List<SkillProcess> skills)
+    public void CardPlay(List<Skill> skills)
     {
-        SkillPush(skills);
+        skillQueueObject.Push(skills);
         SkillExecute();
         //state.ChangeState(skillingState);
     }

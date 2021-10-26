@@ -4,15 +4,15 @@ using UnityEngine;
 using UniRx;
 using System.Linq;
 
-public class HandCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUser
+public class BasicCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUser
 {
     [SerializeField] private Transform bundle;
     [SerializeField] private List<GameObject> initCursol = new List<GameObject>();
-    [SerializeField] private HandCard handCard = null;
+    [SerializeField] private BasicCard handCard = null;
     private List<ICardCursolEvent> firstCursols = new List<ICardCursolEvent>();
-    private ObjectFlyer<HandCard> flyer;
+    private ObjectFlyer<BasicCard> flyer;
 
-    private List<HandCard> printableList = new List<HandCard>();
+    private List<BasicCard> printableList = new List<BasicCard>();
 
     private void OnValidate()
     {
@@ -24,15 +24,14 @@ public class HandCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUser
     {
         //InitHandがICardPrintedである事が前提条件なアレ
         firstCursols = initCursol.SelectMany(x => { return x.GetComponents<ICardCursolEvent>(); }).ToList();
-        if (handCard != null) flyer = new ObjectFlyer<HandCard>(handCard);
+        if (handCard != null) flyer = new ObjectFlyer<BasicCard>(handCard);
     }
     public ICardPrintable CardMake(Card card, Vector3 position)
     {
-        HandCard printedObj = flyer.GetMob(position, y =>
+        BasicCard printedObj = flyer.GetMob(position, y =>
         {
             if (bundle != null) y.transform.SetParent(bundle);
             y.cursolEvent.AddRange(firstCursols);
-            y.anchor = position;
         }
         , y => { y.Active(true); });
         printableList.Add(printedObj);

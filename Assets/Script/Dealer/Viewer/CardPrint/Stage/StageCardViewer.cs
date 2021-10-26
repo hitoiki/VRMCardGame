@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UniRx;
+using DG.Tweening;
 
 public class StageCardViewer : MonoBehaviour, IGameState
 {
@@ -13,6 +14,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
     [SerializeField] private Stage stage;
     [SerializeField] private StageDeck observeDeck;
     [SerializeField] private Grid grid;
+    [SerializeField] private float tweenTime;
     private ICardFactory factory;
     private IDisposable _Replace;
     private IDisposable _Add;
@@ -97,7 +99,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
     {
         foreach (var p in factory.GetCards()?.Select((ICardPrintable Value, int Index) => new { Value, Index }))
         {
-            p.Value.GetTransform().position = grid.NumberGrid(p.Index);
+            p.Value.GetTransform().DOMove(grid.NumberGrid(p.Index), tweenTime);
         }
     }
 

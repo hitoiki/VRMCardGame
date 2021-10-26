@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CyanDemo
   m_EditorClassIdentifier: 
   initDisPlay: {fileID: 0}
+  skillText: 
   useSkill: {fileID: 0}
   coinSkill: {fileID: 0}
   drawSkill: {fileID: 0}
   selectSkill: {fileID: 11400000, guid: ab8a45fb118bf704285c7a7e71c6271a, type: 2}
   condition:
-    priority: 0
     activePhase: 1

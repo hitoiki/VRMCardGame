@@ -10,7 +10,7 @@ public class CardFacade : MonoBehaviour
     [SerializeField] private PlayerData player;
     [SerializeField] private Stage stage = null;
     [SerializeField] private Coin coinToCost;
-    [SerializeField] private CardPlayDealer dealer;
+    [SerializeField] public SkillQueueObject skillQueue;
 
     public virtual void CostPay(Card card)
     {
@@ -20,30 +20,22 @@ public class CardFacade : MonoBehaviour
         };
     }
 
+    //SkillQueueの操作を伴う操作
+
     //カードを引いて、適当な場所に移動
     public void DeckDraw(StageDeck from, StageDeck to, int amount)
     {
-        stage.DeckKey(to).Add(stage.DeckKey(from).Draw(amount));
+        List<Card> drawCards = stage.DeckKey(from).Draw(amount);
+        stage.DeckKey(to).Add(drawCards);
+        skillQueue.Push(drawCards.SelectMany(x => { return x.DrawSkill(from, to); }).Where(x => { return x != null; }));
     }
 
-    //指定されたカードを適当な場所に追加
-    public void DeckAdd(StageDeck to, Card card)
+    //本当はFacadeでCoinを増減したい
+    public void AddCoin()
     {
-        stage.DeckKey(to).Add(card);
+
     }
-    public void DeckAdd(StageDeck to, List<Card> card)
-    {
-        stage.DeckKey(to).Add(card);
-    }
-    //適当な場所から指定されたカードを削除
-    public void DeckRemove(StageDeck to, Card card)
-    {
-        stage.DeckKey(to).Remove(card);
-    }
-    public void DeckRemove(StageDeck to, List<Card> card)
-    {
-        stage.DeckKey(to).Remove(card);
-    }
+
 
     //指定されたカードデータを指定されたカードに敷く
     public void cardPut(Card cardTop, CardData cardBottom)
@@ -76,7 +68,6 @@ public class CardFacade : MonoBehaviour
         foreach (Card c in stage.DeckKey(f).cards)
         {
             c.AddCoin(this, coin, i);
-            dealer.SkillPush(c.CoinSkill(coin, i));
         };
     }
 

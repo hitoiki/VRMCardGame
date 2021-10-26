@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: RedDemo
   m_EditorClassIdentifier: 
   cardName: RedDemo
+  type: 
   cost: 0
   flavorText: 
   frontSprite: {fileID: 21300000, guid: ecc42eae08288a7488775924aa3d517b, type: 3}
   backSprite: {fileID: 21300000, guid: 7a0dfcd1bf254f14b91a7a8dcda21b9a, type: 3}
   iconSprite: {fileID: 21300000, guid: e07bc9025e3f0e244895640f709c87b0, type: 3}
-  skillComponents:
+  skillPack:
   - {fileID: 11400000, guid: 9b6c246fa21369f4fa2fad7f032d14ef, type: 2}

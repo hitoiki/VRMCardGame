@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "CardComponent")]
-public class SkillComponent : ScriptableObject
+public class SkillPack : ScriptableObject
 {
     //CardDataはこれのListを持つ事にする
     //これはCoinEffectなどを持っていて、適宜それを取り出して色々する
@@ -21,6 +21,8 @@ public class SkillComponent : ScriptableObject
     [SerializeField] ScriptableDrawSkill drawSkill;
     [SerializeField] ScriptableSelectSkill selectSkill;
     [SerializeField] SkillCondition condition;
+    [Header("Effect")]
+    [SerializeField] SkillEffect effect;
 
     public ISkillDisPlay GetDisplay()
     {
@@ -29,7 +31,7 @@ public class SkillComponent : ScriptableObject
     public string GetText()
     {
         //疾走、等キーワード能力ならその説明を返し、そうでないなら厳密に返す
-        if (skillText != null) return skillText;
+        if (skillText != "") return skillText;
         else return GetStrictText();
     }
 
@@ -43,21 +45,27 @@ public class SkillComponent : ScriptableObject
         return string.Join("\n", str);
     }
 
-    public SkillProcess GetUseSkill(Card source)
+    public Skill GetUseSkill(Card source)
     {
-        return useSkill?.UseSkill(source);
+        if (useSkill != null) return new Skill(source, effect, useSkill.UseSkill(source));
+        else return null;
+
     }
-    public SkillProcess GetCoinSkill(Card source, Coin c, short n)
+    public Skill GetCoinSkill(Card source, Coin c, short n)
     {
-        return coinSkill?.CoinSkill(source, c, n);
+        if (coinSkill != null) return new Skill(source, effect, coinSkill?.CoinSkill(source, c, n));
+        else return null;
+
     }
-    public SkillProcess GetDrawSkill(Card source, StageDeck from, StageDeck to)
+    public Skill GetDrawSkill(Card source, StageDeck from, StageDeck to)
     {
-        return drawSkill?.DrawSkill(source, from, to);
+        if (drawSkill != null) return new Skill(source, effect, drawSkill.DrawSkill(source, from, to));
+        else return null;
     }
-    public SkillProcess GetSelectSkill(Card source, List<Card> targets)
+    public Skill GetSelectSkill(Card source, List<Card> targets)
     {
-        return selectSkill?.SelectSkill(source, targets);
+        if (selectSkill != null) return new Skill(source, effect, selectSkill.SelectSkill(source, targets));
+        else return null;
     }
 
     public SkillCondition GetCondition()

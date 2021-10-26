@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursolEventUser
+public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursolEventUser
 {
-    //Hand,持ち札として動かせるカード
-    //KeyPadで動かせる。また、離した場所に応じてなんかする
+    //Deckを参照する際に用いるCard
     private Card card;
-    public Vector3 anchor = Vector3.zero;
     [SerializeField] private SpriteRenderer spriteRenderer = null;
     public List<ICardCursolEvent> cursolEvent = new List<ICardCursolEvent>();
-    public CardPlayRecepter recepter;
     private bool activate;
     public void Print(Card c)
     {

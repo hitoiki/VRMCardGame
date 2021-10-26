@@ -19,15 +19,15 @@ public class CardData : ScriptableObject
     public Sprite iconSprite;
 
     //効果を入れるクラス
-    public List<SkillComponent> skillComponents;
+    public List<SkillPack> skillPack;
     public string CardText()
     {
-        if (!skillComponents.Any())
+        if (!skillPack.Any())
         {
             Debug.Log("nullCardsText");
             return "";
         }
-        return skillComponents.Select(x => { return x.GetText(); }).Aggregate((str1, str2) => str1 + str2);
+        return skillPack.Select(x => { return x.GetText(); }).Aggregate((str1, str2) => str1 + str2);
     }
 
 }
