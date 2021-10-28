@@ -36,7 +36,7 @@ public class Card
         if (_coins.ContainsKey(c)) _coins[c] += n;
         else _coins.Add(c, n);
         Debug.Log(_coins[c]);
-        facade.skillQueue.Push(this.CoinSkill(c, n).Where(x => { return x != null; }));
+        //facade.skillQueue.Push(this.CoinSkill(c, n));
     }
 
     public void RemoveCoin(CardFacade facade, Coin c, short n)
@@ -119,7 +119,7 @@ public class Card
         return IsMainSkillSelect && IsUnderSkillSelect;
     }
 
-    public IEnumerable<(StageDeck, sbyte)> PlayPrepare(GamePlayData data)
+    public List<(StageDeck, sbyte)> PlayPrepare(GamePlayData data)
     {
         IEnumerable<(StageDeck, sbyte)> mainSkill = mainData.skillPack
           .Where(y => { return PhaseCheck(y, SkillPhase.top) || PhaseCheck(y, SkillPhase.always); })
@@ -127,9 +127,9 @@ public class Card
 
         IEnumerable<(StageDeck, sbyte)> underSkill = underSkills
         .Where(y => { return PhaseCheck(y, SkillPhase.under) || PhaseCheck(y, SkillPhase.always); })
-          .Select(y => { return y.PlayPrepare(data, this); });
+          .Select(y => { return y.PlayPrepare(data, this); }).ToList();
 
-        return mainSkill.Concat(underSkill);
+        return mainSkill.Concat(underSkill).ToList();
     }
 
 }

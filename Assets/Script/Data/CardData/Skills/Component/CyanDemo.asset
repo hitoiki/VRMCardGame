@@ -20,3 +20,4 @@ MonoBehaviour:
   selectSkill: {fileID: 11400000, guid: ab8a45fb118bf704285c7a7e71c6271a, type: 2}
   condition:
     activePhase: 1
+  effect: {fileID: 818145580588037742, guid: d7270451a3cbe054caa073a4e0de6bb0, type: 3}

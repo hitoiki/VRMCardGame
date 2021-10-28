@@ -11,7 +11,7 @@ public class CardPlayRecepter : MonoBehaviour
     [SerializeField] private Vector2 areaFrom = Vector2.zero;
     [SerializeField] private Vector2 areaTo = Vector2.zero;
 
-    public void CardPlayRecept(Vector3 pos, Card card)
+    public void CardPlayRecept(Vector3 pos, IDealableCard card)
     {
 
         if (areaCheck(pos)) checker.CardCheck(card);

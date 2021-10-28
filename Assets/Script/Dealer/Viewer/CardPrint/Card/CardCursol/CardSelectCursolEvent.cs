@@ -7,20 +7,22 @@ public class CardSelectCursolEvent : MonoBehaviour, ICardCursolEvent
 {
     //これが場のカード分呼び出されている可能性がちょっとある
     [SerializeField] CardPlayDealer dealer;
-    public Card selectingCard;
+    public IDealableCard selectingCard;
     [SerializeField] private StateDealer state;
     [SerializeField] private string selectingState;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
         if (mode == ContactMode.Enter)
         {
-            List<Card> selectedCards = new List<Card>();
-            selectedCards.Add(card.GetCard());
+            List<IDealableCard> selectedCards = new List<IDealableCard>();
+            selectedCards.Add(card.GetDealableCard());
 
             dealer.CardPlay(
-                selectingCard.UseSkill()
-                .Concat(selectingCard.SelectSkill(selectedCards))
+                selectingCard.GetCard().UseSkill()
+                .Concat(selectingCard.GetCard().SelectSkill(selectedCards.Select(x => { return x.GetCard(); }).ToList()))
                 .ToList()
+                , selectingCard
+                , selectedCards.ToArray()
             );
             selectingCard = null;
             state.ChangeState(selectingState);

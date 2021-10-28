@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: RedDemo
   m_EditorClassIdentifier: 
   initDisPlay: {fileID: 0}
+  skillText: 
   useSkill: {fileID: 11400000, guid: 16d7de4cc97007348b310d89e00907cf, type: 2}
   coinSkill: {fileID: 0}
   drawSkill: {fileID: 0}
   selectSkill: {fileID: 0}
   condition:
-    priority: 0
     activePhase: 0
+  effect: {fileID: 818145580588037742, guid: d7270451a3cbe054caa073a4e0de6bb0, type: 3}

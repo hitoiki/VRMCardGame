@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DeckEditor : MonoBehaviour
 {
@@ -12,17 +13,18 @@ public class DeckEditor : MonoBehaviour
     [ContextMenu("Substitution")]
     private void Substitution()
     {
-        if (deck != null) deck.Substitution(cards);
+        if (deck != null) deck.SubstitutionCard(cards);
     }
     [ContextMenu("Copy")]
     private void Copy()
     {
-        cards = deck.cards;
+        cards = deck.cards.Select(x => { return x.GetCard(); }).ToList();
     }
 
     private void Update()
     {
-        if(alwaysCopy && alwaysSubstitution){
+        if (alwaysCopy && alwaysSubstitution)
+        {
             Debug.Log("片方だけ付けてくださいな");
             alwaysCopy = false;
             alwaysSubstitution = false;

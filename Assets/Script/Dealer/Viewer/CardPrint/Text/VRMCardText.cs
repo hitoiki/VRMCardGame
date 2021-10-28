@@ -28,7 +28,7 @@ public class VRMCardText : MonoBehaviour, IGameState
     {
         _Vrm = vrm.ObservableCard().Where(x => { return x != null; }).Subscribe(x =>
             {
-                Print(x);
+                Print(x.GetCard());
             });
 
     }

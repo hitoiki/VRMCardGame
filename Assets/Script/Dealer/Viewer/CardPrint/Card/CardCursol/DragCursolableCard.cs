@@ -10,19 +10,19 @@ public class DragCursolableCard : MonoBehaviour, ICardCursolEvent
     {
         if (mode == ContactMode.Enter)
         {
-            anchor = card.GetTransform().position;
+            anchor = card.GetDealableCard().GetTransform().position;
         }
         if (mode == ContactMode.Stay)
         {
             Vector3 drugPos = Camera.main.ScreenToWorldPoint(pos);
-            card.GetTransform().position = new Vector3(drugPos.x, drugPos.y, transform.position.z);
+            card.GetDealableCard().GetTransform().position = new Vector3(drugPos.x, drugPos.y, transform.position.z);
         }
 
         if (mode == ContactMode.Exit)
         {
-            Vector3 buf = card.GetTransform().position;
-            card.GetTransform().position = anchor;
-            recepter.CardPlayRecept(buf, card.GetCard());
+            Vector3 buf = card.GetDealableCard().GetTransform().position;
+            card.GetDealableCard().GetTransform().position = anchor;
+            recepter.CardPlayRecept(buf, card.GetDealableCard());
         }
     }
     public void CardCursol(ICardPrintable card, Vector3 pos)

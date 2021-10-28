@@ -23,9 +23,9 @@ public class CardPlayDealer : MonoBehaviour
         while (skillQueueObject.skillQueue.Any())
         {
             Debug.Log("skilling");
-            Skill runningSkill = skillQueueObject.skillQueue.Dequeue();
-
-            runningSkill.process.skill(facade);
+            (Skill skill, EffectTarget target) runningSkill = skillQueueObject.skillQueue.Dequeue();
+            Instantiate(runningSkill.skill.effect).Effect(runningSkill.target);
+            runningSkill.skill.process.skill(facade);
             Debug.Log("skilled");
             SkillCount++;
             if (SkillCount > 99)
@@ -36,9 +36,9 @@ public class CardPlayDealer : MonoBehaviour
         }
     }
 
-    public void CardPlay(List<Skill> skills)
+    public void CardPlay(List<Skill> skills, IDealableCard Source, IDealableCard[] Target)
     {
-        skillQueueObject.Push(skills);
+        skillQueueObject.Push(skills, Source, Target);
         SkillExecute();
         //state.ChangeState(skillingState);
     }

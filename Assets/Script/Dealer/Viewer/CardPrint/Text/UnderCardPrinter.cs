@@ -50,9 +50,9 @@ public class UnderCardPrinter : MonoBehaviour, ICardPrintable, IGameState
         _Vrm.Dispose();
     }
 
-    public void Print(Card card)
+    public void Print(IDealableCard card)
     {
-        SkillText.text = card.CardText();
+        SkillText.text = card.GetCard().CardText();
     }
     public void UnPrint()
     {
@@ -67,9 +67,9 @@ public class UnderCardPrinter : MonoBehaviour, ICardPrintable, IGameState
         return this.transform;
     }
 
-    public Card GetCard()
+    public IDealableCard GetDealableCard()
     {
-        return vrm.GetCard();
+        return vrm.GetDealableCard();
     }
 
 

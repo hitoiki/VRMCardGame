@@ -69,7 +69,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
         _Add.Dispose();
         _Remove.Dispose();
     }
-    private void DeckInit(List<Card> c)
+    private void DeckInit(List<IDealableCard> c)
     {
         //デッキの初期化
         foreach (var i in c.Select((Value, Index) => new { Value, Index }))
@@ -99,7 +99,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
     {
         foreach (var p in factory.GetCards()?.Select((ICardPrintable Value, int Index) => new { Value, Index }))
         {
-            p.Value.GetTransform().DOMove(grid.NumberGrid(p.Index), tweenTime);
+            p.Value.GetDealableCard().GetTransform().DOMove(grid.NumberGrid(p.Index), tweenTime);
         }
     }
 

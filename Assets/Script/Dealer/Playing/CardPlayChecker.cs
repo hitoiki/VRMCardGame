@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardPlayChecker : MonoBehaviour
 {
+    //Cardを色々勘案して、適宜適宜する
     [SerializeField] private StateDealer state;
     [SerializeField] private CardPlayDealer dealer = null;
     [SerializeField] private CardSelectCursolEvent cardSelect;
     [SerializeField] private GamePlayData data;
     [SerializeField] private string selectingState;
 
-    public void CardCheck(Card card)
+    public void CardCheck(IDealableCard cardViewable)
     {
+        Card card = cardViewable.GetCard();
         if (!card.IsPlayable(data))
         {
             Debug.Log("IsNotPlayable");
@@ -20,13 +23,13 @@ public class CardPlayChecker : MonoBehaviour
 
         if (card.IsSelect(data))
         {
-            cardSelect.selectingCard = card;
-            Debug.Log(cardSelect.selectingCard.mainData.name);
+            cardSelect.selectingCard = cardViewable;
+            Debug.Log(cardSelect.selectingCard.GetCard().mainData.name);
             state.ChangeState(selectingState);
         }
         else
         {
-            dealer.CardPlay(card.UseSkill());
+            dealer.CardPlay(card.UseSkill(), cardViewable, null);
         }
     }
 

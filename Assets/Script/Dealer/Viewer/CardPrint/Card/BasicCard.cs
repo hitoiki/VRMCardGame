@@ -6,15 +6,16 @@ public class BasicCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursol
 {
     //Hand,持ち札として動かせるカード
     //KeyPadで動かせる。また、離した場所に応じてなんかする
-    private Card card;
+    private IDealableCard card;
     [SerializeField] private SpriteRenderer spriteRenderer = null;
     public List<ICardCursolEvent> cursolEvent = new List<ICardCursolEvent>();
     private bool activate;
-    public void Print(Card c)
+    public void Print(IDealableCard c)
     {
         activate = true;
         card = c;
-        spriteRenderer.sprite = c.mainData.iconSprite;
+        spriteRenderer.sprite = c.GetCard().mainData.iconSprite;
+        c.SetTransform(this.transform);
     }
     public void UnPrint()
     {
@@ -30,7 +31,7 @@ public class BasicCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursol
     {
         return this.transform;
     }
-    public Card GetCard()
+    public IDealableCard GetDealableCard()
     {
         return card;
     }

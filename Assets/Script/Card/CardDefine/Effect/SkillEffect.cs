@@ -9,6 +9,12 @@ public abstract class SkillEffect : MonoBehaviour
     //あと効果音とムード設定と…
 
     //このEffect自体をInstantiateして作る方向で
+    [SerializeField] public AudioClip SE;
+    //上にあるプロパティを参照してなんか動く
+    public abstract void Effect(IDealableCard Source, IDealableCard[] Target);
 
-    public abstract void Effect(ICardPrintable sourse, ICardPrintable target);
+    public void Effect(EffectTarget target)
+    {
+        Effect(target.source, target.target);
+    }
 }

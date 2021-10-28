@@ -12,7 +12,7 @@ public class VRMViewCursol : MonoBehaviour, ICardCursolEvent
     public void CardCursol(ICardPrintable card, Vector3 pos)
     {
         if (card == null) Debug.Log("noCard!");
-        else vrmPrintCard.Print(card.GetCard());
+        else vrmPrintCard.Print(card.GetDealableCard());
 
     }
 }

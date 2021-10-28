@@ -31,7 +31,7 @@ public class FieldCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUse
         coinSpriteFlyer = new ObjectFlyer<CoinSprite>(initCoinSprite.GetComponent<CoinSprite>());
     }
 
-    public ICardPrintable CardMake(Card card, Vector3 position)
+    public ICardPrintable CardMake(IDealableCard card, Vector3 position)
     {
         FieldCard f = fieldCardFlyer.GetMob(position, y =>
         {

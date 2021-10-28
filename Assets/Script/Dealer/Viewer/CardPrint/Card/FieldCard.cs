@@ -9,18 +9,19 @@ using UniRx;
 public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObservable, ICardCursolEventUser
 {
     //field上のカードPrefabに付けるクラス
-    private ReactiveProperty<Card> card = new ReactiveProperty<Card>();
+    private ReactiveProperty<IDealableCard> card = new ReactiveProperty<IDealableCard>();
     [SerializeField] private SpriteRenderer spriteRenderer;
     public List<ICardCursolEvent> cursolEvent = new List<ICardCursolEvent>();
     public CoinCard coinCard;
     private bool activate;
 
-    public void Print(Card c)
+    public void Print(IDealableCard c)
     {
         activate = true;
         this.card.Value = c;
-        spriteRenderer.sprite = c?.mainData.iconSprite;
+        spriteRenderer.sprite = c?.GetCard().mainData.iconSprite;
         if (coinCard != null) coinCard.Print(c);
+        c.SetTransform(this.transform);
 
     }
     public void UnPrint()
@@ -38,12 +39,12 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
         return this.transform;
     }
 
-    public Card GetCard()
+    public IDealableCard GetDealableCard()
     {
         return card.Value;
     }
 
-    public IReadOnlyReactiveProperty<Card> ObservableCard()
+    public IReadOnlyReactiveProperty<IDealableCard> ObservableCard()
     {
         return card;
     }

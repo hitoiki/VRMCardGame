@@ -1598,9 +1598,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dealer: {fileID: 200107286}
-  selectingCard:
-    mainData: {fileID: 0}
-    underCards: []
   state: {fileID: 2140630055}
   selectingState: GamePlay
 --- !u!114 &830601333
@@ -2034,7 +2031,7 @@ PrefabInstance:
     - target: {fileID: 3366474247874518998, guid: 0b542224f4fb24d4babf70bc8ae56550,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3366474247874518998, guid: 0b542224f4fb24d4babf70bc8ae56550,
         type: 3}
@@ -2281,7 +2278,13 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.19809434
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9200124240699632407, guid: 0b542224f4fb24d4babf70bc8ae56550,
+        type: 3}
+      propertyPath: m_hitRadius
+      value: 0.05
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7268152861151280285, guid: 0b542224f4fb24d4babf70bc8ae56550, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0b542224f4fb24d4babf70bc8ae56550, type: 3}
 --- !u!1 &984936940
 GameObject:
@@ -2659,9 +2662,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dealer: {fileID: 200107286}
-  selectingCard:
-    mainData: {fileID: 0}
-    underCards: []
   state: {fileID: 2140630055}
   selectingState: GamePlay
 --- !u!114 &1178394796
