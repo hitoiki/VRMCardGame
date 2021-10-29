@@ -13,7 +13,7 @@ public abstract class SkillEffect : MonoBehaviour
     //上にあるプロパティを参照してなんか動く
     public abstract void Effect(IDealableCard Source, IDealableCard[] Target);
 
-    public void Effect(EffectTarget target)
+    public void Effect(SkillTarget target)
     {
         Effect(target.source, target.target);
     }

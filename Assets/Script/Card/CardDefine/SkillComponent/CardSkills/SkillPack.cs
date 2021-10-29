@@ -45,26 +45,26 @@ public class SkillPack : ScriptableObject
         return string.Join("\n", str);
     }
 
-    public Skill GetUseSkill(Card source)
+    public Skill GetUseSkill()
     {
-        if (useSkill != null) return new Skill(source, effect, useSkill.UseSkill(source));
+        if (useSkill != null) return new Skill(effect, useSkill.UseSkill());
         else return null;
 
     }
-    public Skill GetCoinSkill(Card source, Coin c, short n)
+    public Skill GetCoinSkill(Coin c, short n)
     {
-        if (coinSkill != null) return new Skill(source, effect, coinSkill?.CoinSkill(source, c, n));
+        if (coinSkill != null) return new Skill(effect, coinSkill?.CoinSkill(c, n));
         else return null;
 
     }
-    public Skill GetDrawSkill(Card source, StageDeck from, StageDeck to)
+    public Skill GetDrawSkill(StageDeck from, StageDeck to)
     {
-        if (drawSkill != null) return new Skill(source, effect, drawSkill.DrawSkill(source, from, to));
+        if (drawSkill != null) return new Skill(effect, drawSkill.DrawSkill(from, to));
         else return null;
     }
-    public Skill GetSelectSkill(Card source, List<Card> targets)
+    public Skill GetSelectSkill(List<Card> targets)
     {
-        if (selectSkill != null) return new Skill(source, effect, selectSkill.SelectSkill(source, targets));
+        if (selectSkill != null) return new Skill(effect, selectSkill.SelectSkill(targets));
         else return null;
     }
 
@@ -73,10 +73,10 @@ public class SkillPack : ScriptableObject
         return condition;
     }
 
-    public bool IsPlayable(GamePlayData data, Card source)
+    public bool IsPlayable(GamePlayData data)
     {
         if (useSkill == null) return true;
-        return useSkill.UseAble(data, source);
+        return useSkill.UseAble(data);
     }
 
     public bool IsSelect(GamePlayData data)
@@ -84,8 +84,8 @@ public class SkillPack : ScriptableObject
         return selectSkill != null;
     }
 
-    public (StageDeck, sbyte) PlayPrepare(GamePlayData data, Card source)
+    public (StageDeck, sbyte) PlayPrepare(GamePlayData data)
     {
-        return selectSkill.SelectCard(data, source);
+        return selectSkill.SelectCard(data);
     }
 }

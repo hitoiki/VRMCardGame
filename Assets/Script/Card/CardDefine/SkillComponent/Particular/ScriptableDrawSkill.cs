@@ -5,12 +5,12 @@ using UnityEngine;
 public abstract class ScriptableDrawSkill : ScriptableObject, IDrawSkill
 {
 
-    protected abstract void Skill(CardFacade dealer, Card source, StageDeck from, StageDeck to);
+    protected abstract void Skill(CardFacade dealer, StageDeck from, StageDeck to);
 
-    public SkillProcess DrawSkill(Card source, StageDeck from, StageDeck to)
+    public SkillProcess DrawSkill(StageDeck from, StageDeck to)
     {
         return new SkillProcess(
-        (CardFacade dealer) => { Skill(dealer, source, from, to); }
+        (CardFacade dealer) => { Skill(dealer, from, to); }
         );
     }
     public abstract string Text();

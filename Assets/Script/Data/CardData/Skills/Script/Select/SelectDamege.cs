@@ -7,11 +7,12 @@ public class SelectDamege : ScriptableSelectSkill
     [SerializeField] private Coin c;
     [SerializeField] private short damegeAmo;
 
-    protected override void Skill(CardFacade dealer, Card source, List<Card> target)
+    protected override void Skill(CardFacade facade, List<Card> target)
     {
-        target[0].AddCoin(dealer, c, damegeAmo);
+
+        facade.CoinToTarget(0, c, damegeAmo);
     }
-    public override (StageDeck, sbyte) SelectCard(GamePlayData data, Card source)
+    public override (StageDeck, sbyte) SelectCard(GamePlayData data)
     {
         return (StageDeck.field, 1);
     }

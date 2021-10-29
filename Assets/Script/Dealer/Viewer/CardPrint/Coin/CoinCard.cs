@@ -39,14 +39,14 @@ public class CoinCard : MonoBehaviour, ICardPrintable
 
     public void Print(IDealableCard c)
     {
-        _replace = c.GetCard().CoinsReplace.Subscribe(changeCoin =>
+        _replace = c.GetCoin().CoinsReplace.Subscribe(changeCoin =>
         {
             foreach (CoinSprite s in sprites.Where(y => { return y.printingCoin == changeCoin.Key; }))
             {
                 s.CoinPrint(changeCoin.Key, changeCoin.NewValue);
             };
         });
-        _add = c.GetCard().CoinsAdd.Subscribe(addCoin =>
+        _add = c.GetCoin().CoinsAdd.Subscribe(addCoin =>
           {
               CoinSprite newSprite = flyer.GetMob(new Vector3(100, 0, 0));
               newSprite.gameObject.transform.SetParent(this.transform);
@@ -55,7 +55,7 @@ public class CoinCard : MonoBehaviour, ICardPrintable
               newSprite.rect.localScale = new Vector3(newSprite.rect.localScale.x * addCoin.Key.spriteScale, newSprite.rect.localScale.y * addCoin.Key.spriteScale, 1);
               newSprite.rect.position = this.transform.position + addCoin.Key.spritePos;
           });
-        _remove = c.GetCard().CoinsRemove.Subscribe(removeCoin =>
+        _remove = c.GetCoin().CoinsRemove.Subscribe(removeCoin =>
          {
              foreach (CoinSprite s in sprites.Where(y => { return y.printingCoin == removeCoin.Key; }))
              {
@@ -63,7 +63,7 @@ public class CoinCard : MonoBehaviour, ICardPrintable
              };
          });
 
-        CoinInit(c.GetCard().coins.ToDictionary(pair => pair.Key, pair => pair.Value));
+        CoinInit(c.GetCoin().coins.ToDictionary(pair => pair.Key, pair => pair.Value));
     }
 
     private void CoinInit(Dictionary<Coin, short> c)

@@ -611,7 +611,7 @@ MonoBehaviour:
   state: {fileID: 2140630055}
   skillingState: Effect
   skillQueueObject: {fileID: 200107281}
-  facade: {fileID: 1159625934}
+  facadeData: {fileID: 1159625934}
 --- !u!1 &212116651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,8 +2280,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9200124240699632407, guid: 0b542224f4fb24d4babf70bc8ae56550,
         type: 3}
+      propertyPath: m_drawGizmo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200124240699632407, guid: 0b542224f4fb24d4babf70bc8ae56550,
+        type: 3}
       propertyPath: m_hitRadius
-      value: 0.05
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200124240699632407, guid: 0b542224f4fb24d4babf70bc8ae56550,
+        type: 3}
+      propertyPath: m_gravityPower
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7268152861151280285, guid: 0b542224f4fb24d4babf70bc8ae56550, type: 3}
@@ -2610,7 +2620,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1159625932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 190d7f19057906e4e824d1ed266ef01d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ebec0312328736469da271bb341f509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}

@@ -10,12 +10,12 @@ public class BasicReactiveDraw : ScriptableCoinSkill
     [SerializeField] private StageDeck drawFrom;
     [SerializeField] private StageDeck drawTo;
     [SerializeField] private short drawAmount = 0;
-    protected override void Skill(CardFacade dealer, Card target, Coin c, short n)
+    protected override void Skill(CardFacade facade, Coin c, short n)
     {
-        if (target.coins.ContainsKey(ReactiveCoin) && target.coins[ReactiveCoin] >= threshold)
+        if (facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold)
         {
-            dealer.DeckDraw(drawFrom, drawTo, drawAmount);
-            target.RemoveCoin(dealer, ReactiveCoin, threshold);
+            facade.DeckDraw(drawFrom, drawTo, drawAmount);
+            facade.CoinToSource(ReactiveCoin, threshold);
         }
     }
 

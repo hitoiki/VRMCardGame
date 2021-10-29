@@ -10,7 +10,7 @@ public class CardPlayDealer : MonoBehaviour
     [SerializeField] private StateDealer state;
     [SerializeField] private string skillingState;
     [SerializeField] SkillQueueObject skillQueueObject;
-    [SerializeField] CardFacade facade;
+    [SerializeField] FacadeData facadeData;
 
     public void SkillExecute()
     {
@@ -23,9 +23,9 @@ public class CardPlayDealer : MonoBehaviour
         while (skillQueueObject.skillQueue.Any())
         {
             Debug.Log("skilling");
-            (Skill skill, EffectTarget target) runningSkill = skillQueueObject.skillQueue.Dequeue();
+            (Skill skill, SkillTarget target) runningSkill = skillQueueObject.skillQueue.Dequeue();
             Instantiate(runningSkill.skill.effect).Effect(runningSkill.target);
-            runningSkill.skill.process.skill(facade);
+            runningSkill.skill.process.skill(new CardFacade(facadeData, runningSkill.target));
             Debug.Log("skilled");
             SkillCount++;
             if (SkillCount > 99)

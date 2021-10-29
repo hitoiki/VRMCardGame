@@ -16,14 +16,6 @@ public class Card
     private List<SkillPack> mainSkills => mainData.skillPack;
     public List<CardData> underCards = new List<CardData>();
     private List<SkillPack> underSkills => underCards.SelectMany(x => { return x.skillPack; }).ToList();
-    private readonly ReactiveDictionary<Coin, short> _coins = new ReactiveDictionary<Coin, short>();
-
-    //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)
-    public Dictionary<Coin, short> coins => _coins.ToDictionary(pair => pair.Key, pair => pair.Value);
-    //ReactiveCollectionのうちIObservableだけを公開し、処理を登録できるように
-    public IObservable<DictionaryReplaceEvent<Coin, short>> CoinsReplace => _coins.ObserveReplace();
-    public IObservable<DictionaryAddEvent<Coin, short>> CoinsAdd => _coins.ObserveAdd();
-    public IObservable<DictionaryRemoveEvent<Coin, short>> CoinsRemove => _coins.ObserveRemove();
 
     delegate Skill SkillDeal(SkillPack text);
 
@@ -31,22 +23,7 @@ public class Card
     {
         mainData = d;
     }
-    public void AddCoin(CardFacade facade, Coin c, short n)
-    {
-        if (_coins.ContainsKey(c)) _coins[c] += n;
-        else _coins.Add(c, n);
-        Debug.Log(_coins[c]);
-        //facade.skillQueue.Push(this.CoinSkill(c, n));
-    }
 
-    public void RemoveCoin(CardFacade facade, Coin c, short n)
-    {
-        if (_coins.ContainsKey(c))
-        {
-            if (_coins[c] > n) _coins[c] = 0;
-            else _coins[c] -= n;
-        }
-    }
 
     public string CardText()
     {
@@ -82,32 +59,32 @@ public class Card
 
     public List<Skill> CoinSkill(Coin coin, short n)
     {
-        return SkillListRun(x => { return x.GetCoinSkill(this, coin, n); });
+        return SkillListRun(x => { return x.GetCoinSkill(coin, n); });
     }
 
     public List<Skill> UseSkill()
     {
-        return SkillListRun(x => { return x.GetUseSkill(this); });
+        return SkillListRun(x => { return x.GetUseSkill(); });
     }
 
     public List<Skill> DrawSkill(StageDeck from, StageDeck to)
     {
-        return SkillListRun(x => { return x.GetDrawSkill(this, from, to); });
+        return SkillListRun(x => { return x.GetDrawSkill(from, to); });
     }
     public List<Skill> SelectSkill(List<Card> target)
     {
-        return SkillListRun(x => { return x.GetSelectSkill(this, target); });
+        return SkillListRun(x => { return x.GetSelectSkill(target); });
     }
 
     public bool IsPlayable(GamePlayData data)
     {
         bool mainSkillPlayable = mainData.skillPack
          .Where(y => { return PhaseCheck(y, SkillPhase.top) || PhaseCheck(y, SkillPhase.always); })
-         .Aggregate(true, (b, skill) => { return b && skill.IsPlayable(data, this); });
+         .Aggregate(true, (b, skill) => { return b && skill.IsPlayable(data); });
 
         bool underSkillPlayable = underSkills
         .Where(y => { return PhaseCheck(y, SkillPhase.under) || PhaseCheck(y, SkillPhase.always); })
-        .Aggregate(true, (b, skill) => { return b && skill.IsPlayable(data, this); });
+        .Aggregate(true, (b, skill) => { return b && skill.IsPlayable(data); });
 
         return mainSkillPlayable && underSkillPlayable;
     }
@@ -123,11 +100,11 @@ public class Card
     {
         IEnumerable<(StageDeck, sbyte)> mainSkill = mainData.skillPack
           .Where(y => { return PhaseCheck(y, SkillPhase.top) || PhaseCheck(y, SkillPhase.always); })
-          .Select(y => { return y.PlayPrepare(data, this); });
+          .Select(y => { return y.PlayPrepare(data); });
 
         IEnumerable<(StageDeck, sbyte)> underSkill = underSkills
         .Where(y => { return PhaseCheck(y, SkillPhase.under) || PhaseCheck(y, SkillPhase.always); })
-          .Select(y => { return y.PlayPrepare(data, this); }).ToList();
+          .Select(y => { return y.PlayPrepare(data); }).ToList();
 
         return mainSkill.Concat(underSkill).ToList();
     }

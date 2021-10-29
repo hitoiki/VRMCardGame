@@ -5,11 +5,11 @@ using UnityEngine;
 public class GetCard : ScriptableUseSkill
 {
     [SerializeField] short getAmo = 1;
-    protected override void Skill(CardFacade dealer, Card source)
+    protected override void Skill(CardFacade dealer)
     {
         dealer.DeckDraw(StageDeck.field, StageDeck.hands, getAmo);
     }
-    public override bool UseAble(GamePlayData data, Card source)
+    public override bool UseAble(GamePlayData data)
     {
         return true;
     }

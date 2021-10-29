@@ -3,20 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CardFacade : MonoBehaviour
+public class CardFacade
 {
     //Cardが出来る処理を書く   
     //CardのSkill群にこいつが渡される
-    [SerializeField] private PlayerData player;
-    [SerializeField] private Stage stage = null;
-    [SerializeField] private Coin coinToCost;
-    [SerializeField] public SkillQueueObject skillQueue;
-
-    public virtual void CostPay(IDealableCard card)
+    FacadeData data;
+    IDealableCard source;
+    IDealableCard[] target;
+    public Dictionary<Coin, short> sourceCoins => source.GetCoin().coins;
+    public CardFacade(FacadeData Data, IDealableCard Source, IDealableCard[] Target)
     {
-        foreach (Card c in stage.field.cards)
+        this.data = Data;
+        this.source = Source;
+        this.target = Target;
+    }
+
+    public CardFacade(FacadeData Data, SkillTarget target)
+    {
+        this.data = Data;
+        this.source = target.source;
+        this.target = target.target;
+    }
+
+
+    public virtual void CostPay()
+    {
+        foreach (IDealableCard c in data.stage.field.cards)
         {
-            c.AddCoin(this, coinToCost, card.GetCard().mainData.cost);
+            ChangeCoin(c, data.coinToCost, source.GetCard().mainData.cost);
         };
     }
 
@@ -25,15 +39,19 @@ public class CardFacade : MonoBehaviour
     //カードを引いて、適当な場所に移動
     public void DeckDraw(StageDeck from, StageDeck to, int amount)
     {
-        List<IDealableCard> drawCards = stage.DeckKey(from).Draw(amount);
-        stage.DeckKey(to).Add(drawCards);
-        //skillQueue.Push(drawCards.SelectMany(x => { return x.DrawSkill(from, to); }));
+        List<IDealableCard> drawCards = data.stage.DeckKey(from).Draw(amount);
+        data.stage.DeckKey(to).Add(drawCards);
+        foreach (IDealableCard card in drawCards)
+        {
+            data.skillQueue.Push(card.GetCard().DrawSkill(from, to), card, null);
+        }
     }
 
-    //本当はFacadeでCoinを増減したい
-    public void AddCoin()
+    //Coinの増減
+    private void ChangeCoin(IDealableCard card, Coin coin, short i)
     {
-
+        card.GetCoin().AddCoin(coin, i);
+        data.skillQueue.Push(source.GetCard().CoinSkill(coin, i), card, null);
     }
 
 
@@ -50,25 +68,29 @@ public class CardFacade : MonoBehaviour
     //条件を満たすカードのリストを渡す
     public List<IDealableCard> DeckFilter(StageDeck f, System.Func<IDealableCard, bool> ch)
     {
-        return stage.DeckKey(f).cards.Where(ch).ToList();
+        return data.stage.DeckKey(f).cards.Where(ch).ToList();
     }
     public List<CardData> UnderCardFilter(IDealableCard c, System.Func<CardData, bool> ch)
     {
         return c.GetCard().underCards.Where(ch).ToList();
     }
-    //あるカードにコインを渡す
-    public void CoinToCard(IDealableCard card, Coin coin, short i)
-    {
-        card.GetCard().AddCoin(this, coin, i);
-    }
-
     //あるデッキ全てにCoinを渡す
     public void CoinToDeck(StageDeck f, Coin coin, short i)
     {
-        foreach (IDealableCard c in stage.DeckKey(f).cards)
+        foreach (IDealableCard c in data.stage.DeckKey(f).cards)
         {
-            c.GetCard().AddCoin(this, coin, i);
+            ChangeCoin(c, coin, i);
         };
+    }
+
+    public void CoinToSource(Coin coin, short i)
+    {
+        ChangeCoin(source, coin, i);
+    }
+
+    public void CoinToTarget(int index, Coin coin, short i)
+    {
+        ChangeCoin(target[index], coin, i);
     }
 
 }
