@@ -57,7 +57,7 @@ public class Card
         return mainSkill.Concat(underSkill).ToList();
     }
 
-    public List<Skill> CoinSkill(Coin coin, short n)
+    public List<Skill> CoinSkill(Coin coin, int n)
     {
         return SkillListRun(x => { return x.GetCoinSkill(coin, n); });
     }
@@ -71,12 +71,8 @@ public class Card
     {
         return SkillListRun(x => { return x.GetDrawSkill(from, to); });
     }
-    public List<Skill> SelectSkill(List<Card> target)
-    {
-        return SkillListRun(x => { return x.GetSelectSkill(target); });
-    }
 
-    public bool IsPlayable(GamePlayData data)
+    public bool IsPlayable(Stage data)
     {
         bool mainSkillPlayable = mainData.skillPack
          .Where(y => { return PhaseCheck(y, SkillPhase.top) || PhaseCheck(y, SkillPhase.always); })
@@ -89,22 +85,15 @@ public class Card
         return mainSkillPlayable && underSkillPlayable;
     }
 
-    public bool IsSelect(GamePlayData data)
+    public List<(StageDeck, sbyte)?> PlayPrepare(Stage data)
     {
-        bool IsMainSkillSelect = mainData.skillPack.Aggregate(true, (b, skill) => { return b && skill.IsSelect(data); });
-        bool IsUnderSkillSelect = underSkills.Aggregate(true, (b, skill) => { return b && skill.IsSelect(data); });
-        return IsMainSkillSelect && IsUnderSkillSelect;
-    }
-
-    public List<(StageDeck, sbyte)> PlayPrepare(GamePlayData data)
-    {
-        IEnumerable<(StageDeck, sbyte)> mainSkill = mainData.skillPack
+        IEnumerable<(StageDeck, sbyte)?> mainSkill = mainData.skillPack
           .Where(y => { return PhaseCheck(y, SkillPhase.top) || PhaseCheck(y, SkillPhase.always); })
           .Select(y => { return y.PlayPrepare(data); });
 
-        IEnumerable<(StageDeck, sbyte)> underSkill = underSkills
+        IEnumerable<(StageDeck, sbyte)?> underSkill = underSkills
         .Where(y => { return PhaseCheck(y, SkillPhase.under) || PhaseCheck(y, SkillPhase.always); })
-          .Select(y => { return y.PlayPrepare(data); }).ToList();
+          .Select(y => { return y.PlayPrepare(data); });
 
         return mainSkill.Concat(underSkill).ToList();
     }

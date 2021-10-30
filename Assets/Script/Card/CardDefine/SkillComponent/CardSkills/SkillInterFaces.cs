@@ -6,21 +6,16 @@ using UnityEngine;
 public interface IUseSkill
 {
     //手札から使われる能力。
-    bool UseAble(GamePlayData data);
+    //カード選択が必要かどうかも同時に判定する。
+    bool UseAble(Stage data);
+    (StageDeck, sbyte)? SelectCard(Stage data);
     SkillProcess UseSkill();
-}
-
-
-public interface ISelectSkill
-{
-    (StageDeck, sbyte) SelectCard(GamePlayData data);
-    SkillProcess SelectSkill(List<Card> c);
 }
 
 public interface ICoinSkill
 {
     //Coinを受け取って発動する能力。
-    SkillProcess CoinSkill(Coin c, short n);
+    SkillProcess CoinSkill(Coin c, int n);
 }
 
 public interface IDrawSkill

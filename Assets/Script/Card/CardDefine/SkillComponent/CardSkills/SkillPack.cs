@@ -19,7 +19,6 @@ public class SkillPack : ScriptableObject
     [SerializeField] ScriptableUseSkill useSkill;
     [SerializeField] ScriptableCoinSkill coinSkill;
     [SerializeField] ScriptableDrawSkill drawSkill;
-    [SerializeField] ScriptableSelectSkill selectSkill;
     [SerializeField] SkillCondition condition;
     [Header("Effect")]
     [SerializeField] SkillEffect effect;
@@ -41,7 +40,6 @@ public class SkillPack : ScriptableObject
         if (useSkill != null) str.Add(useSkill.Text());
         if (coinSkill != null) str.Add(coinSkill.Text());
         if (drawSkill != null) str.Add(drawSkill.Text());
-        if (selectSkill != null) str.Add(selectSkill.Text());
         return string.Join("\n", str);
     }
 
@@ -51,7 +49,7 @@ public class SkillPack : ScriptableObject
         else return null;
 
     }
-    public Skill GetCoinSkill(Coin c, short n)
+    public Skill GetCoinSkill(Coin c, int n)
     {
         if (coinSkill != null) return new Skill(effect, coinSkill?.CoinSkill(c, n));
         else return null;
@@ -62,30 +60,19 @@ public class SkillPack : ScriptableObject
         if (drawSkill != null) return new Skill(effect, drawSkill.DrawSkill(from, to));
         else return null;
     }
-    public Skill GetSelectSkill(List<Card> targets)
-    {
-        if (selectSkill != null) return new Skill(effect, selectSkill.SelectSkill(targets));
-        else return null;
-    }
 
     public SkillCondition GetCondition()
     {
         return condition;
     }
 
-    public bool IsPlayable(GamePlayData data)
+    public bool IsPlayable(Stage data)
     {
         if (useSkill == null) return true;
         return useSkill.UseAble(data);
     }
-
-    public bool IsSelect(GamePlayData data)
+    public (StageDeck, sbyte)? PlayPrepare(Stage data)
     {
-        return selectSkill != null;
-    }
-
-    public (StageDeck, sbyte) PlayPrepare(GamePlayData data)
-    {
-        return selectSkill.SelectCard(data);
+        return useSkill.SelectCard(data);
     }
 }

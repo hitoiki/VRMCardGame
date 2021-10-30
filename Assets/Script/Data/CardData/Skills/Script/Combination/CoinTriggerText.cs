@@ -6,10 +6,10 @@ using UnityEngine;
 public class CoinTriggerText : ScriptableCoinSkill
 {
     [SerializeField] private Coin ReactiveCoin;
-    [SerializeField] private short threshold = 0;
+    [SerializeField] private int threshold = 0;
     [SerializeField] private ScriptableUseSkill useText;
 
-    protected override void Skill(CardFacade facade, Coin c, short n)
+    protected override void Skill(CardFacade facade, Coin c, int n)
     {
         if (facade.sourceCoins[ReactiveCoin] >= threshold)
         {

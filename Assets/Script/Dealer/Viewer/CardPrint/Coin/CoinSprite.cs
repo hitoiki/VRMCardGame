@@ -11,7 +11,7 @@ public class CoinSprite : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private Text text;
 
-    public void CoinPrint(Coin c, short s)
+    public void CoinPrint(Coin c, int s)
     {
         printingCoin = c;
         image.sprite = c.icon;

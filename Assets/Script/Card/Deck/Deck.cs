@@ -5,10 +5,10 @@ using UnityEngine;
 using System.Linq;
 using UniRx;
 
-[System.Serializable]
-public class Deck : MonoBehaviour
-{
 #pragma warning disable 0649
+[System.Serializable]
+public class Deck
+{
     //カードを纏める所
     public List<CardData> initCards;
     private ReactiveCollection<IDealableCard> _cards = new ReactiveCollection<IDealableCard>(new List<IDealableCard>());
@@ -19,7 +19,7 @@ public class Deck : MonoBehaviour
     public IObservable<CollectionReplaceEvent<IDealableCard>> ObservableReplace => _cards.ObserveReplace();
     public IObservable<CollectionAddEvent<IDealableCard>> ObservableAdd => _cards.ObserveAdd();
     public IObservable<CollectionRemoveEvent<IDealableCard>> ObservableRemove => _cards.ObserveRemove();
-    private void Start()
+    public void InspectorInit()
     {
         Substitution(initCards.Select(x => { return new DefaultDealableCard(new Card(x), null) as IDealableCard; }).ToList());
     }

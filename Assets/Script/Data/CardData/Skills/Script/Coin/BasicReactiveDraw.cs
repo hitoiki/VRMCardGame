@@ -6,16 +6,16 @@ using UnityEngine;
 public class BasicReactiveDraw : ScriptableCoinSkill
 {
     [SerializeField] private Coin ReactiveCoin;
-    [SerializeField] private short threshold = 0;
+    [SerializeField] private int threshold = 0;
     [SerializeField] private StageDeck drawFrom;
     [SerializeField] private StageDeck drawTo;
-    [SerializeField] private short drawAmount = 0;
-    protected override void Skill(CardFacade facade, Coin c, short n)
+    [SerializeField] private int drawAmount = 0;
+    protected override void Skill(CardFacade facade, Coin c, int n)
     {
         if (facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold)
         {
             facade.DeckDraw(drawFrom, drawTo, drawAmount);
-            facade.CoinToSource(ReactiveCoin, threshold);
+            facade.CoinToSource(ReactiveCoin, -threshold);
         }
     }
 

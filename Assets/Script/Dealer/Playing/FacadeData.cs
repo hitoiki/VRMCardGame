@@ -8,6 +8,6 @@ public class FacadeData : MonoBehaviour
     [SerializeField] public PlayerData player;
     [SerializeField] public Stage stage = null;
     [SerializeField] public Coin coinToCost;
-    [SerializeField] public SkillQueueObject skillQueue;
+    [SerializeField] public SkillQueueObject skillQueue => stage.queueObject;
 
 }

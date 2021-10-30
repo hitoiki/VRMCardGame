@@ -18,9 +18,7 @@ public class CardSelectCursolEvent : MonoBehaviour, ICardCursolEvent
             selectedCards.Add(card.GetDealableCard());
 
             dealer.CardPlay(
-                selectingCard.GetCard().UseSkill()
-                .Concat(selectingCard.GetCard().SelectSkill(selectedCards.Select(x => { return x.GetCard(); }).ToList()))
-                .ToList()
+                selectingCard.GetCard().UseSkill().ToList()
                 , selectingCard
                 , selectedCards.ToArray()
             );

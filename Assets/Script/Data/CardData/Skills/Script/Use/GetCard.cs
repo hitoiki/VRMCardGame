@@ -9,9 +9,13 @@ public class GetCard : ScriptableUseSkill
     {
         dealer.DeckDraw(StageDeck.field, StageDeck.hands, getAmo);
     }
-    public override bool UseAble(GamePlayData data)
+    public override bool UseAble(Stage data)
     {
         return true;
+    }
+    public override (StageDeck, sbyte)? SelectCard(Stage data)
+    {
+        return null;
     }
 
     public override string Text()

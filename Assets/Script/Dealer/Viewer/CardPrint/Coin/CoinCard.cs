@@ -66,7 +66,7 @@ public class CoinCard : MonoBehaviour, ICardPrintable
         CoinInit(c.GetCoin().coins.ToDictionary(pair => pair.Key, pair => pair.Value));
     }
 
-    private void CoinInit(Dictionary<Coin, short> c)
+    private void CoinInit(Dictionary<Coin, int> c)
     {
         foreach (var i in c.Select((Value, Index) => new { Value, Index }))
         {

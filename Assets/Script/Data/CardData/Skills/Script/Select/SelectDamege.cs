@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "CardText/SelectDamege")]
-public class SelectDamege : ScriptableSelectSkill
+public class SelectDamege : ScriptableUseSkill
 {
     [SerializeField] private Coin c;
     [SerializeField] private short damegeAmo;
 
-    protected override void Skill(CardFacade facade, List<Card> target)
+    protected override void Skill(CardFacade facade)
     {
 
         facade.CoinToTarget(0, c, damegeAmo);
     }
-    public override (StageDeck, sbyte) SelectCard(GamePlayData data)
+    public override bool UseAble(Stage data)
+    {
+        return true;
+    }
+    public override (StageDeck, sbyte)? SelectCard(Stage data)
     {
         return (StageDeck.field, 1);
     }

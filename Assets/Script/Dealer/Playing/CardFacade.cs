@@ -10,7 +10,7 @@ public class CardFacade
     FacadeData data;
     IDealableCard source;
     IDealableCard[] target;
-    public Dictionary<Coin, short> sourceCoins => source.GetCoin().coins;
+    public Dictionary<Coin, int> sourceCoins => source.GetCoin().coins;
     public CardFacade(FacadeData Data, IDealableCard Source, IDealableCard[] Target)
     {
         this.data = Data;
@@ -48,10 +48,10 @@ public class CardFacade
     }
 
     //Coinの増減
-    private void ChangeCoin(IDealableCard card, Coin coin, short i)
+    private void ChangeCoin(IDealableCard card, Coin coin, int i)
     {
-        card.GetCoin().AddCoin(coin, i);
-        data.skillQueue.Push(source.GetCard().CoinSkill(coin, i), card, null);
+        card.GetCoin().ChangeCoin(coin, i);
+        data.skillQueue.Push(card.GetCard().CoinSkill(coin, i), card, null);
     }
 
 
@@ -75,7 +75,7 @@ public class CardFacade
         return c.GetCard().underCards.Where(ch).ToList();
     }
     //あるデッキ全てにCoinを渡す
-    public void CoinToDeck(StageDeck f, Coin coin, short i)
+    public void CoinToDeck(StageDeck f, Coin coin, int i)
     {
         foreach (IDealableCard c in data.stage.DeckKey(f).cards)
         {
@@ -83,12 +83,12 @@ public class CardFacade
         };
     }
 
-    public void CoinToSource(Coin coin, short i)
+    public void CoinToSource(Coin coin, int i)
     {
         ChangeCoin(source, coin, i);
     }
 
-    public void CoinToTarget(int index, Coin coin, short i)
+    public void CoinToTarget(int index, Coin coin, int i)
     {
         ChangeCoin(target[index], coin, i);
     }

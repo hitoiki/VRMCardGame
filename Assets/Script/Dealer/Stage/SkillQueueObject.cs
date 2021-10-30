@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SkillQueueObject : MonoBehaviour
+public class SkillQueueObject
 {
     // SkillProcessをスタックしていくキュー
     public Queue<(Skill skill, SkillTarget target)> skillQueue { get; } = new Queue<(Skill skill, SkillTarget target)>();

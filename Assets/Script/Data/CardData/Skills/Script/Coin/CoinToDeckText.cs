@@ -16,9 +16,13 @@ public class CoinToDeckText : ScriptableUseSkill
         facade.CoinToDeck(deck, c, amount);
         Debug.Log("CoinToDeck");
     }
-    public override bool UseAble(GamePlayData data)
+    public override bool UseAble(Stage data)
     {
         return true;
+    }
+    public override (StageDeck, sbyte)? SelectCard(Stage data)
+    {
+        return null;
     }
 
     public override string Text()

@@ -9,7 +9,7 @@ public class CardPlayChecker : MonoBehaviour
     [SerializeField] private StateDealer state;
     [SerializeField] private CardPlayDealer dealer = null;
     [SerializeField] private CardSelectCursolEvent cardSelect;
-    [SerializeField] private GamePlayData data;
+    [SerializeField] private Stage data;
     [SerializeField] private string selectingState;
 
     public void CardCheck(IDealableCard cardViewable)
@@ -21,7 +21,7 @@ public class CardPlayChecker : MonoBehaviour
             return;
         }
 
-        if (card.IsSelect(data))
+        if (card.PlayPrepare(data).Any(x => { return x != null; }))
         {
             cardSelect.selectingCard = cardViewable;
             Debug.Log(cardSelect.selectingCard.GetCard().mainData.name);
