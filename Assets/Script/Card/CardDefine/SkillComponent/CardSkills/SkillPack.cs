@@ -16,13 +16,12 @@ public class SkillPack : ScriptableObject
     [SerializeField] string skillText;
     //効果の纏まりなので、一Componentに一つ持つ
     [Header("Skill")]
-    [SerializeField] ScriptableUseSkill useSkill;
-    [SerializeField] ScriptableCoinSkill coinSkill;
-    [SerializeField] ScriptableDrawSkill drawSkill;
+    [SerializeReference, SubclassSelector] IUseSkill useSkill;
+    [SerializeReference, SubclassSelector] ICoinSkill coinSkill;
+    [SerializeReference, SubclassSelector] IDrawSkill drawSkill;
     [SerializeField] SkillCondition condition;
     [Header("Effect")]
     [SerializeField] SkillEffect effect;
-
     public ISkillDisPlay GetDisplay()
     {
         return disPlay;

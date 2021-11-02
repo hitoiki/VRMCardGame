@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f60d45abcd79649878aee241fb3158, type: 3}
+  m_Name: ReactiveDraw
+  m_EditorClassIdentifier: 
+  initDisPlay: {fileID: 0}
+  skillText: 
+  useSkill:
+    id: 0
+  coinSkill:
+    id: 1
+  drawSkill:
+    id: 2
+  condition:
+    activePhase: 1
+  effect: {fileID: 818145580588037742, guid: d7270451a3cbe054caa073a4e0de6bb0, type: 3}
+  references:
+    version: 1
+    00000000:
+      type: {class: CoinToDeckText, ns: , asm: Assembly-CSharp}
+      data:
+        c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+        amount: 5
+        deck: 1
+    00000001:
+      type: {class: BasicReactiveDraw, ns: , asm: Assembly-CSharp}
+      data:
+        ReactiveCoin: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+        threshold: 10
+        drawFrom: 4
+        drawTo: 1
+        drawAmount: 2
+    00000002:
+      type: {class: , ns: , asm: }

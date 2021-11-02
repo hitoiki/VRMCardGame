@@ -14,9 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initDisPlay: {fileID: 0}
   skillText: 
-  useSkill: {fileID: 11400000, guid: ab8a45fb118bf704285c7a7e71c6271a, type: 2}
-  coinSkill: {fileID: 0}
-  drawSkill: {fileID: 0}
+  useSkill:
+    id: 0
+  coinSkill:
+    id: 1
+  drawSkill:
+    id: 1
   condition:
     activePhase: 1
   effect: {fileID: 818145580588037742, guid: d7270451a3cbe054caa073a4e0de6bb0, type: 3}
+  references:
+    version: 1
+    00000000:
+      type: {class: SelectDamege, ns: , asm: Assembly-CSharp}
+      data:
+        c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+        damegeAmo: 3
+    00000001:
+      type: {class: , ns: , asm: }

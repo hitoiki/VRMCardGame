@@ -2252,12 +2252,12 @@ PrefabInstance:
     - target: {fileID: 9200124240699632407, guid: 0b542224f4fb24d4babf70bc8ae56550,
         type: 3}
       propertyPath: m_hitRadius
-      value: 0.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9200124240699632407, guid: 0b542224f4fb24d4babf70bc8ae56550,
         type: 3}
       propertyPath: m_gravityPower
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7268152861151280285, guid: 0b542224f4fb24d4babf70bc8ae56550, type: 3}
@@ -2837,7 +2837,7 @@ MonoBehaviour:
   state: {fileID: 2140630055}
   dealer: {fileID: 200107286}
   cardSelect: {fileID: 1178394795}
-  data: {fileID: 0}
+  data: {fileID: 400381648}
   selectingState: CardSelect
 --- !u!4 &1459236230
 Transform:

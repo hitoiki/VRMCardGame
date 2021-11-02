@@ -10,18 +10,21 @@ public interface IUseSkill
     bool UseAble(Stage data);
     (StageDeck, sbyte)? SelectCard(Stage data);
     SkillProcess UseSkill();
+    string Text();
 }
 
 public interface ICoinSkill
 {
     //Coinを受け取って発動する能力。
     SkillProcess CoinSkill(Coin c, int n);
+    string Text();
 }
 
 public interface IDrawSkill
 {
     //Deck間を移動した時に発動する能力。
     SkillProcess DrawSkill(StageDeck from, StageDeck to);
+    string Text();
 }
 
 //下にカードが追加された時

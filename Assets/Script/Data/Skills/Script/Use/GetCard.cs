@@ -1,24 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Data", menuName = "CardText/GetCard")]
-public class GetCard : ScriptableUseSkill
+
+[System.Serializable]
+public class GetCard : IUseSkill
 {
     [SerializeField] short getAmo = 1;
-    protected override void Skill(CardFacade dealer)
+    private void Skill(CardFacade dealer)
     {
         dealer.DeckDraw(StageDeck.field, StageDeck.hands, getAmo);
     }
-    public override bool UseAble(Stage data)
+    public SkillProcess UseSkill()
+    {
+        return new SkillProcess(
+        (CardFacade dealer) => { Skill(dealer); }
+        );
+    }
+    public bool UseAble(Stage data)
     {
         return true;
     }
-    public override (StageDeck, sbyte)? SelectCard(Stage data)
+    public (StageDeck, sbyte)? SelectCard(Stage data)
     {
         return null;
     }
 
-    public override string Text()
+    public string Text()
     {
         return "場のカードを古い方から" + getAmo.ToString() + "枚手札に加える。";
     }
