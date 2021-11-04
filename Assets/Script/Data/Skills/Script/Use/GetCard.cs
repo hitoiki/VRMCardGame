@@ -20,9 +20,9 @@ public class GetCard : IUseSkill
     {
         return true;
     }
-    public (StageDeck, sbyte)? SelectCard(Stage data)
+    public ICardChecking SelectCard(Stage data)
     {
-        return null;
+        return new SelectDeckCardChecking(StageDeck.field, 1);
     }
 
     public string Text()

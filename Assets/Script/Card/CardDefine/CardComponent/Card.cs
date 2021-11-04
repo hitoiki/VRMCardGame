@@ -85,13 +85,13 @@ public class Card
         return mainSkillPlayable && underSkillPlayable;
     }
 
-    public List<(StageDeck, sbyte)?> PlayPrepare(Stage data)
+    public List<ICardChecking> PlayPrepare(Stage data)
     {
-        IEnumerable<(StageDeck, sbyte)?> mainSkill = mainData.skillPack
+        IEnumerable<ICardChecking> mainSkill = mainData.skillPack
           .Where(y => { return PhaseCheck(y, SkillPhase.top) || PhaseCheck(y, SkillPhase.always); })
           .Select(y => { return y.PlayPrepare(data); });
 
-        IEnumerable<(StageDeck, sbyte)?> underSkill = underSkills
+        IEnumerable<ICardChecking> underSkill = underSkills
         .Where(y => { return PhaseCheck(y, SkillPhase.under) || PhaseCheck(y, SkillPhase.always); })
           .Select(y => { return y.PlayPrepare(data); });
 

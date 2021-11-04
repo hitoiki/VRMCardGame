@@ -8,7 +8,7 @@ public interface IUseSkill
     //手札から使われる能力。
     //カード選択が必要かどうかも同時に判定する。
     bool UseAble(Stage data);
-    (StageDeck, sbyte)? SelectCard(Stage data);
+    ICardChecking SelectCard(Stage data);
     SkillProcess UseSkill();
     string Text();
 }

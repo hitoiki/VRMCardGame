@@ -22,9 +22,9 @@ public class SelectDamege : IUseSkill
     {
         return true;
     }
-    public (StageDeck, sbyte)? SelectCard(Stage data)
+    public ICardChecking SelectCard(Stage data)
     {
-        return (StageDeck.field, 1);
+        return new SelectDeckCardChecking(StageDeck.field, 1);
     }
     public string Text()
     {

@@ -70,7 +70,7 @@ public class SkillPack : ScriptableObject
         if (useSkill == null) return true;
         return useSkill.UseAble(data);
     }
-    public (StageDeck, sbyte)? PlayPrepare(Stage data)
+    public ICardChecking PlayPrepare(Stage data)
     {
         return useSkill.SelectCard(data);
     }

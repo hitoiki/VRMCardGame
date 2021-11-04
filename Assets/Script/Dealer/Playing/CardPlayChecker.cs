@@ -15,6 +15,8 @@ public class CardPlayChecker : MonoBehaviour
     public void CardCheck(IDealableCard cardViewable)
     {
         Card card = cardViewable.GetCard();
+        //暫定
+        cardSelect.selectingCard = cardViewable;
         if (!card.IsPlayable(data))
         {
             Debug.Log("IsNotPlayable");
@@ -23,14 +25,21 @@ public class CardPlayChecker : MonoBehaviour
 
         if (card.PlayPrepare(data).Any(x => { return x != null; }))
         {
-            cardSelect.selectingCard = cardViewable;
-            Debug.Log(cardSelect.selectingCard.GetCard().mainData.name);
-            state.ChangeState(selectingState);
+            foreach (ICardChecking checking in card.PlayPrepare(data))
+            {
+                Debug.Log("Do");
+                checking.Check(this);
+            }
         }
         else
         {
             dealer.CardPlay(card.UseSkill(), cardViewable, null);
         }
+    }
+    public void SelectStageCard(StageDeck deck, sbyte amo)
+    {
+        Debug.Log(cardSelect.selectingCard.GetCard().mainData.name);
+        state.ChangeState(selectingState);
     }
 
 

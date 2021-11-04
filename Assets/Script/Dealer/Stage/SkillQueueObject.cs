@@ -11,7 +11,6 @@ public class SkillQueueObject
     public void Push(List<Skill> skills, IDealableCard Source, IDealableCard[] Target)
     {
         if (!skills.Any()) return;
-        Debug.Log("Pushed");
         SkillTarget target = new SkillTarget(Source, Target);
         foreach (Skill s in skills)
         {

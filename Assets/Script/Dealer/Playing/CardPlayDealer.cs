@@ -23,11 +23,9 @@ public class CardPlayDealer : MonoBehaviour
         int SkillCount = 0;
         while (skillQueueObject.skillQueue.Any())
         {
-            Debug.Log("skilling");
             (Skill skill, SkillTarget target) runningSkill = skillQueueObject.skillQueue.Dequeue();
             Instantiate(runningSkill.skill.effect).Effect(runningSkill.target);
             runningSkill.skill.process.skill(new CardFacade(facadeData, runningSkill.target));
-            Debug.Log("skilled");
             SkillCount++;
             if (SkillCount > 99)
             {

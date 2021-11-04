@@ -29,6 +29,5 @@ public class CoinSet
         else _coins.Add(c, n);
         //負数なら削除
         if (_coins[c] < 0) _coins.Remove(c);
-        Debug.Log(_coins[c]);
     }
 }

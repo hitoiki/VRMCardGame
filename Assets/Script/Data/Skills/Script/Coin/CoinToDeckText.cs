@@ -26,7 +26,7 @@ public class CoinToDeckText : IUseSkill
     {
         return true;
     }
-    public (StageDeck, sbyte)? SelectCard(Stage data)
+    public ICardChecking SelectCard(Stage data)
     {
         return null;
     }
