@@ -19,7 +19,7 @@ MonoBehaviour:
   coinSkill:
     id: 1
   drawSkill:
-    id: 2
+    id: 1
   condition:
     activePhase: 0
   effect: {fileID: 818145580588037742, guid: d7270451a3cbe054caa073a4e0de6bb0, type: 3}
@@ -30,15 +30,4 @@ MonoBehaviour:
       data:
         getAmo: 1
     00000001:
-      type: {class: CoinTriggerText, ns: , asm: Assembly-CSharp}
-      data:
-        ReactiveCoin: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
-        threshold: 7
-        useText:
-          id: 3
-    00000002:
       type: {class: , ns: , asm: }
-    00000003:
-      type: {class: GetCard, ns: , asm: Assembly-CSharp}
-      data:
-        getAmo: 2
