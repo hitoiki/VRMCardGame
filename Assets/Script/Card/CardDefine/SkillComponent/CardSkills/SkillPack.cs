@@ -20,8 +20,8 @@ public class SkillPack : ScriptableObject
     [SerializeReference, SubclassSelector] ICoinSkill coinSkill;
     [SerializeReference, SubclassSelector] IDrawSkill drawSkill;
     [SerializeField] SkillCondition condition;
-    [Header("Effect")]
-    [SerializeField] SkillEffect effect;
+    [Header("Effects")]
+    [SerializeReference, SubclassSelector] ISkillEffect[] effect = new ISkillEffect[0];
     public ISkillDisPlay GetDisplay()
     {
         return disPlay;

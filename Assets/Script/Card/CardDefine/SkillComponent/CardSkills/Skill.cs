@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Skill
 {
-    public SkillEffect effect;
+    public ISkillEffect[] effect;
     public SkillProcess process;
 
-    public Skill(SkillEffect Effect, SkillProcess Process)
+    public Skill(ISkillEffect[] Effect, SkillProcess Process)
     {
         this.effect = Effect;
         this.process = Process;

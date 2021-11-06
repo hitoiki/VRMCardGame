@@ -32,6 +32,7 @@ public class StateDealer : MonoBehaviour
         loadingState.CrankUp();
         loadingState = states.First(x => { return x.stateName == nextState; });
         loadingState.CrankIn();
+        Debug.Log("NowState" + nextState);
 
     }
 

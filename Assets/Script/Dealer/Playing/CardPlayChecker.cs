@@ -27,18 +27,19 @@ public class CardPlayChecker : MonoBehaviour
         {
             foreach (ICardChecking checking in card.PlayPrepare(data))
             {
-                Debug.Log("Do");
+
                 checking.Check(this);
             }
         }
         else
         {
+            Debug.Log("Check,UnSelect");
             dealer.CardPlay(card.UseSkill(), cardViewable, null);
         }
     }
     public void SelectStageCard(StageDeck deck, sbyte amo)
     {
-        Debug.Log(cardSelect.selectingCard.GetCard().mainData.name);
+        Debug.Log("Check,Select" + cardSelect.selectingCard.GetCard().mainData.name);
         state.ChangeState(selectingState);
     }
 

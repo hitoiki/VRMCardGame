@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6866076890951012693}
   - component: {fileID: 8357305634395057616}
   - component: {fileID: 542505835414522482}
-  - component: {fileID: 818145580588037742}
   m_Layer: 0
   m_Name: TestEffect
   m_TagString: Untagged
@@ -82,18 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &818145580588037742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8420696426714839830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77363d8e26a56574096d7fdc79e6b840, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SE: {fileID: 0}
-  flyingObj: {fileID: 8420696426714839830}
-  tweenTime: 1

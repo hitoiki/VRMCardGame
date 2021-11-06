@@ -16,6 +16,7 @@ public class CardSelectCursolEvent : MonoBehaviour, ICardCursolEvent
         {
             List<IDealableCard> selectedCards = new List<IDealableCard>();
             selectedCards.Add(card.GetDealableCard());
+            state.ChangeState(selectingState);
 
             dealer.CardPlay(
                 selectingCard.GetCard().UseSkill().ToList()
@@ -23,7 +24,7 @@ public class CardSelectCursolEvent : MonoBehaviour, ICardCursolEvent
                 , selectedCards.ToArray()
             );
             selectingCard = null;
-            state.ChangeState(selectingState);
+
         }
     }
     public void CardCursol(ICardPrintable card, Vector3 pos)

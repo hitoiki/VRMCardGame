@@ -22,7 +22,8 @@ MonoBehaviour:
     id: 2
   condition:
     activePhase: 1
-  effect: {fileID: 818145580588037742, guid: d7270451a3cbe054caa073a4e0de6bb0, type: 3}
+  effect:
+  - id: 2
   references:
     version: 1
     00000000:

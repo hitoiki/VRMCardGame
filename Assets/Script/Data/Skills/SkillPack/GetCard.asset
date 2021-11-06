@@ -22,7 +22,8 @@ MonoBehaviour:
     id: 1
   condition:
     activePhase: 0
-  effect: {fileID: 818145580588037742, guid: d7270451a3cbe054caa073a4e0de6bb0, type: 3}
+  effect:
+  - id: 2
   references:
     version: 1
     00000000:
@@ -31,3 +32,9 @@ MonoBehaviour:
         getAmo: 1
     00000001:
       type: {class: , ns: , asm: }
+    00000002:
+      type: {class: MovingEffect, ns: , asm: Assembly-CSharp}
+      data:
+        flyingObj: {fileID: 8420696426714839830, guid: d7270451a3cbe054caa073a4e0de6bb0,
+          type: 3}
+        tweenTime: 0.5
