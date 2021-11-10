@@ -751,9 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebe49055e387b6478679ecc425dbd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: {fileID: 2140630055}
-  skillingState: Effect
-  defaultState: GamePlay
+  linker: {fileID: 1690570824}
   stage: {fileID: 400381648}
   facadeData: {fileID: 1159625934}
 --- !u!1 &212116651
@@ -3509,6 +3507,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1690570823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1690570825}
+  - component: {fileID: 1690570824}
+  m_Layer: 0
+  m_Name: EffectStateLinker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1690570824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690570823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7b0757dfe09d74fb8976c422389992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectCount: 0
+--- !u!4 &1690570825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690570823}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.278195, y: -3.986667, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1828729573
 GameObject:
   m_ObjectHideFlags: 0
@@ -3736,7 +3778,7 @@ GameObject:
   - component: {fileID: 1907018135}
   - component: {fileID: 1907018134}
   m_Layer: 0
-  m_Name: StateLinkedObject
+  m_Name: SelectStateLinkedObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4139,6 +4181,7 @@ MonoBehaviour:
   - {fileID: 1841415130}
   - {fileID: 106092557}
   - {fileID: 282022553}
+  - {fileID: 1690570823}
 --- !u!4 &2135460887
 Transform:
   m_ObjectHideFlags: 0

@@ -8,34 +8,23 @@ public class CardPlayDealer : MonoBehaviour
 {
     //CardSkillをStackに入れて順次実行するクラス
 
+    /*いつか使いそうなのでコメントアウト
     [SerializeField] private StateDealer state;
     [SerializeField] private string skillingState;
-    [SerializeField] private string defaultState;
+    [SerializeField] private string defaultState;*/
+    [SerializeField] private EffectStateLinker linker;
     [SerializeField] private Stage stage;
     SkillQueueObject skillQueueObject => stage.queueObject;
     [SerializeField] FacadeData facadeData;
     private int SkillCount;
     private bool isExecuting = false;
 
-    public void SkillQueueExecute()
-    {
-        SkillCount = 0;
-        if (!skillQueueObject.skillQueue.Any())
-        {
-            Debug.Log("nulled");
-            return;
-        }
-        //  state.ChangeState(skillingState);
-        Debug.Log("SkillingState");
-        if (!isExecuting) StartCoroutine("SkillExecute");
-        else Debug.Log("Now Executing");
-    }
     //SkillをQueueでまとめて、それを処理するコルーチンをObservable化したEffectで回す
     private IEnumerator SkillExecute()
     {
         isExecuting = true;
-
-        while (skillQueueObject.skillQueue.Any())
+        SkillCount = 0;
+        while (skillQueueObject.Any())
         {
             SkillCount++;
 
@@ -45,14 +34,19 @@ public class CardPlayDealer : MonoBehaviour
                 break;
             }
 
-            (Skill skill, SkillTarget target) runningSkill = skillQueueObject.skillQueue.Dequeue();
+            (Skill skill, SkillTarget target) runningSkill = skillQueueObject.Dequeue();
             List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
             Debug.Log(SkillCount.ToString() + ":Effect");
             foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
             {
+                linker.effects.Add(e);
                 effectEvents.Add(e.Effect(runningSkill.target));
             }
             yield return Observable.WhenAll(effectEvents).First().ToYieldInstruction();
+            foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
+            {
+                linker.effects.Remove(e);
+            }
             Debug.Log(SkillCount.ToString() + ":Skill");
             runningSkill.skill.process.skill(new CardFacade(facadeData, runningSkill.target));
         }
@@ -65,8 +59,18 @@ public class CardPlayDealer : MonoBehaviour
 
     public void CardPlay(List<Skill> skills, IDealableCard Source, IDealableCard[] Target)
     {
-        skillQueueObject.Push(skills, Source, Target);
-        SkillQueueExecute();
-        //state.ChangeState(skillingState);
+        skillQueueObject.PlayPush(skills, Source, Target);
+        if (!skillQueueObject.Any())
+        {
+            Debug.Log("nulled");
+            return;
+        }
+        if (!isExecuting)
+        {
+            //  state.ChangeState(skillingState);
+            Debug.Log("SkillingState");
+            StartCoroutine("SkillExecute");
+        }
+
     }
 }

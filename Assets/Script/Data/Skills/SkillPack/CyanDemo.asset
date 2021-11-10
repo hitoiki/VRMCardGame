@@ -38,4 +38,4 @@ MonoBehaviour:
       data:
         flyingObj: {fileID: 8420696426714839830, guid: d7270451a3cbe054caa073a4e0de6bb0,
           type: 3}
-        tweenTime: 1
+        tweenTime: 3

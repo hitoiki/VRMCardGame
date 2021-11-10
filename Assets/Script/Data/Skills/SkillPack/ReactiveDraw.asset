@@ -23,7 +23,7 @@ MonoBehaviour:
   condition:
     activePhase: 1
   effect:
-  - id: 2
+  - id: 3
   references:
     version: 1
     00000000:
@@ -42,3 +42,9 @@ MonoBehaviour:
         drawAmount: 2
     00000002:
       type: {class: , ns: , asm: }
+    00000003:
+      type: {class: SourceEffect, ns: , asm: Assembly-CSharp}
+      data:
+        appearObj: {fileID: 8420696426714839830, guid: d7270451a3cbe054caa073a4e0de6bb0,
+          type: 3}
+        tweenTime: 1

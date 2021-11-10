@@ -11,4 +11,7 @@ public interface ISkillEffect
     // IObservableのOnCompleteを監視して、Card処理が進行する
     IObservable<Unit> Effect(SkillTarget target);
 
+    //外部から止める用のメソッド
+    void Pause();
+    void Play();
 }

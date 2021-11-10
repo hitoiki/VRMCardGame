@@ -1,33 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using UniRx;
 using System.Linq;
+using UniRx;
 using System;
+using DG.Tweening;
 
-[System.Serializable]
-public class MovingEffect : ISkillEffect
+
+public class TargetEffect : ISkillEffect
 {
-    [SerializeField] GameObject flyingObj;
+    [SerializeField] GameObject appearObj;
     [SerializeField] float tweenTime;
-
     List<GameObject> effects = new List<GameObject>();
 
     public IObservable<Unit> Effect(SkillTarget target)
     {
-        return Effect(target.source, target.target);
-    }
-    private IObservable<Unit> Effect(IDealableCard Source, IDealableCard[] Target)
-    {
         List<IObservable<Unit>> observables = new List<IObservable<Unit>>();
 
-        if (Target != null && Target.Any())
+        if (target.target != null && target.target.Any())
         {
-            foreach (Vector3 pos in Target.Select(x => { return x.GetTransform().position; }))
+            foreach (Vector3 pos in target.target.Select(x => { return x.GetTransform().position; }))
             {
-                GameObject copy = GameObject.Instantiate(flyingObj, Source.GetTransform().position, Quaternion.identity);
-                Tween tween = copy.transform.DOMove(pos, tweenTime);
+                GameObject copy = GameObject.Instantiate(appearObj, pos, Quaternion.identity);
+                Tween tween = DOVirtual.DelayedCall(3, () => { Transform.Destroy(copy.gameObject); });
                 effects.Add(copy);
                 observables.Add(Observable.Create<Unit>(observer2 =>
                 {
@@ -36,7 +31,6 @@ public class MovingEffect : ISkillEffect
                      {
                          observer2.OnNext(Unit.Default);
                          observer2.OnCompleted();
-                         GameObject.Destroy(copy);
                      });
                     return Disposable.Create(() =>
                     {
@@ -53,7 +47,6 @@ public class MovingEffect : ISkillEffect
         });
         return Observable.WhenAll(observables).First();
     }
-
     public void Pause()
     {
         foreach (Transform t in effects.Select(x => { return x.GetComponent<Transform>(); }))
@@ -69,5 +62,4 @@ public class MovingEffect : ISkillEffect
             t.DOPlay();
         }
     }
-
 }
