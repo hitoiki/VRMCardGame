@@ -5,7 +5,8 @@
 
 カードの画像素材、モデルはgithubにない
 
-使用しているライブラリ（Github上にはないと思ったらあった）
+使用しているライブラリ（Github上には公開してません）
+
 UniRx
 DotWeen
 SimpleFX
