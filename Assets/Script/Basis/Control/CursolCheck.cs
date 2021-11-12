@@ -57,29 +57,41 @@ public class CursolCheck : MonoBehaviour
             //前回のクリック状態を保存
             bufClick = x;
         });
-        _mousePoint = key.MousePoint().Subscribe(x =>
-        {
-            cursolPoint = x;
-            Ray ray = Camera.main.ScreenPointToRay(x);
-            RaycastHit hit_info = new RaycastHit();
-            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 0.01f, false);
-            bool is_hit = Physics.Raycast(ray, out hit_info, 100f);
-            //一度変数を介することで、クリックしている間はカーソルしている物を保持するようにする
-            if (is_hit && (hit_info.collider.gameObject.GetComponents<ICursolable>() != null))
-            {
-                if (cursolObj == null) cursolObj = hit_info.collider.gameObject.GetComponents<ICursolable>();
-            }
-            else
-            {
-                if (!isEnterCalled) cursolObj = null;
-            }
-
-        }
-        );
     }
     //Update
     public void Update()
     {
+        //冷静に考えてみればカーソル以外のオブジェクトが動いてくる事もあるからUpdateで処理
+        //Stateで止まらないのがちょっと不安
+        cursolPoint = key.MousePoint().Value;
+        Ray ray = Camera.main.ScreenPointToRay(cursolPoint);
+        RaycastHit hit_info = new RaycastHit();
+        Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 0.01f, false);
+        bool is_hit = Physics.Raycast(ray, out hit_info, 100f);
+        //一度変数を介することで、クリックしている間はカーソルしている物を保持するようにする
+        if (is_hit && (hit_info.collider.gameObject.GetComponents<ICursolable>() != null))
+        {
+            if (cursolObj == null) cursolObj = hit_info.collider.gameObject.GetComponents<ICursolable>();
+            foreach (ICursolable cursolable in cursolObj)
+            {
+                cursolable.Cursol(cursolPoint, ContactMode.Enter);
+            }
+        }
+        else
+        {
+
+            if (!isEnterCalled)
+            {
+                if (cursolObj != null && cursolObj.Any())
+                {
+                    foreach (ICursolable cursolable in cursolObj)
+                    {
+                        cursolable.Cursol(cursolPoint, ContactMode.Exit);
+                    }
+                }
+                cursolObj = null;
+            }
+        }
         //Stay,CursolはUpdateなので
         //なんもないなら何もしない
         if (cursolObj == null) return;
@@ -92,7 +104,7 @@ public class CursolCheck : MonoBehaviour
         }
         foreach (ICursolable cursolable in cursolObj)
         {
-            cursolable.Cursol(cursolPoint);
+            cursolable.Cursol(cursolPoint, ContactMode.Stay);
         }
 
     }

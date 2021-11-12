@@ -9,28 +9,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f60d45abcd79649878aee241fb3158, type: 3}
-  m_Name: CyanDemo
+  m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
+  m_Name: SelectAttack
   m_EditorClassIdentifier: 
-  initDisPlay: {fileID: 0}
-  skillText: 
-  useSkill:
-    id: 0
-  coinSkill:
-    id: 1
-  drawSkill:
-    id: 1
-  condition:
-    activePhase: 1
-  effect:
-  - id: 2
+  cardName: CyanDemo
+  type: 
+  cost: 0
+  flavorText: 
+  frontSprite: {fileID: 21300000, guid: 92457c02592f7884aa04467f378db341, type: 3}
+  backSprite: {fileID: 21300000, guid: ace107564c4b66c4caad874d5500ab98, type: 3}
+  iconSprite: {fileID: 21300000, guid: f825751ef97d5d845977b59c45ec05c4, type: 3}
+  skillPack:
+  - initDisPlay: {fileID: 0}
+    skillText: 
+    useSkill:
+      id: 0
+    coinSkill:
+      id: 1
+    drawSkill:
+      id: 1
+    condition:
+      activePhase: 0
+    effect:
+    - id: 2
   references:
     version: 1
     00000000:
       type: {class: SelectDamege, ns: , asm: Assembly-CSharp}
       data:
         c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
-        damegeAmo: 3
+        damegeAmo: 10
     00000001:
       type: {class: , ns: , asm: }
     00000002:
@@ -38,4 +46,4 @@ MonoBehaviour:
       data:
         flyingObj: {fileID: 8420696426714839830, guid: d7270451a3cbe054caa073a4e0de6bb0,
           type: 3}
-        tweenTime: 3
+        tweenTime: 0.5

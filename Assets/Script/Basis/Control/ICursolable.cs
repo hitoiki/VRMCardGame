@@ -11,7 +11,7 @@ public interface ICursolable
     void Click(Vector3 point, ContactMode timing);
     //カーソルが合ってる間ずっと呼ばれっぱなしの奴
     //出た時入った時は内部状態とってなんかして
-    void Cursol(Vector3 point);
+    void Cursol(Vector3 point, ContactMode timing);
 }
 
 public enum ContactMode

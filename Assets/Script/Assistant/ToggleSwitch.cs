@@ -34,7 +34,7 @@ public class ToggleSwitch : MonoBehaviour, ICursolable
             toggle.Value = !toggle.Value;
         }
     }
-    public void Cursol(Vector3 point)
+    public void Cursol(Vector3 point, ContactMode mode)
     {
 
     }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "CardComponent")]
-public class SkillPack : ScriptableObject
+
+[System.Serializable]
+public class SkillPack
 {
     //CardDataはこれのListを持つ事にする
     //これはCoinEffectなどを持っていて、適宜それを取り出して色々する
@@ -72,6 +73,8 @@ public class SkillPack : ScriptableObject
     }
     public ICardChecking PlayPrepare(Stage data)
     {
-        return useSkill.SelectCard(data);
+        return useSkill?.SelectCard(data);
     }
+
+
 }

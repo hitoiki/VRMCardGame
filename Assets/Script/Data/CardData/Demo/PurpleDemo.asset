@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: PurpleDemo
   m_EditorClassIdentifier: 
   cardName: PurpleDemo
+  type: 
   cost: 0
   flavorText: 
   frontSprite: {fileID: 21300000, guid: 24fb7d87ad7a82f4bb1ed5843e423c89, type: 3}
   backSprite: {fileID: 21300000, guid: d82787dc8bc047645b4c29705fecc50c, type: 3}
-  iconSprite: {fileID: 21300000, guid: 93f00bca7d0e38345a0fa3b2245895af, type: 3}
-  useText: {fileID: 0}
-  coinText: {fileID: 0}
-  drawText: {fileID: 0}
-  selectText: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: bf9cc0ec83553484c9121959c6d2ba43, type: 3}
+  skillPack: []

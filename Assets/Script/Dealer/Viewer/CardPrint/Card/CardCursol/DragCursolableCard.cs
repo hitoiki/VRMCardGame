@@ -25,7 +25,7 @@ public class DragCursolableCard : MonoBehaviour, ICardCursolEvent
             recepter.CardPlayRecept(buf, card.GetDealableCard());
         }
     }
-    public void CardCursol(ICardPrintable card, Vector3 pos)
+    public void CardCursol(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
 
     }

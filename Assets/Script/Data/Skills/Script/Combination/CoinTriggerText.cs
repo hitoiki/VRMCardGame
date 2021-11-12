@@ -26,7 +26,7 @@ public class CoinTriggerText : ICoinSkill
 
     public string Text()
     {
-        return ReactiveCoin.name + "が" + threshold.ToString() + "以上になった時、" + useText.Text();
+        return ReactiveCoin.name + "が" + threshold.ToString() + "以上になった時、それを" + threshold.ToString() + "消費して" + useText.Text();
     }
 
 }

@@ -9,7 +9,7 @@ public class CardCursolEffect : MonoBehaviour, ICardCursolEvent
     {
 
     }
-    public void CardCursol(ICardPrintable card, Vector3 pos)
+    public void CardCursol(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
         Vector3 drugPos = Camera.main.ScreenToWorldPoint(pos);
         sprite.transform.position = new Vector3(drugPos.x, drugPos.y, transform.position.z);

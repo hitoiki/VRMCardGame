@@ -18,6 +18,52 @@ MonoBehaviour:
   flavorText: 
   frontSprite: {fileID: 21300000, guid: ecc42eae08288a7488775924aa3d517b, type: 3}
   backSprite: {fileID: 21300000, guid: b1fca92c1318eb542a6bd866d6ba52b3, type: 3}
-  iconSprite: {fileID: 21300000, guid: c598eedb5d49d564dbfec129fc63ec40, type: 3}
+  iconSprite: {fileID: 21300000, guid: 24c41f678c5076041967f9e2b96c72c3, type: 3}
   skillPack:
-  - {fileID: 11400000, guid: 42fe8837563c277468d4bc7fae4b73ef, type: 2}
+  - initDisPlay: {fileID: 0}
+    skillText: 
+    useSkill:
+      id: 0
+    coinSkill:
+      id: 1
+    drawSkill:
+      id: 1
+    condition:
+      activePhase: 0
+    effect: []
+  - initDisPlay: {fileID: 0}
+    skillText: 
+    useSkill:
+      id: 1
+    coinSkill:
+      id: 2
+    drawSkill:
+      id: 1
+    condition:
+      activePhase: 0
+    effect:
+    - id: 3
+  references:
+    version: 1
+    00000000:
+      type: {class: CoinToDeckText, ns: , asm: Assembly-CSharp}
+      data:
+        c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+        amount: 5
+        deck: 1
+    00000001:
+      type: {class: , ns: , asm: }
+    00000002:
+      type: {class: BasicReactiveDraw, ns: , asm: Assembly-CSharp}
+      data:
+        ReactiveCoin: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+        threshold: 10
+        drawFrom: 4
+        drawTo: 1
+        drawAmount: 2
+    00000003:
+      type: {class: SourceEffect, ns: , asm: Assembly-CSharp}
+      data:
+        appearObj: {fileID: 8420696426714839830, guid: d7270451a3cbe054caa073a4e0de6bb0,
+          type: 3}
+        tweenTime: 0

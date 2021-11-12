@@ -56,13 +56,13 @@ public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCur
             }
         }
     }
-    public void Cursol(Vector3 pos)
+    public void Cursol(Vector3 pos, ContactMode mode)
     {
         if (activate)
         {
             foreach (ICardCursolEvent c in cursolEvent)
             {
-                c.CardCursol(this, pos);
+                c.CardCursol(this, pos, mode);
             }
         }
     }

@@ -20,4 +20,28 @@ MonoBehaviour:
   backSprite: {fileID: 21300000, guid: ecfbb39c0368a87448ae76de222ace32, type: 3}
   iconSprite: {fileID: 21300000, guid: 84f583929b466f644a64a5ba1206374a, type: 3}
   skillPack:
-  - {fileID: 11400000, guid: 42d238a786ecd1440aa6cd41f3b71ac4, type: 2}
+  - initDisPlay: {fileID: 0}
+    skillText: 
+    useSkill:
+      id: 0
+    coinSkill:
+      id: 1
+    drawSkill:
+      id: 1
+    condition:
+      activePhase: 0
+    effect:
+    - id: 2
+  references:
+    version: 1
+    00000000:
+      type: {class: GetCard, ns: , asm: Assembly-CSharp}
+      data:
+        getAmo: 1
+    00000001:
+      type: {class: , ns: , asm: }
+    00000002:
+      type: {class: MovingEffect, ns: , asm: Assembly-CSharp}
+      data:
+        flyingObj: {fileID: 100000, guid: 88eeda7d3a9f2492da9213d1c1ab46d0, type: 3}
+        tweenTime: 0.5

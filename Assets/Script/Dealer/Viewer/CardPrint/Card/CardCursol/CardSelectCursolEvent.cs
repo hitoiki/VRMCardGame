@@ -27,7 +27,7 @@ public class CardSelectCursolEvent : MonoBehaviour, ICardCursolEvent
 
         }
     }
-    public void CardCursol(ICardPrintable card, Vector3 pos)
+    public void CardCursol(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
 
     }

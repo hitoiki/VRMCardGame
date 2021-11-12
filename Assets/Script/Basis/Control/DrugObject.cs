@@ -13,7 +13,7 @@ public class DrugObject : MonoBehaviour, ICursolable
         }
 
     }
-    public void Cursol(Vector3 point)
+    public void Cursol(Vector3 point, ContactMode mode)
     {
 
     }
