@@ -65,4 +65,4 @@ MonoBehaviour:
       type: {class: ParticleEffect, ns: , asm: Assembly-CSharp}
       data:
         initParticle: {fileID: 19821056, guid: 079954accd64b32419ec069129c81273, type: 3}
-        tweenTime: 1
+        tweenTime: 5

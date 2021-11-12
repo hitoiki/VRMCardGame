@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class StateChangeBotton : MonoBehaviour
+
+public class StateChangeButton : MonoBehaviour
 {
     [SerializeField] private StateDealer dealer;
 
-    [SerializeField] private string ChangeState;
-
-    public void OnClick()
+    public void ChangeState(string changeStateName)
     {
-
+        dealer.ChangeState(changeStateName);
+    }
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

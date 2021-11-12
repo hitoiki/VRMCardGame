@@ -56,6 +56,8 @@ public class MovingEffect : ISkillEffect
 
     public void Pause()
     {
+        Debug.Log(effects == null);
+        Debug.Log(effects.Any());
         foreach (Transform t in effects.Select(x => { return x.GetComponent<Transform>(); }))
         {
             t.DOPause();

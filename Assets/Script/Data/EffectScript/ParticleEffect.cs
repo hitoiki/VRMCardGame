@@ -38,11 +38,13 @@ public class ParticleEffect : ISkillEffect
     }
     public void Pause()
     {
+        tween.Pause();
         effectParticle.Pause();
     }
 
     public void Play()
     {
+        tween.Play();
         effectParticle.Play();
     }
 }

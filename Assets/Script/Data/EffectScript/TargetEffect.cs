@@ -11,7 +11,7 @@ public class TargetEffect : ISkillEffect
 {
     [SerializeField] GameObject appearObj;
     [SerializeField] float tweenTime;
-    List<GameObject> effects = new List<GameObject>();
+    List<Tween> effects = new List<Tween>();
 
     public IObservable<Unit> Effect(SkillTarget target)
     {
@@ -23,7 +23,7 @@ public class TargetEffect : ISkillEffect
             {
                 GameObject copy = GameObject.Instantiate(appearObj, pos, Quaternion.identity);
                 Tween tween = DOVirtual.DelayedCall(tweenTime, () => { Transform.Destroy(copy.gameObject); });
-                effects.Add(copy);
+                effects.Add(tween);
                 observables.Add(Observable.Create<Unit>(observer =>
                 {
                     tween.OnComplete(
@@ -49,17 +49,17 @@ public class TargetEffect : ISkillEffect
     }
     public void Pause()
     {
-        foreach (Transform t in effects.Select(x => { return x.GetComponent<Transform>(); }))
+        foreach (Tween t in effects)
         {
-            t.DOPause();
+            t.Pause();
         }
     }
 
     public void Play()
     {
-        foreach (Transform t in effects.Select(x => { return x.GetComponent<Transform>(); }))
+        foreach (Tween t in effects)
         {
-            t.DOPlay();
+            t.Play();
         }
     }
 }

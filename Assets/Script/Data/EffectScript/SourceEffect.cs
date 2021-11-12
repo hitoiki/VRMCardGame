@@ -32,11 +32,11 @@ public class SourceEffect : ISkillEffect
     }
     public void Pause()
     {
-        effectObj.GetComponent<Transform>().DOPause();
+        tween.Pause();
     }
 
     public void Play()
     {
-        effectObj.GetComponent<Transform>().DOPlay();
+        tween.Play();
     }
 }

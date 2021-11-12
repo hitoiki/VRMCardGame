@@ -11,12 +11,19 @@ public class PlayerData : MonoBehaviour
     public Animator vrmPose;
     public Transform vrmTransform;
 
+
     //別枠でplayerのHpを定義
     //これらの値はFacadeのみ弄る
+    [SerializeField] int initHP;
     private ReactiveProperty<int> _hp = new ReactiveProperty<int>();
-    private IReadOnlyReactiveProperty<int> hp => _hp;
+    public IReadOnlyReactiveProperty<int> hp => _hp;
     //勝利条件。スコアチックにしたいのでintで作る
     public ReactiveProperty<int> flag = new ReactiveProperty<int>();
+
+    private void Awake()
+    {
+        _hp.Value = initHP;
+    }
 
     public void Damage(int amount)
     {
