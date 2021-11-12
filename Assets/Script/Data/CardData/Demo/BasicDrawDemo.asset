@@ -62,7 +62,7 @@ MonoBehaviour:
         drawTo: 1
         drawAmount: 2
     00000003:
-      type: {class: SourceEffect, ns: , asm: Assembly-CSharp}
+      type: {class: ParticleEffect, ns: , asm: Assembly-CSharp}
       data:
-        appearObj: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
-        tweenTime: 0.01
+        initParticle: {fileID: 19821056, guid: 079954accd64b32419ec069129c81273, type: 3}
+        tweenTime: 1

@@ -1,36 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using UniRx;
-using System;
 using DG.Tweening;
+using UniRx;
+using System.Linq;
+using System;
 
-
-public class TargetEffect : ISkillEffect
+[System.Serializable]
+public class MovingEffect : ISkillEffect
 {
-    [SerializeField] GameObject appearObj;
+    [SerializeField] GameObject flyingObj;
     [SerializeField] float tweenTime;
+
     List<GameObject> effects = new List<GameObject>();
 
     public IObservable<Unit> Effect(SkillTarget target)
     {
+        return Effect(target.source, target.target);
+    }
+    private IObservable<Unit> Effect(IDealableCard Source, IDealableCard[] Target)
+    {
         List<IObservable<Unit>> observables = new List<IObservable<Unit>>();
 
-        if (target.target != null && target.target.Any())
+        if (Target != null && Target.Any())
         {
-            foreach (Vector3 pos in target.target.Select(x => { return x.GetTransform().position; }))
+            foreach (Vector3 pos in Target.Select(x => { return x.GetTransform().position; }))
             {
-                GameObject copy = GameObject.Instantiate(appearObj, pos, Quaternion.identity);
-                Tween tween = DOVirtual.DelayedCall(3, () => { Transform.Destroy(copy.gameObject); });
+                GameObject copy = GameObject.Instantiate(flyingObj, Source.GetTransform().position, Quaternion.identity);
+                Tween tween = copy.transform.DOMove(pos, tweenTime);
                 effects.Add(copy);
-                observables.Add(Observable.Create<Unit>(observer2 =>
+                observables.Add(Observable.Create<Unit>(observer =>
                 {
                     tween.OnComplete(
                      () =>
                      {
-                         observer2.OnNext(Unit.Default);
-                         observer2.OnCompleted();
+                         observer.OnNext(Unit.Default);
+                         observer.OnCompleted();
+                         GameObject.Destroy(copy);
                      });
                     return Disposable.Create(() =>
                     {
@@ -47,6 +53,7 @@ public class TargetEffect : ISkillEffect
         });
         return Observable.WhenAll(observables).First();
     }
+
     public void Pause()
     {
         foreach (Transform t in effects.Select(x => { return x.GetComponent<Transform>(); }))
@@ -62,4 +69,5 @@ public class TargetEffect : ISkillEffect
             t.DOPlay();
         }
     }
+
 }
