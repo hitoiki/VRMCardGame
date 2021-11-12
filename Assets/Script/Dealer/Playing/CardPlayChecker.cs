@@ -7,16 +7,15 @@ public class CardPlayChecker : MonoBehaviour
 {
     //Cardを色々勘案して、適宜適宜する
     [SerializeField] private StateDealer state;
-    [SerializeField] private CardPlayDealer dealer = null;
-    [SerializeField] private CardSelectCursolEvent cardSelect;
-    [SerializeField] private Stage data;
     [SerializeField] private string selectingState;
-
+    [SerializeField] private Stage data;
+    [SerializeField] private CardPlayDealer dealer = null;
+    [SerializeField] private PlayPrepareCursol prepareCursol;
     public void CardCheck(IDealableCard cardViewable)
     {
         Card card = cardViewable.GetCard();
         //暫定
-        cardSelect.selectingCard = cardViewable;
+        prepareCursol.selectingCard = cardViewable;
         if (!card.IsPlayable(data))
         {
             Debug.Log("IsNotPlayable");
@@ -27,7 +26,7 @@ public class CardPlayChecker : MonoBehaviour
         {
             foreach (ICardChecking checking in card.PlayPrepare(data))
             {
-
+                //コルーチンで一つ一つ回していく形にいつかする
                 checking.Check(this);
             }
         }
@@ -39,9 +38,6 @@ public class CardPlayChecker : MonoBehaviour
     }
     public void SelectStageCard(StageDeck deck, sbyte amo)
     {
-        Debug.Log("Check,Select" + cardSelect.selectingCard.GetCard().mainData.name);
         state.ChangeState(selectingState);
     }
-
-
 }

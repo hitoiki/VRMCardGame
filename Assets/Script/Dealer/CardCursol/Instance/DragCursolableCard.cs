@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class DragCursolableCard : MonoBehaviour, ICardCursolEvent
+[System.Serializable]
+public class DragCursolableCard : ICardCursolEvent
 {
     Vector3 anchor;
+    [SerializeField] float zPos;
     [SerializeField] CardPlayRecepter recepter;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
@@ -15,7 +16,7 @@ public class DragCursolableCard : MonoBehaviour, ICardCursolEvent
         if (mode == ContactMode.Stay)
         {
             Vector3 drugPos = Camera.main.ScreenToWorldPoint(pos);
-            card.GetDealableCard().GetTransform().position = new Vector3(drugPos.x, drugPos.y, transform.position.z);
+            card.GetDealableCard().GetTransform().position = new Vector3(drugPos.x, drugPos.y, zPos);
         }
 
         if (mode == ContactMode.Exit)

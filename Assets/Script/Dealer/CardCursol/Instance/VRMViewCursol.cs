@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VRMViewCursol : MonoBehaviour, ICardCursolEvent
+[System.Serializable]
+public class VRMViewCursol : ICardCursolEvent
 {
     public VRMPrintCard vrmPrintCard;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)

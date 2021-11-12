@@ -1,23 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using System.Linq;
 
-public class CardSelectCursolEvent : MonoBehaviour, ICardCursolEvent
+public class PlayPrepareCursol : MonoBehaviour
 {
-    //これが場のカード分呼び出されている可能性がちょっとある
+    //ICardCursolEventを介してここに接続してもらう
+    //今はカードセレクト用の応急処置として用いる
+
     [SerializeField] CardPlayDealer dealer;
     public IDealableCard selectingCard;
     [SerializeField] private StateDealer state;
     [SerializeField] private string selectingState;
-    public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
+    public void CardSelect(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
         if (mode == ContactMode.Enter)
         {
             List<IDealableCard> selectedCards = new List<IDealableCard>();
             selectedCards.Add(card.GetDealableCard());
             state.ChangeState(selectingState);
-
+            Debug.Log(selectingCard == null);
             dealer.CardPlay(
                 selectingCard.GetCard().UseSkill().ToList()
                 , selectingCard
@@ -26,9 +28,5 @@ public class CardSelectCursolEvent : MonoBehaviour, ICardCursolEvent
             selectingCard = null;
 
         }
-    }
-    public void CardCursol(ICardPrintable card, Vector3 pos, ContactMode mode)
-    {
-
     }
 }

@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardCursolEffect : MonoBehaviour, ICardCursolEvent
+[System.Serializable]
+public class CardCursolEffect : ICardCursolEvent
 {
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] float zPos;
+
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
 
@@ -12,6 +15,6 @@ public class CardCursolEffect : MonoBehaviour, ICardCursolEvent
     public void CardCursol(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
         Vector3 drugPos = Camera.main.ScreenToWorldPoint(pos);
-        sprite.transform.position = new Vector3(drugPos.x, drugPos.y, transform.position.z);
+        sprite.transform.position = new Vector3(drugPos.x, drugPos.y, zPos);
     }
 }

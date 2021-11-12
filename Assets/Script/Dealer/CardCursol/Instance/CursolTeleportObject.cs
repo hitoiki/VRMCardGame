@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CursolTeleportObject : MonoBehaviour, ICardCursolEvent
+[System.Serializable]
+public class CursolTeleportObject : ICardCursolEvent
 {
     [SerializeField] private GameObject[] portObj;
+    [SerializeField] float zPos;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
 
@@ -31,7 +33,7 @@ public class CursolTeleportObject : MonoBehaviour, ICardCursolEvent
             obj.transform.position = new Vector3(
                 card.GetDealableCard().GetTransform().position.x,
                 card.GetDealableCard().GetTransform().position.y,
-                transform.position.z);
+                zPos);
         }
 
     }
