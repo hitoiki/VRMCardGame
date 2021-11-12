@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UniRx;
 
 public class PlayerCardData
 {
     //Playerのデータ
     //ダメージを受けたりする
-    public int hp;
+
     //雑にUnderCardとコイン周りだけ引っ張って来た
     public List<CardData> underCards = new List<CardData>();
     private List<SkillPack> underSkills => underCards.SelectMany(x => { return x.skillPack; }).ToList();

@@ -54,6 +54,12 @@ public class CardFacade
         data.skillQueue.Push(card.GetCard().CoinSkill(coin, i), card, null);
     }
 
+    //CoinEffect呼びたくないときに
+    private void AdjustCoin(IDealableCard card, Coin coin, int i)
+    {
+        card.GetCoin().ChangeCoin(coin, i);
+    }
+
 
     //指定されたカードデータを指定されたカードに敷く
     public void cardPut(IDealableCard cardTop, CardData cardBottom)
@@ -88,9 +94,19 @@ public class CardFacade
         ChangeCoin(source, coin, i);
     }
 
+    public void CoinAdjustSource(Coin coin, int i)
+    {
+        AdjustCoin(source, coin, i);
+    }
+
     public void CoinToTarget(int index, Coin coin, int i)
     {
         ChangeCoin(target[index], coin, i);
+    }
+
+    public void AttackToPlayer(int damage)
+    {
+        data.player.Damage(damage);
     }
 
 }

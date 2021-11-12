@@ -15,7 +15,7 @@ public class BasicReactiveDraw : ICoinSkill
         if (facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold)
         {
             facade.DeckDraw(drawFrom, drawTo, drawAmount);
-            facade.CoinToSource(ReactiveCoin, -threshold);
+            facade.CoinAdjustSource(ReactiveCoin, -threshold);
         }
     }
     public SkillProcess CoinSkill(Coin coin, int n)

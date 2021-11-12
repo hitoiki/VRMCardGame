@@ -8,7 +8,7 @@ public class BasicCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUse
 {
     [SerializeField] private Transform bundle;
     [SerializeField] private List<GameObject> initCursol = new List<GameObject>();
-    [SerializeField] private BasicCard handCard = null;
+    [SerializeField] private BasicCard basicCard = null;
     private List<ICardCursolEvent> firstCursols = new List<ICardCursolEvent>();
     private ObjectFlyer<BasicCard> flyer;
 
@@ -24,7 +24,7 @@ public class BasicCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUse
     {
         //InitHandがICardPrintedである事が前提条件なアレ
         firstCursols = initCursol.SelectMany(x => { return x.GetComponents<ICardCursolEvent>(); }).ToList();
-        if (handCard != null) flyer = new ObjectFlyer<BasicCard>(handCard);
+        if (basicCard != null) flyer = new ObjectFlyer<BasicCard>(basicCard);
     }
     public ICardPrintable CardMake(IDealableCard card, Vector3 position)
     {

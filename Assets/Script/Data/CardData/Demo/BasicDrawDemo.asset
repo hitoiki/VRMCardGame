@@ -64,6 +64,5 @@ MonoBehaviour:
     00000003:
       type: {class: SourceEffect, ns: , asm: Assembly-CSharp}
       data:
-        appearObj: {fileID: 8420696426714839830, guid: d7270451a3cbe054caa073a4e0de6bb0,
-          type: 3}
-        tweenTime: 0
+        appearObj: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+        tweenTime: 0.01

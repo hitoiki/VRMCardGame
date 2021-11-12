@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UniRx;
 
 public class StateDealer : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class StateDealer : MonoBehaviour
     //IStateを継承して、それを取り扱う仕組みにする
     [SerializeField] public List<GameStateSet> states;
     private GameStateSet loadingState;
+    private ReactiveProperty<string> _stateName = new ReactiveProperty<string>();
+    public IReadOnlyReactiveProperty<string> stateName => _stateName;
 
     private void Start()
     {
@@ -32,6 +35,7 @@ public class StateDealer : MonoBehaviour
         loadingState.CrankUp();
         loadingState = states.First(x => { return x.stateName == nextState; });
         loadingState.CrankIn();
+        _stateName.Value = nextState;
         Debug.Log("NowState" + nextState);
 
     }
