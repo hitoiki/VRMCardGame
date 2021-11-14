@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Skill
 {
@@ -11,6 +12,10 @@ public class Skill
     {
         this.effect = Effect;
         this.process = Process;
+    }
 
+    public static Skill operator +(Skill x, Skill y)
+    {
+        return new Skill(x.effect.Concat(y.effect).ToArray(), x.process + y.process);
     }
 }

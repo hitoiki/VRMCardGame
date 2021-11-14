@@ -6,7 +6,7 @@ using System.Linq;
 [System.Serializable]
 public class SkillPack
 {
-    // SkillPackを纏めるクラス
+    //Skillを纏めるクラス
 
     [SerializeField] public List<UseSkill> useSkills;
     [SerializeField] public List<CoinSkill> coinSkills;

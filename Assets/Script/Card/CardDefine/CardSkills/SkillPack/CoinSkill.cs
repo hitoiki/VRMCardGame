@@ -7,7 +7,7 @@ public class CoinSkill
 {
     [SerializeReference, SubclassSelector] public ICoinProcess coinSkill;
     [SerializeReference, SubclassSelector] public ISkillEffect[] effect;
-    public CoinSkill(ICoinProcess CoinSkill, ISkillEffect[] Effect, SkillCondition Condition)
+    public CoinSkill(ICoinProcess CoinSkill, ISkillEffect[] Effect)
     {
         this.effect = Effect;
         this.coinSkill = CoinSkill;

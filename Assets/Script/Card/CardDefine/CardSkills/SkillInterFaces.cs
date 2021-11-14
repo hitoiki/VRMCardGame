@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //カード能力の形態をinterfaceで纏めておく。
-//ここのinterfaceが示すのは、
+//ここのinterfaceが示すのは処理のみ
 public interface IUseProcess : ISkillText
 {
     //手札から使われる能力。

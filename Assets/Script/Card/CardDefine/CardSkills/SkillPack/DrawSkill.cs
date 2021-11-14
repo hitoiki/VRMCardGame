@@ -7,7 +7,7 @@ public class DrawSkill
 {
     [SerializeReference, SubclassSelector] public IDrawProcess drawSkill;
     [SerializeReference, SubclassSelector] public ISkillEffect[] effect;
-    public DrawSkill(IDrawProcess DrawSkill, ISkillEffect[] Effect, SkillCondition Condition)
+    public DrawSkill(IDrawProcess DrawSkill, ISkillEffect[] Effect)
     {
         this.effect = Effect;
         this.drawSkill = DrawSkill;

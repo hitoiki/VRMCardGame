@@ -13,7 +13,7 @@ public class CoinTriggerText : ICoinProcess
     {
         if (facade.sourceCoins[ReactiveCoin] >= threshold)
         {
-            useText.GetProcess().skill(facade);
+            useText.GetProcess()(facade);
             facade.CoinToSource(c, -threshold);
         }
     }

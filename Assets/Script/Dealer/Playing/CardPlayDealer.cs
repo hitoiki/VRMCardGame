@@ -52,7 +52,9 @@ public class CardPlayDealer : MonoBehaviour
                 }
             }
             Debug.Log(SkillCount.ToString() + ":Skill");
-            runningSkill.skill.process.skill(new CardFacade(facadeData, runningSkill.target));
+            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target);
+
+            runningSkill.skill.process(skillFacade);
         }
 
         isExecuting = false;
