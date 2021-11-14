@@ -1419,6 +1419,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 575365909}
   m_CullTransparentMesh: 0
+--- !u!1 &578801268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 578801270}
+  - component: {fileID: 578801269}
+  m_Layer: 0
+  m_Name: AddressSetter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &578801269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578801268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1250b78e1850f84585cd6fe9d1af7d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  address: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
+  audioSource: {fileID: 4483027039190381202}
+--- !u!4 &578801270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578801268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -450, y: -250, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619297901
 GameObject:
   m_ObjectHideFlags: 0
@@ -4681,16 +4726,11 @@ MonoBehaviour:
   deck:
     initCards: []
   cards:
-  - mainData: {fileID: 0}
-    underCards: []
-  - mainData: {fileID: 0}
-    underCards: []
-  - mainData: {fileID: 0}
-    underCards: []
-  - mainData: {fileID: 0}
-    underCards: []
-  - mainData: {fileID: 0}
-    underCards: []
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   alwaysCopy: 0
   alwaysSubstitution: 0
 --- !u!4 &1828729575
@@ -6050,7 +6090,6 @@ GameObject:
   m_Component:
   - component: {fileID: 685045229296798783}
   - component: {fileID: 4483027039190381202}
-  - component: {fileID: 5620831901623233338}
   m_Layer: 0
   m_Name: AudioSourceObject
   m_TagString: Untagged
@@ -6058,17 +6097,3 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5620831901623233338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5620831901623233337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1250b78e1850f84585cd6fe9d1af7d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  address: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
-  audioSource: {fileID: 4483027039190381202}

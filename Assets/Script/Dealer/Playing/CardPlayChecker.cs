@@ -13,18 +13,18 @@ public class CardPlayChecker : MonoBehaviour
     [SerializeField] private PlayPrepareCursol prepareCursol;
     public void CardCheck(IDealableCard cardViewable)
     {
-        Card card = cardViewable.GetCard();
+        SkillPack checkSkillPack = cardViewable.GetSkillPack();
         //暫定
         prepareCursol.selectingCard = cardViewable;
-        if (!card.IsPlayable(data))
+        if (!checkSkillPack.IsPlayable(data))
         {
             Debug.Log("IsNotPlayable");
             return;
         }
 
-        if (card.PlayPrepare(data).Any(x => { return x != null; }))
+        if (checkSkillPack.PlayPrepare(data).Any(x => { return x != null; }))
         {
-            foreach (ICardChecking checking in card.PlayPrepare(data))
+            foreach (ICardChecking checking in checkSkillPack.PlayPrepare(data))
             {
                 //コルーチンで一つ一つ回していく形にいつかする
                 checking.Check(this);
@@ -33,7 +33,7 @@ public class CardPlayChecker : MonoBehaviour
         else
         {
             Debug.Log("Check,UnSelect");
-            dealer.CardPlay(card.UseSkill(), cardViewable, null);
+            dealer.CardPlay(checkSkillPack.UseSkill(), cardViewable, null);
         }
     }
     public void SelectStageCard(StageDeck deck, sbyte amo)

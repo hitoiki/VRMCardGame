@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class GetCard : IUseSkill
+public class GetCard : IUseProcess
 {
     [SerializeField] short getAmo = 1;
     private void Skill(CardFacade dealer)
     {
         dealer.DeckDraw(StageDeck.field, StageDeck.hands, getAmo);
     }
-    public SkillProcess UseSkill()
+    public SkillProcess GetProcess()
     {
         return new SkillProcess(
         (CardFacade dealer) => { Skill(dealer); }
@@ -20,7 +20,7 @@ public class GetCard : IUseSkill
     {
         return true;
     }
-    public ICardChecking SelectCard(Stage data)
+    public ICardChecking PlayPrepare(Stage data)
     {
         return new SelectDeckCardChecking(StageDeck.field, 1);
     }

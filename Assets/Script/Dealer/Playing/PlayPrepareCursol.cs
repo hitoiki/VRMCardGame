@@ -21,7 +21,7 @@ public class PlayPrepareCursol : MonoBehaviour
             state.ChangeState(selectingState);
             Debug.Log(selectingCard == null);
             dealer.CardPlay(
-                selectingCard.GetCard().UseSkill().ToList()
+                selectingCard.GetSkillPack().UseSkill().ToList()
                 , selectingCard
                 , selectedCards.ToArray()
             );

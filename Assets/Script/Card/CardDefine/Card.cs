@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 [CreateAssetMenu(fileName = "Data", menuName = "CardData")]
-public class CardData : ScriptableObject
+public class Card : ScriptableObject
 {
     //カードを取り扱うクラス
     //基本的にここには静的データと、呼び出される処理を書く
@@ -19,15 +19,11 @@ public class CardData : ScriptableObject
     public Sprite iconSprite;
 
     //効果を入れるクラス
-    public List<SkillPack> skillPack;
+    [SerializeField] public SkillPack skillPack;
+
     public string CardText()
     {
-        if (!skillPack.Any())
-        {
-            Debug.Log("nullCardsText");
-            return "";
-        }
-        return skillPack.Select(x => { return x.GetText(); }).Aggregate((str1, str2) => str1 + str2);
+        return skillPack.SkillText() + "\n(" + flavorText + ")";
     }
 
 }

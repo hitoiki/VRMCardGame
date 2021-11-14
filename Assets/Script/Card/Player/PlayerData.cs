@@ -7,9 +7,9 @@ using UniRx;
 public class PlayerData : MonoBehaviour
 {
     //Playerのデータ
-    public PlayerCardData cardData;
     public Animator vrmPose;
     public Transform vrmTransform;
+    public SkillPack packSet;
 
 
     //別枠でplayerのHpを定義

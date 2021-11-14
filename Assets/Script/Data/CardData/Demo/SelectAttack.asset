@@ -20,30 +20,15 @@ MonoBehaviour:
   backSprite: {fileID: 21300000, guid: ace107564c4b66c4caad874d5500ab98, type: 3}
   iconSprite: {fileID: 21300000, guid: f825751ef97d5d845977b59c45ec05c4, type: 3}
   skillPack:
-  - initDisPlay: {fileID: 0}
-    skillText: 
-    useSkill:
-      id: 0
-    coinSkill:
-      id: 1
-    drawSkill:
-      id: 1
-    condition:
-      activePhase: 0
-    effect:
-    - id: 2
+    useSkills:
+    - useSkill:
+        id: 0
+    coinSkills: []
+    drawSkills: []
   references:
     version: 1
     00000000:
       type: {class: SelectDamege, ns: , asm: Assembly-CSharp}
       data:
         c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
-        damegeAmo: 10
-    00000001:
-      type: {class: , ns: , asm: }
-    00000002:
-      type: {class: MovingEffect, ns: , asm: Assembly-CSharp}
-      data:
-        flyingObj: {fileID: 8420696426714839830, guid: d7270451a3cbe054caa073a4e0de6bb0,
-          type: 3}
-        tweenTime: 1.5
+        damegeAmo: 3

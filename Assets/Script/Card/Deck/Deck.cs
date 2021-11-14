@@ -10,7 +10,7 @@ using UniRx;
 public class Deck
 {
     //カードを纏める所
-    public List<CardData> initCards;
+    public List<Card> initCards;
     private ReactiveCollection<IDealableCard> _cards = new ReactiveCollection<IDealableCard>(new List<IDealableCard>());
 
     //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)
@@ -21,7 +21,7 @@ public class Deck
     public IObservable<CollectionRemoveEvent<IDealableCard>> ObservableRemove => _cards.ObserveRemove();
     public void InspectorInit()
     {
-        Substitution(initCards.Select(x => { return new DefaultDealableCard(new Card(x), null) as IDealableCard; }).ToList());
+        Substitution(initCards.Select(x => { return new DefaultDealableCard(x, null) as IDealableCard; }).ToList());
     }
     public void Substitution(List<IDealableCard> c)
     {

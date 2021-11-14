@@ -15,10 +15,10 @@ public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
     public void Print(IDealableCard card)
     {
         this.card.Value = card;
-        nameText.text = card.GetCard().mainData.cardName;
+        nameText.text = card.GetCard().cardName;
         //SkillText.text = card.Cardtext();
-        BackImage.sprite = card.GetCard().mainData.backSprite;
-        FrontImage.sprite = card.GetCard().mainData.frontSprite;
+        BackImage.sprite = card.GetCard().backSprite;
+        FrontImage.sprite = card.GetCard().frontSprite;
     }
 
     public void UnPrint()

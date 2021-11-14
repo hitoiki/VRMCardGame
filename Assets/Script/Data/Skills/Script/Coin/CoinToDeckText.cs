@@ -5,7 +5,7 @@ using UnityEngine;
 //ここに効果を書き続ける
 
 [System.Serializable]
-public class CoinToDeckText : IUseSkill
+public class CoinToDeckText : IUseProcess
 {
 
     [SerializeField] private Coin c;
@@ -16,7 +16,7 @@ public class CoinToDeckText : IUseSkill
         facade.CoinToDeck(deck, c, amount);
         Debug.Log("CoinToDeck");
     }
-    public SkillProcess UseSkill()
+    public SkillProcess GetProcess()
     {
         return new SkillProcess(
         (CardFacade dealer) => { Skill(dealer); }
@@ -26,7 +26,7 @@ public class CoinToDeckText : IUseSkill
     {
         return true;
     }
-    public ICardChecking SelectCard(Stage data)
+    public ICardChecking PlayPrepare(Stage data)
     {
         return null;
     }

@@ -30,7 +30,7 @@ public class CardFacade
     {
         foreach (IDealableCard c in data.stage.field.cards)
         {
-            ChangeCoin(c, data.coinToCost, source.GetCard().mainData.cost);
+            ChangeCoin(c, data.coinToCost, source.GetCard().cost);
         };
     }
 
@@ -43,7 +43,7 @@ public class CardFacade
         data.stage.DeckKey(to).Add(drawCards);
         foreach (IDealableCard card in drawCards)
         {
-            data.skillQueue.Push(card.GetCard().DrawSkill(from, to), card, null);
+            data.skillQueue.Push(card.GetSkillPack().DrawSkill(from, to), card, null);
         }
     }
 
@@ -51,7 +51,7 @@ public class CardFacade
     private void ChangeCoin(IDealableCard card, Coin coin, int i)
     {
         card.GetCoin().ChangeCoin(coin, i);
-        data.skillQueue.Push(card.GetCard().CoinSkill(coin, i), card, null);
+        data.skillQueue.Push(card.GetSkillPack().CoinSkill(coin, i), card, null);
     }
 
     //CoinEffect呼びたくないときに
@@ -60,25 +60,10 @@ public class CardFacade
         card.GetCoin().ChangeCoin(coin, i);
     }
 
-
-    //指定されたカードデータを指定されたカードに敷く
-    public void cardPut(IDealableCard cardTop, CardData cardBottom)
-    {
-        cardTop.GetCard().underCards.Add(cardBottom);
-    }
-    //指定されたカードデータを指定されたカードの下から取り除く
-    public void cardUnPut(IDealableCard cardTop, CardData cardBottom)
-    {
-        cardTop.GetCard().underCards.Remove(cardBottom);
-    }
     //条件を満たすカードのリストを渡す
     public List<IDealableCard> DeckFilter(StageDeck f, System.Func<IDealableCard, bool> ch)
     {
         return data.stage.DeckKey(f).cards.Where(ch).ToList();
-    }
-    public List<CardData> UnderCardFilter(IDealableCard c, System.Func<CardData, bool> ch)
-    {
-        return c.GetCard().underCards.Where(ch).ToList();
     }
     //あるデッキ全てにCoinを渡す
     public void CoinToDeck(StageDeck f, Coin coin, int i)

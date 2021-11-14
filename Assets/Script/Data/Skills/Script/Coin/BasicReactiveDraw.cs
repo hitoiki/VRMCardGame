@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 #pragma warning disable 0649
 [System.Serializable]
-public class BasicReactiveDraw : ICoinSkill
+public class BasicReactiveDraw : ICoinProcess
 {
     [SerializeField] private Coin ReactiveCoin;
     [SerializeField] private int threshold = 0;
@@ -18,7 +18,7 @@ public class BasicReactiveDraw : ICoinSkill
             facade.CoinAdjustSource(ReactiveCoin, -threshold);
         }
     }
-    public SkillProcess CoinSkill(Coin coin, int n)
+    public SkillProcess GetProcess(Coin coin, int n)
     {
         return new SkillProcess(
         (CardFacade dealer) => { Skill(dealer, coin, n); }

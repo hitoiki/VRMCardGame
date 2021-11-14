@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public class SelectDamege : IUseSkill
+public class SelectDamege : IUseProcess
 {
     [SerializeField] private Coin c;
     [SerializeField] private short damegeAmo;
@@ -12,7 +12,7 @@ public class SelectDamege : IUseSkill
 
         facade.CoinToTarget(0, c, damegeAmo);
     }
-    public SkillProcess UseSkill()
+    public SkillProcess GetProcess()
     {
         return new SkillProcess(
         (CardFacade dealer) => { Skill(dealer); }
@@ -22,7 +22,7 @@ public class SelectDamege : IUseSkill
     {
         return true;
     }
-    public ICardChecking SelectCard(Stage data)
+    public ICardChecking PlayPrepare(Stage data)
     {
         return new SelectDeckCardChecking(StageDeck.field, 1);
     }

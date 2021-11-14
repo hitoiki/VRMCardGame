@@ -3,32 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //カード能力の形態をinterfaceで纏めておく。
-public interface IUseSkill
+//ここのinterfaceが示すのは、
+public interface IUseProcess : ISkillText
 {
     //手札から使われる能力。
     //カード選択が必要かどうかも同時に判定する。
     bool UseAble(Stage data);
-    ICardChecking SelectCard(Stage data);
-    SkillProcess UseSkill();
-    string Text();
+    ICardChecking PlayPrepare(Stage data);
+    SkillProcess GetProcess();
 }
 
-public interface ICoinSkill
+public interface ICoinProcess : ISkillText
 {
     //Coinを受け取って発動する能力。
-    SkillProcess CoinSkill(Coin c, int n);
-    string Text();
+    SkillProcess GetProcess(Coin c, int n);
 }
 
-public interface IDrawSkill
+public interface IDrawProcess : ISkillText
 {
     //Deck間を移動した時に発動する能力。
-    SkillProcess DrawSkill(StageDeck from, StageDeck to);
-    string Text();
+    SkillProcess GetProcess(StageDeck from, StageDeck to);
 }
 
 //下にカードが追加された時
-public interface ILaySkill
+public interface ILayProcess : ISkillText
 {
     //UnderCardに変更があった時に呼ばれる能力…の予定
     SkillProcess LaySkill(List<Card> newUnderCard);

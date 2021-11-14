@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 #pragma warning disable 0649
 [System.Serializable]
-public class CoinTriggerText : ICoinSkill
+public class CoinTriggerText : ICoinProcess
 {
     [SerializeField] private Coin ReactiveCoin;
     [SerializeField] private int threshold = 0;
-    [SerializeReference, SubclassSelector] private IUseSkill useText;
+    [SerializeReference, SubclassSelector] private IUseProcess useText;
 
     private void Skill(CardFacade facade, Coin c, int n)
     {
         if (facade.sourceCoins[ReactiveCoin] >= threshold)
         {
-            useText.UseSkill().skill(facade);
+            useText.GetProcess().skill(facade);
             facade.CoinToSource(c, -threshold);
         }
     }
-    public SkillProcess CoinSkill(Coin coin, int n)
+    public SkillProcess GetProcess(Coin coin, int n)
     {
         return new SkillProcess(
         (CardFacade dealer) => { Skill(dealer, coin, n); }

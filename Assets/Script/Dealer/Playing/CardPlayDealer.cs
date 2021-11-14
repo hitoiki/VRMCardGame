@@ -37,15 +37,19 @@ public class CardPlayDealer : MonoBehaviour
             (Skill skill, SkillTarget target) runningSkill = skillQueueObject.Dequeue();
             List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
             Debug.Log(SkillCount.ToString() + ":Effect");
-            foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
+            if (runningSkill.skill.effect.Any())
             {
-                linker.effects.Add(e);
-                effectEvents.Add(e.Effect(runningSkill.target));
-            }
-            yield return Observable.WhenAll(effectEvents).First().ToYieldInstruction();
-            foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
-            {
-                linker.effects.Remove(e);
+                foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
+                {
+                    linker.effects.Add(e);
+                    effectEvents.Add(e.Effect(runningSkill.target));
+                }
+                yield return Observable.WhenAll(effectEvents).First().ToYieldInstruction();
+                //EffectをLinkerから外す
+                foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
+                {
+                    linker.effects.Remove(e);
+                }
             }
             Debug.Log(SkillCount.ToString() + ":Skill");
             runningSkill.skill.process.skill(new CardFacade(facadeData, runningSkill.target));

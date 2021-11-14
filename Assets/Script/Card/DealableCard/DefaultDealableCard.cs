@@ -9,6 +9,8 @@ public class DefaultDealableCard : IDealableCard
     private CoinSet coinSet;
     private Card card;
     private Transform transform;
+    //追加効果
+    private SkillPack secondSkillPack;
 
     public DefaultDealableCard(Card Card, Transform Transform)
     {
@@ -31,6 +33,10 @@ public class DefaultDealableCard : IDealableCard
     {
         return coinSet;
     }
+    public SkillPack GetSkillPack()
+    {
+        return SkillPack.Concat(card.skillPack, secondSkillPack);
+    }
 
     public void SetCard(Card Card)
     {
@@ -39,5 +45,14 @@ public class DefaultDealableCard : IDealableCard
     public void SetTransform(Transform Transform)
     {
         this.transform = Transform;
+    }
+    public void SetSecondSkillPack(SkillPack PackSet)
+    {
+        this.secondSkillPack = PackSet;
+    }
+
+    public void AddSecondSkillPack(SkillPack PackSet)
+    {
+        SkillPack.Concat(this.secondSkillPack, PackSet);
     }
 }
