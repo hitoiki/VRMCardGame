@@ -2300,9 +2300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d357cd1a5e66d945a0830e6a7672533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dealer: {fileID: 200107286}
-  state: {fileID: 2140630055}
-  selectingState: GamePlay
 --- !u!4 &945379876
 Transform:
   m_ObjectHideFlags: 0
@@ -3164,12 +3161,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrmPose: {fileID: 1038796824}
   vrmTransform: {fileID: 1038796827}
+  packSet:
+    useSkills: []
+    coinSkills: []
+    drawSkills: []
   initHP: 10
   flag:
     value: 0
   dealer: {fileID: 2140630055}
   gameOverState: GameOver
   gameClearState: GameClear
+  references:
+    version: 1
 --- !u!1 &1233751807
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,12 +3270,18 @@ MonoBehaviour:
   - {fileID: 1870451248}
   events:
   - id: 0
+  - id: 1
   references:
     version: 1
     00000000:
       type: {class: VRMViewCursol, ns: , asm: Assembly-CSharp}
       data:
         vrmPrintCard: {fileID: 322472141}
+    00000001:
+      type: {class: PlayPrepareConnecter, ns: , asm: Assembly-CSharp}
+      data:
+        cardPrepare: {fileID: 945379875}
+        deck: 0
 --- !u!114 &1260247258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3299,7 +3308,8 @@ MonoBehaviour:
     00000001:
       type: {class: PlayPrepareConnecter, ns: , asm: Assembly-CSharp}
       data:
-        prepareCursol: {fileID: 945379875}
+        cardPrepare: {fileID: 945379875}
+        deck: 1
 --- !u!1 &1301694188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,9 +3872,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: {fileID: 2140630055}
   selectingState: CardSelect
+  defaultState: GamePlay
   data: {fileID: 400381648}
   dealer: {fileID: 200107286}
-  prepareCursol: {fileID: 945379875}
+  prepare: {fileID: 945379875}
 --- !u!4 &1459236230
 Transform:
   m_ObjectHideFlags: 0

@@ -6,10 +6,11 @@ using UnityEngine;
 [System.Serializable]
 public class PlayPrepareConnecter : ICardCursolEvent
 {
-    [SerializeField] PlayPrepareCursol prepareCursol;
+    [SerializeField] CardPlayPrepare cardPrepare;
+    [SerializeField] StageDeck deck;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
-        prepareCursol.CardSelect(card, pos, mode);
+        cardPrepare.CardSelect(card, deck, mode);
     }
     public void CardCursol(ICardPrintable card, Vector3 pos, ContactMode mode)
     {

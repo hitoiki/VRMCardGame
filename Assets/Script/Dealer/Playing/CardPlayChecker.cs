@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
+using UniRx;
 
 public class CardPlayChecker : MonoBehaviour
 {
     //Cardを色々勘案して、適宜適宜する
     [SerializeField] private StateDealer state;
     [SerializeField] private string selectingState;
+    [SerializeField] private string defaultState;
     [SerializeField] private Stage data;
     [SerializeField] private CardPlayDealer dealer = null;
-    [SerializeField] private PlayPrepareCursol prepareCursol;
+    [SerializeField] private CardPlayPrepare prepare;
     public void CardCheck(IDealableCard cardViewable)
     {
         SkillPack checkSkillPack = cardViewable.GetSkillPack();
-        //暫定
-        prepareCursol.selectingCard = cardViewable;
+
         if (!checkSkillPack.IsPlayable(data))
         {
             Debug.Log("IsNotPlayable");
@@ -24,11 +26,7 @@ public class CardPlayChecker : MonoBehaviour
 
         if (checkSkillPack.PlayPrepare(data).Any(x => { return x != null; }))
         {
-            foreach (ICardChecking checking in checkSkillPack.PlayPrepare(data))
-            {
-                //コルーチンで一つ一つ回していく形にいつかする
-                checking.Check(this);
-            }
+            StartCoroutine(SkillPrepare(cardViewable));
         }
         else
         {
@@ -36,8 +34,18 @@ public class CardPlayChecker : MonoBehaviour
             dealer.CardPlay(checkSkillPack.UseSkill(), cardViewable, null);
         }
     }
-    public void SelectStageCard(StageDeck deck, sbyte amo)
+    private IEnumerator SkillPrepare(IDealableCard cardViewable)
     {
+        List<IDealableCard> skillTarget = new List<IDealableCard>();
         state.ChangeState(selectingState);
+        foreach (ICardChecking checkEvent in cardViewable.GetSkillPack().PlayPrepare(data))
+        {
+            //コルーチンで一つ一つ回していく
+            IObservable<IDealableCard> preparing = prepare.Checking(checkEvent);
+            preparing.Subscribe(x => { skillTarget.Add(x); });
+            yield return preparing.First().ToYieldInstruction();
+        }
+        state.ChangeState(defaultState);
+        dealer.CardPlay(cardViewable.GetSkillPack().UseSkill(), cardViewable, skillTarget.ToArray());
     }
 }

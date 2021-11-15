@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
 public class SelectDeckCardChecking : ICardChecking
 {
     StageDeck stageDeck;
-    sbyte amount;
-
-    public SelectDeckCardChecking(StageDeck deck, sbyte amo)
+    public SelectDeckCardChecking(StageDeck deck)
     {
         stageDeck = deck;
-        amount = amo;
     }
-    public void Check(CardPlayChecker checker)
+    public StageDeck GetDeck()
     {
-        checker.SelectStageCard(stageDeck, amount);
+        return stageDeck;
     }
 }
