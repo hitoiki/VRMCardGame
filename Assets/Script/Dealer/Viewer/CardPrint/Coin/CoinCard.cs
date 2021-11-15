@@ -12,7 +12,9 @@ public class CoinCard : MonoBehaviour, ICardPrintable
     //コイツがPrintされたとき、CoinFlyerからCoinSpriteを受け取って表示
     public ObjectFlyer<CoinSprite> flyer;
     [SerializeField] Grid grid;
-    private List<CoinSprite> sprites = new List<CoinSprite>();
+    [SerializeField] float zPos = 1;
+    [SerializeField] Vector3 origin = new Vector3(100, 0, 0);
+    private Dictionary<Coin, CoinSprite> sprites = new Dictionary<Coin, CoinSprite>();
     private IDisposable _add;
     private IDisposable _replace;
     private IDisposable _remove;
@@ -41,56 +43,45 @@ public class CoinCard : MonoBehaviour, ICardPrintable
     {
         _replace = c.GetCoin().CoinsReplace.Subscribe(changeCoin =>
         {
-            foreach (CoinSprite s in sprites.Where(y => { return y.printingCoin == changeCoin.Key; }))
-            {
-                s.CoinPrint(changeCoin.Key, changeCoin.NewValue);
-            };
+            sprites[changeCoin.Key].CoinPrint(changeCoin.Key, changeCoin.NewValue);
         });
         _add = c.GetCoin().CoinsAdd.Subscribe(addCoin =>
           {
-              CoinSprite newSprite = flyer.GetMob(new Vector3(100, 0, 0));
-              newSprite.gameObject.transform.SetParent(this.transform);
-              sprites.Add(newSprite);
-              newSprite.CoinPrint(addCoin.Key, addCoin.Value);
-              newSprite.rect.localScale = new Vector3(newSprite.rect.localScale.x * addCoin.Key.spriteScale, newSprite.rect.localScale.y * addCoin.Key.spriteScale, 1);
-              newSprite.rect.position = this.transform.position + addCoin.Key.spritePos;
+              CoinMake(addCoin.Key, addCoin.Value);
           });
         _remove = c.GetCoin().CoinsRemove.Subscribe(removeCoin =>
          {
-             foreach (CoinSprite s in sprites.Where(y => { return y.printingCoin == removeCoin.Key; }))
-             {
-                 s.gameObject.SetActive(false);
-             };
+             sprites[removeCoin.Key].gameObject.SetActive(false);
+
          });
 
-        CoinInit(c.GetCoin().coins.ToDictionary(pair => pair.Key, pair => pair.Value));
+        CoinInit(c.GetCoin().coins);
     }
 
     private void CoinInit(Dictionary<Coin, int> c)
     {
-        foreach (var i in c.Select((Value, Index) => new { Value, Index }))
+        foreach (var (coin, num) in c.Select(x => (x.Key, x.Value)))
         {
-            if (i.Index < sprites.Count)
-            {
-                sprites[i.Index].CoinPrint(i.Value.Key, i.Value.Value);
-            }
-            else
-            {
-                CoinSprite newSprite = flyer.GetMob(new Vector3(100, 0, 0));
-                newSprite.gameObject.transform.SetParent(this.transform);
-                sprites.Add(newSprite);
-                newSprite.CoinPrint(i.Value.Key, i.Value.Value);
-                newSprite.rect.localScale = new Vector3(newSprite.rect.localScale.x * i.Value.Key.spriteScale, newSprite.rect.localScale.y * i.Value.Key.spriteScale, 1);
-                newSprite.rect.position = this.transform.position + i.Value.Key.spritePos; ;
-            }
+            CoinMake(coin, num);
         }
 
-        if (sprites.Count > c.Count)
+        foreach (Coin coin in c.Keys.Except(sprites.Keys))
         {
-            for (int i = sprites.Count - 1; i > c.Count - 1; i--)
-            {
-                sprites[i].gameObject.SetActive(false);
-            }
+            sprites.Remove(coin);
         }
+    }
+
+    private void CoinMake(Coin c, int i)
+    {
+        if (!sprites.ContainsKey(c))
+        {
+            CoinSprite newSprite = flyer.GetMob(origin);
+            newSprite.gameObject.transform.SetParent(this.transform);
+            sprites.Add(c, newSprite);
+            newSprite.CoinPrint(c, i);
+            newSprite.rect.localScale = new Vector3(newSprite.rect.localScale.x * c.spriteScale, newSprite.rect.localScale.y * c.spriteScale, zPos);
+            newSprite.rect.position = this.transform.position + c.spritePos; ;
+        }
+        else sprites[c].CoinPrint(c, i);
     }
 }

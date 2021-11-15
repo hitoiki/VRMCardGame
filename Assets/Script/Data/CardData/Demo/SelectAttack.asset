@@ -23,6 +23,8 @@ MonoBehaviour:
     useSkills:
     - useSkill:
         id: 0
+      effect:
+      - id: 1
     coinSkills: []
     drawSkills: []
   references:
@@ -32,3 +34,9 @@ MonoBehaviour:
       data:
         c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
         damegeAmo: 3
+    00000001:
+      type: {class: MovingEffect, ns: , asm: Assembly-CSharp}
+      data:
+        flyingObj: {fileID: 8420696426714839830, guid: d7270451a3cbe054caa073a4e0de6bb0,
+          type: 3}
+        tweenTime: 1
