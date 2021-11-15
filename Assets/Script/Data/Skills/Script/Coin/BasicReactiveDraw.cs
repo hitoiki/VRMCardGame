@@ -25,6 +25,11 @@ public class BasicReactiveDraw : ICoinProcess
         );
     }
 
+    public IsSkillable GetIsSkillable(Coin coin, int n)
+    {
+        return facade => { return ReactiveCoin == coin && facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold; };
+    }
+
     public string Text()
     {
         return ReactiveCoin.name + "が" + threshold.ToString() + "枚を超えた時、" + StageDeckMethod.ToCardText(drawFrom) +

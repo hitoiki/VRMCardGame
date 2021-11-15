@@ -17,13 +17,6 @@ public class CardPlayChecker : MonoBehaviour
     public void CardCheck(IDealableCard cardViewable)
     {
         SkillPack checkSkillPack = cardViewable.GetSkillPack();
-
-        if (!checkSkillPack.IsPlayable(data))
-        {
-            Debug.Log("IsNotPlayable");
-            return;
-        }
-
         if (checkSkillPack.PlayPrepare(data).Any(x => { return x != null; }))
         {
             StartCoroutine(SkillPrepare(cardViewable));

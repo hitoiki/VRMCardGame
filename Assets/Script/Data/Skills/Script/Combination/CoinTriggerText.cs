@@ -24,6 +24,14 @@ public class CoinTriggerText : ICoinProcess
         );
     }
 
+    public IsSkillable GetIsSkillable(Coin coin, int n)
+    {
+        return facade =>
+        {
+            return ReactiveCoin == coin && facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold;
+        };
+    }
+
     public string Text()
     {
         return ReactiveCoin.name + "が" + threshold.ToString() + "以上になった時、それを" + threshold.ToString() + "消費して" + useText.Text();

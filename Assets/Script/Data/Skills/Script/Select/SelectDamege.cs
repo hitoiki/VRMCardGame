@@ -18,9 +18,12 @@ public class SelectDamege : IUseProcess
         (CardFacade dealer) => { Skill(dealer); }
         );
     }
-    public bool UseAble(Stage data)
+    public IsSkillable GetIsSkillable()
     {
-        return true;
+        return facade =>
+        {
+            return true;
+        };
     }
     public ICardChecking PlayPrepare(Stage data)
     {

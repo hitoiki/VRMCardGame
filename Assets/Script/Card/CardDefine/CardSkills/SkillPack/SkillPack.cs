@@ -46,9 +46,9 @@ public class SkillPack
         return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; }).ToList();
     }
 
-    public bool IsPlayable(Stage data)
+    public bool IsPlayable(CardFacade facade)
     {
-        return useSkills.Aggregate(true, (b, skill) => { return b && skill.useSkill.UseAble(data); });
+        return useSkills.Aggregate(true, (b, skill) => { return b && skill.useSkill.GetIsSkillable()(facade); });
     }
 
     public List<ICardChecking> PlayPrepare(Stage data)

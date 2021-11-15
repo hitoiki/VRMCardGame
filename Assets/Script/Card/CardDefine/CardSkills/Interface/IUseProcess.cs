@@ -8,7 +8,7 @@ public interface IUseProcess : ISkillText
 {
     //手札から使われる能力。
     //カード選択が必要かどうかも同時に判定する。
-    bool UseAble(Stage data);
+    IsSkillable GetIsSkillable();
     ICardChecking PlayPrepare(Stage data);
     SkillProcess GetProcess();
 }

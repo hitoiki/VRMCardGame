@@ -15,6 +15,6 @@ public class CoinSkill
 
     public Skill GetSkill(Coin c, int n)
     {
-        return new Skill(effect, coinSkill.GetProcess(c, n));
+        return new Skill(effect, coinSkill.GetProcess(c, n), coinSkill.GetIsSkillable(c, n));
     }
 }

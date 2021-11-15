@@ -35,6 +35,12 @@ public class CardPlayDealer : MonoBehaviour
             }
 
             (Skill skill, SkillTarget target) runningSkill = skillQueueObject.Dequeue();
+            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target);
+            if (!runningSkill.skill.skillable(skillFacade))
+            {
+                Debug.Log(SkillCount.ToString() + ":Through");
+                continue;
+            }
             List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
             Debug.Log(SkillCount.ToString() + ":Effect");
             if (runningSkill.skill.effect.Any())
@@ -52,9 +58,8 @@ public class CardPlayDealer : MonoBehaviour
                 }
             }
             Debug.Log(SkillCount.ToString() + ":Skill");
-            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target);
-
             runningSkill.skill.process(skillFacade);
+
         }
 
         isExecuting = false;
