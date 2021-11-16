@@ -26,6 +26,16 @@ public class CardPlayDealer : MonoBehaviour
         SkillCount = 0;
         while (skillQueueObject.Any())
         {
+
+            //SkillをQueueから取り出し
+            (Skill skill, SkillTarget target) runningSkill = skillQueueObject.Dequeue();
+            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target);
+            //発動可能なら実行
+            if (!runningSkill.skill.skillable(skillFacade))
+            {
+                Debug.Log(SkillCount.ToString() + ":Through");
+                continue;
+            }
             SkillCount++;
 
             if (SkillCount > 99)
@@ -33,14 +43,7 @@ public class CardPlayDealer : MonoBehaviour
                 Debug.Log("OverFlow!!!!");
                 break;
             }
-
-            (Skill skill, SkillTarget target) runningSkill = skillQueueObject.Dequeue();
-            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target);
-            if (!runningSkill.skill.skillable(skillFacade))
-            {
-                Debug.Log(SkillCount.ToString() + ":Through");
-                continue;
-            }
+            //Effectを実行して、終わるまで待機
             List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
             Debug.Log(SkillCount.ToString() + ":Effect");
             if (runningSkill.skill.effect.Any())
@@ -57,6 +60,7 @@ public class CardPlayDealer : MonoBehaviour
                     linker.effects.Remove(e);
                 }
             }
+            //Skillを実行
             Debug.Log(SkillCount.ToString() + ":Skill");
             runningSkill.skill.process(skillFacade);
 

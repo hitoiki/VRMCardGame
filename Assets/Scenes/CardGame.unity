@@ -1041,6 +1041,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 88df83a871fc673459b31694bd4ccfd7, type: 2}
     - {fileID: 11400000, guid: 948d7da96f5c62144925eb9c4f79f304, type: 2}
     - {fileID: 11400000, guid: 2205dcb07e3521640be9f7ef6b2925e2, type: 2}
+    - {fileID: 11400000, guid: 77928d590c4d4a14f9892cff8eba3dc6, type: 2}
   disCard:
     initCards: []
   trace:

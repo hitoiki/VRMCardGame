@@ -20,15 +20,15 @@ public class SkillPack
     }
     public string SkillText()
     {
-        IEnumerable<ISkillText> skillTexts = useSkills.Select(x => { return x.useSkill as ISkillText; });
-        skillTexts.Concat(coinSkills.Select(x => { return x as ISkillText; }));
-        skillTexts.Concat(drawSkills.Select(x => { return x as ISkillText; }));
-        if (!skillTexts.Any())
+        string skillTexts = "";
+        if (useSkills.Any()) skillTexts += useSkills.Select(x => { return x.useSkill.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        if (coinSkills.Any()) skillTexts += coinSkills.Select(x => { return x.coinSkill.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        if (drawSkills.Any()) skillTexts += drawSkills.Select(x => { return x.drawSkill.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        if (skillTexts == "")
         {
             Debug.Log("nullCardsText");
-            return "";
         }
-        return skillTexts.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        return skillTexts;
     }
 
     public List<Skill> UseSkill()

@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class GetCard : IUseProcess
 {
-    [SerializeField] short getAmo = 1;
+    [SerializeField] int getAmo = 1;
     private void Skill(CardFacade dealer)
     {
         dealer.DeckDraw(StageDeck.field, StageDeck.hands, getAmo);

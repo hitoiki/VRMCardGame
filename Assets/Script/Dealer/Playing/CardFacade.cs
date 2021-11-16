@@ -7,6 +7,7 @@ public class CardFacade
 {
     //Cardが出来る処理を書く   
     //CardのSkill群にこいつが渡される
+    //ここにメソッドを書き連ねていくのはあんま良くない気はしないでもない
     FacadeData data;
     IDealableCard source;
     IDealableCard[] target;
@@ -73,7 +74,6 @@ public class CardFacade
             ChangeCoin(c, coin, i);
         };
     }
-
     public void CoinToSource(Coin coin, int i)
     {
         ChangeCoin(source, coin, i);
@@ -88,10 +88,17 @@ public class CardFacade
     {
         ChangeCoin(target[index], coin, i);
     }
-
-    public void AttackToPlayer(int damage)
+    //Playerに対する効果
+    //Damege
+    public void PlayerDamage(int damage)
     {
         data.player.Damage(damage);
+    }
+
+    //カードを移動させる効果
+    public void TargetMove(StageDeck deck)
+    {
+
     }
 
 }

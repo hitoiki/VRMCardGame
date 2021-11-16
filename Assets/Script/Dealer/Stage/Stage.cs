@@ -7,6 +7,7 @@ public class Stage : MonoBehaviour
 {
     //Cardを置く盤面、舞台
     //コイツを読んで処理したりしなかったりする
+    //データ等は主にここで握る
     [SerializeField] public Deck hands;
     [SerializeField] public Deck field;
     [SerializeField] public Deck disCard;
@@ -16,6 +17,8 @@ public class Stage : MonoBehaviour
     [SerializeField] public Deck left;
 
     public SkillQueueObject queueObject = new SkillQueueObject();
+
+    public HighOrderRule rules;
 
     private void Start()
     {
