@@ -13,10 +13,7 @@ public class CardPlayRecepter : MonoBehaviour
 
     public void CardPlayRecept(Vector3 pos, IDealableCard card)
     {
-
         if (areaCheck(pos)) checker.CardCheck(card);
-
-
     }
     private bool areaCheck(Vector3 pos)
     {

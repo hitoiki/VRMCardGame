@@ -11,26 +11,18 @@ public class CoinToDeckText : IUseProcess
     [SerializeField] private Coin c;
     [SerializeField] private short amount = 0;
     [SerializeField] private StageDeck deck;
-    private void Skill(CardFacade facade)
+    public void GetSkillProcess(CardFacade facade)
     {
         facade.CoinToDeck(deck, c, amount);
         Debug.Log("CoinToDeck");
     }
-    public SkillProcess GetProcess()
+
+    public bool GetIsSkillable(CardFacade facade)
     {
-        return new SkillProcess(
-        (CardFacade dealer) => { Skill(dealer); }
-        );
-    }
-    public IsSkillable GetIsSkillable()
-    {
-        return facade =>
-        {
-            return true;
-        };
+        return true;
     }
 
-    public ICardChecking PlayPrepare(Stage data)
+    public ICardChecking PlayPrepare()
     {
         return null;
     }
@@ -38,5 +30,10 @@ public class CoinToDeckText : IUseProcess
     public string Text()
     {
         return StageDeckMethod.ToCardText(deck) + "の全てのカードに" + c.name + "を" + amount.ToString() + "枚与える。";
+    }
+
+    public string SkillName()
+    {
+        return "DeckToCoin(" + StageDeckMethod.ToCardText(deck) + "," + c.coinName + "," + amount.ToString() + ")";
     }
 }

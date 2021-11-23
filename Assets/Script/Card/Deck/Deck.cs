@@ -126,12 +126,6 @@ public class Deck
         }
         return null;
     }
-
-    public IDealableCard OneDraw()
-    {
-        IDealableCard returncard = Draw(1).First();
-        return returncard;
-    }
     public static List<IDealableCard> shuffle(List<IDealableCard> c)
     {
         return c.OrderBy(a => Guid.NewGuid()).ToList();

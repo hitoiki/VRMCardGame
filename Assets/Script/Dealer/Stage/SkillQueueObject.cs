@@ -33,9 +33,8 @@ public class SkillQueueObject
         Debug.Log("Dequeue");
         if (!skillQueue.Any())
         {
-            Debug.Log("Push");
             var play = playQueue.Dequeue();
-            Push(play.skills, play.target);
+            if (play.skills != null) Push(play.skills, play.target);
         }
         return skillQueue.Dequeue();
     }

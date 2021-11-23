@@ -7,32 +7,34 @@ public class SkillSchedule : ICoinProcess
 {
     [SerializeReference, SubclassSelector] public IRawSkill skill;
     [SerializeField] public int cycle;
-    [HideInInspector] public int elapsedTime;
+    public int elapsedTime;
     [SerializeField] private Coin ReactiveCoin;
 
-    private SkillProcess GetSkillProcess(Coin c, int n)
+    public void GetSkillProcess(CardFacade facade, Coin c, int n)
     {
-        SkillProcess process = StaticSkills.IdentitySkill.process;
+        Debug.Log("Processing:" + c.coinName + n.ToString());
         elapsedTime += n;
+        Debug.Log(elapsedTime.ToString());
         while (elapsedTime >= cycle)
         {
-            process += skill.GetProcess();
+            skill.GetSkillProcess(facade);
             elapsedTime -= cycle;
         }
-        return process;
-    }
-    public SkillProcess GetProcess(Coin coin, int n)
-    {
-        return new SkillProcess(GetSkillProcess(coin, n));
     }
 
-    public IsSkillable GetIsSkillable(Coin coin, int n)
+
+    public bool GetIsSkillable(CardFacade facade, Coin coin, int n)
     {
-        return facade => { return ReactiveCoin == coin && facade.sourceCoins[ReactiveCoin] >= cycle; };
+        Debug.Log("SkillableCheck");
+        return ReactiveCoin == coin;
     }
 
     public string Text()
     {
         return ReactiveCoin.coinName + " " + elapsedTime.ToString() + "/" + cycle.ToString() + ":" + skill.Text();
+    }
+    public string SkillName()
+    {
+        return "Scheduled[" + cycle.ToString() + "," + skill.SkillName() + "]";
     }
 }

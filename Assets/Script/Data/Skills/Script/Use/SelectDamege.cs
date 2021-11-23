@@ -6,31 +6,27 @@ public class SelectDamege : IUseProcess
 {
     [SerializeField] private Coin c;
     [SerializeField] private short damegeAmo;
-
-    private void Skill(CardFacade facade)
+    public void GetSkillProcess(CardFacade facade)
     {
 
         facade.CoinToTarget(0, c, damegeAmo);
     }
-    public SkillProcess GetProcess()
+
+    public bool GetIsSkillable(CardFacade facade)
     {
-        return new SkillProcess(
-        (CardFacade dealer) => { Skill(dealer); }
-        );
+        return true;
     }
-    public IsSkillable GetIsSkillable()
-    {
-        return facade =>
-        {
-            return true;
-        };
-    }
-    public ICardChecking PlayPrepare(Stage data)
+    public ICardChecking PlayPrepare()
     {
         return new SelectDeckCardChecking(StageDeck.field);
     }
     public string Text()
     {
         return "場のカード1枚に" + c.name + "を" + damegeAmo.ToString() + "枚与える";
+    }
+
+    public string SkillName()
+    {
+        return "SelectDamege(" + c.coinName + "," + damegeAmo.ToString() + ")";
     }
 }

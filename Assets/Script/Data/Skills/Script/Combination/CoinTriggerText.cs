@@ -9,32 +9,31 @@ public class CoinTriggerText : ICoinProcess
     [SerializeField] private int threshold = 0;
     [SerializeReference, SubclassSelector] private IUseProcess useText;
 
-    private void Skill(CardFacade facade, Coin c, int n)
+    public void GetSkillProcess(CardFacade facade, Coin c, int n)
     {
         if (facade.sourceCoins[ReactiveCoin] >= threshold)
         {
-            useText.GetProcess()(facade);
+            useText.GetSkillProcess(facade);
             facade.CoinToSource(c, -threshold);
         }
     }
-    public SkillProcess GetProcess(Coin coin, int n)
-    {
-        return new SkillProcess(
-        (CardFacade dealer) => { Skill(dealer, coin, n); }
-        );
-    }
 
-    public IsSkillable GetIsSkillable(Coin coin, int n)
+
+    public bool GetIsSkillable(CardFacade facade, Coin coin, int n)
     {
-        return facade =>
-        {
-            return ReactiveCoin == coin && facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold;
-        };
+
+        return ReactiveCoin == coin && facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold;
+
     }
 
     public string Text()
     {
         return ReactiveCoin.name + "が" + threshold.ToString() + "以上になった時、それを" + threshold.ToString() + "消費して" + useText.Text();
+    }
+
+    public string SkillName()
+    {
+        return ReactiveCoin.coinName + "Triggered[" + useText.SkillName() + "]";
     }
 
 }

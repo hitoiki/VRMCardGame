@@ -48,12 +48,12 @@ public class SkillPack
 
     public bool IsPlayable(CardFacade facade)
     {
-        return useSkills.Aggregate(true, (b, skill) => { return b && skill.useSkill.GetIsSkillable()(facade); });
+        return useSkills.Aggregate(true, (b, skill) => { return b && skill.useSkill.GetIsSkillable(facade); });
     }
 
-    public List<ICardChecking> PlayPrepare(Stage data)
+    public List<ICardChecking> PlayPrepare()
     {
-        return useSkills.Select(y => { return y.useSkill.PlayPrepare(data); }).ToList();
+        return useSkills.Select(y => { return y.useSkill.PlayPrepare(); }).ToList();
     }
 
 

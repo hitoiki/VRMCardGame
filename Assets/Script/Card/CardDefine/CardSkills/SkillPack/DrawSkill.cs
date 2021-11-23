@@ -15,6 +15,6 @@ public class DrawSkill
 
     public Skill GetSkill(StageDeck from, StageDeck to)
     {
-        return new Skill(effect, drawSkill.GetProcess(from, to), drawSkill.GetIsSkillable(from, to));
+        return new Skill(drawSkill.SkillName(), effect, x => drawSkill.GetSkillProcess(x, from, to), x => drawSkill.GetIsSkillable(x, from, to));
     }
 }

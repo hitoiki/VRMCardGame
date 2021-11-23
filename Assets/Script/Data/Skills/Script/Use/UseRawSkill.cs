@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class GetCard : IUseProcess
+public class UseRawSkill : IUseProcess
 {
-    [SerializeField] int getAmo = 1;
+    [SerializeReference, SubclassSelector] public IRawSkill skill;
     public void GetSkillProcess(CardFacade facade)
     {
-        facade.DeckDraw(StageDeck.field, StageDeck.hands, getAmo);
+        skill.GetSkillProcess(facade);
     }
     public bool GetIsSkillable(CardFacade facade)
     {
@@ -16,17 +15,16 @@ public class GetCard : IUseProcess
     }
     public ICardChecking PlayPrepare()
     {
-        return new SelectDeckCardChecking(StageDeck.field);
+        return null;
     }
 
     public string Text()
     {
-        return "場のカードを古い方から" + getAmo.ToString() + "枚手札に加える。";
+        return skill.Text();
     }
 
     public string SkillName()
     {
-        return "GetCard";
+        return "Use" + skill.SkillName();
     }
-
 }

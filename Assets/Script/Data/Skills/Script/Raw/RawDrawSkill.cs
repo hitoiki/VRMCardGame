@@ -7,18 +7,17 @@ public class RawDrawSkill : IRawSkill
     [SerializeField] int getAmo = 1;
     [SerializeField] StageDeck from;
     [SerializeField] StageDeck to;
-    private void Skill(CardFacade dealer)
+    public void GetSkillProcess(CardFacade facade)
     {
-        dealer.DeckDraw(from, to, getAmo);
-    }
-    public SkillProcess GetProcess()
-    {
-        return new SkillProcess(
-        (CardFacade dealer) => { Skill(dealer); }
-        );
+        facade.DeckDraw(from, to, getAmo);
     }
     public string Text()
     {
         return StageDeckMethod.ToCardText(from) + "のカードを古い方から" + getAmo.ToString() + "枚" + StageDeckMethod.ToCardText(to) + "に加える。";
+    }
+
+    public string SkillName()
+    {
+        return "Drawfrom" + StageDeckMethod.ToCardText(from) + "to" + StageDeckMethod.ToCardText(to);
     }
 }

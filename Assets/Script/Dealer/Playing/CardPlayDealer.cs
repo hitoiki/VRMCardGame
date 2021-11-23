@@ -31,21 +31,21 @@ public class CardPlayDealer : MonoBehaviour
             (Skill skill, SkillTarget target) runningSkill = skillQueueObject.Dequeue();
             CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target);
             //発動可能なら実行
-            if (!runningSkill.skill.skillable(skillFacade))
+            if (!runningSkill.skill.isSkillable(skillFacade))
             {
-                Debug.Log(SkillCount.ToString() + ":Through");
+                Debug.Log(runningSkill.skill.name + ":Through");
                 continue;
             }
             SkillCount++;
 
-            if (SkillCount > 99)
+            if (SkillCount > 255)
             {
                 Debug.Log("OverFlow!!!!");
                 break;
             }
             //Effectを実行して、終わるまで待機
             List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
-            Debug.Log(SkillCount.ToString() + ":Effect");
+            Debug.Log(runningSkill.skill.name + ":Effect");
             if (runningSkill.skill.effect.Any())
             {
                 foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))

@@ -7,20 +7,19 @@ public class RawDeckToCoin : IRawSkill
     [SerializeField] private Coin c;
     [SerializeField] private short amount = 0;
     [SerializeField] private StageDeck deck;
-    private void Skill(CardFacade facade)
+    public void GetSkillProcess(CardFacade facade)
     {
         facade.CoinToDeck(deck, c, amount);
-    }
-    public SkillProcess GetProcess()
-    {
-        return new SkillProcess(
-        (CardFacade dealer) => { Skill(dealer); }
-        );
     }
 
     public string Text()
     {
         return StageDeckMethod.ToCardText(deck) + "の全てのカードに" + c.name + "を" + amount.ToString() + "枚与える。";
+    }
+
+    public string SkillName()
+    {
+        return "DeckToCoin(" + StageDeckMethod.ToCardText(deck) + "," + c.coinName + "," + amount.ToString() + ")";
     }
 }
 

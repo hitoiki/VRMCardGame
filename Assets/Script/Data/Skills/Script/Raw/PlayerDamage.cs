@@ -5,13 +5,18 @@ using UnityEngine;
 public class PlayerDamage : IRawSkill
 {
     [SerializeField] int damage;
-    public SkillProcess GetProcess()
+    public void GetSkillProcess(CardFacade facade)
     {
-        return x => { x.PlayerDamage(damage); };
+        facade.PlayerDamage(damage);
     }
 
     public string Text()
     {
         return "プレイヤーに" + damage.ToString() + "ダメージ。";
+    }
+
+    public string SkillName()
+    {
+        return "PlayerDamage:" + damage.ToString();
     }
 }

@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Class Name="StateChangeButton" Collapsed="true">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAABAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Assistant\button\StateChangeButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DeckEditor" Collapsed="true">
+    <Position X="10.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAAAAAAAAAAAgAAACAAgAAAEAAAAAABAAAAAA=</HashCode>
+      <FileName>Assets\Script\Assistant\DeckEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Grid" Collapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAEAAAAAEAAAAAQAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Script\Assistant\Grid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectFlyer&lt;T&gt;" Collapsed="true">
+    <Position X="7.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAACAAAAAAAAABAAAQA=</HashCode>
+      <FileName>Assets\Script\Assistant\ObjectFlyer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerHPView" Collapsed="true">
+    <Position X="9" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAJAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Assistant\PlayerUI\PlayerHPView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimpleState" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAEABAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Assistant\SimpleState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="StageDeckMethod" Collapsed="true">
+    <Position X="26.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Script\Assistant\StageDeckMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StateDemoChanger" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAABAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Assistant\StateDemoChanger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToggleSwitch" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAgAQAAAAAAAAAAAYACAAAAAAAAAAAQIAAAAgA=</HashCode>
+      <FileName>Assets\Script\Assistant\ToggleSwitch.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CursolCheck" Collapsed="true">
+    <Position X="18.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAgCAEAAAEAAAAAAAAAAAAAAAAgIIAAEA=</HashCode>
+      <FileName>Assets\Script\Basis\Control\CursolCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrugObject" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Basis\Control\DrugObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameStateSet" Collapsed="true">
+    <Position X="10.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAgAAAACAAAAAAAAEEABAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Basis\GameState\GameStateSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StateDealer" Collapsed="true">
+    <Position X="10.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAIAACAABAAAAAAAAAAAAAACAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Basis\GameState\StateDealer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyPad" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KBAAAAAQAAAAAABCAAAEAhAAIAAAAigAAAAIACAhAgA=</HashCode>
+      <FileName>Assets\Script\Basis\KeyPad\KeyPad.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AddressSetter" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAIAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Basis\ObjectAddressBook\AddressSetter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectAddress" Collapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Basis\ObjectAddressBook\ObjectAddress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Card" Collapsed="true">
+    <Position X="22.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AYAEAAAAAAAAAAAAAAAAkAAAAAARAAAAAAAIBAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\Card.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="skillPack" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SelectDeckCardChecking" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\CardCheck\SelectDeckCardChecking.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Skill" Collapsed="true">
+    <Position X="20.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAQAAAAAIAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\Skill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoinSkill" Collapsed="true">
+    <Position X="23" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAQAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\SkillPack\CoinSkill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawSkill" Collapsed="true">
+    <Position X="25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAQAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\SkillPack\DrawSkill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SkillPack" Collapsed="true">
+    <Position X="22.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgBACAAAgAAAAAAQAAAAEgAAEAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\SkillPack\SkillPack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UseSkill" Collapsed="true">
+    <Position X="21" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAACAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\SkillPack\UseSkill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coin" Collapsed="true">
+    <Position X="25.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgCAAgAAAIAAAAAAAAIAAAQAAAAAAQAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\Coin\Coin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoinSet" Collapsed="true">
+    <Position X="25.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAIAAAAAAgAAAAAAAAAAAAACAAAAUA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\Coin\CoinSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DefaultDealableCard" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAICAAAAABBAAAAEQAAEAAACAAABAAQAAAQ=</HashCode>
+      <FileName>Assets\Script\Card\DealableCard\DefaultDealableCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.139" Collapsed="true" />
+  </Class>
+  <Class Name="SkillTarget" Collapsed="true">
+    <Position X="18.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\DealableCard\SkillTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Deck" Collapsed="true">
+    <Position X="22.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQIQAABAAAAAAgAAAAhAJEBAIAQAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\Deck\Deck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerData" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgECAAAEIAAAAAIAAAACAIABAAAACAABASAAAAEA=</HashCode>
+      <FileName>Assets\Script\Card\Player\PlayerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MovingEffect" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAgEQAAAAAAAAAAEAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Data\EffectScript\MovingEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ParticleEffect" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAgAQAAAAAAAAAERAAAAAAAAgAAAAABAAAA=</HashCode>
+      <FileName>Assets\Script\Data\EffectScript\ParticleEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SoundEffect" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAgAAAAAAAAAAAAAAAIAgAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Data\EffectScript\SoundEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SourceEffect" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgEAAAAAgAQAAAAAAAAAEQAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Data\EffectScript\SourceEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TargetEffect" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgEAAAAAgAQAAAAAAAAAAEAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Data\EffectScript\TargetEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BasicReactiveDraw" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAQAAAAAAAAAAAAAAAAAgAACAAAAAACBAIAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\Coin\BasicReactiveDraw.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SkillSchedule" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAQQAAAAAAgIAAAAAAAAgAAAAAAAAACAAIAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\Coin\SkillSchedule.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoinTriggerText" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAQAAAAAAAAAAAAAAAAAgAACIAAAAACAAIAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\Combination\CoinTriggerText.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlayerDamage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAACAAIAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\Raw\PlayerDamage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.362" Collapsed="true" />
+  </Class>
+  <Class Name="RawDeckToCoin" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAgECAAAAACAAIAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\Raw\RawDeckToCoin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RawDrawSkill" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAIAAAAAAAAAAAAAABgAAAAAAAAAAAAACAAIAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\Raw\RawDrawSkill.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="StaticSkills" Collapsed="true">
+    <Position X="8" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\StaticSkills.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoinToDeckText" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAwAAAAAAAAAAAAAAAAAAAgECAAAAACAAIAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\Use\CoinToDeckText.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GetCard" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAwAAAAAAAAAAAABAAAAAAAAAAAAAACAAIAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\Use\GetCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SelectDamege" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAwAAAAAAAAAAAAAAAAAAAAACAAAAgCAAIAAA=</HashCode>
+      <FileName>Assets\Script\Data\Skills\Script\Use\SelectDamege.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CardCursolChangeState" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAACAAAAACAAEEABAAAAAAAAIAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Dealer\CardCursol\CardCursolChangeState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CardCursolEffect" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAMAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\CardCursol\Instance\CardCursolEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CursolTeleportObject" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgABMAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\CardCursol\Instance\CursolTeleportObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DragCursolableCard" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAgAAMAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Assets\Script\Dealer\CardCursol\Instance\DragCursolableCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlayPrepareConnecter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAMAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\CardCursol\Instance\PlayPrepareConnecter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VRMViewCursol" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAMAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\CardCursol\Instance\VRMViewCursol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CardFacade" Collapsed="true">
+    <Position X="16.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAMSAAEAAAAAAYAIAAEAAAACAAIAAAAAAAQgBAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Playing\CardFacade.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="data" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CardPlayChecker" Collapsed="true">
+    <Position X="14.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAgIAAAAAAACAABABAAAAEAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Playing\CardPlayChecker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardPlayDealer" Collapsed="true">
+    <Position X="14.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAACAIAAIQAAAAQAAAACBAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Playing\CardPlayDealer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardPlayPrepare" Collapsed="true">
+    <Position X="13.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABCAAAAAAAAQAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Playing\CardPlayPrepare.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardPlayRecepter" Collapsed="true">
+    <Position X="14.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAQAAAAAAMCAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Playing\CardPlayRecepter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FacadeData">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAACAgBAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Playing\FacadeData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="stage" />
+      <Field Name="player" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="HighOrderRule" Collapsed="true">
+    <Position X="22.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Stage\HighOrderRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SkillQueueObject" Collapsed="true">
+    <Position X="22.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAQAAAAAAAAAAAAAAAAAAABAgAAAAAAAAAGAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Stage\SkillQueueObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stage" Collapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAIAACCQAEAAAAAAAAAAEAAIAAAAAAAAAAAAgAg=</HashCode>
+      <FileName>Assets\Script\Dealer\Stage\Stage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="field" />
+      <Field Name="rules" />
+      <Field Name="queueObject" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BasicCard" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAQQABACAAAABAQAAAAIABAAAgQAAAAAAEAgE=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Card\BasicCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DeckViewCard" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAQQABACAAAABAQAAAAIABAAAgQAAAAAAEAgE=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Card\DeckViewCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FieldCard" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAQQABAiAAAABAQAAAAIABAAAoQAAAAAAEAgE=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Card\FieldCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VRMPrintCard" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBAAAAAQgABAgAAAABAAAAAAAAAAAAgQAAAAAAEAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Card\VRMPrintCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoinCard" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgAAAAAAAAIBAAAAACBwAAAEAAAAIAQgQAAAAACEAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Coin\CoinCard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CoinSprite" Collapsed="true">
+    <Position X="7.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAIAAAEAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Coin\CoinSprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicCardFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAgQAAACAAAAAAACEAAAAgAYgBAAAAAAAAAACAAAE=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Stage\BasicCardFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FieldCardFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAgAAAASAgBAAAAAEAAAIgAYgBAAAAAAAAAACAAAE=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Stage\FieldCardFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="StageCardEracer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAQAAEABAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Stage\StageCardEracer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="StageCardViewer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABBgAAAAAAIgQAAAAwEEABAAAAAASAAAAACAAAAAA0A=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Stage\StageCardViewer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SkillTextPrinter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAEAgAAABAAAAAAAAIIACAAAAAACgQAAAAAAEAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Text\SkillTextPrinter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VRMCardText" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAACAAAQCAAAAAAAAEEABAAAABAAAAAQAAAAAAEAgA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\CardPrint\Text\VRMCardText.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EffectStateLinker" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAEABAEAAAAAAAAAAACAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\State\EffectStateLinker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="StateLinkedObject" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEABAAAQAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\State\StateLinkedObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="ICursolable" Collapsed="true">
+    <Position X="1.75" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Basis\Control\ICursolable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IGameState" Collapsed="true">
+    <Position X="10.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEABAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Basis\GameState\IGameState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IKeyPad" Collapsed="true">
+    <Position X="16.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAAAAAAAAAAAABCAAAAAAAAAAAAACAAAAAIACAAAAA=</HashCode>
+      <FileName>Assets\Script\Basis\KeyPad\IKeyPad.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICoinProcess" Collapsed="true">
+    <Position X="23" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\Interface\ICoinProcess.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IDrawProcess" Collapsed="true">
+    <Position X="25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\Interface\IDrawProcess.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IHighOrderSkill" Collapsed="true">
+    <Position X="24.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\Interface\IHighOrderSkill.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IRawSkill" Collapsed="true">
+    <Position X="26.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\Interface\IRawSkill.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ISkillText" Collapsed="true">
+    <Position X="23" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\Interface\ISkillText.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IUseProcess" Collapsed="true">
+    <Position X="21" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\Interface\IUseProcess.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ISkillEffect" Collapsed="true">
+    <Position X="18.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\Effect\ISkillEffect.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IDealableCard">
+    <Position X="22.75" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Public" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAABBAAAAEQAAAAAAAAAABAAQAAAQ=</HashCode>
+      <FileName>Assets\Script\Card\DealableCard\IDealableCard.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICardCursolEvent" Collapsed="true">
+    <Position X="2.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\Interface\ICardCursolEvent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICardCursolEventUser" Collapsed="true">
+    <Position X="1.75" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIABAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\Interface\ICardCursolEventUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICardFactory" Collapsed="true">
+    <Position X="5.25" Y="8.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAQgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\Interface\ICardFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICardObservable" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\Interface\ICardObservable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICardPrintable" Collapsed="true">
+    <Position X="1.75" Y="8.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAgQAAAAAAEAAA=</HashCode>
+      <FileName>Assets\Script\Dealer\Viewer\Interface\ICardPrintable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ContactMode" Collapsed="true">
+    <Position X="21.25" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAQIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Basis\Control\ICursolable.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CardType" Collapsed="true">
+    <Position X="19.5" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\Card.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="StageDeck" Collapsed="true">
+    <Position X="24.75" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAQAAAAgAAAAAAAEAAIAAAAAAAAAAAAgAg=</HashCode>
+      <FileName>Assets\Script\Dealer\Stage\Stage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="UnityChan.MouseButtonDown" Collapsed="true">
+    <Position X="23" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAQgAAAAAA=</HashCode>
+      <FileName>Assets\Sozai\unity-chan!\Unity-chan! Model\Scripts\CameraController.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="SkillProcess" Collapsed="true">
+    <Position X="18.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\SkillProcess.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="IsSkillable" Collapsed="true">
+    <Position X="18.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Card\CardDefine\CardSkills\SkillProcess.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>
