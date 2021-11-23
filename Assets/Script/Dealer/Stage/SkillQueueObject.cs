@@ -6,20 +6,19 @@ using UnityEngine;
 public class SkillQueueObject
 {
     // SkillProcessをスタックしていくキュー
-    private Queue<(Skill skill, SkillTarget target)> skillQueue = new Queue<(Skill skill, SkillTarget target)>();
-    private Queue<(List<Skill> skills, SkillTarget target)> playQueue = new Queue<(List<Skill> skills, SkillTarget target)>();
-
-    public void Push(List<Skill> skills, IDealableCard Source, IDealableCard[] Target)
+    private Queue<(Skill skill, EffectTarget target)> skillQueue = new Queue<(Skill skill, EffectTarget target)>();
+    private Queue<(List<Skill> skills, EffectTarget target)> playQueue = new Queue<(List<Skill> skills, EffectTarget target)>();
+    public void Push(List<Skill> skills, ICardPrintable Source, ICardPrintable[] Target)
     {
         if (!skills.Any()) return;
-        SkillTarget target = new SkillTarget(Source, Target);
+        EffectTarget target = new EffectTarget(Source, Target);
         foreach (Skill s in skills)
         {
             skillQueue.Enqueue((s, target));
         }
     }
 
-    public void Push(List<Skill> skills, SkillTarget target)
+    public void Push(List<Skill> skills, EffectTarget target)
     {
         if (!skills.Any()) return;
         foreach (Skill s in skills)
@@ -27,8 +26,7 @@ public class SkillQueueObject
             skillQueue.Enqueue((s, target));
         }
     }
-
-    public (Skill skill, SkillTarget target) Dequeue()
+    public (Skill skill, EffectTarget target) Dequeue()
     {
         Debug.Log("Dequeue");
         if (!skillQueue.Any())
@@ -44,13 +42,13 @@ public class SkillQueueObject
         return skillQueue.Any() || playQueue.Any();
     }
 
-    public void PlayPush(List<Skill> skills, IDealableCard Source, IDealableCard[] Target)
+    public void PlayPush(List<Skill> skills, ICardPrintable Source, ICardPrintable[] Target)
     {
         if (!skills.Any()) return;
-        SkillTarget target = new SkillTarget(Source, Target);
+        EffectTarget target = new EffectTarget(Source, Target);
         playQueue.Enqueue((skills, target));
     }
-    public void PlayPush(List<Skill> skills, SkillTarget target)
+    public void PlayPush(List<Skill> skills, EffectTarget target)
     {
         if (!skills.Any()) return;
         playQueue.Enqueue((skills, target));

@@ -13,9 +13,9 @@ public class CardPlayChecker : MonoBehaviour
     [SerializeField] private string defaultState;
     [SerializeField] private CardPlayDealer dealer = null;
     [SerializeField] private CardPlayPrepare prepare;
-    public void CardCheck(IDealableCard cardViewable)
+    public void CardCheck(ICardPrintable cardViewable)
     {
-        SkillPack checkSkillPack = cardViewable.GetSkillPack();
+        SkillPack checkSkillPack = cardViewable.GetDealableCard().GetSkillPack();
         if (checkSkillPack.PlayPrepare().Any(x => { return x != null; }))
         {
             StartCoroutine(SkillPrepare(cardViewable));
@@ -26,18 +26,18 @@ public class CardPlayChecker : MonoBehaviour
             dealer.CardPlay(checkSkillPack.UseSkill(), cardViewable, null);
         }
     }
-    private IEnumerator SkillPrepare(IDealableCard cardViewable)
+    private IEnumerator SkillPrepare(ICardPrintable cardViewable)
     {
-        List<IDealableCard> skillTarget = new List<IDealableCard>();
+        List<ICardPrintable> skillTarget = new List<ICardPrintable>();
         state.ChangeState(selectingState);
-        foreach (ICardChecking checkEvent in cardViewable.GetSkillPack().PlayPrepare())
+        foreach (ICardChecking checkEvent in cardViewable.GetDealableCard().GetSkillPack().PlayPrepare())
         {
             //コルーチンで一つ一つ回していく
-            IObservable<IDealableCard> preparing = prepare.Checking(checkEvent);
+            IObservable<ICardPrintable> preparing = prepare.Checking(checkEvent);
             preparing.Subscribe(x => { skillTarget.Add(x); });
             yield return preparing.First().ToYieldInstruction();
         }
         state.ChangeState(defaultState);
-        dealer.CardPlay(cardViewable.GetSkillPack().UseSkill(), cardViewable, skillTarget.ToArray());
+        dealer.CardPlay(cardViewable.GetDealableCard().GetSkillPack().UseSkill(), cardViewable, skillTarget.ToArray());
     }
 }

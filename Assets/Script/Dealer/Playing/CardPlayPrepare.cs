@@ -10,7 +10,7 @@ public class CardPlayPrepare : MonoBehaviour
     //ICardCursolEventを介してここに接続してもらう
 
     public delegate IDealableCard selectSequence(StageDeck deck);
-    public Subject<IDealableCard> prepareSubject;
+    public Subject<ICardPrintable> prepareSubject;
 
     private StageDeck aimingDeck;
 
@@ -18,14 +18,14 @@ public class CardPlayPrepare : MonoBehaviour
     {
         if (mode == ContactMode.Enter && deck == aimingDeck)
         {
-            prepareSubject.OnNext(card.GetDealableCard());
+            prepareSubject.OnNext(card);
             prepareSubject.OnCompleted();
         }
     }
 
-    public IObservable<IDealableCard> Checking(ICardChecking checking)
+    public IObservable<ICardPrintable> Checking(ICardChecking checking)
     {
-        prepareSubject = new Subject<IDealableCard>();
+        prepareSubject = new Subject<ICardPrintable>();
         aimingDeck = checking.GetDeck();
         return prepareSubject;
     }

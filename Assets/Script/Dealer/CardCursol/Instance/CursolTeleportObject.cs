@@ -31,8 +31,8 @@ public class CursolTeleportObject : ICardCursolEvent
         foreach (GameObject obj in portObj)
         {
             obj.transform.position = new Vector3(
-                card.GetDealableCard().GetTransform().position.x,
-                card.GetDealableCard().GetTransform().position.y,
+                card.GetTransform().position.x,
+                card.GetTransform().position.y,
                 zPos);
         }
 

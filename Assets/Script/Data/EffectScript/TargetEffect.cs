@@ -13,7 +13,7 @@ public class TargetEffect : ISkillEffect
     [SerializeField] float tweenTime;
     List<Tween> effects = new List<Tween>();
 
-    public IObservable<Unit> Effect(SkillTarget target)
+    public IObservable<Unit> Effect(EffectTarget target)
     {
         List<IObservable<Unit>> observables = new List<IObservable<Unit>>();
 

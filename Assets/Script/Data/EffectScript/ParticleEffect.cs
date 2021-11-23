@@ -15,7 +15,7 @@ public class ParticleEffect : ISkillEffect
     private GameObject effectObj;
     private ParticleSystem effectParticle;
 
-    public IObservable<Unit> Effect(SkillTarget target)
+    public IObservable<Unit> Effect(EffectTarget target)
     {
         effectObj = GameObject.Instantiate(initParticle.gameObject, target.source.GetTransform().position + Vector3.back, Quaternion.identity);
         effectParticle = effectObj.GetComponent<ParticleSystem>();

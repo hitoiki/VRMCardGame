@@ -14,7 +14,6 @@ public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCur
         activate = true;
         card = c;
         spriteRenderer.sprite = c.GetCard().iconSprite;
-        c.SetTransform(this.transform);
     }
     public void UnPrint()
     {

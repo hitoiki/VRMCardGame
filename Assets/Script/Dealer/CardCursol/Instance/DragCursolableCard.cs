@@ -11,19 +11,19 @@ public class DragCursolableCard : ICardCursolEvent
     {
         if (mode == ContactMode.Enter)
         {
-            anchor = card.GetDealableCard().GetTransform().position;
+            anchor = card.GetTransform().position;
         }
         if (mode == ContactMode.Stay)
         {
             Vector3 drugPos = Camera.main.ScreenToWorldPoint(pos);
-            card.GetDealableCard().GetTransform().position = new Vector3(drugPos.x, drugPos.y, zPos);
+            card.GetTransform().position = new Vector3(drugPos.x, drugPos.y, zPos);
         }
 
         if (mode == ContactMode.Exit)
         {
-            Vector3 buf = card.GetDealableCard().GetTransform().position;
-            card.GetDealableCard().GetTransform().position = anchor;
-            recepter.CardPlayRecept(buf, card.GetDealableCard());
+            Vector3 buf = card.GetTransform().position;
+            card.GetTransform().position = anchor;
+            recepter.CardPlayRecept(buf, card);
         }
     }
     public void CardCursol(ICardPrintable card, Vector3 pos, ContactMode mode)

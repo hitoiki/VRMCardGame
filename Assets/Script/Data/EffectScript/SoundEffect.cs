@@ -11,7 +11,7 @@ public class SoundEffect : ISkillEffect
 {
     [SerializeField] ObjectAddress memo;
     [SerializeField] AudioClip audioClip;
-    public IObservable<Unit> Effect(SkillTarget target)
+    public IObservable<Unit> Effect(EffectTarget target)
     {
         memo.source.clip = audioClip;
         memo.source.Play();

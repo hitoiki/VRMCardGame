@@ -18,15 +18,6 @@ public class CardFacade
         this.source = Source;
         this.target = Target;
     }
-
-    public CardFacade(FacadeData Data, SkillTarget target)
-    {
-        this.data = Data;
-        this.source = target.source;
-        this.target = target.target;
-    }
-
-
     public virtual void CostPay()
     {
         foreach (IDealableCard c in data.stage.field.cards)
@@ -44,7 +35,7 @@ public class CardFacade
         data.stage.DeckKey(to).Add(drawCards);
         foreach (IDealableCard card in drawCards)
         {
-            data.skillQueue.Push(card.GetSkillPack().DrawSkill(from, to), card, null);
+            //  data.skillQueue.Push(card.GetSkillPack().DrawSkill(from, to), card, null);
         }
     }
 
@@ -52,7 +43,7 @@ public class CardFacade
     private void ChangeCoin(IDealableCard card, Coin coin, int i)
     {
         card.GetCoin().ChangeCoin(coin, i);
-        data.skillQueue.Push(card.GetSkillPack().CoinSkill(coin, i), card, null);
+        // data.skillQueue.Push(card.GetSkillPack().CoinSkill(coin, i), card, null);
     }
 
     //CoinEffect呼びたくないときに

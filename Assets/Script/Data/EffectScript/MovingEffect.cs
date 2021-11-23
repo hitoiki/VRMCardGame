@@ -14,11 +14,11 @@ public class MovingEffect : ISkillEffect
 
     List<GameObject> effects = new List<GameObject>();
 
-    public IObservable<Unit> Effect(SkillTarget target)
+    public IObservable<Unit> Effect(EffectTarget target)
     {
         return Effect(target.source, target.target);
     }
-    private IObservable<Unit> Effect(IDealableCard Source, IDealableCard[] Target)
+    private IObservable<Unit> Effect(ICardPrintable Source, ICardPrintable[] Target)
     {
         List<IObservable<Unit>> observables = new List<IObservable<Unit>>();
 

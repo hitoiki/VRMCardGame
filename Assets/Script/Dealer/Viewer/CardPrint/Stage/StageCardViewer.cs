@@ -99,7 +99,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
     {
         foreach (var p in factory.GetCards()?.Select((ICardPrintable Value, int Index) => new { Value, Index }))
         {
-            p.Value.GetDealableCard().GetTransform().DOMove(grid.NumberGrid(p.Index), tweenTime);
+            p.Value.GetTransform().DOMove(grid.NumberGrid(p.Index), tweenTime);
         }
     }
 

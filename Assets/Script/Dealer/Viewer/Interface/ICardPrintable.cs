@@ -9,4 +9,5 @@ public interface ICardPrintable
     void UnPrint();
     void Active(bool active);
     IDealableCard GetDealableCard();
+    Transform GetTransform();
 }

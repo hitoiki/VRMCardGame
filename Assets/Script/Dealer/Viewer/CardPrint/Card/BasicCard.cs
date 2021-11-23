@@ -15,7 +15,6 @@ public class BasicCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursol
         activate = true;
         card = c;
         spriteRenderer.sprite = c.GetCard().iconSprite;
-        c.SetTransform(this.transform);
     }
     public void UnPrint()
     {

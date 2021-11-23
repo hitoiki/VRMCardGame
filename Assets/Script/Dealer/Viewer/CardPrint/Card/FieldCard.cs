@@ -21,8 +21,6 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
         this.card.Value = c;
         spriteRenderer.sprite = c?.GetCard().iconSprite;
         if (coinCard != null) coinCard.Print(c);
-        c.SetTransform(this.transform);
-
     }
     public void UnPrint()
     {

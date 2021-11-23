@@ -28,8 +28,8 @@ public class CardPlayDealer : MonoBehaviour
         {
 
             //SkillをQueueから取り出し
-            (Skill skill, SkillTarget target) runningSkill = skillQueueObject.Dequeue();
-            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target);
+            (Skill skill, EffectTarget target) runningSkill = skillQueueObject.Dequeue();
+            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target.DealableSource(), runningSkill.target.DealableTarget());
             //発動可能なら実行
             if (!runningSkill.skill.isSkillable(skillFacade))
             {
@@ -72,7 +72,7 @@ public class CardPlayDealer : MonoBehaviour
         // state.ChangeState(defaultState);
     }
 
-    public void CardPlay(List<Skill> skills, IDealableCard Source, IDealableCard[] Target)
+    public void CardPlay(List<Skill> skills, ICardPrintable Source, ICardPrintable[] Target)
     {
         skillQueueObject.PlayPush(skills, Source, Target);
         if (!skillQueueObject.Any())
@@ -86,6 +86,5 @@ public class CardPlayDealer : MonoBehaviour
             Debug.Log("SkillingState");
             StartCoroutine("SkillExecute");
         }
-
     }
 }
