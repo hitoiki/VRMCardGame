@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class EffectTarget
 {
@@ -13,13 +12,4 @@ public class EffectTarget
         this.target = Target;
     }
 
-    public IDealableCard DealableSource()
-    {
-        return source.GetDealableCard();
-    }
-    public IDealableCard[] DealableTarget()
-    {
-        return target.Select(x => { return x.GetDealableCard(); }).ToArray();
-    }
 }
-

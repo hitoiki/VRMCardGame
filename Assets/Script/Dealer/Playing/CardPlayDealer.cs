@@ -28,8 +28,8 @@ public class CardPlayDealer : MonoBehaviour
         {
 
             //SkillをQueueから取り出し
-            (Skill skill, EffectTarget target) runningSkill = skillQueueObject.Dequeue();
-            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target.DealableSource(), runningSkill.target.DealableTarget());
+            (Skill skill, SkillTarget target) runningSkill = skillQueueObject.Dequeue();
+            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.target);
             //発動可能なら実行
             if (!runningSkill.skill.isSkillable(skillFacade))
             {
@@ -51,7 +51,7 @@ public class CardPlayDealer : MonoBehaviour
                 foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
                 {
                     linker.effects.Add(e);
-                    effectEvents.Add(e.Effect(runningSkill.target));
+                    effectEvents.Add(e.Effect(runningSkill.target.GetEffectTarget()));
                 }
                 yield return Observable.WhenAll(effectEvents).First().ToYieldInstruction();
                 //EffectをLinkerから外す
@@ -61,7 +61,7 @@ public class CardPlayDealer : MonoBehaviour
                 }
             }
             //Skillを実行
-            Debug.Log(SkillCount.ToString() + ":Skill");
+            Debug.Log(runningSkill.skill.name + ":Skill");
             runningSkill.skill.process(skillFacade);
 
         }
@@ -72,9 +72,9 @@ public class CardPlayDealer : MonoBehaviour
         // state.ChangeState(defaultState);
     }
 
-    public void CardPlay(List<Skill> skills, ICardPrintable Source, ICardPrintable[] Target)
+    public void CardPlay(List<Skill> skills, SkillTarget skillTarget)
     {
-        skillQueueObject.PlayPush(skills, Source, Target);
+        skillQueueObject.PlayPush(skills, skillTarget);
         if (!skillQueueObject.Any())
         {
             Debug.Log("nulled");
