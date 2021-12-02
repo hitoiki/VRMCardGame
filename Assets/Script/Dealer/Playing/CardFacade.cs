@@ -118,10 +118,15 @@ public class CardFacade
     }
 
     //カードを移動させる効果
-    public void FieldTargetMove(StageDeck deck)
+    public void TargetMove(StageDeck to)
     {
-        data.stage.DeckKey(StageDeck.field).Remove(target.ToList());
-        data.stage.DeckKey(deck).Add(target.ToList());
+        for (int i = 0; i < target.Count(); i++)
+        {
+            data.stage.DeckKey(targetBelongDeck[i]).Remove(target[i]);
+            SkillTarget decksTarget = SkillTarget.SourceOnly(targetPrint[i], targetBelongDeck[i]);
+            data.skillQueue.Push(target[i].GetSkillPack().DrawSkill(targetBelongDeck[i], to, DeckMove.Exit), decksTarget);
+            data.stage.DeckKey(to).Add(target[i]);
+        }
     }
 
 }

@@ -41,9 +41,9 @@ public class SkillPack
         return coinSkills.Select(y => { return y.GetSkill(coin, n); }).Where(x => { return x != null; }).ToList();
     }
 
-    public List<Skill> DrawSkill(StageDeck from, StageDeck to)
+    public List<Skill> DrawSkill(StageDeck from, StageDeck to, DeckMove moveMode)
     {
-        return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; }).ToList();
+        return drawSkills.Select(y => { return y.GetSkill(from, to, moveMode); }).Where(x => { return x != null; }).ToList();
     }
 
     public bool IsPlayable(CardFacade facade)

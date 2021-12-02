@@ -8,7 +8,7 @@ public class GetCard : IUseProcess
     [SerializeField] int getAmo = 1;
     public void GetSkillProcess(CardFacade facade)
     {
-        facade.FieldTargetMove(StageDeck.hands);
+        facade.TargetMove(StageDeck.hands);
     }
     public bool GetIsSkillable(CardFacade facade)
     {
