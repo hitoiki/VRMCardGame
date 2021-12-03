@@ -11,10 +11,10 @@ public class CoinTriggerText : ICoinProcess
 
     public void GetSkillProcess(CardFacade facade, Coin c, int n)
     {
-        if (facade.sourceCoins[ReactiveCoin] >= threshold)
+        if (facade.source.GetCoin()[ReactiveCoin] >= threshold)
         {
             useText.GetSkillProcess(facade);
-            facade.CoinToSource(c, -threshold);
+            facade.source.ChangeCoin(c, -threshold);
         }
     }
 
@@ -22,7 +22,7 @@ public class CoinTriggerText : ICoinProcess
     public bool GetIsSkillable(CardFacade facade, Coin coin, int n)
     {
 
-        return ReactiveCoin == coin && facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold;
+        return ReactiveCoin == coin && facade.source.GetCoin().ContainsKey(ReactiveCoin) && facade.source.GetCoin()[ReactiveCoin] >= threshold;
 
     }
 

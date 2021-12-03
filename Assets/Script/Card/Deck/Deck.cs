@@ -21,7 +21,7 @@ public class Deck
     public IObservable<CollectionRemoveEvent<IDealableCard>> ObservableRemove => _cards.ObserveRemove();
     public void InspectorInit()
     {
-        Substitution(initCards.Select(x => { return new DefaultDealableCard(x, null) as IDealableCard; }).ToList());
+        Substitution(initCards.Select(x => { return new DefaultDealableCard(x) as IDealableCard; }).ToList());
     }
     public void Substitution(List<IDealableCard> c)
     {
@@ -53,7 +53,7 @@ public class Deck
             {
                 _cards[i.Index].SetCard(i.Value);
             }
-            else _cards.Add(new DefaultDealableCard(i.Value, null) as IDealableCard);
+            else _cards.Add(new DefaultDealableCard(i.Value) as IDealableCard);
         }
 
         if (_cards.Count > c.Count)

@@ -13,13 +13,13 @@ public class TargetEffect : ISkillEffect
     [SerializeField] float tweenTime;
     List<Tween> effects = new List<Tween>();
 
-    public IObservable<Unit> Effect(EffectTarget target)
+    public IObservable<Unit> Effect(ICardPrintable source, List<ICardPrintable> target)
     {
         List<IObservable<Unit>> observables = new List<IObservable<Unit>>();
 
-        if (target.target != null && target.target.Any())
+        if (target != null && target.Any())
         {
-            foreach (Vector3 pos in target.target.Select(x => { return x.GetTransform().position; }))
+            foreach (Vector3 pos in target.Select(x => { return x.GetTransform().position; }))
             {
                 GameObject copy = GameObject.Instantiate(appearObj, pos, Quaternion.identity);
                 Tween tween = DOVirtual.DelayedCall(tweenTime, () => { Transform.Destroy(copy.gameObject); });

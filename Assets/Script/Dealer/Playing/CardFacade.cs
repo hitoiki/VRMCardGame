@@ -6,36 +6,21 @@ using UnityEngine;
 public class CardFacade
 {
     //Cardが出来る処理を書く   
-    //CardのSkill群にこいつが渡される
-    //ここにメソッドを書き連ねていくのはあんま良くない気はしないでもない
+    //SkillDealableの実装に伴い、主にカードの提供、ドロー処理を行うように
     FacadeData data;
-    ICardPrintable sourcePrint;
-    public StageDeck sourceBelongDeck;
-    IDealableCard source;
-    ICardPrintable[] targetPrint;
-    public StageDeck[] targetBelongDeck;
-    IDealableCard[] target;
-    public Dictionary<Coin, int> sourceCoins => source.GetCoin().coins;
-    public CardFacade(FacadeData Data, SkillTarget skillTarget)
+    public SkillDealableCard source;
+    public List<SkillDealableCard> target = new List<SkillDealableCard>();
+    public CardFacade(FacadeData Data, SkillDealableCard Source, List<SkillDealableCard> Target)
     {
         this.data = Data;
-
-        sourcePrint = skillTarget.source;
-        targetPrint = skillTarget.target;
-
-        sourceBelongDeck = skillTarget.sourceBelongDeck;
-        targetBelongDeck = skillTarget.targetBelongDeck;
-
-        this.source = skillTarget.source?.GetDealableCard();
-        this.target = skillTarget.target?.Select(x => { return x.GetDealableCard(); }).ToArray();
+        this.source = Source;
+        this.target = Target;
     }
     public virtual void CostPay()
     {
         foreach (ICardPrintable c in data.fieldFactory.GetCards())
         {
-            c.GetDealableCard().GetCoin().ChangeCoin(data.coinToCost, source.GetCard().cost);
-            SkillTarget coinsTarget = SkillTarget.SourceOnly(c, StageDeck.field);
-            data.skillQueue.Push(c.GetDealableCard().GetSkillPack().CoinSkill(data.coinToCost, source.GetCard().cost), coinsTarget);
+            new SkillDealableCard(c, StageDeck.field, data.stage.queueObject).ChangeCoin(data.coinToCost, source.GetCard().cost);
         };
     }
 
@@ -51,64 +36,16 @@ public class CardFacade
             //  data.skillQueue.Push(card.GetSkillPack().DrawSkill(from, to), card, null);
         }
     }
-    //CoinEffect呼びたくないときに
-    private void AdjustCoin(IDealableCard card, Coin coin, int i)
-    {
-        card.GetCoin().ChangeCoin(coin, i);
-    }
 
     //条件を満たすカードのリストを渡す
-    public List<IDealableCard> DeckFilter(StageDeck f, System.Func<IDealableCard, bool> ch)
+    public List<SkillDealableCard> FieldDeck()
     {
-        return data.stage.DeckKey(f).cards.Where(ch).ToList();
-    }
-    //あるデッキ全てにCoinを渡す
-    public void CoinToDeck(StageDeck f, Coin coin, int i)
-    {
-        foreach (IDealableCard c in data.stage.DeckKey(f).cards)
+        List<SkillDealableCard> fieldDeck = new List<SkillDealableCard>();
+        foreach (ICardPrintable c in data.fieldFactory.GetCards())
         {
-            c.GetCoin().ChangeCoin(coin, i);
+            fieldDeck.Add(new SkillDealableCard(c, StageDeck.field, data.stage.queueObject));
         };
-        if (f == StageDeck.field)
-        {
-            foreach (ICardPrintable c in data.fieldFactory.GetCards())
-            {
-                SkillTarget coinsTarget = SkillTarget.SourceOnly(c, StageDeck.field);
-                data.skillQueue.Push(c.GetDealableCard().GetSkillPack().CoinSkill(coin, i), coinsTarget);
-            }
-        }
-        if (f == StageDeck.hands)
-        {
-            foreach (ICardPrintable c in data.handFactory.GetCards())
-            {
-                SkillTarget coinsTarget = SkillTarget.SourceOnly(c, StageDeck.hands);
-                data.skillQueue.Push(c.GetDealableCard().GetSkillPack().CoinSkill(coin, i), coinsTarget);
-            }
-        }
-        if (f != StageDeck.field && f != StageDeck.hands)
-        {
-            Debug.Log(StageDeckMethod.ToStringFast(f) + "でのCoinEffect誘発は実装されてません");
-        }
-
-    }
-    public void CoinToSource(Coin coin, int i)
-    {
-        source.GetCoin().ChangeCoin(coin, i);
-        SkillTarget coinsTarget = SkillTarget.SourceOnly(sourcePrint, sourceBelongDeck);
-        data.skillQueue.Push(source.GetSkillPack().CoinSkill(coin, i), coinsTarget);
-    }
-
-    public void CoinAdjustSource(Coin coin, int i)
-    {
-        AdjustCoin(source, coin, i);
-    }
-
-    public void CoinToTarget(int index, Coin coin, int i)
-    {
-        target[index].GetCoin().ChangeCoin(coin, i);
-        SkillTarget coinsTarget = SkillTarget.SourceOnly(targetPrint[index], targetBelongDeck[index]);
-        data.skillQueue.Push(target[index].GetSkillPack().CoinSkill(coin, i), coinsTarget);
-
+        return fieldDeck;
     }
     //Playerに対する効果
     //Damege
@@ -118,15 +55,22 @@ public class CardFacade
     }
 
     //カードを移動させる効果
-    public void TargetMove(StageDeck to)
+    public void CardMove(List<SkillDealableCard> cards, StageDeck to)
     {
-        for (int i = 0; i < target.Count(); i++)
-        {
-            data.stage.DeckKey(targetBelongDeck[i]).Remove(target[i]);
-            SkillTarget decksTarget = SkillTarget.SourceOnly(targetPrint[i], targetBelongDeck[i]);
-            data.skillQueue.Push(target[i].GetSkillPack().DrawSkill(targetBelongDeck[i], to, DeckMove.Exit), decksTarget);
-            data.stage.DeckKey(to).Add(target[i]);
-        }
+        /*
+        foreach (SkillDealableCard dealableCard in cards)
+         {
+             data.stage.DeckKey(dealableCard.deck).Remove(dealableCard);
+             SkillTarget decksTarget = SkillTarget.SourceOnly(targetPrint[i], targetBelongDeck[i]);
+             data.skillQueue.Push(target[i].GetSkillPack().DrawSkill(targetBelongDeck[i], to, DeckMove.Exit), decksTarget);
+             data.stage.DeckKey(to).Add(target[i]);
+         }*/
+        Debug.Log("準備中");
+    }
+
+    public void AddCard(IDealableCard dealable, StageDeck deck)
+    {
+        data.stage.DeckKey(deck).Add(dealable);
     }
 
 }

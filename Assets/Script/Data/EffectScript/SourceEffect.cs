@@ -12,9 +12,9 @@ public class SourceEffect : ISkillEffect
     private Tween tween;
     private GameObject effectObj;
 
-    public IObservable<Unit> Effect(EffectTarget target)
+    public IObservable<Unit> Effect(ICardPrintable source, List<ICardPrintable> target)
     {
-        effectObj = GameObject.Instantiate(appearObj, target.source.GetTransform().position, Quaternion.identity);
+        effectObj = GameObject.Instantiate(appearObj, source.GetTransform().position, Quaternion.identity);
         tween = DOVirtual.DelayedCall(tweenTime, () => { Transform.Destroy(effectObj.gameObject); });
         return Observable.Create<Unit>(observer =>
         {

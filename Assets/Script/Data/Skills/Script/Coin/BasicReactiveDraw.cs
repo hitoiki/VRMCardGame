@@ -12,17 +12,17 @@ public class BasicReactiveDraw : ICoinProcess
     [SerializeField] private int drawAmount = 0;
     public void GetSkillProcess(CardFacade facade, Coin c, int n)
     {
-        if (facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold)
+        if (facade.source.GetCoin().ContainsKey(ReactiveCoin) && facade.source.GetCoin()[ReactiveCoin] >= threshold)
         {
             facade.DeckDraw(drawFrom, drawTo, drawAmount);
-            facade.CoinAdjustSource(ReactiveCoin, -threshold);
+            facade.source.ChangeCoin(ReactiveCoin, -threshold);
         }
     }
 
 
     public bool GetIsSkillable(CardFacade facade, Coin coin, int n)
     {
-        return ReactiveCoin == coin && facade.sourceCoins.ContainsKey(ReactiveCoin) && facade.sourceCoins[ReactiveCoin] >= threshold;
+        return ReactiveCoin == coin && facade.source.GetCoin().ContainsKey(ReactiveCoin) && facade.source.GetCoin()[ReactiveCoin] >= threshold;
     }
 
     public string Text()

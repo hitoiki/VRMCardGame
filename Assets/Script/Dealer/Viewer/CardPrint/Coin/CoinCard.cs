@@ -41,21 +41,21 @@ public class CoinCard : MonoBehaviour, ICardPrintable
 
     public void Print(IDealableCard c)
     {
-        _replace = c.GetCoin().CoinsReplace.Subscribe(changeCoin =>
+        _replace = c.GetObserveCoin().ObserveReplace().Subscribe(changeCoin =>
         {
             sprites[changeCoin.Key].CoinPrint(changeCoin.Key, changeCoin.NewValue);
         });
-        _add = c.GetCoin().CoinsAdd.Subscribe(addCoin =>
+        _add = c.GetObserveCoin().ObserveAdd().Subscribe(addCoin =>
           {
               CoinMake(addCoin.Key, addCoin.Value);
           });
-        _remove = c.GetCoin().CoinsRemove.Subscribe(removeCoin =>
+        _remove = c.GetObserveCoin().ObserveRemove().Subscribe(removeCoin =>
          {
              sprites[removeCoin.Key].gameObject.SetActive(false);
 
          });
 
-        CoinInit(c.GetCoin().coins);
+        CoinInit(c.GetCoin());
     }
 
     private void CoinInit(Dictionary<Coin, int> c)

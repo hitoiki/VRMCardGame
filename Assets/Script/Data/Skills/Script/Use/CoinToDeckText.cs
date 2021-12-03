@@ -13,7 +13,11 @@ public class CoinToDeckText : IUseProcess
     [SerializeField] private StageDeck deck;
     public void GetSkillProcess(CardFacade facade)
     {
-        facade.CoinToDeck(deck, c, amount);
+
+        foreach (SkillDealableCard card in facade.FieldDeck())
+        {
+            card.ChangeCoin(c, amount);
+        }
         Debug.Log("CoinToDeck");
     }
 

@@ -9,7 +9,10 @@ public class RawDeckToCoin : IRawSkill
     [SerializeField] private StageDeck deck;
     public void GetSkillProcess(CardFacade facade)
     {
-        facade.CoinToDeck(deck, c, amount);
+        foreach (SkillDealableCard card in facade.FieldDeck())
+        {
+            card.ChangeCoin(c, amount);
+        }
     }
 
     public string Text()

@@ -23,24 +23,22 @@ public class CardPlayChecker : MonoBehaviour
         else
         {
             Debug.Log("Check,UnSelect");
-            dealer.CardPlay(checkSkillPack.UseSkill(), SkillTarget.SourceOnly(cardViewable, StageDeck.hands));
+            dealer.PrintedCardPlay(checkSkillPack.UseSkill(), cardViewable, StageDeck.hands);
         }
     }
     private IEnumerator SkillPrepare(ICardPrintable cardViewable)
     {
-        List<ICardPrintable> skillTarget = new List<ICardPrintable>();
-        List<StageDeck> selectedDeck = new List<StageDeck>();
+        List<(ICardPrintable, StageDeck)> skillTarget = new List<(ICardPrintable, StageDeck)>();
         state.ChangeState(selectingState);
         foreach (ICardChecking checkEvent in cardViewable.GetDealableCard().GetSkillPack().PlayPrepare())
         {
             //コルーチンで一つ一つ回していく
-            selectedDeck.Add(checkEvent.GetDeck());
             IObservable<ICardPrintable> preparing = prepare.Checking(checkEvent);
-            preparing.Subscribe(x => { skillTarget.Add(x); });
+            preparing.Subscribe(x => { skillTarget.Add((x, checkEvent.GetDeck())); });
             yield return preparing.First().ToYieldInstruction();
 
         }
         state.ChangeState(defaultState);
-        dealer.CardPlay(cardViewable.GetDealableCard().GetSkillPack().UseSkill(), new SkillTarget(cardViewable, StageDeck.hands, skillTarget.ToArray(), selectedDeck.ToArray()));
+        dealer.PrintedCardPlay(cardViewable.GetDealableCard().GetSkillPack().UseSkill(), cardViewable, StageDeck.hands, skillTarget.ToList());
     }
 }
