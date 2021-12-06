@@ -29,7 +29,7 @@ public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCur
     {
         return this.transform;
     }
-    public ICard GetDealableCard()
+    public ICard GetCard()
     {
         return card;
     }

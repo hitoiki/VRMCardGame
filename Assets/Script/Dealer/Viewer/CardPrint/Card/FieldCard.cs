@@ -37,7 +37,7 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
         return this.transform;
     }
 
-    public ICard GetDealableCard()
+    public ICard GetCard()
     {
         return card.Value;
     }

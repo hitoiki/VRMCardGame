@@ -34,7 +34,7 @@ public class SkillTextPrinter : MonoBehaviour, ICardPrintable
     {
         return this.transform;
     }
-    public ICard GetDealableCard()
+    public ICard GetCard()
     {
         return c;
     }

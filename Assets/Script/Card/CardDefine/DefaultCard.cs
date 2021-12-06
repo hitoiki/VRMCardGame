@@ -6,7 +6,7 @@ using System.Linq;
 
 public class DefaultCard : ICard
 {
-    // デフォルトで扱うICardDealable
+    // デフォルトで扱うICard
     // 基本的にこれらを扱うが、いつの日か別のクラスを用いる日も来るだろう
     private readonly ReactiveDictionary<Coin, int> _coins = new ReactiveDictionary<Coin, int>();
 

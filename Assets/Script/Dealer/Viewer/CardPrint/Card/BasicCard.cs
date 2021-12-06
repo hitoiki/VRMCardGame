@@ -30,7 +30,7 @@ public class BasicCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursol
     {
         return this.transform;
     }
-    public ICard GetDealableCard()
+    public ICard GetCard()
     {
         return card;
     }

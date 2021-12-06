@@ -8,6 +8,6 @@ public interface ICardPrintable
     //仮に購読していたのなら、それを解除
     void UnPrint();
     void Active(bool active);
-    ICard GetDealableCard();
+    ICard GetCard();
     Transform GetTransform();
 }

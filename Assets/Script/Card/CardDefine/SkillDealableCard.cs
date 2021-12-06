@@ -15,7 +15,7 @@ public class SkillDealableCard
     public SkillDealableCard(ICardPrintable Printable, StageDeck Deck, SkillQueueObject QueueObject)
     {
         printable = Printable;
-        card = printable.GetDealableCard();
+        card = printable.GetCard();
         deck = Deck;
         skillQueue = QueueObject;
     }

@@ -27,7 +27,7 @@ public class CoinCard : MonoBehaviour, ICardPrintable
     {
         return this.transform;
     }
-    public ICard GetDealableCard()
+    public ICard GetCard()
     {
         return null;
     }

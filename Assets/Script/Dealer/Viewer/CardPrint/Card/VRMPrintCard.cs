@@ -35,7 +35,7 @@ public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
         return this.transform;
     }
 
-    public ICard GetDealableCard()
+    public ICard GetCard()
     {
         return card.Value;
     }

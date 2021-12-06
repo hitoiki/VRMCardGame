@@ -15,7 +15,7 @@ public class CardPlayChecker : MonoBehaviour
     [SerializeField] private CardPlayPrepare prepare;
     public void CardCheck(ICardPrintable cardViewable)
     {
-        SkillPack checkSkillPack = cardViewable.GetDealableCard().GetSkillPack();
+        SkillPack checkSkillPack = cardViewable.GetCard().GetSkillPack();
         if (checkSkillPack.PlayPrepare().Any(x => { return x != null; }))
         {
             StartCoroutine(SkillPrepare(cardViewable));
@@ -30,7 +30,7 @@ public class CardPlayChecker : MonoBehaviour
     {
         List<(ICardPrintable, StageDeck)> skillTarget = new List<(ICardPrintable, StageDeck)>();
         state.ChangeState(selectingState);
-        foreach (ICardChecking checkEvent in cardViewable.GetDealableCard().GetSkillPack().PlayPrepare())
+        foreach (ICardChecking checkEvent in cardViewable.GetCard().GetSkillPack().PlayPrepare())
         {
             //コルーチンで一つ一つ回していく
             IObservable<ICardPrintable> preparing = prepare.Checking(checkEvent);
@@ -39,6 +39,6 @@ public class CardPlayChecker : MonoBehaviour
 
         }
         state.ChangeState(defaultState);
-        dealer.PrintedCardPlay(cardViewable.GetDealableCard().GetSkillPack().UseSkill(), cardViewable, StageDeck.hands, skillTarget.ToList());
+        dealer.PrintedCardPlay(cardViewable.GetCard().GetSkillPack().UseSkill(), cardViewable, StageDeck.hands, skillTarget.ToList());
     }
 }
