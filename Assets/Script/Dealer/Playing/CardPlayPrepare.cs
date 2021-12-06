@@ -9,7 +9,7 @@ public class CardPlayPrepare : MonoBehaviour
 {
     //ICardCursolEventを介してここに接続してもらう
 
-    public delegate IDealableCard selectSequence(StageDeck deck);
+    public delegate ICard selectSequence(StageDeck deck);
     public Subject<ICardPrintable> prepareSubject;
 
     private StageDeck aimingDeck;

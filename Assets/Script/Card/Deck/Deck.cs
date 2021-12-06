@@ -10,20 +10,20 @@ using UniRx;
 public class Deck
 {
     //カードを纏める所
-    public List<Card> initCards;
-    private ReactiveCollection<IDealableCard> _cards = new ReactiveCollection<IDealableCard>(new List<IDealableCard>());
+    public List<CardData> initCards;
+    private ReactiveCollection<ICard> _cards = new ReactiveCollection<ICard>(new List<ICard>());
 
     //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)
-    public List<IDealableCard> cards => _cards.ToList();
+    public List<ICard> cards => _cards.ToList();
     //ReactiveCollectionのうちIObservableだけを公開し、処理を登録できるように
-    public IObservable<CollectionReplaceEvent<IDealableCard>> ObservableReplace => _cards.ObserveReplace();
-    public IObservable<CollectionAddEvent<IDealableCard>> ObservableAdd => _cards.ObserveAdd();
-    public IObservable<CollectionRemoveEvent<IDealableCard>> ObservableRemove => _cards.ObserveRemove();
+    public IObservable<CollectionReplaceEvent<ICard>> ObservableReplace => _cards.ObserveReplace();
+    public IObservable<CollectionAddEvent<ICard>> ObservableAdd => _cards.ObserveAdd();
+    public IObservable<CollectionRemoveEvent<ICard>> ObservableRemove => _cards.ObserveRemove();
     public void InspectorInit()
     {
-        Substitution(initCards.Select(x => { return new DefaultDealableCard(x) as IDealableCard; }).ToList());
+        Substitution(initCards.Select(x => { return new DefaultCard(x) as ICard; }).ToList());
     }
-    public void Substitution(List<IDealableCard> c)
+    public void Substitution(List<ICard> c)
     {
         //代入する奴です
         foreach (var i in c.Select((Value, Index) => new { Value, Index }))
@@ -45,7 +45,7 @@ public class Deck
 
     }
 
-    public void SubstitutionCard(List<Card> c)
+    public void SubstitutionCard(List<CardData> c)
     {
         foreach (var i in c.Select((Value, Index) => new { Value, Index }))
         {
@@ -53,7 +53,7 @@ public class Deck
             {
                 _cards[i.Index].SetCard(i.Value);
             }
-            else _cards.Add(new DefaultDealableCard(i.Value) as IDealableCard);
+            else _cards.Add(new DefaultCard(i.Value) as ICard);
         }
 
         if (_cards.Count > c.Count)
@@ -66,34 +66,34 @@ public class Deck
 
     }
 
-    public void Add(IDealableCard c)
+    public void Add(ICard c)
     {
         _cards.Add(c);
     }
-    public void Add(List<IDealableCard> cs)
+    public void Add(List<ICard> cs)
     {
-        foreach (IDealableCard c in cs)
+        foreach (ICard c in cs)
         {
             _cards.Add(c);
         }
     }
 
-    public void Remove(IDealableCard c) { _cards.Remove(c); }
-    public void Remove(List<IDealableCard> cs)
+    public void Remove(ICard c) { _cards.Remove(c); }
+    public void Remove(List<ICard> cs)
     {
-        foreach (IDealableCard c in cs)
+        foreach (ICard c in cs)
         {
             _cards.Remove(c);
         };
     }
 
-    public List<IDealableCard> Draw(int n)
+    public List<ICard> Draw(int n)
     {
         if (1 <= n)
         {
             if (n <= _cards.Count)
             {
-                List<IDealableCard> returnCards = _cards.ToList().GetRange(0, n);
+                List<ICard> returnCards = _cards.ToList().GetRange(0, n);
                 for (int i = 0; i < n; i++)
                 {
                     _cards.RemoveAt(0);
@@ -102,7 +102,7 @@ public class Deck
             }
             else
             {
-                List<IDealableCard> returnCards = _cards.ToList();
+                List<ICard> returnCards = _cards.ToList();
                 _cards.Clear();
                 return returnCards;
 
@@ -111,7 +111,7 @@ public class Deck
         return null;
     }
 
-    public List<IDealableCard> DrawCheck(int i)
+    public List<ICard> DrawCheck(int i)
     {
         if (1 <= i)
         {
@@ -126,7 +126,7 @@ public class Deck
         }
         return null;
     }
-    public static List<IDealableCard> shuffle(List<IDealableCard> c)
+    public static List<ICard> shuffle(List<ICard> c)
     {
         return c.OrderBy(a => Guid.NewGuid()).ToList();
     }

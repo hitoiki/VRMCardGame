@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RawAddCard : IRawSkill
 {
-    [SerializeField] Card card;
+    [SerializeField] CardData card;
     [SerializeField] StageDeck to;
     public void GetSkillProcess(CardFacade facade)
     {
-        facade.AddCard(new DefaultDealableCard(card), to);
+        facade.AddCard(new DefaultCard(card), to);
     }
 
     public string Text()

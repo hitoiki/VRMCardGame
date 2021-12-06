@@ -26,7 +26,7 @@ public class BasicCardFactory : MonoBehaviour, ICardFactory, ICardCursolEventUse
         firstCursols = initCursol.SelectMany(x => { return x.GetComponents<ICardCursolEvent>(); }).ToList();
         if (basicCard != null) flyer = new ObjectFlyer<BasicCard>(basicCard);
     }
-    public ICardPrintable CardMake(IDealableCard card, Vector3 position)
+    public ICardPrintable CardMake(ICard card, Vector3 position)
     {
         BasicCard printedObj = flyer.GetMob(position, y =>
         {

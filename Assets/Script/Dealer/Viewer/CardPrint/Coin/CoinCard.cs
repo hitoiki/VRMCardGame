@@ -27,7 +27,7 @@ public class CoinCard : MonoBehaviour, ICardPrintable
     {
         return this.transform;
     }
-    public IDealableCard GetDealableCard()
+    public ICard GetDealableCard()
     {
         return null;
     }
@@ -39,7 +39,7 @@ public class CoinCard : MonoBehaviour, ICardPrintable
         _remove.Dispose();
     }
 
-    public void Print(IDealableCard c)
+    public void Print(ICard c)
     {
         _replace = c.GetObserveCoin().ObserveReplace().Subscribe(changeCoin =>
         {

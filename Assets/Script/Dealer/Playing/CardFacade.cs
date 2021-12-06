@@ -29,9 +29,9 @@ public class CardFacade
     //カードを引いて、適当な場所に移動
     public void DeckDraw(StageDeck from, StageDeck to, int amount)
     {
-        List<IDealableCard> drawCards = data.stage.DeckKey(from).Draw(amount);
+        List<ICard> drawCards = data.stage.DeckKey(from).Draw(amount);
         data.stage.DeckKey(to).Add(drawCards);
-        foreach (IDealableCard card in drawCards)
+        foreach (ICard card in drawCards)
         {
             //  data.skillQueue.Push(card.GetSkillPack().DrawSkill(from, to), card, null);
         }
@@ -58,9 +58,9 @@ public class CardFacade
     public void CardMove(List<SkillDealableCard> cards, StageDeck to)
     {
         /*
-        foreach (SkillDealableCard dealableCard in cards)
+        foreach (SkillDealableCard cardCard in cards)
          {
-             data.stage.DeckKey(dealableCard.deck).Remove(dealableCard);
+             data.stage.DeckKey(cardCard.deck).Remove(cardCard);
              SkillTarget decksTarget = SkillTarget.SourceOnly(targetPrint[i], targetBelongDeck[i]);
              data.skillQueue.Push(target[i].GetSkillPack().DrawSkill(targetBelongDeck[i], to, DeckMove.Exit), decksTarget);
              data.stage.DeckKey(to).Add(target[i]);
@@ -68,9 +68,9 @@ public class CardFacade
         Debug.Log("準備中");
     }
 
-    public void AddCard(IDealableCard dealable, StageDeck deck)
+    public void AddCard(ICard card, StageDeck deck)
     {
-        data.stage.DeckKey(deck).Add(dealable);
+        data.stage.DeckKey(deck).Add(card);
     }
 
 }

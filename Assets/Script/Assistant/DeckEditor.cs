@@ -7,7 +7,7 @@ public class DeckEditor : MonoBehaviour
 {
     //Deckに代入してくれます
     public Deck deck;
-    public List<Card> cards;
+    public List<CardData> cards;
     public bool alwaysCopy;
     public bool alwaysSubstitution;
     [ContextMenu("Substitution")]
@@ -18,7 +18,7 @@ public class DeckEditor : MonoBehaviour
     [ContextMenu("Copy")]
     private void Copy()
     {
-        cards = deck.cards.Select(x => { return x.GetCard(); }).ToList();
+        cards = deck.cards.Select(x => { return x.GetCardData(); }).ToList();
     }
 
     private void Update()

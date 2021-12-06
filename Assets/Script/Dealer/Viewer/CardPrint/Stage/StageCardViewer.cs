@@ -69,7 +69,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
         _Add.Dispose();
         _Remove.Dispose();
     }
-    private void DeckInit(List<IDealableCard> c)
+    private void DeckInit(List<ICard> c)
     {
         //デッキの初期化
         foreach (var i in c.Select((Value, Index) => new { Value, Index }))

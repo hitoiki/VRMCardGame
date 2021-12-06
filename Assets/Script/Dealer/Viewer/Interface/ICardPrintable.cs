@@ -4,10 +4,10 @@ using UnityEngine;
 
 public interface ICardPrintable
 {
-    void Print(IDealableCard card);
+    void Print(ICard card);
     //仮に購読していたのなら、それを解除
     void UnPrint();
     void Active(bool active);
-    IDealableCard GetDealableCard();
+    ICard GetDealableCard();
     Transform GetTransform();
 }

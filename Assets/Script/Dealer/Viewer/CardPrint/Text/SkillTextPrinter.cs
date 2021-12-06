@@ -14,11 +14,11 @@ public class SkillTextPrinter : MonoBehaviour, ICardPrintable
     [SerializeField] private Vector2 displayPoint;
     [SerializeField] private Vector2 anchorPoint;
     [SerializeField] private RectTransform position;
-    private IDealableCard c;
-    public void Print(IDealableCard card)
+    private ICard c;
+    public void Print(ICard card)
     {
         c = card;
-        SkillText.text = card.GetCard().CardText();
+        SkillText.text = card.GetCardData().CardText();
         this.position.DOAnchorPos(displayPoint, easingTime);
         this.position.DOAnchorPos(anchorPoint, easingTime).SetDelay(displayTime);
     }
@@ -34,7 +34,7 @@ public class SkillTextPrinter : MonoBehaviour, ICardPrintable
     {
         return this.transform;
     }
-    public IDealableCard GetDealableCard()
+    public ICard GetDealableCard()
     {
         return c;
     }

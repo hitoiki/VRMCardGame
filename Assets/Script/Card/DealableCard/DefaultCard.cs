@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 using System.Linq;
 
-public class DefaultDealableCard : IDealableCard
+public class DefaultCard : ICard
 {
     // デフォルトで扱うICardDealable
     // 基本的にこれらを扱うが、いつの日か別のクラスを用いる日も来るだろう
@@ -13,16 +13,16 @@ public class DefaultDealableCard : IDealableCard
     //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)
     public Dictionary<Coin, int> coins => _coins.ToDictionary(pair => pair.Key, pair => pair.Value);
 
-    private Card card;
+    private CardData card;
     //追加効果
     private SkillPack secondSkillPack;
 
-    public DefaultDealableCard(Card Card)
+    public DefaultCard(CardData Card)
     {
         this.card = Card;
     }
 
-    public Card GetCard()
+    public CardData GetCardData()
     {
         return card;
     }
@@ -39,7 +39,7 @@ public class DefaultDealableCard : IDealableCard
         return SkillPack.Concat(card.skillPack, secondSkillPack);
     }
 
-    public void SetCard(Card Card)
+    public void SetCard(CardData Card)
     {
         this.card = Card;
     }

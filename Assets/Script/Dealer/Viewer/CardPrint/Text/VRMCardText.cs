@@ -28,7 +28,7 @@ public class VRMCardText : MonoBehaviour, IGameState
     {
         _Vrm = vrm.ObservableCard().Where(x => { return x != null; }).Subscribe(x =>
             {
-                Print(x.GetCard());
+                Print(x.GetCardData());
             });
 
     }
@@ -44,7 +44,7 @@ public class VRMCardText : MonoBehaviour, IGameState
         _Vrm.Dispose();
     }
 
-    public void Print(Card card)
+    public void Print(CardData card)
     {
         SkillText.text = card.CardText();
         bar.value = 1;

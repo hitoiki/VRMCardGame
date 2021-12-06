@@ -5,15 +5,15 @@ using UnityEngine;
 public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursolEventUser
 {
     //Deckを参照する際に用いるCard
-    private IDealableCard card;
+    private ICard card;
     [SerializeField] private SpriteRenderer spriteRenderer = null;
     public List<ICardCursolEvent> cursolEvent = new List<ICardCursolEvent>();
     private bool activate;
-    public void Print(IDealableCard c)
+    public void Print(ICard c)
     {
         activate = true;
         card = c;
-        spriteRenderer.sprite = c.GetCard().iconSprite;
+        spriteRenderer.sprite = c.GetCardData().iconSprite;
     }
     public void UnPrint()
     {
@@ -29,7 +29,7 @@ public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCur
     {
         return this.transform;
     }
-    public IDealableCard GetDealableCard()
+    public ICard GetDealableCard()
     {
         return card;
     }

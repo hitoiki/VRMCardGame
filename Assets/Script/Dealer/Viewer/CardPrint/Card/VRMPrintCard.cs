@@ -8,17 +8,17 @@ using UniRx;
 public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
 {
     // VRMのカードをやる
-    private ReactiveProperty<IDealableCard> card = new ReactiveProperty<IDealableCard>();
+    private ReactiveProperty<ICard> card = new ReactiveProperty<ICard>();
     [SerializeField] private Image BackImage;
     [SerializeField] private Image FrontImage;
     [SerializeField] private Text nameText;
-    public void Print(IDealableCard card)
+    public void Print(ICard card)
     {
         this.card.Value = card;
-        nameText.text = card.GetCard().cardName;
+        nameText.text = card.GetCardData().cardName;
         //SkillText.text = card.Cardtext();
-        BackImage.sprite = card.GetCard().backSprite;
-        FrontImage.sprite = card.GetCard().frontSprite;
+        BackImage.sprite = card.GetCardData().backSprite;
+        FrontImage.sprite = card.GetCardData().frontSprite;
     }
 
     public void UnPrint()
@@ -26,7 +26,7 @@ public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
 
     }
 
-    public IReadOnlyReactiveProperty<IDealableCard> ObservableCard()
+    public IReadOnlyReactiveProperty<ICard> ObservableCard()
     {
         return card;
     }
@@ -35,7 +35,7 @@ public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
         return this.transform;
     }
 
-    public IDealableCard GetDealableCard()
+    public ICard GetDealableCard()
     {
         return card.Value;
     }

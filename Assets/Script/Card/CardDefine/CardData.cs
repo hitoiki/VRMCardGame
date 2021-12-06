@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 [CreateAssetMenu(fileName = "Data", menuName = "CardData")]
-public class Card : ScriptableObject
+public class CardData : ScriptableObject
 {
     //カードを取り扱うクラス
     //基本的にここには静的データと、呼び出される処理を書く
