@@ -7,8 +7,8 @@ public class BasicReactiveDraw : ICoinProcess
 {
     [SerializeField] private Coin ReactiveCoin;
     [SerializeField] private int threshold = 0;
-    [SerializeField] private StageDeck drawFrom;
-    [SerializeField] private StageDeck drawTo;
+    [SerializeField] private DeckType drawFrom;
+    [SerializeField] private DeckType drawTo;
     [SerializeField] private int drawAmount = 0;
     public void GetSkillProcess(CardFacade facade, Coin c, int n)
     {

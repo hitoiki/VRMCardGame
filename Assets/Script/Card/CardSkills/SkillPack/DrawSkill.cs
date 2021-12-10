@@ -13,9 +13,9 @@ public class DrawSkill
         this.drawSkill = DrawSkill;
     }
 
-    public Skill GetSkill(StageDeck from, StageDeck to, DeckMove moveMode)
+    public Skill GetSkill(IDeck from, IDeck to)
     {
-        return new Skill(drawSkill.SkillName(), effect, x => drawSkill.GetSkillProcess(x, from, to, moveMode), x => drawSkill.GetIsSkillable(x, from, to, moveMode));
+        return new Skill(drawSkill.SkillName(), effect, x => drawSkill.GetSkillProcess(x, from, to), x => drawSkill.GetIsSkillable(x, from, to));
     }
 }
 

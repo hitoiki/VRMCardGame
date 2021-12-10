@@ -1032,29 +1032,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hands:
+    deckType: 0
     initCards:
     - {fileID: 11400000, guid: 88df83a871fc673459b31694bd4ccfd7, type: 2}
     - {fileID: 11400000, guid: 948d7da96f5c62144925eb9c4f79f304, type: 2}
     - {fileID: 11400000, guid: 2205dcb07e3521640be9f7ef6b2925e2, type: 2}
   field:
+    deckType: 0
     initCards:
     - {fileID: 11400000, guid: 77928d590c4d4a14f9892cff8eba3dc6, type: 2}
     - {fileID: 11400000, guid: 948d7da96f5c62144925eb9c4f79f304, type: 2}
     - {fileID: 11400000, guid: 77928d590c4d4a14f9892cff8eba3dc6, type: 2}
     - {fileID: 11400000, guid: 88df83a871fc673459b31694bd4ccfd7, type: 2}
   disCard:
+    deckType: 0
     initCards: []
   trace:
+    deckType: 0
     initCards: []
   senter:
+    deckType: 0
     initCards:
     - {fileID: 11400000, guid: 88df83a871fc673459b31694bd4ccfd7, type: 2}
     - {fileID: 11400000, guid: 2205dcb07e3521640be9f7ef6b2925e2, type: 2}
     - {fileID: 11400000, guid: 77928d590c4d4a14f9892cff8eba3dc6, type: 2}
     - {fileID: 11400000, guid: 30db5dff41a513f4dbc3fac3a2bafb34, type: 2}
   right:
+    deckType: 0
     initCards: []
   left:
+    deckType: 0
     initCards: []
 --- !u!4 &400381650
 Transform:
@@ -2330,7 +2337,7 @@ PrefabInstance:
     - target: {fileID: 1712983332603750376, guid: 0b542224f4fb24d4babf70bc8ae56550,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1735937040064636722, guid: 0b542224f4fb24d4babf70bc8ae56550,
         type: 3}
@@ -3878,6 +3885,7 @@ MonoBehaviour:
   defaultState: GamePlay
   dealer: {fileID: 200107286}
   prepare: {fileID: 945379875}
+  stage: {fileID: 400381648}
 --- !u!4 &1459236230
 Transform:
   m_ObjectHideFlags: 0
@@ -4737,6 +4745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck:
+    deckType: 0
     initCards: []
   cards:
   - {fileID: 0}

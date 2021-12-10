@@ -5,8 +5,8 @@ using UnityEngine;
 public class RawDrawSkill : IRawSkill
 {
     [SerializeField] int getAmo = 1;
-    [SerializeField] StageDeck from;
-    [SerializeField] StageDeck to;
+    [SerializeField] DeckType from;
+    [SerializeField] DeckType to;
     public void GetSkillProcess(CardFacade facade)
     {
         facade.DeckDraw(from, to, getAmo);

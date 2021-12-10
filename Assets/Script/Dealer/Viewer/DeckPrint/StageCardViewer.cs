@@ -12,7 +12,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
     // Deckに合わせて格子状に表示していくってだけ
     [SerializeField] private GameObject initFactory;
     [SerializeField] private Stage stage;
-    [SerializeField] private StageDeck observeDeck;
+    [SerializeField] private DeckType observeDeck;
     [SerializeField] private Grid grid;
     [SerializeField] private float tweenTime;
     private ICardFactory factory;

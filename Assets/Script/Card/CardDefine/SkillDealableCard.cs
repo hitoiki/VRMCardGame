@@ -10,13 +10,13 @@ public class SkillDealableCard
     // ICardの名前を変えたい
     private ICardPrintable printable;
     private ICard card;
-    public StageDeck deck { get; }
+    private IDeck onDeck;
     private SkillQueueObject skillQueue;
-    public SkillDealableCard(ICardPrintable Printable, StageDeck Deck, SkillQueueObject QueueObject)
+    public SkillDealableCard(ICardPrintable Printable, IDeck Deck, SkillQueueObject QueueObject)
     {
         printable = Printable;
         card = printable.GetCard();
-        deck = Deck;
+        onDeck = Deck;
         skillQueue = QueueObject;
     }
     public Dictionary<Coin, int> GetCoin()
@@ -26,6 +26,10 @@ public class SkillDealableCard
     public CardData GetCard()
     {
         return card.GetCardData();
+    }
+    public DeckType GetDeckType()
+    {
+        return onDeck.GetDeckType();
     }
     public void SetCard(CardData Card)
     {
@@ -52,5 +56,12 @@ public class SkillDealableCard
     public void AddTarget(EffectLocation location)
     {
         location.AddTarget(printable);
+    }
+
+    public void MoveDeck(IDeck toDeck)
+    {
+        onDeck.Remove(card);
+        toDeck.Add(card);
+        skillQueue.Push(card.GetSkillPack().DrawSkill(onDeck, toDeck), this, null);
     }
 }

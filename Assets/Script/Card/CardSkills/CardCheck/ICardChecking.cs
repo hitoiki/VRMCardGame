@@ -6,5 +6,5 @@ using System;
 public interface ICardChecking
 {
     //対象を選ぶ時等、CardCheckerで行う処理
-    StageDeck GetDeck();
+    DeckType GetDeck();
 }

@@ -18,7 +18,7 @@ public class SelectDamege : IUseProcess
     }
     public ICardChecking PlayPrepare()
     {
-        return new SelectDeckCardChecking(StageDeck.field);
+        return new SelectDeckCardChecking(DeckType.field);
     }
     public string Text()
     {

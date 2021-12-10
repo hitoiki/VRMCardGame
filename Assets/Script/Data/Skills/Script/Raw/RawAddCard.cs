@@ -5,7 +5,7 @@ using UnityEngine;
 public class RawAddCard : IRawSkill
 {
     [SerializeField] CardData card;
-    [SerializeField] StageDeck to;
+    [SerializeField] DeckType to;
     public void GetSkillProcess(CardFacade facade)
     {
         facade.AddCard(new DefaultCard(card), to);

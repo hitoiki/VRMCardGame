@@ -9,12 +9,12 @@ public class CardPlayPrepare : MonoBehaviour
 {
     //ICardCursolEventを介してここに接続してもらう
 
-    public delegate ICard selectSequence(StageDeck deck);
+    public delegate ICard selectSequence(DeckType deck);
     public Subject<ICardPrintable> prepareSubject;
 
-    private StageDeck aimingDeck;
+    private DeckType aimingDeck;
 
-    public void CardSelect(ICardPrintable card, StageDeck deck, ContactMode mode)
+    public void CardSelect(ICardPrintable card, DeckType deck, ContactMode mode)
     {
         if (mode == ContactMode.Enter && deck == aimingDeck)
         {

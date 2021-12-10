@@ -6,12 +6,12 @@ using System;
 
 public class SelectDeckCardChecking : ICardChecking
 {
-    StageDeck stageDeck;
-    public SelectDeckCardChecking(StageDeck deck)
+    DeckType stageDeck;
+    public SelectDeckCardChecking(DeckType deck)
     {
         stageDeck = deck;
     }
-    public StageDeck GetDeck()
+    public DeckType GetDeck()
     {
         return stageDeck;
     }

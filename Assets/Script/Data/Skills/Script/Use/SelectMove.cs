@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SelectMove : IUseProcess
 {
-    [SerializeField] StageDeck from;
-    [SerializeField] StageDeck to;
+    [SerializeField] DeckType from;
+    [SerializeField] DeckType to;
     public void GetSkillProcess(CardFacade facade)
     {
-        facade.CardMove(facade.target, to);
+        facade.MoveCard(facade.source, DeckType.field);
     }
 
     public bool GetIsSkillable(CardFacade facade)

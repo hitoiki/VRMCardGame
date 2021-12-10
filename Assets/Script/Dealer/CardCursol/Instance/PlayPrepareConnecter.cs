@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayPrepareConnecter : ICardCursolEvent
 {
     [SerializeField] CardPlayPrepare cardPrepare;
-    [SerializeField] StageDeck deck;
+    [SerializeField] DeckType deck;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
         cardPrepare.CardSelect(card, deck, mode);

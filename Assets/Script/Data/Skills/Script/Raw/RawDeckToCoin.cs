@@ -6,7 +6,7 @@ public class RawDeckToCoin : IRawSkill
 {
     [SerializeField] private Coin c;
     [SerializeField] private short amount = 0;
-    [SerializeField] private StageDeck deck;
+    [SerializeField] private DeckType deck;
     public void GetSkillProcess(CardFacade facade)
     {
         foreach (SkillDealableCard card in facade.FieldDeck())

@@ -31,15 +31,15 @@ public class Stage : MonoBehaviour
         left.InspectorInit();
     }
 
-    public Deck DeckKey(StageDeck e)
+    public Deck DeckKey(DeckType e)
     {
-        if (e == StageDeck.hands) return hands;
-        if (e == StageDeck.field) return field;
-        if (e == StageDeck.discard) return disCard;
-        if (e == StageDeck.trace) return trace;
-        if (e == StageDeck.senter) return senter;
-        if (e == StageDeck.right) return right;
-        if (e == StageDeck.left) return left;
+        if (e == DeckType.hands) return hands;
+        if (e == DeckType.field) return field;
+        if (e == DeckType.discard) return disCard;
+        if (e == DeckType.trace) return trace;
+        if (e == DeckType.senter) return senter;
+        if (e == DeckType.right) return right;
+        if (e == DeckType.left) return left;
 
         return null;
 
@@ -47,7 +47,7 @@ public class Stage : MonoBehaviour
 
 }
 
-public enum StageDeck
+public enum DeckType
 {
     hands, field, discard, trace, senter, right, left
 }

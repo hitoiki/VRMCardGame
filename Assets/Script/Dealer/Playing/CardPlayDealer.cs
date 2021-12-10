@@ -98,7 +98,7 @@ public class CardPlayDealer : MonoBehaviour
             StartCoroutine("SkillExecute");
         }
     }
-    public void PrintedCardPlay(List<Skill> skills, ICardPrintable printable, StageDeck deck)
+    public void PrintedCardPlay(List<Skill> skills, ICardPrintable printable, IDeck deck)
     {
         skillQueueObject.PlayPush(skills, new SkillDealableCard(printable, deck, stage.queueObject), null);
         if (!skillQueueObject.Any())
@@ -113,7 +113,7 @@ public class CardPlayDealer : MonoBehaviour
             StartCoroutine("SkillExecute");
         }
     }
-    public void PrintedCardPlay(List<Skill> skills, ICardPrintable printable, StageDeck deck, List<(ICardPrintable, StageDeck)> targetPrintable)
+    public void PrintedCardPlay(List<Skill> skills, ICardPrintable printable, IDeck deck, List<(ICardPrintable, IDeck)> targetPrintable)
     {
         skillQueueObject.PlayPush(skills, new SkillDealableCard(printable, deck, stage.queueObject), targetPrintable.Select(x => { return new SkillDealableCard(x.Item1, x.Item2, stage.queueObject); }).ToList());
         if (!skillQueueObject.Any())

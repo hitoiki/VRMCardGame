@@ -7,9 +7,10 @@ using UniRx;
 
 #pragma warning disable 0649
 [System.Serializable]
-public class Deck
+public class Deck : IDeck
 {
     //カードを纏める所
+    public DeckType deckType;
     public List<CardData> initCards;
     private ReactiveCollection<ICard> _cards = new ReactiveCollection<ICard>(new List<ICard>());
 
@@ -22,6 +23,11 @@ public class Deck
     public void InspectorInit()
     {
         Substitution(initCards.Select(x => { return new DefaultCard(x) as ICard; }).ToList());
+    }
+
+    public DeckType GetDeckType()
+    {
+        return deckType;
     }
     public void Substitution(List<ICard> c)
     {
@@ -87,6 +93,23 @@ public class Deck
         };
     }
 
+    public List<ICard> Pick(List<ICard> cs)
+    {
+        List<ICard> returnCards = new List<ICard>();
+        foreach (ICard c in cs)
+        {
+            if (_cards.Contains(c)) continue;
+            returnCards.Add(c);
+            _cards.Remove(c);
+        }
+        return returnCards;
+    }
+
+    public bool ExistCheck(ICard c)
+    {
+        return _cards.Contains(c);
+    }
+
     public List<ICard> Draw(int n)
     {
         if (1 <= n)
@@ -126,8 +149,13 @@ public class Deck
         }
         return null;
     }
-    public static List<ICard> shuffle(List<ICard> c)
+    public static List<ICard> CardListShuffle(List<ICard> c)
     {
         return c.OrderBy(a => Guid.NewGuid()).ToList();
+    }
+
+    public void Shuffle()
+    {
+        _cards.OrderBy(a => Guid.NewGuid());
     }
 }

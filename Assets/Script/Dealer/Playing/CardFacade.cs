@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UniRx;
 
 public class CardFacade
 {
@@ -20,21 +21,20 @@ public class CardFacade
     {
         foreach (ICardPrintable c in data.fieldFactory.GetCards())
         {
-            new SkillDealableCard(c, StageDeck.field, data.stage.queueObject).ChangeCoin(data.coinToCost, source.GetCard().cost);
+            new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject).ChangeCoin(data.coinToCost, source.GetCard().cost);
         };
     }
 
-    //SkillQueueの操作を伴う操作
-
     //カードを引いて、適当な場所に移動
-    public void DeckDraw(StageDeck from, StageDeck to, int amount)
+    public void DeckDraw(DeckType from, DeckType to, int amount)
     {
         List<ICard> drawCards = data.stage.DeckKey(from).Draw(amount);
         data.stage.DeckKey(to).Add(drawCards);
         foreach (ICard card in drawCards)
         {
-            //  data.skillQueue.Push(card.GetSkillPack().DrawSkill(from, to), card, null);
+            // new SkillDealableCard(card, to, data.stage.queueObject);
         }
+        Debug.Log("DrawSkill未対応");
     }
 
     //条件を満たすカードのリストを渡す
@@ -43,9 +43,18 @@ public class CardFacade
         List<SkillDealableCard> fieldDeck = new List<SkillDealableCard>();
         foreach (ICardPrintable c in data.fieldFactory.GetCards())
         {
-            fieldDeck.Add(new SkillDealableCard(c, StageDeck.field, data.stage.queueObject));
+            fieldDeck.Add(new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject));
         };
         return fieldDeck;
+    }
+    public List<SkillDealableCard> HandsDeck()
+    {
+        List<SkillDealableCard> handDeck = new List<SkillDealableCard>();
+        foreach (ICardPrintable c in data.handFactory.GetCards())
+        {
+            handDeck.Add(new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject));
+        };
+        return handDeck;
     }
     //Playerに対する効果
     //Damege
@@ -54,23 +63,14 @@ public class CardFacade
         data.player.Damage(damage);
     }
 
-    //カードを移動させる効果
-    public void CardMove(List<SkillDealableCard> cards, StageDeck to)
-    {
-        /*
-        foreach (SkillDealableCard cardCard in cards)
-         {
-             data.stage.DeckKey(cardCard.deck).Remove(cardCard);
-             SkillTarget decksTarget = SkillTarget.SourceOnly(targetPrint[i], targetBelongDeck[i]);
-             data.skillQueue.Push(target[i].GetSkillPack().DrawSkill(targetBelongDeck[i], to, DeckMove.Exit), decksTarget);
-             data.stage.DeckKey(to).Add(target[i]);
-         }*/
-        Debug.Log("準備中");
-    }
-
-    public void AddCard(ICard card, StageDeck deck)
+    public void AddCard(ICard card, DeckType deck)
     {
         data.stage.DeckKey(deck).Add(card);
+    }
+
+    public void MoveCard(SkillDealableCard skillCard, DeckType deck)
+    {
+        skillCard.MoveDeck(data.stage.DeckKey(deck));
     }
 
 }

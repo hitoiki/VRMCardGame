@@ -8,7 +8,10 @@ public class GetCard : IUseProcess
     [SerializeField] int getAmo = 1;
     public void GetSkillProcess(CardFacade facade)
     {
-        facade.CardMove(facade.target, StageDeck.hands);
+        foreach (SkillDealableCard s in facade.target)
+        {
+            facade.MoveCard(s, DeckType.hands);
+        }
     }
     public bool GetIsSkillable(CardFacade facade)
     {
@@ -16,7 +19,7 @@ public class GetCard : IUseProcess
     }
     public ICardChecking PlayPrepare()
     {
-        return new SelectDeckCardChecking(StageDeck.field);
+        return new SelectDeckCardChecking(DeckType.field);
     }
 
     public string Text()
