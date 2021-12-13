@@ -11,12 +11,14 @@ public class SkillPack
     [SerializeField] public List<UseSkill> useSkills;
     [SerializeField] public List<CoinSkill> coinSkills;
     [SerializeField] public List<DrawSkill> drawSkills;
+    [SerializeField] public List<OtherSkill> otherSkills;
 
-    public SkillPack(List<UseSkill> UseSkills, List<CoinSkill> CoinSkills, List<DrawSkill> DrawSkills)
+    public SkillPack(List<UseSkill> UseSkills, List<CoinSkill> CoinSkills, List<DrawSkill> DrawSkills, List<OtherSkill> OtherSkills)
     {
         this.useSkills = UseSkills;
         this.coinSkills = CoinSkills;
         this.drawSkills = DrawSkills;
+        this.otherSkills = OtherSkills;
     }
     public string SkillText()
     {
@@ -33,17 +35,17 @@ public class SkillPack
 
     public List<Skill> UseSkill()
     {
-        return useSkills.Select(y => { return y.GetSkill(); }).Where(x => { return x != null; }).ToList();
+        return useSkills.Select(y => { return y.GetSkill(); }).Where(x => { return x != null; })?.ToList();
     }
 
     public List<Skill> CoinSkill(Coin coin, int n)
     {
-        return coinSkills.Select(y => { return y.GetSkill(coin, n); }).Where(x => { return x != null; }).ToList();
+        return coinSkills.Select(y => { return y.GetSkill(coin, n); }).Where(x => { return x != null; })?.ToList();
     }
 
     public List<Skill> DrawSkill(IDeck from, IDeck to)
     {
-        return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; }).ToList();
+        return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; })?.ToList();
     }
 
     public bool IsPlayable(CardFacade facade)
@@ -63,7 +65,9 @@ public class SkillPack
         if (y == null) return x;
         return new SkillPack(x.useSkills.Concat(y.useSkills).ToList(),
         x.coinSkills.Concat(y.coinSkills).ToList(),
-        x.drawSkills.Concat(y.drawSkills).ToList());
+        x.drawSkills.Concat(y.drawSkills).ToList(),
+        x.otherSkills.Concat(y.otherSkills).ToList()
+        );
     }
 
 
