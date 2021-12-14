@@ -8,10 +8,10 @@ public class SkillPack
 {
     //Skillを纏めるクラス
 
-    [SerializeField] public List<UseSkill> useSkills;
-    [SerializeField] public List<CoinSkill> coinSkills;
-    [SerializeField] public List<DrawSkill> drawSkills;
-    [SerializeField] public List<OtherSkill> otherSkills;
+    [SerializeField] private List<UseSkill> useSkills;
+    [SerializeField] private List<CoinSkill> coinSkills;
+    [SerializeField] private List<DrawSkill> drawSkills;
+    [SerializeField] private List<OtherSkill> otherSkills;
 
     public SkillPack(List<UseSkill> UseSkills, List<CoinSkill> CoinSkills, List<DrawSkill> DrawSkills, List<OtherSkill> OtherSkills)
     {

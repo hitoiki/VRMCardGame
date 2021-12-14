@@ -11,8 +11,6 @@ public interface ICard
     IReadOnlyReactiveDictionary<Coin, int> GetObserveCoin();
     //これはCardの効果ではなく、Cardと追加効果を合わせたものを返す
     SkillPack GetSkillPack();
-
-    void SetCard(CardData card);
     void SetSecondSkillPack(SkillPack packSet);
     void AddSecondSkillPack(SkillPack packSet);
     void ChangeCoin(Coin c, int n);

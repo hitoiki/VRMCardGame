@@ -24,7 +24,7 @@ public class CardPlayChecker : MonoBehaviour
         else
         {
             Debug.Log("Check,UnSelect");
-            dealer.PrintedCardPlay(checkSkillPack.UseSkill(), cardViewable, stage.DeckKey(DeckType.field));
+            dealer.PrintedCardPlay(checkSkillPack.UseSkill(), cardViewable, stage.DeckKey(DeckType.hands));
         }
     }
     private IEnumerator SkillPrepare(ICardPrintable cardViewable)

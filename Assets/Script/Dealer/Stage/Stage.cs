@@ -22,13 +22,13 @@ public class Stage : MonoBehaviour
 
     private void Start()
     {
-        hands.InspectorInit();
-        field.InspectorInit();
-        disCard.InspectorInit();
-        trace.InspectorInit();
-        senter.InspectorInit();
-        right.InspectorInit();
-        left.InspectorInit();
+        hands.InspectorInit(DeckType.hands);
+        field.InspectorInit(DeckType.field);
+        disCard.InspectorInit(DeckType.discard);
+        trace.InspectorInit(DeckType.trace);
+        senter.InspectorInit(DeckType.senter);
+        right.InspectorInit(DeckType.right);
+        left.InspectorInit(DeckType.left);
     }
 
     public Deck DeckKey(DeckType e)

@@ -21,7 +21,7 @@ public class CardFacade
     {
         foreach (ICardPrintable c in data.fieldFactory.GetCards())
         {
-            new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject).ChangeCoin(data.coinToCost, source.GetCard().cost);
+            new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject).ChangeCoin(data.coinToCost, source.GetCardData().cost);
         };
     }
 

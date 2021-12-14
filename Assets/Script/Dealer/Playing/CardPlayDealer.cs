@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 public class CardPlayDealer : MonoBehaviour
 {
-    //CardSkillをStackに入れて順次実行するクラス
+    //Skill,EffectをStackに入れて順次実行するクラス
 
     /*いつか使いそうなのでコメントアウト
     [SerializeField] private StateDealer state;
@@ -19,7 +19,7 @@ public class CardPlayDealer : MonoBehaviour
     private int SkillCount;
     private bool isExecuting = false;
 
-    //SkillをQueueでまとめて、それを処理するコルーチンをObservable化したEffectで回す
+    //SkillをQueueでまとめて、それを処理するコルーチンをObservable化したSkillで回す
     private IEnumerator SkillExecute()
     {
         isExecuting = true;

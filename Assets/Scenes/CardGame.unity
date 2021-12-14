@@ -1032,36 +1032,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hands:
-    deckType: 0
     initCards:
-    - {fileID: 11400000, guid: 88df83a871fc673459b31694bd4ccfd7, type: 2}
-    - {fileID: 11400000, guid: 948d7da96f5c62144925eb9c4f79f304, type: 2}
-    - {fileID: 11400000, guid: 2205dcb07e3521640be9f7ef6b2925e2, type: 2}
+    - {fileID: 11400000, guid: 9147dc4225d67e4429f931de71f68e90, type: 2}
+    - {fileID: 11400000, guid: 9147dc4225d67e4429f931de71f68e90, type: 2}
   field:
-    deckType: 0
-    initCards:
-    - {fileID: 11400000, guid: 77928d590c4d4a14f9892cff8eba3dc6, type: 2}
-    - {fileID: 11400000, guid: 948d7da96f5c62144925eb9c4f79f304, type: 2}
-    - {fileID: 11400000, guid: 77928d590c4d4a14f9892cff8eba3dc6, type: 2}
-    - {fileID: 11400000, guid: 88df83a871fc673459b31694bd4ccfd7, type: 2}
+    initCards: []
   disCard:
-    deckType: 0
     initCards: []
   trace:
-    deckType: 0
     initCards: []
   senter:
-    deckType: 0
     initCards:
     - {fileID: 11400000, guid: 88df83a871fc673459b31694bd4ccfd7, type: 2}
     - {fileID: 11400000, guid: 2205dcb07e3521640be9f7ef6b2925e2, type: 2}
-    - {fileID: 11400000, guid: 77928d590c4d4a14f9892cff8eba3dc6, type: 2}
+    - {fileID: 0}
     - {fileID: 11400000, guid: 30db5dff41a513f4dbc3fac3a2bafb34, type: 2}
   right:
-    deckType: 0
     initCards: []
   left:
-    deckType: 0
     initCards: []
 --- !u!4 &400381650
 Transform:
@@ -3175,6 +3163,7 @@ MonoBehaviour:
     useSkills: []
     coinSkills: []
     drawSkills: []
+    otherSkills: []
   initHP: 10
   flag:
     value: 0
@@ -4745,7 +4734,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck:
-    deckType: 0
     initCards: []
   cards:
   - {fileID: 0}

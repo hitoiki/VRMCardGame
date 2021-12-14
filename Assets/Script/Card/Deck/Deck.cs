@@ -10,7 +10,7 @@ using UniRx;
 public class Deck : IDeck
 {
     //カードを纏める所
-    public DeckType deckType;
+    public DeckType deckType { get; private set; }
     public List<CardData> initCards;
     private ReactiveCollection<ICard> _cards = new ReactiveCollection<ICard>(new List<ICard>());
 
@@ -20,8 +20,9 @@ public class Deck : IDeck
     public IObservable<CollectionReplaceEvent<ICard>> ObservableReplace => _cards.ObserveReplace();
     public IObservable<CollectionAddEvent<ICard>> ObservableAdd => _cards.ObserveAdd();
     public IObservable<CollectionRemoveEvent<ICard>> ObservableRemove => _cards.ObserveRemove();
-    public void InspectorInit()
+    public void InspectorInit(DeckType type)
     {
+        deckType = type;
         Substitution(initCards.Select(x => { return new DefaultCard(x) as ICard; }).ToList());
     }
 
@@ -57,7 +58,7 @@ public class Deck : IDeck
         {
             if (i.Index < _cards.Count)
             {
-                _cards[i.Index].SetCard(i.Value);
+                _cards[i.Index] = new DefaultCard(i.Value) as ICard;
             }
             else _cards.Add(new DefaultCard(i.Value) as ICard);
         }
