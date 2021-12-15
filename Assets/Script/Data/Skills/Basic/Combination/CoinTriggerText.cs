@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#pragma warning disable 0649
+using System;
+using UniRx;
+
 [System.Serializable]
 public class CoinTriggerText : ICoinProcess
 {
@@ -9,13 +11,14 @@ public class CoinTriggerText : ICoinProcess
     [SerializeField] private int threshold = 0;
     [SerializeReference, SubclassSelector] private IUseProcess useText;
 
-    public void GetSkillProcess(CardFacade facade, Coin c, int n)
+    public IObservable<Unit> GetSkillProcess(CardFacade facade, Coin c, int n)
     {
         if (facade.source.GetCoin()[ReactiveCoin] >= threshold)
         {
             useText.GetSkillProcess(facade);
             facade.source.ChangeCoin(c, -threshold);
         }
+        return Observable.Empty<Unit>();
     }
 
 

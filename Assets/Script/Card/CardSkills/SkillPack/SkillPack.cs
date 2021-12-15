@@ -53,12 +53,6 @@ public class SkillPack
         return useSkills.Aggregate(true, (b, skill) => { return b && skill.useSkill.GetIsSkillable(facade); });
     }
 
-    public List<ICardChecking> PlayPrepare()
-    {
-        return useSkills.Select(y => { return y.useSkill.PlayPrepare(); }).ToList();
-    }
-
-
     public static SkillPack Concat(SkillPack x, SkillPack y)
     {
         if (x == null) return y;

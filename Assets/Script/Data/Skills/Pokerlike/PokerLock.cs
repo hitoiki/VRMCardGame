@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using UniRx;
 
 public class PokerLock : IUseProcess
 {
@@ -9,13 +11,14 @@ public class PokerLock : IUseProcess
     // 使用可能条件がSkill単位で個別である事に注意
     [SerializeField] List<Suit> suitTrick;
     [SerializeReference, SubclassSelector] public IRawSkill skill;
-    public void GetSkillProcess(CardFacade facade)
+    public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         Debug.Log(facade.source.onDeck.GetDeckType());
         skill.GetSkillProcess(facade);
         //使った後捨てる処理とかまだないのでここで書く
         facade.MoveCard(facade.source, DeckType.field);
         Debug.Log(facade.source.onDeck.GetDeckType());
+        return Observable.Empty<Unit>();
     }
     public bool GetIsSkillable(CardFacade facade)
     {
@@ -27,11 +30,6 @@ public class PokerLock : IUseProcess
         }
         return true;
     }
-    public ICardChecking PlayPrepare()
-    {
-        return null;
-    }
-
     public string Text()
     {
         return skill.Text();

@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UniRx;
 
 public class UseRawSkill : IUseProcess
 {
     [SerializeReference, SubclassSelector] public IRawSkill skill;
-    public void GetSkillProcess(CardFacade facade)
+    public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         skill.GetSkillProcess(facade);
+        return Observable.Empty<Unit>();
     }
     public bool GetIsSkillable(CardFacade facade)
     {
         return true;
     }
-    public ICardChecking PlayPrepare()
-    {
-        return null;
-    }
-
     public string Text()
     {
         return skill.Text();

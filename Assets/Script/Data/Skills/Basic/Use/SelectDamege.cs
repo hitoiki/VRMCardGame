@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UniRx;
 [System.Serializable]
 public class SelectDamege : IUseProcess
 {
     [SerializeField] private Coin c;
     [SerializeField] private short damegeAmo;
-    public void GetSkillProcess(CardFacade facade)
+    public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
-
         facade.target[0].ChangeCoin(c, damegeAmo);
+        return Observable.Empty<Unit>();
     }
 
     public bool GetIsSkillable(CardFacade facade)

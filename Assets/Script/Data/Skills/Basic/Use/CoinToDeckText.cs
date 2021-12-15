@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#pragma warning disable 0649
+using System;
+using UniRx;
 //ここに効果を書き続ける
 
 [System.Serializable]
@@ -11,7 +12,7 @@ public class CoinToDeckText : IUseProcess
     [SerializeField] private Coin c;
     [SerializeField] private short amount = 0;
     [SerializeField] private DeckType deck;
-    public void GetSkillProcess(CardFacade facade)
+    public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
 
         foreach (SkillDealableCard card in facade.FieldDeck())
@@ -19,18 +20,12 @@ public class CoinToDeckText : IUseProcess
             card.ChangeCoin(c, amount);
         }
         Debug.Log("CoinToDeck");
+        return Observable.Empty<Unit>();
     }
-
     public bool GetIsSkillable(CardFacade facade)
     {
         return true;
     }
-
-    public ICardChecking PlayPrepare()
-    {
-        return null;
-    }
-
     public string Text()
     {
         return StageDeckMethod.ToCardText(deck) + "の全てのカードに" + c.name + "を" + amount.ToString() + "枚与える。";

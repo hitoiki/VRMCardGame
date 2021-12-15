@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#pragma warning disable 0649
+using System;
+using UniRx;
+
 [System.Serializable]
 public class BasicReactiveDraw : ICoinProcess
 {
@@ -10,13 +12,14 @@ public class BasicReactiveDraw : ICoinProcess
     [SerializeField] private DeckType drawFrom;
     [SerializeField] private DeckType drawTo;
     [SerializeField] private int drawAmount = 0;
-    public void GetSkillProcess(CardFacade facade, Coin c, int n)
+    public IObservable<Unit> GetSkillProcess(CardFacade facade, Coin c, int n)
     {
         if (facade.source.GetCoin().ContainsKey(ReactiveCoin) && facade.source.GetCoin()[ReactiveCoin] >= threshold)
         {
             facade.DeckDraw(drawFrom, drawTo, drawAmount);
             facade.source.ChangeCoin(ReactiveCoin, -threshold);
         }
+        return Observable.Empty<Unit>();
     }
 
 

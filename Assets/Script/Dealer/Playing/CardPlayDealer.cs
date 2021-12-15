@@ -73,7 +73,8 @@ public class CardPlayDealer : MonoBehaviour
             }
             //Skillを実行
             Debug.Log(runningSkill.skill.name + ":Skill");
-            runningSkill.skill.process(skillFacade);
+            IObservable<Unit> skillEvent = runningSkill.skill.process(skillFacade);
+            yield return skillEvent.ToYieldInstruction();
 
         }
 

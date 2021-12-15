@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UniRx;
 
 [System.Serializable]
 public class UseSkill
@@ -18,5 +20,5 @@ public class UseSkill
         return new Skill(useSkill.SkillName(), effect, useSkill.GetSkillProcess, useSkill.GetIsSkillable) + costPay;
     }
     //使用時のコスト支払い
-    public static Skill costPay = new Skill("withCost", new ISkillEffect[0], (x) => { x.CostPay(); }, x => { return true; });
+    public static Skill costPay = new Skill("withCost", new ISkillEffect[0], (x) => { x.CostPay(); return Observable.Empty<Unit>(); }, x => { return true; });
 }

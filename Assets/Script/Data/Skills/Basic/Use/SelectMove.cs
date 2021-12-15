@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UniRx;
 
 public class SelectMove : IUseProcess
 {
     [SerializeField] DeckType from;
     [SerializeField] DeckType to;
-    public void GetSkillProcess(CardFacade facade)
+    public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         facade.MoveCard(facade.source, DeckType.field);
+        return Observable.Empty<Unit>();
     }
 
     public bool GetIsSkillable(CardFacade facade)
