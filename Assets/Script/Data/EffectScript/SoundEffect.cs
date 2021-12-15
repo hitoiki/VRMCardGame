@@ -9,9 +9,9 @@ using System;
 
 public class SoundEffect : ISkillEffect
 {
-    [SerializeField] ObjectAddress memo;
+    [SerializeField] SkillUsingObjectAddress memo;
     [SerializeField] AudioClip audioClip;
-    public IObservable<Unit> Effect(ICardPrintable source, List<ICardPrintable> target)
+    public IObservable<Unit> Effect(EffectLocation location)
     {
         memo.source.clip = audioClip;
         memo.source.Play();

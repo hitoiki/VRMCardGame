@@ -16,11 +16,11 @@ public class RawDrawSkill : IRawSkill
     }
     public string Text()
     {
-        return StageDeckMethod.ToCardText(from) + "のカードを古い方から" + getAmo.ToString() + "枚" + StageDeckMethod.ToCardText(to) + "に加える。";
+        return DeckTypeMethod.ToCardText(from) + "のカードを古い方から" + getAmo.ToString() + "枚" + DeckTypeMethod.ToCardText(to) + "に加える。";
     }
 
     public string SkillName()
     {
-        return "Drawfrom" + StageDeckMethod.ToCardText(from) + "to" + StageDeckMethod.ToCardText(to);
+        return "Drawfrom" + DeckTypeMethod.ToCardText(from) + "to" + DeckTypeMethod.ToCardText(to);
     }
 }

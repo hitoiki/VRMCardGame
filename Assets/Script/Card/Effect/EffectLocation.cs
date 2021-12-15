@@ -7,19 +7,12 @@ using System.Linq;
 
 public class EffectLocation
 {
-    private ICardPrintable source;
-    private List<ICardPrintable> target = new List<ICardPrintable>();
-    public EffectLocation(ICardPrintable Source, List<ICardPrintable> Target)
+    public ICardPrintable source;
+    public List<ICardPrintable> target = new List<ICardPrintable>();
+    public EffectLocation(ICardPrintable Source)
     {
         this.source = Source;
-        if (Target != null) this.target = Target;
     }
-
-    public IObservable<Unit> Effect(ISkillEffect effect)
-    {
-        return effect.Effect(source, target);
-    }
-
     public void AddTarget(ICardPrintable printable)
     {
         this.target.Add(printable);

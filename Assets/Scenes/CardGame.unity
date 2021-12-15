@@ -1033,20 +1033,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hands:
     initCards:
-    - {fileID: 11400000, guid: 9147dc4225d67e4429f931de71f68e90, type: 2}
-    - {fileID: 11400000, guid: 9147dc4225d67e4429f931de71f68e90, type: 2}
+    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
+    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
+    - {fileID: 11400000, guid: a675f2769801cfc4494c20c9eba1abd4, type: 2}
   field:
-    initCards: []
+    initCards:
+    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
   disCard:
     initCards: []
   trace:
     initCards: []
   senter:
-    initCards:
-    - {fileID: 11400000, guid: 88df83a871fc673459b31694bd4ccfd7, type: 2}
-    - {fileID: 11400000, guid: 2205dcb07e3521640be9f7ef6b2925e2, type: 2}
-    - {fileID: 0}
-    - {fileID: 11400000, guid: 30db5dff41a513f4dbc3fac3a2bafb34, type: 2}
+    initCards: []
   right:
     initCards: []
   left:
@@ -1446,6 +1444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   address: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
   audioSource: {fileID: 4483027039190381202}
+  selector: {fileID: 945379875}
 --- !u!4 &578801270
 Transform:
   m_ObjectHideFlags: 0
@@ -2278,7 +2277,7 @@ GameObject:
   - component: {fileID: 945379876}
   - component: {fileID: 945379875}
   m_Layer: 0
-  m_Name: PlayPrepare
+  m_Name: CardSelector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2293,9 +2292,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 945379874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d357cd1a5e66d945a0830e6a7672533, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c41c6bf480f7ef448a72796e488434f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: {fileID: 2140630055}
+  selectingState: CardSelect
+  playingState: GamePlay
+  stage: {fileID: 400381648}
 --- !u!4 &945379876
 Transform:
   m_ObjectHideFlags: 0
@@ -3279,7 +3282,7 @@ MonoBehaviour:
     00000001:
       type: {class: PlayPrepareConnecter, ns: , asm: Assembly-CSharp}
       data:
-        cardPrepare: {fileID: 945379875}
+        selector: {fileID: 945379875}
         deck: 0
 --- !u!114 &1260247258
 MonoBehaviour:
@@ -3307,7 +3310,7 @@ MonoBehaviour:
     00000001:
       type: {class: PlayPrepareConnecter, ns: , asm: Assembly-CSharp}
       data:
-        cardPrepare: {fileID: 945379875}
+        selector: {fileID: 945379875}
         deck: 1
 --- !u!1 &1301694188
 GameObject:
@@ -3869,11 +3872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33042d23009b6bc4e9b73ee6d47fe72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: {fileID: 2140630055}
-  selectingState: CardSelect
-  defaultState: GamePlay
   dealer: {fileID: 200107286}
-  prepare: {fileID: 945379875}
   stage: {fileID: 400381648}
 --- !u!4 &1459236230
 Transform:

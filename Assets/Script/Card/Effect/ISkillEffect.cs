@@ -9,7 +9,7 @@ public interface ISkillEffect
 {
     // Skillによって生じるエフェクト効果を書くinterFace
     // IObservableのOnCompleteを監視して、Card処理が進行する
-    IObservable<Unit> Effect(ICardPrintable Source, List<ICardPrintable> Target);
+    IObservable<Unit> Effect(EffectLocation location);
 
     //外部から止める用のメソッド
     void Pause();

@@ -13,11 +13,9 @@ public class PokerLock : IUseProcess
     [SerializeReference, SubclassSelector] public IRawSkill skill;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
-        Debug.Log(facade.source.onDeck.GetDeckType());
         skill.GetSkillProcess(facade);
         //使った後捨てる処理とかまだないのでここで書く
         facade.MoveCard(facade.source, DeckType.field);
-        Debug.Log(facade.source.onDeck.GetDeckType());
         return Observable.Empty<Unit>();
     }
     public bool GetIsSkillable(CardFacade facade)

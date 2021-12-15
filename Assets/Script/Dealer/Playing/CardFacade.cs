@@ -10,12 +10,15 @@ public class CardFacade
     //SkillDealableの実装に伴い、主にカードの提供、ドロー処理を行うように
     FacadeData data;
     public SkillDealableCard source;
-    public List<SkillDealableCard> target = new List<SkillDealableCard>();
-    public CardFacade(FacadeData Data, SkillDealableCard Source, List<SkillDealableCard> Target)
+    public CardFacade(FacadeData Data, SkillDealableCard Source)
     {
         this.data = Data;
         this.source = Source;
-        this.target = Target;
+    }
+    //あんま良くない気がするけど暫定これで
+    public CardFacade NewFacade(SkillDealableCard newSource)
+    {
+        return new CardFacade(data, newSource);
     }
     public virtual void CostPay()
     {

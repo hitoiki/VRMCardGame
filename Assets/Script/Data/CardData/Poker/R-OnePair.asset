@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
+  m_Name: R-OnePair
+  m_EditorClassIdentifier: 
+  cardName: R-OnePair
+  suit: 0
+  cost: 0
+  flavorText: 
+  frontSprite: {fileID: 21300000, guid: ecc42eae08288a7488775924aa3d517b, type: 3}
+  backSprite: {fileID: 21300000, guid: 72f6fe411b1c9dc458db84958f30a375, type: 3}
+  iconSprite: {fileID: 21300000, guid: 792a681157a357b4c8bb467d604ea51c, type: 3}
+  skillPack:
+    useSkills:
+    - useSkill:
+        id: 0
+      effect: []
+    coinSkills: []
+    drawSkills: []
+    otherSkills: []
+  references:
+    version: 1
+    00000000:
+      type: {class: PokerLock, ns: , asm: Assembly-CSharp}
+      data:
+        suitTrick: 0000000000000000
+        skill:
+          id: 1
+    00000001:
+      type: {class: RawPlayerDamage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 1

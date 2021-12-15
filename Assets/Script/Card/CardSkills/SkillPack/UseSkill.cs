@@ -17,8 +17,6 @@ public class UseSkill
 
     public Skill GetSkill()
     {
-        return new Skill(useSkill.SkillName(), effect, useSkill.GetSkillProcess, useSkill.GetIsSkillable) + costPay;
+        return new Skill(useSkill.SkillName(), effect, useSkill.GetSkillProcess, useSkill.GetIsSkillable);
     }
-    //使用時のコスト支払い
-    public static Skill costPay = new Skill("withCost", new ISkillEffect[0], (x) => { x.CostPay(); return Observable.Empty<Unit>(); }, x => { return true; });
 }

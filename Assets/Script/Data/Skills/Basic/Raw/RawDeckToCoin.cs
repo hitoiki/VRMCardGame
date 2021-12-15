@@ -20,12 +20,12 @@ public class RawDeckToCoin : IRawSkill
 
     public string Text()
     {
-        return StageDeckMethod.ToCardText(deck) + "の全てのカードに" + c.name + "を" + amount.ToString() + "枚与える。";
+        return DeckTypeMethod.ToCardText(deck) + "の全てのカードに" + c.name + "を" + amount.ToString() + "枚与える。";
     }
 
     public string SkillName()
     {
-        return "DeckToCoin(" + StageDeckMethod.ToCardText(deck) + "," + c.coinName + "," + amount.ToString() + ")";
+        return "DeckToCoin(" + DeckTypeMethod.ToCardText(deck) + "," + c.coinName + "," + amount.ToString() + ")";
     }
 }
 

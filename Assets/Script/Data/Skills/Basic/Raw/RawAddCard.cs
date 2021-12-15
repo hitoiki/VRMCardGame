@@ -16,11 +16,11 @@ public class RawAddCard : IRawSkill
 
     public string Text()
     {
-        return StageDeckMethod.ToCardText(to) + "に" + card.cardName + "を加える。";
+        return DeckTypeMethod.ToCardText(to) + "に" + card.cardName + "を加える。";
     }
 
     public string SkillName()
     {
-        return "AddCard:" + StageDeckMethod.ToCardText(to) + "," + card.cardName;
+        return "AddCard:" + DeckTypeMethod.ToCardText(to) + "," + card.cardName;
     }
 }

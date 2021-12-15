@@ -28,8 +28,8 @@ public class CardPlayDealer : MonoBehaviour
         {
 
             //SkillをQueueから取り出し
-            (Skill skill, SkillDealableCard source, List<SkillDealableCard> target) runningSkill = skillQueueObject.Dequeue();
-            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.source, runningSkill.target);
+            (Skill skill, SkillDealableCard source) runningSkill = skillQueueObject.Dequeue();
+            CardFacade skillFacade = new CardFacade(facadeData, runningSkill.source);
             //発動可能なら実行
             if (!runningSkill.skill.isSkillable(skillFacade))
             {
@@ -43,15 +43,6 @@ public class CardPlayDealer : MonoBehaviour
                 Debug.Log("OverFlow!!!!");
                 break;
             }
-            //Effectを発動する場所の定義
-            EffectLocation location = runningSkill.source.GetEffectTarget();
-            if (runningSkill.target != null && runningSkill.target.Any())
-            {
-                foreach (SkillDealableCard skill in runningSkill.target)
-                {
-                    skill.AddTarget(location);
-                }
-            }
             //Effectを実行して、終わるまで待機
             List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
             Debug.Log(runningSkill.skill.name + ":Effect");
@@ -61,7 +52,7 @@ public class CardPlayDealer : MonoBehaviour
                 foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
                 {
                     linker.effects.Add(e);
-                    effectEvents.Add(location.Effect(e));
+                    effectEvents.Add(runningSkill.source.EffectBoot(e));
 
                 }
                 yield return Observable.WhenAll(effectEvents).First().ToYieldInstruction();
@@ -84,9 +75,9 @@ public class CardPlayDealer : MonoBehaviour
         // state.ChangeState(defaultState);
     }
 
-    public void CardPlay(List<Skill> skills, SkillDealableCard source, List<SkillDealableCard> target)
+    public void CardPlay(List<Skill> skills, SkillDealableCard source)
     {
-        skillQueueObject.PlayPush(skills, source, target);
+        skillQueueObject.PlayPush(skills, source);
         if (!skillQueueObject.Any())
         {
             Debug.Log("nulled");
@@ -101,22 +92,7 @@ public class CardPlayDealer : MonoBehaviour
     }
     public void PrintedCardPlay(List<Skill> skills, ICardPrintable printable, IDeck deck)
     {
-        skillQueueObject.PlayPush(skills, new SkillDealableCard(printable, deck, stage.queueObject), null);
-        if (!skillQueueObject.Any())
-        {
-            Debug.Log("nulled");
-            return;
-        }
-        if (!isExecuting)
-        {
-            //  state.ChangeState(skillingState);
-            Debug.Log("SkillingState");
-            StartCoroutine("SkillExecute");
-        }
-    }
-    public void PrintedCardPlay(List<Skill> skills, ICardPrintable printable, IDeck deck, List<(ICardPrintable, IDeck)> targetPrintable)
-    {
-        skillQueueObject.PlayPush(skills, new SkillDealableCard(printable, deck, stage.queueObject), targetPrintable.Select(x => { return new SkillDealableCard(x.Item1, x.Item2, stage.queueObject); }).ToList());
+        skillQueueObject.PlayPush(skills, new SkillDealableCard(printable, deck, stage.queueObject));
         if (!skillQueueObject.Any())
         {
             Debug.Log("nulled");

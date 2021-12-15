@@ -15,9 +15,9 @@ public class ParticleEffect : ISkillEffect
     private GameObject effectObj;
     private ParticleSystem effectParticle;
 
-    public IObservable<Unit> Effect(ICardPrintable source, List<ICardPrintable> target)
+    public IObservable<Unit> Effect(EffectLocation location)
     {
-        effectObj = GameObject.Instantiate(initParticle.gameObject, source.GetTransform().position + Vector3.back, Quaternion.identity);
+        effectObj = GameObject.Instantiate(initParticle.gameObject, location.source.GetTransform().position + Vector3.back, Quaternion.identity);
         effectParticle = effectObj.GetComponent<ParticleSystem>();
         tween = DOVirtual.DelayedCall(tweenTime, () => { effectParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting); Transform.Destroy(effectObj.gameObject); });
         effectParticle.Play();

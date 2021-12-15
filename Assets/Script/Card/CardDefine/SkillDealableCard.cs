@@ -38,16 +38,11 @@ public class SkillDealableCard
     public void ChangeCoin(Coin c, int n)
     {
         card.ChangeCoin(c, n);
-        skillQueue.Push(card.GetSkillPack().CoinSkill(c, n), this, null);
+        skillQueue.Push(card.GetSkillPack().CoinSkill(c, n), this);
     }
-    public EffectLocation GetEffectTarget()
+    public IObservable<Unit> EffectBoot(ISkillEffect effect)
     {
-        return new EffectLocation(printable, null);
-    }
-
-    public void AddTarget(EffectLocation location)
-    {
-        location.AddTarget(printable);
+        return effect.Effect(new EffectLocation(printable));
     }
 
     public void MoveDeck(IDeck toDeck)
@@ -55,6 +50,6 @@ public class SkillDealableCard
         onDeck.Remove(card);
         toDeck.Add(card);
         //Effect用の対象は現在代入されていない
-        skillQueue.Push(card.GetSkillPack().DrawSkill(onDeck, toDeck), this, null);
+        skillQueue.Push(card.GetSkillPack().DrawSkill(onDeck, toDeck), this);
     }
 }
