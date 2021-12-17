@@ -4,10 +4,12 @@ using UnityEngine;
 using System;
 using UniRx;
 
-public class UseRawSkill : IUseProcess
+public class DrawRawSkill : IDrawProcess
 {
     [SerializeReference, SubclassSelector] public IRawSkill skill;
-    public IObservable<Unit> GetSkillProcess(CardFacade facade)
+    [SerializeField] private DeckType fromDeck;
+    [SerializeField] private DeckType toDeck;
+    public IObservable<Unit> GetSkillProcess(CardFacade facade, IDeck from, IDeck to)
     {
         return Observable.Defer<Unit>(() =>
         {
@@ -15,13 +17,13 @@ public class UseRawSkill : IUseProcess
             return skillObservable;
         });
     }
-    public bool GetIsSkillable(CardFacade facade)
+    public bool GetIsSkillable(CardFacade facade, IDeck from, IDeck to)
     {
-        return true;
+        return from.GetDeckType() == fromDeck && to.GetDeckType() == toDeck;
     }
     public string Text()
     {
-        return "このカードは" + skill.Text();
+        return "このカードが" + skill.Text();
     }
 
     public string SkillName()
@@ -29,3 +31,4 @@ public class UseRawSkill : IUseProcess
         return "Use" + skill.SkillName();
     }
 }
+

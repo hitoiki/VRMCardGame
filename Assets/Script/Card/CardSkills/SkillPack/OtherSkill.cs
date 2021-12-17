@@ -8,18 +8,16 @@ public class OtherSkill : MonoBehaviour
     //SkillTimingごとに違った対応をするのはSkillの意味の把握を困難にする
     //ので、IRawSkillベースで作る
     [SerializeReference, SubclassSelector] public IRawSkill rawSkill;
-    [SerializeReference, SubclassSelector] public ISkillEffect[] effect;
     [SerializeField] public OtherSKillTiming timing;
 
-    public OtherSkill(IRawSkill RawSkill, ISkillEffect[] Effect)
+    public OtherSkill(IRawSkill RawSkill, OtherSKillTiming timing)
     {
-        this.effect = Effect;
         this.rawSkill = RawSkill;
     }
 
     public Skill GetSkill(OtherSKillTiming Timing)
     {
-        if (timing == Timing) return new Skill(rawSkill.SkillName(), effect, x => rawSkill.GetSkillProcess(x), x => true);
+        if (timing == Timing) return new Skill(rawSkill.SkillName(), x => rawSkill.GetSkillProcess(x), x => true);
         else return null;
     }
 }

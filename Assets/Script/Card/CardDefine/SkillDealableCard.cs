@@ -10,7 +10,7 @@ public class SkillDealableCard
     // ICardの名前を変えたい
     private ICardPrintable printable;
     private ICard card;
-    public IDeck onDeck { get; }
+    public IDeck onDeck { get; private set; }
     private SkillQueueObject skillQueue;
     public SkillDealableCard(ICardPrintable Printable, IDeck Deck, SkillQueueObject QueueObject)
     {
@@ -47,9 +47,9 @@ public class SkillDealableCard
 
     public void MoveDeck(IDeck toDeck)
     {
+        skillQueue.Push(card.GetSkillPack().DrawSkill(onDeck, toDeck), this);
         onDeck.Remove(card);
         toDeck.Add(card);
-        //Effect用の対象は現在代入されていない
-        skillQueue.Push(card.GetSkillPack().DrawSkill(onDeck, toDeck), this);
+        onDeck = toDeck;
     }
 }

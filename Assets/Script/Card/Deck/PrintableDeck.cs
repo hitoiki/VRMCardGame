@@ -12,9 +12,9 @@ public class PrintableDeck
     Vector3 origin = Vector3.zero;
 
     //購読通知用
-    private Subject<CollectionReplaceEvent<ICardPrintable>> subjectReplace = new Subject<CollectionReplaceEvent<ICardPrintable>>();
-    private Subject<CollectionAddEvent<ICardPrintable>> subjectAdd = new Subject<CollectionAddEvent<ICardPrintable>>();
-    private Subject<CollectionRemoveEvent<ICardPrintable>> subjectReMove = new Subject<CollectionRemoveEvent<ICardPrintable>>();
+    private Subject<CollectionReplaceEvent<ICardPrintable>> timeLineReplace = new Subject<CollectionReplaceEvent<ICardPrintable>>();
+    private Subject<CollectionAddEvent<ICardPrintable>> timeLineAdd = new Subject<CollectionAddEvent<ICardPrintable>>();
+    private Subject<CollectionRemoveEvent<ICardPrintable>> timeLineReMove = new Subject<CollectionRemoveEvent<ICardPrintable>>();
 
     public PrintableDeck(Deck Deck, ICardFactory Factory)
     {
@@ -51,15 +51,15 @@ public class PrintableDeck
     //購読用
     public ISubject<CollectionReplaceEvent<ICardPrintable>> ObservableReplace()
     {
-        return subjectReplace;
+        return timeLineReplace;
     }
     public ISubject<CollectionAddEvent<ICardPrintable>> ObservableAdd()
     {
-        return subjectAdd;
+        return timeLineAdd;
     }
     public ISubject<CollectionRemoveEvent<ICardPrintable>> ObservableRemove()
     {
-        return subjectReMove;
+        return timeLineReMove;
     }
 
 }

@@ -11,11 +11,14 @@ public class RawDeckToCoin : IRawSkill
     [SerializeField] private DeckType deck;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
-        foreach (SkillDealableCard card in facade.FieldDeck())
+        return Observable.Defer<Unit>(() =>
         {
-            card.ChangeCoin(c, amount);
-        }
-        return Observable.Empty<Unit>();
+            foreach (SkillDealableCard card in facade.FieldDeck())
+            {
+                card.ChangeCoin(c, amount);
+            }
+            return Observable.Empty<Unit>();
+        });
     }
 
     public string Text()

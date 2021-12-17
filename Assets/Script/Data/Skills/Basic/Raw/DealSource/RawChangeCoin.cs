@@ -10,8 +10,11 @@ public class RawChangeCoin : IRawSkill
     [SerializeField] private short amount = 0;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
-        facade.source.ChangeCoin(c, amount);
-        return Observable.Empty<Unit>();
+        return Observable.Defer<Unit>(() =>
+        {
+            facade.source.ChangeCoin(c, amount);
+            return Observable.Empty<Unit>();
+        });
     }
 
     public string Text()

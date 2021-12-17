@@ -13,12 +13,16 @@ public class CoinTriggerText : ICoinProcess
 
     public IObservable<Unit> GetSkillProcess(CardFacade facade, Coin c, int n)
     {
-        if (facade.source.GetCoin()[ReactiveCoin] >= threshold)
+        return Observable.Defer<Unit>(() =>
         {
-            useText.GetSkillProcess(facade);
-            facade.source.ChangeCoin(c, -threshold);
-        }
-        return Observable.Empty<Unit>();
+            IObservable<Unit> skillObservable = Observable.Empty<Unit>();
+            if (facade.source.GetCoin()[ReactiveCoin] >= threshold)
+            {
+                skillObservable = useText.GetSkillProcess(facade);
+                facade.source.ChangeCoin(c, -threshold);
+            }
+            return skillObservable;
+        });
     }
 
 

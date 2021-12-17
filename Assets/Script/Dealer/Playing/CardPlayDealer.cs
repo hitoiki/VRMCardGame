@@ -12,7 +12,7 @@ public class CardPlayDealer : MonoBehaviour
     [SerializeField] private StateDealer state;
     [SerializeField] private string skillingState;
     [SerializeField] private string defaultState;*/
-    [SerializeField] private EffectStateLinker linker;
+    [SerializeField] private SkillUsingObjectAddress address;
     [SerializeField] private Stage stage;
     SkillQueueObject skillQueueObject => stage.queueObject;
     [SerializeField] FacadeData facadeData;
@@ -43,53 +43,15 @@ public class CardPlayDealer : MonoBehaviour
                 Debug.Log("OverFlow!!!!");
                 break;
             }
-            //Effectを実行して、終わるまで待機
-            List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
-            Debug.Log(runningSkill.skill.name + ":Effect");
-
-            if (runningSkill.skill.effect.Any())
-            {
-                foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
-                {
-                    linker.effects.Add(e);
-                    effectEvents.Add(runningSkill.source.EffectBoot(e));
-
-                }
-                yield return Observable.WhenAll(effectEvents).First().ToYieldInstruction();
-                //EffectをLinkerから外す
-                foreach (ISkillEffect e in runningSkill.skill.effect.Where(x => { return x != null; }))
-                {
-                    linker.effects.Remove(e);
-                }
-            }
             //Skillを実行
             Debug.Log(runningSkill.skill.name + ":Skill");
-            IObservable<Unit> skillEvent = runningSkill.skill.process(skillFacade);
-            yield return skillEvent.ToYieldInstruction();
-
+            yield return runningSkill.skill.process(skillFacade).ToYieldInstruction();
         }
-
         isExecuting = false;
-
         Debug.Log("DefaultState");
         // state.ChangeState(defaultState);
     }
 
-    public void CardPlay(List<Skill> skills, SkillDealableCard source)
-    {
-        skillQueueObject.PlayPush(skills, source);
-        if (!skillQueueObject.Any())
-        {
-            Debug.Log("nulled");
-            return;
-        }
-        if (!isExecuting)
-        {
-            //  state.ChangeState(skillingState);
-            Debug.Log("SkillingState");
-            StartCoroutine("SkillExecute");
-        }
-    }
     public void PrintedCardPlay(List<Skill> skills, ICardPrintable printable, IDeck deck)
     {
         skillQueueObject.PlayPush(skills, new SkillDealableCard(printable, deck, stage.queueObject));

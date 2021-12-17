@@ -13,9 +13,14 @@ public class SoundEffect : ISkillEffect
     [SerializeField] AudioClip audioClip;
     public IObservable<Unit> Effect(EffectLocation location)
     {
-        memo.source.clip = audioClip;
-        memo.source.Play();
-        return Observable.Empty<Unit>();
+
+        return Observable.Defer<Unit>(() =>
+        {
+            memo.source.clip = audioClip;
+            memo.source.Play();
+            return Observable.Empty<Unit>();
+        }
+        );
     }
 
     public void Pause()

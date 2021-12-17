@@ -14,10 +14,11 @@ public class SourceEffect : ISkillEffect
 
     public IObservable<Unit> Effect(EffectLocation location)
     {
-        effectObj = GameObject.Instantiate(appearObj, location.source.GetTransform().position, Quaternion.identity);
-        tween = DOVirtual.DelayedCall(tweenTime, () => { Transform.Destroy(effectObj.gameObject); });
+
         return Observable.Create<Unit>(observer =>
         {
+            effectObj = GameObject.Instantiate(appearObj, location.source.GetTransform().position, Quaternion.identity);
+            tween = DOVirtual.DelayedCall(tweenTime, () => { Transform.Destroy(effectObj.gameObject); });
             tween.OnComplete(
              () =>
              {

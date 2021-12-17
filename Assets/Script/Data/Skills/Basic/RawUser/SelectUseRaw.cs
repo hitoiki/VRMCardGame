@@ -12,17 +12,18 @@ public class SelectUseRaw : IUseProcess
     [SerializeField] private DeckType deck;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
-        Subject<SkillDealableCard> selected = address.selector.CardSelect(deck);
-
-        Subject<Unit> skillSubject = new Subject<Unit>();
-        Debug.Log("aaaa");
-        selected.Subscribe(x =>
+        return Observable.Defer<Unit>(() =>
         {
-            rawSkill.GetSkillProcess(facade.NewFacade(x));
-            Debug.Log("bbbb");
-            skillSubject.OnCompleted();
+            IObservable<SkillDealableCard> selected = address.selector.CardSelect(deck);
+
+            Subject<Unit> skillSubject = new Subject<Unit>();
+            selected.Subscribe(x =>
+            {
+                rawSkill.GetSkillProcess(facade.NewFacade(x));
+                skillSubject.OnCompleted();
+            });
+            return skillSubject;
         });
-        return skillSubject;
 
     }
     public bool GetIsSkillable(CardFacade facade)

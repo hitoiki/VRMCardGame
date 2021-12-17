@@ -8,12 +8,12 @@ public class SkillPack
 {
     //Skillを纏めるクラス
 
-    [SerializeField] private List<UseSkill> useSkills;
-    [SerializeField] private List<CoinSkill> coinSkills;
-    [SerializeField] private List<DrawSkill> drawSkills;
-    [SerializeField] private List<OtherSkill> otherSkills;
+    [SerializeReference, SubclassSelector] private List<IUseProcess> useSkills;
+    [SerializeReference, SubclassSelector] private List<ICoinProcess> coinSkills;
+    [SerializeReference, SubclassSelector] private List<IDrawProcess> drawSkills;
+    [SerializeReference, SubclassSelector] private List<OtherSkill> otherSkills;
 
-    public SkillPack(List<UseSkill> UseSkills, List<CoinSkill> CoinSkills, List<DrawSkill> DrawSkills, List<OtherSkill> OtherSkills)
+    public SkillPack(List<IUseProcess> UseSkills, List<ICoinProcess> CoinSkills, List<IDrawProcess> DrawSkills, List<OtherSkill> OtherSkills)
     {
         this.useSkills = UseSkills;
         this.coinSkills = CoinSkills;
@@ -23,9 +23,9 @@ public class SkillPack
     public string SkillText()
     {
         string skillTexts = "";
-        if (useSkills.Any()) skillTexts += useSkills.Select(x => { return x.useSkill.Text(); }).Aggregate((str1, str2) => str1 + str2);
-        if (coinSkills.Any()) skillTexts += coinSkills.Select(x => { return x.coinSkill.Text(); }).Aggregate((str1, str2) => str1 + str2);
-        if (drawSkills.Any()) skillTexts += drawSkills.Select(x => { return x.drawSkill.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        if (useSkills.Any()) skillTexts += useSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        if (coinSkills.Any()) skillTexts += coinSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        if (drawSkills.Any()) skillTexts += drawSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
         if (skillTexts == "")
         {
             Debug.Log("nullCardsText");
@@ -50,7 +50,7 @@ public class SkillPack
 
     public bool IsPlayable(CardFacade facade)
     {
-        return useSkills.Aggregate(true, (b, skill) => { return b && skill.useSkill.GetIsSkillable(facade); });
+        return useSkills.Aggregate(true, (b, skill) => { return b && skill.GetIsSkillable(facade); });
     }
 
     public static SkillPack Concat(SkillPack x, SkillPack y)

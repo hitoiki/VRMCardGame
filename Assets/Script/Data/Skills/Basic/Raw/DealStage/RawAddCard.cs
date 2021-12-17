@@ -10,8 +10,11 @@ public class RawAddCard : IRawSkill
     [SerializeField] DeckType to;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
-        facade.AddCard(new DefaultCard(card), to);
-        return Observable.Empty<Unit>();
+        return Observable.Defer<Unit>(() =>
+        {
+            facade.AddCard(new DefaultCard(card), to);
+            return Observable.Empty<Unit>();
+        });
     }
 
     public string Text()

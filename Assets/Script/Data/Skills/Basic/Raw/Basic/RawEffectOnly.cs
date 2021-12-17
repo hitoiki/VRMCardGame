@@ -4,22 +4,20 @@ using UnityEngine;
 using System;
 using UniRx;
 
-public class RawPlayerDamage : IRawSkill
+public class RawEffectOnly : IRawSkill
 {
-    [SerializeField] int damage;
+    //何もしないSkill
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
-        facade.PlayerDamage(damage);
         return Observable.Empty<Unit>();
     }
-
     public string Text()
     {
-        return "プレイヤーに" + damage.ToString() + "ダメージ。";
+        return "";
     }
 
     public string SkillName()
     {
-        return "PlayerDamage:" + damage.ToString();
+        return "";
     }
 }

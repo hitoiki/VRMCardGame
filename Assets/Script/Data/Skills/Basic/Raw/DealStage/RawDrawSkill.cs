@@ -11,8 +11,11 @@ public class RawDrawSkill : IRawSkill
     [SerializeField] DeckType to;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
-        facade.DeckDraw(from, to, getAmo);
-        return Observable.Empty<Unit>();
+        return Observable.Defer<Unit>(() =>
+           {
+               facade.DeckDraw(from, to, getAmo);
+               return Observable.Empty<Unit>();
+           });
     }
     public string Text()
     {

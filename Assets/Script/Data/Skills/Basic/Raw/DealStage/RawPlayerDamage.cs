@@ -4,24 +4,25 @@ using UnityEngine;
 using System;
 using UniRx;
 
-public class RawMoveDeck : IRawSkill
+public class RawPlayerDamage : IRawSkill
 {
-    [SerializeField] DeckType toDeck;
+    [SerializeField] int damage;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         return Observable.Defer<Unit>(() =>
         {
-            facade.MoveCard(facade.source, toDeck);
+            facade.PlayerDamage(damage);
             return Observable.Empty<Unit>();
         });
     }
+
     public string Text()
     {
-        return DeckTypeMethod.ToCardText(toDeck) + "へ移る。";
+        return "プレイヤーに" + damage.ToString() + "ダメージ。";
     }
 
     public string SkillName()
     {
-        return "CardMoveto" + DeckTypeMethod.ToCardText(toDeck);
+        return "PlayerDamage:" + damage.ToString();
     }
 }

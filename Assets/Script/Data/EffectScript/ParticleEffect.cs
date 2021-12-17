@@ -17,13 +17,13 @@ public class ParticleEffect : ISkillEffect
 
     public IObservable<Unit> Effect(EffectLocation location)
     {
-        effectObj = GameObject.Instantiate(initParticle.gameObject, location.source.GetTransform().position + Vector3.back, Quaternion.identity);
-        effectParticle = effectObj.GetComponent<ParticleSystem>();
-        tween = DOVirtual.DelayedCall(tweenTime, () => { effectParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting); Transform.Destroy(effectObj.gameObject); });
-        effectParticle.Play();
+
         return Observable.Create<Unit>(observer =>
         {
-
+            effectObj = GameObject.Instantiate(initParticle.gameObject, location.source.GetTransform().position + Vector3.back, Quaternion.identity);
+            effectParticle = effectObj.GetComponent<ParticleSystem>();
+            tween = DOVirtual.DelayedCall(tweenTime, () => { effectParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting); Transform.Destroy(effectObj.gameObject); });
+            effectParticle.Play();
             tween.OnComplete(
              () =>
              {
