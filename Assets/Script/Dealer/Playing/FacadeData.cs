@@ -8,13 +8,14 @@ public class FacadeData : MonoBehaviour
     [SerializeField] public PlayerData player;
     [SerializeField] public Stage stage = null;
     [SerializeField] public Coin coinToCost;
-    [SerializeField] public SkillQueueObject skillQueue => stage.queueObject;
-
+    [SerializeField] public SkillUsingSubject skillsSubject;
 
     [SerializeField] private GameObject initFieldFactory;
     [SerializeField] private GameObject initHandFactory;
     public ICardFactory fieldFactory;
     public ICardFactory handFactory;
+    public SkillQueueObject skillQueue => stage.queueObject;
+
     private void OnValidate()
     {
         if (initFieldFactory == null || initFieldFactory.GetComponent<ICardFactory>() == null) initFieldFactory = null;

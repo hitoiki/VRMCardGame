@@ -10,6 +10,7 @@ public class CardFacade
     //SkillDealableの実装に伴い、主にカードの提供、ドロー処理を行うように
     FacadeData data;
     public SkillDealableCard source;
+    public SkillUsingSubject skillsSubject => data.skillsSubject;
     public CardFacade(FacadeData Data, SkillDealableCard Source)
     {
         this.data = Data;

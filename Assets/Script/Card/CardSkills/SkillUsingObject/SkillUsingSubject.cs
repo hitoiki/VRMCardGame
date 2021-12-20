@@ -6,7 +6,7 @@ using UniRx;
 using System.Linq;
 
 [System.Serializable]
-public class SkillTimeLine : IDisposable
+public class SkillUsingSubject : IDisposable
 {
     //Effect,カード選択など一旦待つ為のクラス
     //Skillから命令を受けて、Effectが終わるまでのSubjectを返す
@@ -16,14 +16,14 @@ public class SkillTimeLine : IDisposable
     [SerializeField] private EffectStateLinker linker;
     public Subject<Unit> skillEnd;
 
-    public SkillTimeLine(SkillUsingObjectAddress address)
+    public SkillUsingSubject(SkillUsingObjectAddress address)
     {
         selector = address.selector;
         linker = address.linker;
         skillEnd = new Subject<Unit>();
     }
 
-    public IObservable<Unit> EffectLoad(ISkillEffect[] effects, EffectLocation location)
+    public IObservable<Unit> EffectLoad(ISkillEffect[] effects, SkillDealableCard card)
     {
         return Observable.Defer<Unit>(() =>
         {
@@ -32,7 +32,7 @@ public class SkillTimeLine : IDisposable
             foreach (ISkillEffect e in effects.Where(x => { return x != null; }))
             {
                 linker.effects.Add(e);
-                effectEvents.Add(e.Effect(location));
+                effectEvents.Add(card.EffectBoot(e));
             }
             return Observable.WhenAll(effectEvents).First();
         });
