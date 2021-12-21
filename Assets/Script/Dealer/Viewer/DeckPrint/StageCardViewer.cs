@@ -46,6 +46,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
          {
              //Flyerから新しくICardPrintableを貰って、自分のリストに加える
              ICardPrintable newCard = factory.CardMake(x.Value, grid.NumberGrid(x.Index));
+             newCard.SetAnchor(grid.NumberGrid(x.Index));
              newCard.Print(x.Value);
          });
         _Remove = stage.DeckKey(observeDeck).ObservableRemove.Subscribe(x =>
@@ -81,6 +82,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
             else
             {
                 ICardPrintable newCard = factory.CardMake(i.Value, grid.NumberGrid(i.Index));
+                newCard.SetAnchor(grid.NumberGrid(i.Index));
                 newCard.Print(i.Value);
             }
         }
@@ -100,6 +102,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
         foreach (var p in factory.GetCards()?.Select((ICardPrintable Value, int Index) => new { Value, Index }))
         {
             p.Value.GetTransform().DOMove(grid.NumberGrid(p.Index), tweenTime);
+            p.Value.SetAnchor(grid.NumberGrid(p.Index));
         }
     }
 

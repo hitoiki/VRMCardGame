@@ -19,7 +19,7 @@ public class SelectUseRaw : IUseProcess
             Subject<Unit> skillSubject = new Subject<Unit>();
             selected.Subscribe(x =>
             {
-                rawSkill.GetSkillProcess(facade.NewFacade(x)).Subscribe(x => { skillSubject.OnCompleted(); });
+                rawSkill.GetSkillProcess(facade.NewFacade(x)).Subscribe(x => { }, () => { skillSubject.OnCompleted(); });
             });
             return skillSubject;
         });

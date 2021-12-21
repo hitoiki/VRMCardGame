@@ -12,6 +12,7 @@ public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
     [SerializeField] private Image BackImage;
     [SerializeField] private Image FrontImage;
     [SerializeField] private Text nameText;
+    private Vector3 anchor;
     public void Print(ICard card)
     {
         this.card.Value = card;
@@ -39,9 +40,17 @@ public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
     {
         return card.Value;
     }
-
     public void Active(bool boo)
     {
 
+    }
+    public void SetAnchor(Vector3 vec)
+    {
+        anchor = vec;
+    }
+
+    public Vector3 GetAnchor()
+    {
+        return anchor;
     }
 }

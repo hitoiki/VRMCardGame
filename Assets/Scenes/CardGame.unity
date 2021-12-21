@@ -795,7 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebe49055e387b6478679ecc425dbd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linker: {fileID: 1690570824}
+  address: {fileID: 0}
   stage: {fileID: 400381648}
   facadeData: {fileID: 1159625934}
 --- !u!1 &322472140
@@ -3146,6 +3146,9 @@ MonoBehaviour:
   player: {fileID: 1159625935}
   stage: {fileID: 400381648}
   coinToCost: {fileID: 11400000, guid: e1c265da72ddba04bb831e1c2b9cdd45, type: 2}
+  skillsSubject:
+    selector: {fileID: 945379875}
+    linker: {fileID: 1690570824}
   initFieldFactory: {fileID: 1841415130}
   initHandFactory: {fileID: 1870451248}
 --- !u!114 &1159625935

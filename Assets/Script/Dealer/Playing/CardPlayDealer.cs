@@ -48,7 +48,6 @@ public class CardPlayDealer : MonoBehaviour
             yield return runningSkill.skill.process(skillFacade).ToYieldInstruction();
         }
         isExecuting = false;
-        Debug.Log("DefaultState");
         // state.ChangeState(defaultState);
     }
 
@@ -63,8 +62,12 @@ public class CardPlayDealer : MonoBehaviour
         if (!isExecuting)
         {
             //  state.ChangeState(skillingState);
-            Debug.Log("SkillingState");
+            Debug.Log("SkilliStart");
             StartCoroutine("SkillExecute");
+        }
+        else
+        {
+            Debug.Log("PlayingNow");
         }
     }
 }

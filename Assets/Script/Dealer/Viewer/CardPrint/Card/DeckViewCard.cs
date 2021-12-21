@@ -9,6 +9,7 @@ public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCur
     [SerializeField] private SpriteRenderer spriteRenderer = null;
     public List<ICardCursolEvent> cursolEvent = new List<ICardCursolEvent>();
     private bool activate;
+    private Vector3 anchor;
     public void Print(ICard c)
     {
         activate = true;
@@ -32,6 +33,15 @@ public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCur
     public ICard GetCard()
     {
         return card;
+    }
+    public void SetAnchor(Vector3 vec)
+    {
+        anchor = vec;
+    }
+
+    public Vector3 GetAnchor()
+    {
+        return anchor;
     }
     public void AddCardCursolEvent(ICardCursolEvent c)
     {

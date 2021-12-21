@@ -15,6 +15,7 @@ public class CoinCard : MonoBehaviour, ICardPrintable
     [SerializeField] float zPos = 1;
     [SerializeField] Vector3 origin = new Vector3(100, 0, 0);
     private Dictionary<Coin, CoinSprite> sprites = new Dictionary<Coin, CoinSprite>();
+    private Vector3 anchor;
     private IDisposable _add;
     private IDisposable _replace;
     private IDisposable _remove;
@@ -30,6 +31,16 @@ public class CoinCard : MonoBehaviour, ICardPrintable
     public ICard GetCard()
     {
         return null;
+    }
+
+    public void SetAnchor(Vector3 vec)
+    {
+        anchor = vec;
+    }
+
+    public Vector3 GetAnchor()
+    {
+        return anchor;
     }
 
     public void UnPrint()

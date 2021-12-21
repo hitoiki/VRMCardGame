@@ -14,6 +14,7 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
     public List<ICardCursolEvent> cursolEvent = new List<ICardCursolEvent>();
     public CoinCard coinCard;
     private bool activate;
+    private Vector3 anchor;
 
     public void Print(ICard c)
     {
@@ -40,6 +41,15 @@ public class FieldCard : MonoBehaviour, ICardPrintable, ICursolable, ICardObserv
     public ICard GetCard()
     {
         return card.Value;
+    }
+    public void SetAnchor(Vector3 vec)
+    {
+        anchor = vec;
+    }
+
+    public Vector3 GetAnchor()
+    {
+        return anchor;
     }
 
     public IReadOnlyReactiveProperty<ICard> ObservableCard()

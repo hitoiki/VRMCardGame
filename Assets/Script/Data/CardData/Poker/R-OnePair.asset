@@ -34,6 +34,19 @@ MonoBehaviour:
         skill:
           id: 1
     00000001:
-      type: {class: RawMoveDeck, ns: , asm: Assembly-CSharp}
+      type: {class: SkillEffectDeco, ns: , asm: Assembly-CSharp}
       data:
-        toDeck: 1
+        rawSkill:
+          id: 2
+        effect:
+        - id: 3
+    00000002:
+      type: {class: RawPlayerDamage, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 1
+    00000003:
+      type: {class: SourceEffect, ns: , asm: Assembly-CSharp}
+      data:
+        appearObj: {fileID: 1712983332603750376, guid: 0b542224f4fb24d4babf70bc8ae56550,
+          type: 3}
+        tweenTime: 1
