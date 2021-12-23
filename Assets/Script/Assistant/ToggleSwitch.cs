@@ -4,7 +4,6 @@ using UnityEngine;
 using UniRx;
 using DG.Tweening;
 
-#pragma warning disable 0649
 public class ToggleSwitch : MonoBehaviour, ICursolable
 {
     // 押して当たり判定が変化するボタン（Collider）

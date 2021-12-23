@@ -795,7 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebe49055e387b6478679ecc425dbd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  address: {fileID: 0}
+  address: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
   stage: {fileID: 400381648}
   facadeData: {fileID: 1159625934}
 --- !u!1 &322472140
@@ -1036,15 +1036,27 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
     - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
     - {fileID: 11400000, guid: a675f2769801cfc4494c20c9eba1abd4, type: 2}
+    - {fileID: 11400000, guid: 6ee46636c81845e4cb953618e73fe05d, type: 2}
   field:
-    initCards:
-    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
+    initCards: []
   disCard:
     initCards: []
   trace:
     initCards: []
   senter:
-    initCards: []
+    initCards:
+    - {fileID: 11400000, guid: d00697a9c85955a4aa99684fa955c9fc, type: 2}
+    - {fileID: 11400000, guid: d00697a9c85955a4aa99684fa955c9fc, type: 2}
+    - {fileID: 11400000, guid: d00697a9c85955a4aa99684fa955c9fc, type: 2}
+    - {fileID: 11400000, guid: d00697a9c85955a4aa99684fa955c9fc, type: 2}
+    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
+    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
+    - {fileID: 11400000, guid: 3319d00feabc54d4dbf5d92e36a26bd3, type: 2}
+    - {fileID: 11400000, guid: 3319d00feabc54d4dbf5d92e36a26bd3, type: 2}
+    - {fileID: 11400000, guid: 83e7460c00022b94bae54c97524c84fa, type: 2}
+    - {fileID: 11400000, guid: 83e7460c00022b94bae54c97524c84fa, type: 2}
+    - {fileID: 11400000, guid: 83e7460c00022b94bae54c97524c84fa, type: 2}
+    - {fileID: 11400000, guid: 83e7460c00022b94bae54c97524c84fa, type: 2}
   right:
     initCards: []
   left:
@@ -1442,9 +1454,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1250b78e1850f84585cd6fe9d1af7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  address: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
+  skillAddress: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
+  effectAddress: {fileID: 11400000, guid: f9c405f6b536cc24c9c3e6766a55a2f0, type: 2}
   audioSource: {fileID: 4483027039190381202}
   selector: {fileID: 945379875}
+  linker: {fileID: 1690570824}
 --- !u!4 &578801270
 Transform:
   m_ObjectHideFlags: 0
@@ -4835,16 +4849,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1841415130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737f48b202f938e4996f05766689010a, type: 3}
+  m_Script: {fileID: 11500000, guid: dcbfedcdef05457458d193414d4f03f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bundle: {fileID: 682222266}
-  fieldCard: {fileID: 3998338738587770798, guid: 190e21ddae3144c40a4309e3ef492f6b,
-    type: 3}
   initCursol: []
-  initCoinSprite: {fileID: 7289762398079551930, guid: 31ba0fc47142614468ceeb0acd7fe054,
+  clickableCard: {fileID: 9046557540937122106, guid: d1ba16dd13ed63247a8175b18b875b0f,
     type: 3}
-  printableList: []
 --- !u!1 &1870451248
 GameObject:
   m_ObjectHideFlags: 0
@@ -4907,12 +4918,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870451248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb54ebf7547c27a40b8a3e1991d8eee3, type: 3}
+  m_Script: {fileID: 11500000, guid: dcbfedcdef05457458d193414d4f03f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bundle: {fileID: 1422898548}
   initCursol: []
-  basicCard: {fileID: 5493066297844848919, guid: bfe820483062f23459790d170dde14f5,
+  clickableCard: {fileID: 233351754067610637, guid: 1f49e6e086613734084cc888ad5e190e,
     type: 3}
 --- !u!1 &1880873688
 GameObject:

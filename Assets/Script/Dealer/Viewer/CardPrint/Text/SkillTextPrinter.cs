@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-#pragma warning disable 0649
-public class SkillTextPrinter : MonoBehaviour
+public class SkillTextPrinter : MonoBehaviour, ICardViewable
 {
     //スッと出てくる
     [SerializeField] private Text SkillText;
@@ -14,17 +13,20 @@ public class SkillTextPrinter : MonoBehaviour
     [SerializeField] private Vector2 displayPoint;
     [SerializeField] private Vector2 anchorPoint;
     [SerializeField] private RectTransform position;
-    private ICard c;
     public void Print(ICard card)
     {
-        c = card;
         SkillText.text = card.GetCardData().CardText();
         this.position.DOAnchorPos(displayPoint, easingTime);
         this.position.DOAnchorPos(anchorPoint, easingTime).SetDelay(displayTime);
     }
 
-    public ICard GetCard()
+    public void UnPrint()
     {
-        return c;
+        SkillText.text = "";
+    }
+
+    public void Active(bool b)
+    {
+
     }
 }

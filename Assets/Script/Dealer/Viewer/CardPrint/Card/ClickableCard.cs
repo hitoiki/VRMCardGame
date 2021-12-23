@@ -1,29 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursolEventUser
+public class ClickableCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursolEventUser
 {
-    //Deckを参照する際に用いるCard
-    private ICard card;
-    [SerializeField] private SpriteRenderer spriteRenderer = null;
+    // Clickする処理のところだけ括りだして親クラスとする
+    [SerializeField] List<Component> initViews;
+    public List<ICardViewable> viewables;
+    private ICard viewingCard;
     public List<ICardCursolEvent> cursolEvent = new List<ICardCursolEvent>();
     private bool activate;
     private Vector3 anchor;
-    public void Print(ICard c)
+
+    private void OnValidate()
     {
+        if (initViews != null) initViews = initViews.Where(x => { return (x == null) || (x.GetComponent<ICardViewable>() != null); }).ToList();
+
+    }
+
+    public void Init()
+    {
+        viewables = initViews.SelectMany(x => { return x.GetComponents<ICardViewable>(); }).ToList();
+    }
+
+
+    public virtual void Print(ICard c)
+    {
+        foreach (ICardViewable viewable in viewables)
+        {
+            viewable.Print(c);
+        }
         activate = true;
-        card = c;
-        spriteRenderer.sprite = c.GetCardData().iconSprite;
+        viewingCard = c;
     }
-    public void UnPrint()
+    public virtual void UnPrint()
     {
-
-    }
-
-    public void Active(bool b)
-    {
+        foreach (ICardViewable viewable in viewables)
+        {
+            viewable.UnPrint();
+        }
+        viewingCard = null;
         activate = false;
+    }
+
+    public virtual void Active(bool b)
+    {
+        foreach (ICardViewable viewable in viewables)
+        {
+            viewable.Active(b);
+        }
+        activate = b;
         this.gameObject.SetActive(b);
     }
     public Transform GetTransform()
@@ -32,7 +59,7 @@ public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCur
     }
     public ICard GetCard()
     {
-        return card;
+        return viewingCard;
     }
     public void SetAnchor(Vector3 vec)
     {
@@ -75,5 +102,4 @@ public class DeckViewCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCur
             }
         }
     }
-
 }

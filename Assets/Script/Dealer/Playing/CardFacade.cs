@@ -77,5 +77,10 @@ public class CardFacade
         skillCard.MoveDeck(data.stage.DeckKey(deck));
     }
 
+    public void Shuffle(DeckType deck)
+    {
+        data.stage.DeckKey(deck).Shuffle();
+    }
+
 }
 

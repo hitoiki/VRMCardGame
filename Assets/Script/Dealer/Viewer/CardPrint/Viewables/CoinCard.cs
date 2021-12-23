@@ -5,42 +5,28 @@ using System.Linq;
 using UnityEngine;
 using UniRx;
 
-public class CoinCard : MonoBehaviour, ICardPrintable
+public class CoinCard : MonoBehaviour, ICardViewable
 {
     //CardのCoinを表示するウィンドウ的な奴
     //StageCardViewerでこいつを表示
     //コイツがPrintされたとき、CoinFlyerからCoinSpriteを受け取って表示
+    //面倒だからやらないけどこれFlyerを適当なScriptableにした方が楽だな
+    public EffectUsingObjectAddress initFlyer;
     public ObjectFlyer<CoinSprite> flyer;
     [SerializeField] Grid grid;
     [SerializeField] float zPos = 1;
     [SerializeField] Vector3 origin = new Vector3(100, 0, 0);
     private Dictionary<Coin, CoinSprite> sprites = new Dictionary<Coin, CoinSprite>();
-    private Vector3 anchor;
     private IDisposable _add;
     private IDisposable _replace;
     private IDisposable _remove;
+    private void Awake()
+    {
+        if (initFlyer != null) flyer = initFlyer.flyer;
+    }
     public void Active(bool b)
     {
         this.gameObject.SetActive(b);
-    }
-
-    public Transform GetTransform()
-    {
-        return this.transform;
-    }
-    public ICard GetCard()
-    {
-        return null;
-    }
-
-    public void SetAnchor(Vector3 vec)
-    {
-        anchor = vec;
-    }
-
-    public Vector3 GetAnchor()
-    {
-        return anchor;
     }
 
     public void UnPrint()

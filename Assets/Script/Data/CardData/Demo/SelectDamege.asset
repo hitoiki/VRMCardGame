@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
+  m_Name: SelectDamege
+  m_EditorClassIdentifier: 
+  cardName: SeleDamage
+  suit: 0
+  cost: 0
+  flavorText: 
+  frontSprite: {fileID: 21300000, guid: ace107564c4b66c4caad874d5500ab98, type: 3}
+  backSprite: {fileID: 21300000, guid: d82787dc8bc047645b4c29705fecc50c, type: 3}
+  iconSprite: {fileID: 21300000, guid: bf9cc0ec83553484c9121959c6d2ba43, type: 3}
+  skillPack:
+    useSkills:
+    - id: 0
+    coinSkills: []
+    drawSkills: []
+    otherSkills: []
+  references:
+    version: 1
+    00000000:
+      type: {class: SelectUseRaw, ns: , asm: Assembly-CSharp}
+      data:
+        rawSkill:
+          id: 1
+        address: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
+        deck: 0
+    00000001:
+      type: {class: RawChangeCoin, ns: , asm: Assembly-CSharp}
+      data:
+        c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+        amount: 10000

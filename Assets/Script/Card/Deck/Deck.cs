@@ -5,13 +5,12 @@ using UnityEngine;
 using System.Linq;
 using UniRx;
 
-#pragma warning disable 0649
 [System.Serializable]
 public class Deck : IDeck
 {
     //カードを纏める所
     public DeckType deckType { get; private set; }
-    public List<CardData> initCards;
+    public List<CardData> initCards = new List<CardData>();
     private ReactiveCollection<ICard> _cards = new ReactiveCollection<ICard>(new List<ICard>());
 
     //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)

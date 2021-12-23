@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-#pragma warning disable 0649
 public class Stage : MonoBehaviour
 {
     //Cardを置く盤面、舞台
@@ -26,7 +25,7 @@ public class Stage : MonoBehaviour
         field.InspectorInit(DeckType.field);
         disCard.InspectorInit(DeckType.discard);
         trace.InspectorInit(DeckType.trace);
-        senter.InspectorInit(DeckType.senter);
+        senter.InspectorInit(DeckType.deck);
         right.InspectorInit(DeckType.right);
         left.InspectorInit(DeckType.left);
     }
@@ -37,7 +36,7 @@ public class Stage : MonoBehaviour
         if (e == DeckType.field) return field;
         if (e == DeckType.discard) return disCard;
         if (e == DeckType.trace) return trace;
-        if (e == DeckType.senter) return senter;
+        if (e == DeckType.deck) return senter;
         if (e == DeckType.right) return right;
         if (e == DeckType.left) return left;
 
@@ -49,5 +48,5 @@ public class Stage : MonoBehaviour
 
 public enum DeckType
 {
-    hands, field, discard, trace, senter, right, left
+    hands, field, discard, trace, deck, right, left
 }
