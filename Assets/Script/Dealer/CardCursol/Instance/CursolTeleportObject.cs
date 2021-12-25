@@ -6,7 +6,6 @@ using UnityEngine;
 public class CursolTeleportObject : ICardCursolEvent
 {
     [SerializeField] private GameObject[] portObj;
-    [SerializeField] float zPos;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
 
@@ -21,19 +20,19 @@ public class CursolTeleportObject : ICardCursolEvent
             }
             return;
         }
+        foreach (GameObject obj in portObj)
+        {
+            obj.transform.position = new Vector3(
+                card.GetTransform().position.x,
+                card.GetTransform().position.y,
+                obj.transform.position.z);
+        }
         if (mode == ContactMode.Enter)
         {
             foreach (GameObject obj in portObj)
             {
                 obj.SetActive(true);
             }
-        }
-        foreach (GameObject obj in portObj)
-        {
-            obj.transform.position = new Vector3(
-                card.GetTransform().position.x,
-                card.GetTransform().position.y,
-                zPos);
         }
 
     }

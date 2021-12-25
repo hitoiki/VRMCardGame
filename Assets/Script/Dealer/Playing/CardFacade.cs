@@ -42,6 +42,10 @@ public class CardFacade
     }
 
     //条件を満たすカードのリストを渡す
+    public Deck DeckKey(DeckType type)
+    {
+        return data.stage.DeckKey(type);
+    }
     public List<SkillDealableCard> FieldDeck()
     {
         List<SkillDealableCard> fieldDeck = new List<SkillDealableCard>();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UniRx;
+using System.Linq;
 
 public class SelectUseRaw : IUseProcess
 {
@@ -27,7 +28,7 @@ public class SelectUseRaw : IUseProcess
     }
     public bool GetIsSkillable(CardFacade facade)
     {
-        return true;
+        return facade.DeckKey(deck).cards.Any();
     }
     public string Text()
     {
