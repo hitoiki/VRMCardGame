@@ -17,8 +17,6 @@ public class Stage : MonoBehaviour
 
     public SkillQueueObject queueObject = new SkillQueueObject();
 
-    public HighOrderRule rules;
-
     private void Start()
     {
         hands.InspectorInit(DeckType.hands);
