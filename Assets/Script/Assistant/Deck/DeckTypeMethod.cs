@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class DeckTypeMethod
 {
-    public static string ToStringFast(DeckType e)
+    public static string ToStringFast(this DeckType e)
     {
         if (e == DeckType.hands) return "hands";
         if (e == DeckType.field) return "field";
@@ -13,10 +13,10 @@ public static class DeckTypeMethod
         if (e == DeckType.deck) return "Deck";
         if (e == DeckType.right) return "Right";
         if (e == DeckType.left) return "Left";
-        return null;
+        return "";
     }
 
-    public static string ToCardText(DeckType e)
+    public static string ToCardText(this DeckType e)
     {
         if (e == DeckType.hands) return "手札";
         if (e == DeckType.field) return "場";
@@ -25,7 +25,7 @@ public static class DeckTypeMethod
         if (e == DeckType.deck) return "デッキ";
         if (e == DeckType.right) return "右のデッキ";
         if (e == DeckType.left) return "左のデッキ";
-        return null;
+        return "";
     }
 
 }

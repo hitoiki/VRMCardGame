@@ -7,9 +7,11 @@ using UniRx;
 public class PlayerData : MonoBehaviour
 {
     //Playerのデータ
-    public Animator vrmPose;
     public Transform vrmTransform;
-    public SkillPack packSet;
+    [SerializeField] private CardData initPlayerCard;
+    [SerializeField] private GameObject initPrintable;
+    [SerializeField] private ICardPrintable printable;
+    private ICard playerCard;
 
 
     //別枠でplayerのHpを定義
@@ -23,6 +25,8 @@ public class PlayerData : MonoBehaviour
     private void Awake()
     {
         _hp.Value = initHP;
+        playerCard = new DefaultCard(initPlayerCard);
+        printable = initPrintable.GetComponent<ICardPrintable>();
     }
 
     public void Damage(int amount)

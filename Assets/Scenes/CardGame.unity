@@ -1108,9 +1108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hands:
     initCards:
-    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
-    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
-    - {fileID: 11400000, guid: a675f2769801cfc4494c20c9eba1abd4, type: 2}
+    - {fileID: 11400000, guid: 85fd9a7a40f5ae14682c40ec7e263dec, type: 2}
     - {fileID: 11400000, guid: 6ee46636c81845e4cb953618e73fe05d, type: 2}
   field:
     initCards: []
@@ -1120,18 +1118,8 @@ MonoBehaviour:
     initCards: []
   senter:
     initCards:
-    - {fileID: 11400000, guid: d00697a9c85955a4aa99684fa955c9fc, type: 2}
-    - {fileID: 11400000, guid: d00697a9c85955a4aa99684fa955c9fc, type: 2}
-    - {fileID: 11400000, guid: d00697a9c85955a4aa99684fa955c9fc, type: 2}
-    - {fileID: 11400000, guid: d00697a9c85955a4aa99684fa955c9fc, type: 2}
-    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
-    - {fileID: 11400000, guid: f1c6008a31749c84ab5049a34bd1c8a5, type: 2}
-    - {fileID: 11400000, guid: 3319d00feabc54d4dbf5d92e36a26bd3, type: 2}
-    - {fileID: 11400000, guid: 3319d00feabc54d4dbf5d92e36a26bd3, type: 2}
-    - {fileID: 11400000, guid: 83e7460c00022b94bae54c97524c84fa, type: 2}
-    - {fileID: 11400000, guid: 83e7460c00022b94bae54c97524c84fa, type: 2}
-    - {fileID: 11400000, guid: 83e7460c00022b94bae54c97524c84fa, type: 2}
-    - {fileID: 11400000, guid: 83e7460c00022b94bae54c97524c84fa, type: 2}
+    - {fileID: 11400000, guid: 85fd9a7a40f5ae14682c40ec7e263dec, type: 2}
+    - {fileID: 11400000, guid: 6ee46636c81845e4cb953618e73fe05d, type: 2}
   right:
     initCards: []
   left:
@@ -1355,7 +1343,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -699.99994, y: -300}
+  m_AnchoredPosition: {x: -699.9999, y: -300}
   m_SizeDelta: {x: 100, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &549688501
@@ -1630,8 +1618,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 943709587}
   m_HandleRect: {fileID: 943709586}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 0.4999894
+  m_Size: 0.9907094
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2921,12 +2909,6 @@ Transform:
   m_Father: {fileID: 2140630054}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1038796824 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5286581961392900286, guid: 0b542224f4fb24d4babf70bc8ae56550,
-    type: 3}
-  m_PrefabInstance: {fileID: 956325170}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1038796827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3366474247874518998, guid: 0b542224f4fb24d4babf70bc8ae56550,
@@ -3177,21 +3159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1389a1567eedbf24586ec317f0889ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrmPose: {fileID: 1038796824}
   vrmTransform: {fileID: 1038796827}
-  packSet:
-    useSkills: []
-    coinSkills: []
-    drawSkills: []
-    otherSkills: []
+  initPlayerCard: {fileID: 11400000, guid: 272ad995e85a15c42ae43ff95d17f2d5, type: 2}
+  initPrintable: {fileID: 322472140}
   initHP: 10
   flag:
     value: 0
   dealer: {fileID: 2140630055}
   gameOverState: GameOver
   gameClearState: GameClear
-  references:
-    version: 1
 --- !u!1 &1233751807
 GameObject:
   m_ObjectHideFlags: 0

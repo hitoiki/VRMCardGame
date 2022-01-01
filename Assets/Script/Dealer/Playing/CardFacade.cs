@@ -9,12 +9,12 @@ public class CardFacade
     //Cardが出来る処理を書く   
     //SkillDealableの実装に伴い、主にカードの提供、ドロー処理を行うように
     FacadeData data;
-    public SkillDealableCard source;
+    public SkillDealableCard skillTarget;
     public SkillUsingSubject skillsSubject => data.skillsSubject;
     public CardFacade(FacadeData Data, SkillDealableCard Source)
     {
         this.data = Data;
-        this.source = Source;
+        this.skillTarget = Source;
     }
     //あんま良くない気がするけど暫定これで
     public CardFacade NewFacade(SkillDealableCard newSource)
@@ -25,7 +25,7 @@ public class CardFacade
     {
         foreach (ICardPrintable c in data.fieldFactory.GetCards())
         {
-            new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject).ChangeCoin(data.coinToCost, source.GetCardData().cost);
+            new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject).ChangeCoin(data.coinToCost, skillTarget.GetCardData().cost);
         };
     }
 

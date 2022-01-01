@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
+  m_Name: HyperTextDemo
+  m_EditorClassIdentifier: 
+  cardName: 
+  suit: 0
+  cost: 0
+  flavorText: 
+  frontSprite: {fileID: 21300000, guid: 92457c02592f7884aa04467f378db341, type: 3}
+  backSprite: {fileID: 21300000, guid: 6fe6d31784f19cb4b94d871f65d28b0b, type: 3}
+  iconSprite: {fileID: 21300000, guid: bf9cc0ec83553484c9121959c6d2ba43, type: 3}
+  skillPack:
+    useSkills:
+    - id: 0
+    coinSkills:
+    - id: 1
+    drawSkills: []
+    otherSkills: []
+  references:
+    version: 1
+    00000000:
+      type: {class: SelectUseRaw, ns: , asm: Assembly-CSharp}
+      data:
+        rawSkill:
+          id: 2
+        address: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
+        deck: 1
+    00000001:
+      type: {class: CoinTriggerSkill, ns: , asm: Assembly-CSharp}
+      data:
+        ReactiveCoin: {fileID: 11400000, guid: e1c265da72ddba04bb831e1c2b9cdd45, type: 2}
+        rawSkill:
+          id: 3
+    00000002:
+      type: {class: RawIf, ns: , asm: Assembly-CSharp}
+      data:
+        rawSkill:
+          id: 4
+        condition:
+          id: 5
+    00000003:
+      type: {class: RawList, ns: , asm: Assembly-CSharp}
+      data:
+        rawSkills:
+        - id: 6
+        - id: 7
+        - id: 8
+    00000004:
+      type: {class: RawList, ns: , asm: Assembly-CSharp}
+      data:
+        rawSkills:
+        - id: 9
+        - id: 10
+        - id: 11
+    00000005:
+      type: {class: CoinThresholdSkillBool, ns: , asm: Assembly-CSharp}
+      data:
+        coin: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+        threshold: 5
+    00000006:
+      type: {class: RawChangeCoin, ns: , asm: Assembly-CSharp}
+      data:
+        c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+        number:
+          id: 12
+    00000007:
+      type: {class: RawDrawSkill, ns: , asm: Assembly-CSharp}
+      data:
+        number:
+          id: 13
+        from: 4
+        to: 0
+    00000008:
+      type: {class: RawMoveDeck, ns: , asm: Assembly-CSharp}
+      data:
+        toDeck: 1
+    00000009:
+      type: {class: RawIf, ns: , asm: Assembly-CSharp}
+      data:
+        rawSkill:
+          id: 14
+        condition:
+          id: 15
+    0000000A:
+      type: {class: RawSkillEffect, ns: , asm: Assembly-CSharp}
+      data:
+        effect:
+        - id: 16
+    0000000B:
+      type: {class: RawAddPack, ns: , asm: Assembly-CSharp}
+      data:
+        pack: {fileID: 11400000, guid: 165a70fb4e7de904183d2e35276a68af, type: 2}
+        to: 1
+    0000000C:
+      type: {class: ConstSkillInt, ns: , asm: Assembly-CSharp}
+      data:
+        number: 5
+    0000000D:
+      type: {class: ConstSkillInt, ns: , asm: Assembly-CSharp}
+      data:
+        number: 2
+    0000000E:
+      type: {class: RawBootOtherSkill, ns: , asm: Assembly-CSharp}
+      data:
+        kind: 1
+    0000000F:
+      type: {class: CoinThresholdSkillBool, ns: , asm: Assembly-CSharp}
+      data:
+        coin: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+        threshold: 9
+    00000010:
+      type: {class: SoundEffect, ns: , asm: Assembly-CSharp}
+      data:
+        memo: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
+        audioClip: {fileID: 8300000, guid: eed2451bbd4264da8b6c27c92df62faf, type: 3}

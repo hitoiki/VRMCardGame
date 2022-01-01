@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "memo", menuName = "ObjectAddress")]
+[CreateAssetMenu(fileName = "memo", menuName = "ObjectAddress/Skill")]
 public class SkillUsingObjectAddress : ScriptableObject
 {
     //ここにシーン中のAudioSourceを置いて外から参照する

@@ -6,7 +6,6 @@ public class Coin : ScriptableObject
 {
     //ダメージ、炎など、カードが受け取る効果量を示すクラス
     //カウンターになぞらえてコインと呼ばさせていただく
-    [SerializeField] public string coinName;
     [SerializeField] public bool storable;
     [SerializeField] public Sprite icon;
     [SerializeField] public Vector3 spritePos;
@@ -24,14 +23,14 @@ public class Coin : ScriptableObject
             return false;
         }
 
-        return coinName == item.coinName;
+        return name == item.name;
         throw new System.NotImplementedException();
     }
 
     // override object.GetHashCode
     public override int GetHashCode()
     {
-        return coinName.GetHashCode();
+        return name.GetHashCode();
         throw new System.NotImplementedException();
     }
 

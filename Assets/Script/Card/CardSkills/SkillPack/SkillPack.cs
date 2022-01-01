@@ -48,6 +48,11 @@ public class SkillPack
         return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; })?.ToList();
     }
 
+    public List<Skill> OtherSkill(OtherSkillKind kind)
+    {
+        return otherSkills.Select(y => { return y.GetSkill(kind); }).Where(x => { return x != null; })?.ToList();
+    }
+
     public bool IsPlayable(CardFacade facade)
     {
         return useSkills.Aggregate(true, (b, skill) => { return b && skill.GetIsSkillable(facade); });

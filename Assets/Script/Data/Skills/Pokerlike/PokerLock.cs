@@ -18,7 +18,7 @@ public class PokerLock : IUseProcess
             IObservable<Unit> skillObservable = skill.GetSkillProcess(facade);
             return skillObservable.Concat(Observable.Defer<Unit>(() =>
             {
-                facade.MoveCard(facade.source, DeckType.field);
+                facade.MoveCard(facade.skillTarget, DeckType.field);
                 facade.Shuffle(DeckType.deck);
                 facade.DeckDraw(DeckType.deck, DeckType.hands, 1);
                 return Observable.Empty<Unit>();

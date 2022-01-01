@@ -19,6 +19,8 @@ public class SkillDealableCard
         onDeck = Deck;
         skillQueue = QueueObject;
     }
+
+    //カード操作
     public Dictionary<Coin, int> GetCoin()
     {
         return card.GetCoin();
@@ -40,16 +42,22 @@ public class SkillDealableCard
         card.ChangeCoin(c, n);
         skillQueue.Push(card.GetSkillPack().CoinSkill(c, n), this);
     }
-    public IObservable<Unit> EffectBoot(ISkillEffect effect)
-    {
-        return effect.Effect(new EffectLocation(printable));
-    }
-
     public void MoveDeck(IDeck toDeck)
     {
         skillQueue.Push(card.GetSkillPack().DrawSkill(onDeck, toDeck), this);
         onDeck.Remove(card);
         toDeck.Add(card);
         onDeck = toDeck;
+    }
+
+    public void BootOtherSkill(OtherSkillKind kind)
+    {
+        skillQueue.Push(card.GetSkillPack().OtherSkill(kind), this);
+    }
+
+    //Effect処理用
+    public IObservable<Unit> EffectBoot(ISkillEffect effect)
+    {
+        return effect.Effect(new EffectLocation(printable));
     }
 }

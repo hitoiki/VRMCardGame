@@ -38,4 +38,9 @@ MonoBehaviour:
       type: {class: RawChangeCoin, ns: , asm: Assembly-CSharp}
       data:
         c: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
-        amount: 10000
+        number:
+          id: 2
+    00000002:
+      type: {class: ConstSkillInt, ns: , asm: Assembly-CSharp}
+      data:
+        number: 0
