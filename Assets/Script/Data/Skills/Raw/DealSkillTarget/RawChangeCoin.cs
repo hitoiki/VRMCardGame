@@ -19,7 +19,7 @@ public class RawChangeCoin : IRawSkill
 
     public string Text()
     {
-        return c.name + "を" + number.Text() + "枚与える。";
+        return c.name + "を" + number.Text() + "枚" + c.gettingText + "。";
     }
 
     public string SkillName()

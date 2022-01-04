@@ -38,10 +38,10 @@ public class SkillUsingSubject : IDisposable
         });
     }
 
-    public IObservable<SkillDealableCard> CardSelect(DeckType deck)
+    public IObservable<SkillDealableCard> CardSelect(DeckType deck, ISkillBool skillBool)
     {
         //  参照先のメソッドをそのまま渡す
-        return selector.CardSelect(deck);
+        return selector.CardSelect(deck, skillBool);
     }
     //別にメソッドに分ける理由ないのだが、分かりやすくするため
     public void SkillEnd()

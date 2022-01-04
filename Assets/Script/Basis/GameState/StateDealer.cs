@@ -12,10 +12,12 @@ public class StateDealer : MonoBehaviour
     private GameStateSet loadingState;
     private ReactiveProperty<string> _stateName = new ReactiveProperty<string>();
     public IReadOnlyReactiveProperty<string> stateName => _stateName;
+    [SerializeField] string nowState;
 
     private void Start()
     {
         loadingState = states.First();
+        nowState = loadingState.stateName;
         loadingState.CrankIn();
     }
 
@@ -36,6 +38,7 @@ public class StateDealer : MonoBehaviour
         loadingState = states.First(x => { return x.stateName == nextState; });
         loadingState.CrankIn();
         _stateName.Value = nextState;
+        nowState = nextState;
         Debug.Log("NowState" + nextState);
 
     }

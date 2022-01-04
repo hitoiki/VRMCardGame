@@ -7,7 +7,7 @@ public static class SkillExtention
     //SkillProcessの拡張メソッドを記述する
     public static Skill GetSkill(this IUseProcess useSkill)
     {
-        return new Skill(useSkill.SkillName(), useSkill.GetSkillProcess, useSkill.GetIsSkillable) + CostPaySkill.costPay;
+        return new Skill(useSkill.SkillName(), useSkill.GetSkillProcess, useSkill.GetIsSkillable) * CostPaySkill.costPay;
     }
     public static Skill GetSkill(this ICoinProcess coinSkill, Coin coin, int n)
     {

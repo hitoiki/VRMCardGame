@@ -6,9 +6,9 @@ public class CoinThresholdSkillBool : ISkillBool
 {
     [SerializeField] private Coin coin;
     [SerializeField] private int threshold;
-    public bool SkillBool(CardFacade facade)
+    public bool SkillBool(SkillDealableCard dealableCard)
     {
-        return facade.skillTarget.GetCoin()[coin] >= threshold;
+        return dealableCard.GetCoin()[coin] >= threshold;
     }
     public string Text()
     {

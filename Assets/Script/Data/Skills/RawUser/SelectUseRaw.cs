@@ -9,13 +9,14 @@ public class SelectUseRaw : IUseProcess
 {
     //一つカードを選択して、それを対象にRawSkillを発動する
     [SerializeReference, SubclassSelector] IRawSkill rawSkill;
-    [SerializeField] SkillUsingObjectAddress address;
+    [SerializeReference, SubclassSelector] ISkillBool cardCondition;
     [SerializeField] private DeckType deck;
+    [SerializeField] SkillUsingObjectAddress address;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         return Observable.Defer<Unit>(() =>
         {
-            IObservable<SkillDealableCard> selected = address.selector.CardSelect(deck);
+            IObservable<SkillDealableCard> selected = address.selector.CardSelect(deck, cardCondition);
 
             Subject<Unit> skillSubject = new Subject<Unit>();
             selected.Subscribe(x =>

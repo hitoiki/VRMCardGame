@@ -5,5 +5,5 @@ using UnityEngine;
 public interface ISkillBool : ISkillText
 {
     //Skillでfacade状況を判定するためのもの
-    bool SkillBool(CardFacade facade);
+    bool SkillBool(SkillDealableCard dealableCard);
 }

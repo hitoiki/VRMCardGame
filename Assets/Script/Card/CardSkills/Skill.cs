@@ -21,8 +21,8 @@ public class Skill
         this.isSkillable = IsSkillable;
     }
 
-    public static Skill operator +(Skill x, Skill y)
+    public static Skill operator *(Skill x, Skill y)
     {
-        return new Skill(x.name + y.name, x.process + y.process, facade => { return x.isSkillable(facade) && y.isSkillable(facade); });
+        return new Skill(x.name + y.name, facade => { return x.process(facade).Concat(y.process(facade)); }, facade => { return x.isSkillable(facade) && y.isSkillable(facade); });
     }
 }

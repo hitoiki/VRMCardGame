@@ -17,7 +17,7 @@ MonoBehaviour:
   cost: 10
   flavorText: 
   frontSprite: {fileID: 21300000, guid: 72148d92f3455b646a81a1e67d76254f, type: 3}
-  backSprite: {fileID: 21300000, guid: ae1a91e0e06912b43946511a270f8ed7, type: 3}
+  backSprite: {fileID: 21300000, guid: 6fe6d31784f19cb4b94d871f65d28b0b, type: 3}
   iconSprite: {fileID: 0}
   skillPack:
     useSkills: []

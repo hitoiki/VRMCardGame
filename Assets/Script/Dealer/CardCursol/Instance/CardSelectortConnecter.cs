@@ -4,9 +4,10 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayPrepareConnecter : ICardCursolEvent
+public class CardSelectorConnecter : ICardCursolEvent
 {
     [SerializeField] CardSelector selector;
+    [SerializeField] Stage stage;
     [SerializeField] DeckType deck;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {

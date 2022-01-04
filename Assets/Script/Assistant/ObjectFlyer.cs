@@ -78,15 +78,24 @@ public class ObjectFlyer<T> where T : Component
         return newMob;
     }
 
+    public void Erace()
+    {
+        foreach (T obj in MobList)
+        {
+            Transform.Destroy(obj.gameObject);
+        }
+        MobList = new List<T>();
+    }
+
     public void Release()
     {
-        foreach (var obj in MobList)
+        foreach (T obj in MobList)
         {
             if (obj.gameObject.activeSelf == false)
             {
-                GameObject.Destroy(obj.gameObject);
+                Transform.Destroy(obj.gameObject);
+                MobList.Remove(obj);
             }
-
         }
     }
 }

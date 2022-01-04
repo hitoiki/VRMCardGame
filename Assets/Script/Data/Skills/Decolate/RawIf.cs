@@ -13,7 +13,7 @@ public class RawIf : IRawSkill
         return Observable.Defer<Unit>(() =>
         {
             IObservable<Unit> skillObservable = Observable.Empty<Unit>();
-            if (condition.SkillBool(facade))
+            if (condition.SkillBool(facade.skillTarget))
             {
                 skillObservable = rawSkill.GetSkillProcess(facade);
             }

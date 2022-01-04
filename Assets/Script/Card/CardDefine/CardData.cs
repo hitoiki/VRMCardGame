@@ -12,6 +12,7 @@ public class CardData : ScriptableObject
     public string textName;
     public Coin costCoin;
     public short cost;
+    public CardType type;
     [TextArea] public string flavorText;
     public Sprite frontSprite;
     public Sprite backSprite;
@@ -27,7 +28,7 @@ public class CardData : ScriptableObject
 
 }
 
-public enum Suit
+public enum CardType
 {
-    Red, Vioret, Cyan, White//暫定的なスート、カッコいいのを見つけたら刷新する
+    Item, Enemy
 }

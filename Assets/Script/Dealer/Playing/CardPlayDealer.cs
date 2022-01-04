@@ -30,6 +30,10 @@ public class CardPlayDealer : MonoBehaviour
             (Skill skill, SkillDealableCard source) runningSkill = skillQueueObject.Dequeue();
             CardFacade skillFacade = new CardFacade(facadeData, runningSkill.source);
             //発動可能なら実行
+            if (runningSkill.skill == null)
+            {
+                continue;
+            }
             if (!runningSkill.skill.isSkillable(skillFacade))
             {
                 Debug.Log(runningSkill.skill.name + ":Through");
