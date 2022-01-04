@@ -32,7 +32,9 @@ public class CardSelector : MonoBehaviour
         if (mode == ContactMode.Enter && deck == aimingDeck)
         {
             //nullSubjectを扱う可能性に注意
-            prepareSubject.OnNext(new SkillDealableCard(card, stage.DeckKey(deck), stage.queueObject));
+            SkillDealableCard dealCard = new SkillDealableCard(card.GetCard(), stage.DeckKey(deck), stage.queueObject);
+            dealCard.effectPrint = card;
+            prepareSubject.OnNext(dealCard);
             prepareSubject.OnCompleted();
             state.ChangeState(playingState);
         }

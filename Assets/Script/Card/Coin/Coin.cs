@@ -6,7 +6,7 @@ public class Coin : ScriptableObject
 {
     //ダメージ、炎など、カードが受け取る効果量を示すクラス
     //カウンターになぞらえてコインと呼ばさせていただく
-    [SerializeField] public bool storable;
+    [SerializeField] public string TextName;
     [SerializeField] public Sprite icon;
     [SerializeField] public Vector3 spritePos;
     [SerializeField] public float spriteScale;

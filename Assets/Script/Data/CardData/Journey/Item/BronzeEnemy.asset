@@ -10,22 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
-  m_Name: Load
+  m_Name: BronzeEnemy
   m_EditorClassIdentifier: 
-  textName: 
-  costCoin: {fileID: 11400000, guid: e1c265da72ddba04bb831e1c2b9cdd45, type: 2}
-  cost: 3
+  textName: "\u9285\u306E\u6575\u30AD\u30E3\u30E9"
+  costCoin: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
+  cost: 10
   flavorText: 
-  frontSprite: {fileID: 21300000, guid: 7a0dfcd1bf254f14b91a7a8dcda21b9a, type: 3}
-  backSprite: {fileID: 21300000, guid: 6fe6d31784f19cb4b94d871f65d28b0b, type: 3}
-  iconSprite: {fileID: 21300000, guid: 792a681157a357b4c8bb467d604ea51c, type: 3}
+  frontSprite: {fileID: 21300000, guid: 72148d92f3455b646a81a1e67d76254f, type: 3}
+  backSprite: {fileID: 21300000, guid: ae1a91e0e06912b43946511a270f8ed7, type: 3}
+  iconSprite: {fileID: 0}
   skillPack:
     useSkills: []
-    coinSkills:
-    - id: 0
+    coinSkills: []
     drawSkills: []
     otherSkills: []
   references:
     version: 1
-    00000000:
-      type: {class: LoadCoinSkill, ns: , asm: Assembly-CSharp}

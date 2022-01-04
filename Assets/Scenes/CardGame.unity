@@ -1108,18 +1108,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hands:
     initCards:
-    - {fileID: 11400000, guid: 85fd9a7a40f5ae14682c40ec7e263dec, type: 2}
-    - {fileID: 11400000, guid: 6ee46636c81845e4cb953618e73fe05d, type: 2}
+    - {fileID: 11400000, guid: e5108b3dc97c30441a1104bfe31bccf3, type: 2}
+    - {fileID: 11400000, guid: ed15928d2873d0445acd5445200ec3cd, type: 2}
   field:
-    initCards: []
+    initCards:
+    - {fileID: 11400000, guid: e5108b3dc97c30441a1104bfe31bccf3, type: 2}
+    - {fileID: 11400000, guid: ed15928d2873d0445acd5445200ec3cd, type: 2}
+    - {fileID: 11400000, guid: ed15928d2873d0445acd5445200ec3cd, type: 2}
   disCard:
     initCards: []
   trace:
     initCards: []
   senter:
     initCards:
-    - {fileID: 11400000, guid: 85fd9a7a40f5ae14682c40ec7e263dec, type: 2}
-    - {fileID: 11400000, guid: 6ee46636c81845e4cb953618e73fe05d, type: 2}
+    - {fileID: 11400000, guid: 9280e7dbcb91b0640a20208987ea4ead, type: 2}
+    - {fileID: 11400000, guid: 9280e7dbcb91b0640a20208987ea4ead, type: 2}
+    - {fileID: 11400000, guid: 9280e7dbcb91b0640a20208987ea4ead, type: 2}
+    - {fileID: 11400000, guid: 9280e7dbcb91b0640a20208987ea4ead, type: 2}
   right:
     initCards: []
   left:
@@ -1618,8 +1623,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 943709587}
   m_HandleRect: {fileID: 943709586}
   m_Direction: 2
-  m_Value: 0.4999894
-  m_Size: 0.9907094
+  m_Value: 0.4999905
+  m_Size: 0.98963565
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4898,7 +4903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bundle: {fileID: 1422898548}
   initCursol: []
-  clickableCard: {fileID: 233351754067610637, guid: 1f49e6e086613734084cc888ad5e190e,
+  clickableCard: {fileID: 2859416188857268190, guid: c67331e9cffc7724eb6d8163916fbdca,
     type: 3}
 --- !u!1 &1880873688
 GameObject:

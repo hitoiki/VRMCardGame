@@ -7,15 +7,13 @@ using System;
 public class SkillDealableCard
 {
     // Skill上でICardを扱う際の諸々の処理に対応させたクラス
-    // ICardの名前を変えたい
-    private ICardPrintable printable;
     private ICard card;
     public IDeck onDeck { get; private set; }
     private SkillQueueObject skillQueue;
-    public SkillDealableCard(ICardPrintable Printable, IDeck Deck, SkillQueueObject QueueObject)
+    public ICardPrintable effectPrint { private get; set; }
+    public SkillDealableCard(ICard Card, IDeck Deck, SkillQueueObject QueueObject)
     {
-        printable = Printable;
-        card = printable.GetCard();
+        card = Card;
         onDeck = Deck;
         skillQueue = QueueObject;
     }
@@ -58,6 +56,6 @@ public class SkillDealableCard
     //Effect処理用
     public IObservable<Unit> EffectBoot(ISkillEffect effect)
     {
-        return effect.Effect(new EffectLocation(printable));
+        return effect.Effect(new EffectLocation(effectPrint));
     }
 }

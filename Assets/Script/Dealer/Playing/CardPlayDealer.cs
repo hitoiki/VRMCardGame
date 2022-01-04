@@ -12,7 +12,6 @@ public class CardPlayDealer : MonoBehaviour
     [SerializeField] private StateDealer state;
     [SerializeField] private string skillingState;
     [SerializeField] private string defaultState;*/
-    [SerializeField] private SkillUsingObjectAddress address;
     [SerializeField] private Stage stage;
     SkillQueueObject skillQueueObject => stage.queueObject;
     [SerializeField] FacadeData facadeData;
@@ -53,7 +52,10 @@ public class CardPlayDealer : MonoBehaviour
 
     public void PrintedCardPlay(List<Skill> skills, ICardPrintable printable, IDeck deck)
     {
-        skillQueueObject.PlayPush(skills, new SkillDealableCard(printable, deck, stage.queueObject));
+        SkillDealableCard dealCard = new SkillDealableCard(printable.GetCard(), deck, stage.queueObject);
+        dealCard.effectPrint = printable;
+        skillQueueObject.PlayPush(skills, dealCard);
+
         if (!skillQueueObject.Any())
         {
             Debug.Log("nulled");

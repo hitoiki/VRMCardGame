@@ -25,7 +25,9 @@ public class CardFacade
     {
         foreach (ICardPrintable c in data.fieldFactory.GetCards())
         {
-            new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject).ChangeCoin(data.coinToCost, skillTarget.GetCardData().cost);
+            SkillDealableCard dealCard = new SkillDealableCard(c.GetCard(), data.stage.DeckKey(DeckType.field), data.stage.queueObject);
+            dealCard.effectPrint = c;
+            dealCard.BootOtherSkill(OtherSkillKind.OnAction);
         };
     }
 
@@ -34,10 +36,6 @@ public class CardFacade
     {
         List<ICard> drawCards = data.stage.DeckKey(from).Draw(amount);
         data.stage.DeckKey(to).Add(drawCards);
-        foreach (ICard card in drawCards)
-        {
-            // new SkillDealableCard(card, to, data.stage.queueObject);
-        }
         Debug.Log("DrawSkill未対応");
     }
 
@@ -51,7 +49,9 @@ public class CardFacade
         List<SkillDealableCard> fieldDeck = new List<SkillDealableCard>();
         foreach (ICardPrintable c in data.fieldFactory.GetCards())
         {
-            fieldDeck.Add(new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject));
+            SkillDealableCard dealCard = new SkillDealableCard(c.GetCard(), data.stage.DeckKey(DeckType.field), data.stage.queueObject);
+            dealCard.effectPrint = c;
+            fieldDeck.Add(dealCard);
         };
         return fieldDeck;
     }
@@ -60,7 +60,9 @@ public class CardFacade
         List<SkillDealableCard> handDeck = new List<SkillDealableCard>();
         foreach (ICardPrintable c in data.handFactory.GetCards())
         {
-            handDeck.Add(new SkillDealableCard(c, data.stage.DeckKey(DeckType.field), data.stage.queueObject));
+            SkillDealableCard dealCard = new SkillDealableCard(c.GetCard(), data.stage.DeckKey(DeckType.field), data.stage.queueObject);
+            dealCard.effectPrint = c;
+            handDeck.Add(dealCard);
         };
         return handDeck;
     }
@@ -74,6 +76,13 @@ public class CardFacade
     public void AddCard(ICard card, DeckType deck)
     {
         data.stage.DeckKey(deck).Add(card);
+    }
+    public void AddPack(Pack pack, DeckType deck)
+    {
+        foreach (ICard card in pack.GetCards())
+        {
+            data.stage.DeckKey(deck).Add(card);
+        }
     }
 
     public void MoveCard(SkillDealableCard skillCard, DeckType deck)

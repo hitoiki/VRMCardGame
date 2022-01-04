@@ -24,5 +24,5 @@ public class OtherSkill : MonoBehaviour
 
 public enum OtherSkillKind
 {
-    turnEnd, turnStart, Click
+    TurnEnd, TurnStart, Click, OnPick, OnAction
 }
