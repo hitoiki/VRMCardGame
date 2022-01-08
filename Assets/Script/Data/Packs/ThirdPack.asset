@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3602c5de0d6e6004284cffe0f3fe9917, type: 3}
+  m_Name: ThirdPack
+  m_EditorClassIdentifier: 
+  textName: "\u30D1\u30C3\u30AF3"
+  cards:
+  - {fileID: 11400000, guid: b0a9e36ed898db644911cee6efc65e1f, type: 2}

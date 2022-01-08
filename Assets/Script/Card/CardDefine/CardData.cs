@@ -13,6 +13,7 @@ public class CardData : ScriptableObject
     public Coin costCoin;
     public short cost;
     public CardType type;
+    public Suit suit;
     [TextArea] public string flavorText;
     public Sprite frontSprite;
     public Sprite backSprite;
@@ -31,4 +32,9 @@ public class CardData : ScriptableObject
 public enum CardType
 {
     Item, Enemy
+}
+
+public enum Suit
+{
+    Red, Violet, Cyan, White
 }

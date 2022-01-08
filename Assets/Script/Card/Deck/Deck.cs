@@ -112,6 +112,7 @@ public class Deck : IDeck
 
     public List<ICard> Draw(int n)
     {
+        Shuffle();
         if (1 <= n)
         {
             if (n <= _cards.Count)

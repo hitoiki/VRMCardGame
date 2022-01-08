@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 010d4ca4b802fbe44a6f95b31720e881
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - spRen: {instanceID: 0}
+  - redSuit: {fileID: 21300000, guid: 7216fe0a86fdc7c46ba17dff1ee14b0a, type: 3}
+  - cyanSuit: {fileID: 21300000, guid: 22af8c6fda4f1d54d85581d39e83423b, type: 3}
+  - violetSuit: {fileID: 21300000, guid: 2f11902b79044374da3cc4a5728844b7, type: 3}
+  - whiteSuit: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -12,8 +12,15 @@ public class CoinSprite : MonoBehaviour
 
     public void CoinPrint(Coin c, int s)
     {
+        image.enabled = true;
         image.sprite = c.icon;
         text.text = s.ToString();
+    }
+
+    public void UnPrint()
+    {
+        image.enabled = false;
+        text.text = null;
     }
 
 }

@@ -36,7 +36,6 @@ public class CardFacade
     {
         List<ICard> drawCards = data.stage.DeckKey(from).Draw(amount);
         data.stage.DeckKey(to).Add(drawCards);
-        Debug.Log("DrawSkill未対応");
     }
 
     //条件を満たすカードのリストを渡す

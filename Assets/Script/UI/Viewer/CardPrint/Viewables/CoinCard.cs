@@ -14,9 +14,8 @@ public class CoinCard : MonoBehaviour, ICardViewable
     public EffectUsingObjectAddress initFlyer;
     public ObjectFlyer<CoinSprite> flyer;
     [SerializeField] Grid grid;
-    [SerializeField] float zPos = 1;
     [SerializeField] Vector3 origin = new Vector3(100, 0, 0);
-    private Dictionary<Coin, CoinSprite> sprites = new Dictionary<Coin, CoinSprite>();
+    private List<(Coin, CoinSprite)> sprites = new List<(Coin, CoinSprite)>();
     private IDisposable _add;
     private IDisposable _replace;
     private IDisposable _remove;
@@ -34,13 +33,17 @@ public class CoinCard : MonoBehaviour, ICardViewable
         _replace.Dispose();
         _add.Dispose();
         _remove.Dispose();
+        foreach ((Coin coin, CoinSprite sprite) c in sprites)
+        {
+            c.sprite.UnPrint();
+        }
     }
 
     public void Print(ICard c)
     {
         _replace = c.GetObserveCoin().ObserveReplace().Subscribe(changeCoin =>
         {
-            sprites[changeCoin.Key].CoinPrint(changeCoin.Key, changeCoin.NewValue);
+            sprites.Where(x => { return x.Item1 == changeCoin.Key; }).First().Item2.CoinPrint(changeCoin.Key, changeCoin.NewValue);
         });
         _add = c.GetObserveCoin().ObserveAdd().Subscribe(addCoin =>
           {
@@ -48,7 +51,7 @@ public class CoinCard : MonoBehaviour, ICardViewable
           });
         _remove = c.GetObserveCoin().ObserveRemove().Subscribe(removeCoin =>
          {
-             sprites[removeCoin.Key].gameObject.SetActive(false);
+             sprites.Where(x => { return x.Item1 == removeCoin.Key; }).First().Item2.gameObject.SetActive(false);
 
          });
 
@@ -57,28 +60,29 @@ public class CoinCard : MonoBehaviour, ICardViewable
 
     private void CoinInit(Dictionary<Coin, int> c)
     {
+        if (!c.Any()) return;
         foreach (var (coin, num) in c.Select(x => (x.Key, x.Value)))
         {
             CoinMake(coin, num);
         }
 
-        foreach (Coin coin in c.Keys.Except(sprites.Keys))
+        foreach (Coin coin in c.Keys.Except(sprites.Select(x => { return x.Item1; })))
         {
-            sprites.Remove(coin);
+            sprites.Remove(sprites.Where(x => { return x.Item1 == coin; }).First());
         }
     }
 
     private void CoinMake(Coin c, int i)
     {
-        if (!sprites.ContainsKey(c))
+        if (!sprites.Any(x => { return x.Item1 == c; }))
         {
             CoinSprite newSprite = flyer.GetMob(origin);
             newSprite.gameObject.transform.SetParent(this.transform);
-            sprites.Add(c, newSprite);
+            sprites.Add((c, newSprite));
             newSprite.CoinPrint(c, i);
-            newSprite.rect.localScale = new Vector3(newSprite.rect.localScale.x * c.spriteScale, newSprite.rect.localScale.y * c.spriteScale, zPos);
-            newSprite.rect.position = this.transform.position + c.spritePos; ;
+            newSprite.rect.localScale = new Vector3(newSprite.rect.localScale.x * c.spriteScale, newSprite.rect.localScale.y * c.spriteScale, 1);
+            newSprite.rect.position = this.transform.position + grid.NumberGrid(i);
         }
-        else sprites[c].CoinPrint(c, i);
+        else sprites.Where(x => { return x.Item1 == c; }).First().Item2.CoinPrint(c, i);
     }
 }

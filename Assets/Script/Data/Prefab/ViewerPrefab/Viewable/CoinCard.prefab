@@ -112,8 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5522fbaab524e964c875f742b4aba4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initFlyer: {fileID: 11400000, guid: f9c405f6b536cc24c9c3e6766a55a2f0, type: 2}
   grid:
     originPos: {x: 0, y: 0, z: 0}
-    distanceX: 1
-    distanceY: 1
+    distanceX: 0.1
+    distanceY: 0
     maxXGrid: 0
+  origin: {x: 100, y: 0, z: 0}

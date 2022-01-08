@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
-  m_Name: Load
+  m_Name: Flag
   m_EditorClassIdentifier: 
-  textName: 
-  costCoin: {fileID: 11400000, guid: c4a31d70d2805504898829fea01e4ea7, type: 2}
-  cost: 3
+  textName: "\u30B4\u30FC\u30EB"
+  costCoin: {fileID: 11400000, guid: e598d2b863204064fb4a5b18da06d16f, type: 2}
+  cost: 0
   type: 0
   suit: 0
   flavorText: 
-  frontSprite: {fileID: 21300000, guid: 7a0dfcd1bf254f14b91a7a8dcda21b9a, type: 3}
-  backSprite: {fileID: 21300000, guid: 6fe6d31784f19cb4b94d871f65d28b0b, type: 3}
+  frontSprite: {fileID: 21300000, guid: b1fca92c1318eb542a6bd866d6ba52b3, type: 3}
+  backSprite: {fileID: 21300000, guid: 92457c02592f7884aa04467f378db341, type: 3}
   iconSprite: {fileID: 21300000, guid: 0f6e329d47b8754418184b860129a6de, type: 3}
   skillPack:
     useSkills: []
