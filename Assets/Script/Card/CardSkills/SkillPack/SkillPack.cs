@@ -11,13 +11,15 @@ public class SkillPack
     [SerializeReference, SubclassSelector] private List<IUseProcess> useSkills;
     [SerializeReference, SubclassSelector] private List<ICoinProcess> coinSkills;
     [SerializeReference, SubclassSelector] private List<IDrawProcess> drawSkills;
-    [SerializeReference, SubclassSelector] private List<OtherSkill> otherSkills;
+    [SerializeReference, SubclassSelector] private List<IPickingProcess> pickingSkills;
+    [SerializeField] private List<OtherSkill> otherSkills;
 
-    public SkillPack(List<IUseProcess> UseSkills, List<ICoinProcess> CoinSkills, List<IDrawProcess> DrawSkills, List<OtherSkill> OtherSkills)
+    public SkillPack(List<IUseProcess> UseSkills, List<ICoinProcess> CoinSkills, List<IDrawProcess> DrawSkills, List<IPickingProcess> PickingSkills, List<OtherSkill> OtherSkills)
     {
         this.useSkills = UseSkills;
         this.coinSkills = CoinSkills;
         this.drawSkills = DrawSkills;
+        this.pickingSkills = PickingSkills;
         this.otherSkills = OtherSkills;
     }
     public string SkillText()
@@ -26,6 +28,8 @@ public class SkillPack
         if (useSkills.Any()) skillTexts += useSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
         if (coinSkills.Any()) skillTexts += coinSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
         if (drawSkills.Any()) skillTexts += drawSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        if (pickingSkills.Any()) skillTexts += pickingSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        if (otherSkills.Any()) skillTexts += otherSkills.Select(x => { return x.rawSkill.Text(); }).Aggregate((str1, str2) => str1 + str2);
         if (skillTexts == "")
         {
             Debug.Log("nullCardsText");
@@ -47,6 +51,10 @@ public class SkillPack
     {
         return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; })?.ToList();
     }
+    public List<Skill> PickingSkill(SkillDealableCard card)
+    {
+        return pickingSkills.Select(y => { return y.GetSkill(card); }).Where(x => { return x != null; })?.ToList();
+    }
 
     public List<Skill> OtherSkill(OtherSkillKind kind)
     {
@@ -65,6 +73,7 @@ public class SkillPack
         return new SkillPack(x.useSkills.Concat(y.useSkills).ToList(),
         x.coinSkills.Concat(y.coinSkills).ToList(),
         x.drawSkills.Concat(y.drawSkills).ToList(),
+        x.pickingSkills.Concat(y.pickingSkills).ToList(),
         x.otherSkills.Concat(y.otherSkills).ToList()
         );
     }

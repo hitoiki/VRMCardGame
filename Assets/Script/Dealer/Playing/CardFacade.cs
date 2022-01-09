@@ -89,6 +89,15 @@ public class CardFacade
         skillCard.MoveDeck(data.stage.DeckKey(deck));
     }
 
+    public void InformPick(SkillDealableCard pickedCard)
+    {
+        foreach (ICardPrintable c in data.fieldFactory.GetCards())
+        {
+            SkillDealableCard dealCard = new SkillDealableCard(c.GetCard(), data.stage.DeckKey(DeckType.field), data.stage.queueObject);
+            dealCard.effectPrint = c;
+            data.stage.queueObject.Push(c.GetCard().GetSkillPack().PickingSkill(pickedCard), dealCard);
+        }
+    }
     public void Shuffle(DeckType deck)
     {
         data.stage.DeckKey(deck).Shuffle();
