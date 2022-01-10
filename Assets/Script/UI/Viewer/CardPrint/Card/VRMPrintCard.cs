@@ -3,23 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using System;
+using System.Reflection;
 
 #pragma warning disable 0649
-public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
+public class VRMPrintCard : MonoBehaviour, ICardViewable, ICardObservable
 {
     // VRMのカードをやる
     private ReactiveProperty<ICard> card = new ReactiveProperty<ICard>();
     [SerializeField] private Image BackImage;
     [SerializeField] private Image FrontImage;
     [SerializeField] private Text nameText;
-    private Vector3 anchor;
+    [SerializeField] private PlayerData player;
     public void Print(ICard card)
     {
         this.card.Value = card;
         nameText.text = card.GetCardData().textName;
-        //SkillText.text = card.Cardtext();
         BackImage.sprite = card.GetCardData().backSprite;
         FrontImage.sprite = card.GetCardData().frontSprite;
+
+        //ここでVRMのポーズを変える
+        if (player.vrmAnimator == null) return;
+        PoseItem cardPose = card.GetCardData().poseItem;
+        //Chestのrotetionの配列数で確認
+        if (cardPose.chest.rotation.Length < 4) cardPose = player.defaultPoseItem;
+
+        EnumSonicForeach<HumanBodyBones>.Exec(x =>
+        {
+            BoneItem boneItem = cardPose.SeekBone(x);
+            if (boneItem == null) return;
+            if (boneItem.rotation == null) return;
+            var boneTrans = player.vrmAnimator.GetBoneTransform(x);
+            float[] rotation = boneItem.rotation;
+            if (boneTrans != null && rotation.Length >= 4)
+            {
+                boneTrans.localRotation = new Quaternion(-rotation[0], -rotation[1], rotation[2], rotation[3]);
+            }
+        });
     }
 
     public void UnPrint()
@@ -31,26 +51,9 @@ public class VRMPrintCard : MonoBehaviour, ICardPrintable, ICardObservable
     {
         return card;
     }
-    public Transform GetTransform()
-    {
-        return this.transform;
-    }
 
-    public ICard GetCard()
-    {
-        return card.Value;
-    }
     public void Active(bool boo)
     {
 
-    }
-    public void SetAnchor(Vector3 vec)
-    {
-        anchor = vec;
-    }
-
-    public Vector3 GetAnchor()
-    {
-        return anchor;
     }
 }

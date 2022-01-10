@@ -15,7 +15,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
     [SerializeField] private Stage stage;
     [SerializeField] private DeckType observeDeck;
     [SerializeField] private float tweenTime;
-    public AlignGrid grid;
+    [SerializeReference, SubclassSelector] public IAlignGrid grid;
     private ICardFactory factory;
     private IDisposable _Replace;
     private IDisposable _Add;
@@ -110,7 +110,6 @@ public class StageCardViewer : MonoBehaviour, IGameState
     [ContextMenu("Align")]
     public void AllAlign()
     {
-        Debug.Log("Align");
         foreach (var p in factory.GetCards()?.Select((ICardPrintable Value, int Index) => new { Value, Index }))
         {
             Align(p.Value, p.Index);

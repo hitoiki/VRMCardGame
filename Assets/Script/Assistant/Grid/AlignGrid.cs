@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class AlignGrid
+public class AlignGrid : IAlignGrid
 {
     //マス目、番目を計算するクラス
     [SerializeField] private Vector3 originPos;
@@ -12,14 +12,6 @@ public class AlignGrid
     [SerializeField] private float avoidDistance;
     [SerializeField] private int maxXGrid;
     public int highLightingIndex;
-    public AlignGrid(Vector3 origin, float x, float y)
-    {
-        originPos = origin;
-        distanceX = x;
-        distanceY = y;
-        highLightingIndex = 0;
-        avoidDistance = 0;
-    }
 
     public Vector3 NumberGrid(int x)
     {
@@ -37,8 +29,8 @@ public class AlignGrid
         return pos;
     }
 
-    public Vector3 Point(int x, int y)
+    public void HighLightIndex(int x)
     {
-        return originPos + x * distanceX * Vector3.right + y * distanceY * Vector3.up;
+        highLightingIndex = x;
     }
 }

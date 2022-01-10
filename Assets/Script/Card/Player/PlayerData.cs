@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using System.IO;
 using UniRx;
 
 public class PlayerData : MonoBehaviour
 {
     //Playerのデータ
-    public Transform vrmTransform;
+    public Animator vrmAnimator;
     [SerializeField] private CardData initPlayerCard;
-    [SerializeField] private GameObject initPrintable;
-    [SerializeField] private ICardPrintable printable;
     private ICard playerCard;
 
 
@@ -22,11 +20,25 @@ public class PlayerData : MonoBehaviour
     //勝利条件。スコアチックにしたいのでintで作る
     public ReactiveProperty<int> flag = new ReactiveProperty<int>();
 
+    //デフォルトのポーズ
+    [SerializeField, PathAttribute] private string defaultPoseFilePath = "";
+    public PoseItem defaultPoseItem;
+
+
     private void Awake()
     {
         _hp.Value = initHP;
         playerCard = new DefaultCard(initPlayerCard);
-        printable = initPrintable.GetComponent<ICardPrintable>();
+        PoseSet();
+    }
+
+    [ContextMenu("PoseSet")]
+    private void PoseSet()
+    {
+        if (defaultPoseFilePath == "") return;
+        string json = File.ReadAllText(defaultPoseFilePath);
+        defaultPoseItem = JsonUtility.FromJson<PoseItem>(json);
+
     }
 
     public void Damage(int amount)

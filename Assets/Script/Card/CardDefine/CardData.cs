@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-
+using System.Reflection;
+using System.IO;
 [CreateAssetMenu(fileName = "Data", menuName = "CardData")]
 public class CardData : ScriptableObject
 {
@@ -18,6 +18,8 @@ public class CardData : ScriptableObject
     public Sprite frontSprite;
     public Sprite backSprite;
     public Sprite iconSprite;
+    [PathAttribute] public string poseJsonFilePath = "";
+    public PoseItem poseItem;
     //効果を入れるクラス
     public SkillPack skillPack;
 
@@ -26,6 +28,19 @@ public class CardData : ScriptableObject
         if (flavorText != "") return skillPack.SkillText() + "\n(" + flavorText + ")";
         else return skillPack.SkillText();
     }
+    private void OnValidate()
+    {
+        PoseSet();
+    }
+
+    [ContextMenu("PoseSet")]
+    private void PoseSet()
+    {
+        if (poseJsonFilePath == "") return;
+        string json = File.ReadAllText(poseJsonFilePath);
+        poseItem = JsonUtility.FromJson<PoseItem>(json);
+    }
+
 
 }
 

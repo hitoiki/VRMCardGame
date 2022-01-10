@@ -10,4 +10,5 @@
 UniRx
 DotWeen
 SimpleFX
-SubClassSelector
+baba-s/Unity-SerializeReferenceExtensions
+kankikuchi/PathAttribute.cs
