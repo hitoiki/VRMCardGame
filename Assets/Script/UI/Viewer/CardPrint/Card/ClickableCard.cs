@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.EventSystems;
 
-public class ClickableCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCursolEventUser
+public class ClickableCard : MonoBehaviour, ICardPrintable, ICardCursolEventUser
 {
     // Clickする処理のところだけ括りだして親クラスとする
     [SerializeField] List<Component> initViews;
@@ -24,7 +25,7 @@ public class ClickableCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCu
         viewables = initViews.SelectMany(x => { return x.GetComponents<ICardViewable>(); }).ToList();
     }
 
-
+    //ICardPrintable用
     public virtual void Print(ICard c)
     {
         foreach (ICardViewable viewable in viewables)
@@ -70,36 +71,93 @@ public class ClickableCard : MonoBehaviour, ICardPrintable, ICursolable, ICardCu
     {
         return anchor;
     }
+    //EventUser用
     public void AddCardCursolEvent(ICardCursolEvent c)
     {
         cursolEvent.Add(c);
     }
     public void RemoveCardCursolEvent(ICardCursolEvent c)
     {
+        c.Close(this, Vector3.zero);
         cursolEvent.Remove(c);
     }
     public void SubstitutionCardCursolEvent(List<ICardCursolEvent> c)
     {
+        foreach (ICardCursolEvent cEvent in cursolEvent.Except(c))
+        {
+            cEvent.Close(this, Vector3.zero);
+        }
         cursolEvent = c;
     }
-    public void Click(Vector3 pos, ContactMode mode)
+    //Monobehaviorの機能でクリックを検知
+    void OnMouseDown()
     {
         if (activate)
         {
             foreach (ICardCursolEvent c in cursolEvent)
             {
-                c.CardClick(this, pos, mode);
+                c.CardClick(this, Input.mousePosition, ContactMode.Enter);
             }
         }
     }
-    public void Cursol(Vector3 pos, ContactMode mode)
+
+    // マウスボタンを離した時にコールされる
+    void OnMouseUp()
     {
         if (activate)
         {
             foreach (ICardCursolEvent c in cursolEvent)
             {
-                c.CardCursol(this, pos, mode);
+                c.CardClick(this, Input.mousePosition, ContactMode.Exit);
             }
         }
     }
+
+    // マウスボタンが押された状態でマウスを移動させてる間コールされ続ける
+    void OnMouseDrag()
+    {
+        if (activate)
+        {
+            foreach (ICardCursolEvent c in cursolEvent)
+            {
+                c.CardClick(this, Input.mousePosition, ContactMode.Stay);
+            }
+        }
+    }
+
+    // マウスカーソルが対象オブジェクトから退出した時にコールされる
+    void OnMouseExit()
+    {
+        if (activate)
+        {
+            foreach (ICardCursolEvent c in cursolEvent)
+            {
+                c.CardCursol(this, Input.mousePosition, ContactMode.Exit);
+            }
+        }
+    }
+    // マウスカーソルが対象オブジェクトに進入した時にコールされる
+    void OnMouseEnter()
+    {
+        if (activate)
+        {
+            foreach (ICardCursolEvent c in cursolEvent)
+            {
+                c.CardCursol(this, Input.mousePosition, ContactMode.Enter);
+            }
+        }
+    }
+
+    // マウスカーソルが対象オブジェクトに重なっている間コールされ続ける
+    void OnMouseOver()
+    {
+        if (activate)
+        {
+            foreach (ICardCursolEvent c in cursolEvent)
+            {
+                c.CardCursol(this, Input.mousePosition, ContactMode.Stay);
+            }
+        }
+    }
+
 }

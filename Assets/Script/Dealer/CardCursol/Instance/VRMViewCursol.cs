@@ -14,6 +14,10 @@ public class VRMViewCursol : ICardCursolEvent
     {
         if (card == null) Debug.Log("noCard!");
         else vrmPrintCard.Print(card.GetCard());
+    }
+    public void Close(ICardPrintable card, Vector3 pos)
+    {
 
     }
+
 }

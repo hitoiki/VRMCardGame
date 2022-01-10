@@ -4,14 +4,13 @@ using UnityEngine;
 [System.Serializable]
 public class DragCursolableCard : ICardCursolEvent
 {
-    [SerializeField] float zPos;
     [SerializeField] CardPlayRecepter recepter;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
         if (mode == ContactMode.Stay)
         {
             Vector3 drugPos = Camera.main.ScreenToWorldPoint(pos);
-            card.GetTransform().position = new Vector3(drugPos.x, drugPos.y, zPos);
+            card.GetTransform().position = new Vector3(drugPos.x, drugPos.y, card.GetTransform().position.z);
         }
 
         if (mode == ContactMode.Exit)
@@ -25,4 +24,9 @@ public class DragCursolableCard : ICardCursolEvent
     {
 
     }
+    public void Close(ICardPrintable card, Vector3 pos)
+    {
+        card.GetTransform().position = card.GetAnchor();
+    }
+
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class CardPlayRecepter : MonoBehaviour
 {
     //カードの使用を取り扱う
-    //Rayかなんかで受け取る
     [SerializeField] private CardPlayChecker checker;
 
     [SerializeField] private Vector2 areaFrom = Vector2.zero;

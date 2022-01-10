@@ -5,7 +5,6 @@ using System.Linq;
 
 public class ClickableFactory : MonoBehaviour, ICardFactory, ICardCursolEventUser
 {
-    [SerializeField] private Transform bundle;
     [SerializeField] private List<GameObject> initCursol = new List<GameObject>();
     [SerializeField] private ClickableCard clickableCard = null;
     private List<ICardCursolEvent> firstCursols = new List<ICardCursolEvent>();
@@ -30,7 +29,6 @@ public class ClickableFactory : MonoBehaviour, ICardFactory, ICardCursolEventUse
         ClickableCard printedObj = flyer.GetMob(position, y =>
         {
             y.Init();
-            if (bundle != null) y.transform.SetParent(bundle);
             y.cursolEvent.AddRange(firstCursols);
         }
         , y => { y.Active(true); });

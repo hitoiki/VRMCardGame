@@ -13,7 +13,7 @@ public class CoinCard : MonoBehaviour, ICardViewable
     //面倒だからやらないけどこれFlyerを適当なScriptableにした方が楽だな
     public EffectUsingObjectAddress initFlyer;
     public ObjectFlyer<CoinSprite> flyer;
-    [SerializeField] Grid grid;
+    [SerializeField] AlignGrid grid;
     [SerializeField] Vector3 origin = new Vector3(100, 0, 0);
     private List<(Coin, CoinSprite)> sprites = new List<(Coin, CoinSprite)>();
     private IDisposable _add;

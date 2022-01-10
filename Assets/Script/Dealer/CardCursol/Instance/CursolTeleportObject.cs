@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 [System.Serializable]
 public class CursolTeleportObject : ICardCursolEvent
 {
+    [SerializeField] private bool isRelative;
+    [SerializeField] private Vector3 gapPos;
     [SerializeField] private GameObject[] portObj;
     public void CardClick(ICardPrintable card, Vector3 pos, ContactMode mode)
     {
@@ -22,10 +23,14 @@ public class CursolTeleportObject : ICardCursolEvent
         }
         foreach (GameObject obj in portObj)
         {
-            obj.transform.position = new Vector3(
-                card.GetTransform().position.x,
-                card.GetTransform().position.y,
-                obj.transform.position.z);
+            if (isRelative)
+            {
+                obj.transform.position = new Vector3(
+                    card.GetTransform().position.x,
+                    card.GetTransform().position.y,
+                    obj.transform.position.z) + gapPos;
+            }
+            else obj.transform.position = obj.transform.position.z * Vector3.forward + gapPos;
         }
         if (mode == ContactMode.Enter)
         {
@@ -35,5 +40,12 @@ public class CursolTeleportObject : ICardCursolEvent
             }
         }
 
+    }
+    public void Close(ICardPrintable card, Vector3 pos)
+    {
+        foreach (GameObject obj in portObj)
+        {
+            obj.SetActive(false);
+        }
     }
 }

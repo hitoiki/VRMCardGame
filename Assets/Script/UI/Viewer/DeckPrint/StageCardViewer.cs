@@ -10,11 +10,12 @@ public class StageCardViewer : MonoBehaviour, IGameState
 {
     // fieldViewerなどを抽象化する
     // Deckに合わせて格子状に表示していくってだけ
+    [SerializeField] private Transform bundle;
     [SerializeField] private GameObject initFactory;
     [SerializeField] private Stage stage;
     [SerializeField] private DeckType observeDeck;
-    [SerializeField] private Grid grid;
     [SerializeField] private float tweenTime;
+    public AlignGrid grid;
     private ICardFactory factory;
     private IDisposable _Replace;
     private IDisposable _Add;
@@ -46,14 +47,15 @@ public class StageCardViewer : MonoBehaviour, IGameState
          {
              //Flyerから新しくICardPrintableを貰って、自分のリストに加える
              ICardPrintable newCard = factory.CardMake(x.Value, grid.NumberGrid(x.Index));
-             newCard.SetAnchor(grid.NumberGrid(x.Index));
+             newCard.GetTransform().SetParent(bundle);
+             Align(newCard, x.Index);
              newCard.Print(x.Value);
          });
         _Remove = stage.DeckKey(observeDeck).ObservableRemove.Subscribe(x =>
          {
              //Flyerにカードを使われていない状態にしてもらって、リストから消す
              factory.CardEraceAt(x.Index);
-             PrintableAlign();
+             AllAlign();
          });
         DeckInit(stage.DeckKey(observeDeck).cards);
     }
@@ -82,7 +84,8 @@ public class StageCardViewer : MonoBehaviour, IGameState
             else
             {
                 ICardPrintable newCard = factory.CardMake(i.Value, grid.NumberGrid(i.Index));
-                newCard.SetAnchor(grid.NumberGrid(i.Index));
+                Align(newCard, i.Index);
+                newCard.GetTransform().SetParent(bundle);
                 newCard.Print(i.Value);
             }
         }
@@ -97,12 +100,20 @@ public class StageCardViewer : MonoBehaviour, IGameState
 
     }
 
-    private void PrintableAlign()
+    private void Align(ICardPrintable print, int i)
     {
+        print.GetTransform().DOMove(grid.NumberGrid(i), tweenTime);
+        print.SetAnchor(grid.NumberGrid(i));
+    }
+
+
+    [ContextMenu("Align")]
+    public void AllAlign()
+    {
+        Debug.Log("Align");
         foreach (var p in factory.GetCards()?.Select((ICardPrintable Value, int Index) => new { Value, Index }))
         {
-            p.Value.GetTransform().DOMove(grid.NumberGrid(p.Index), tweenTime);
-            p.Value.SetAnchor(grid.NumberGrid(p.Index));
+            Align(p.Value, p.Index);
         }
     }
 
