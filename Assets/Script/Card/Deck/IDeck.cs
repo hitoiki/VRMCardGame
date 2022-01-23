@@ -10,17 +10,19 @@ public interface IDeck
     //代入
     void Substitution(List<ICard> c);
     //追加
-    void Add(ICard c);
+    bool Add(ICard c);
     //削除
-    void Remove(ICard c);
+    bool Remove(ICard c);
     //指定したカードがあるなら取り出し、ないのならnullを返す
-    List<ICard> Pick(List<ICard> cs);
+    ICard Pick(ICard cs);
     //指定したカードが存在するかを確認
     bool ExistCheck(ICard c);
+    //Deckにカードが存在するか確認
+    bool Any();
     //ドロー処理
     List<ICard> Draw(int n);
     //山札の上をチェック
-    List<ICard> DrawCheck(int i);
+    List<ICard> DrawCheck(int n);
     //シャッフル
     void Shuffle();
 }

@@ -31,7 +31,7 @@ public class SelectUseRaw : IUseProcess
     }
     public bool GetIsSkillable(CardFacade facade)
     {
-        return facade.DeckKey(deck).cards.Any();
+        return facade.DeckKey(deck).Any();
     }
     public string Text()
     {

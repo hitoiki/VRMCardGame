@@ -1450,7 +1450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: -300}
+  m_AnchoredPosition: {x: -699.9999, y: -300}
   m_SizeDelta: {x: 100, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &549688501
@@ -4050,6 +4050,11 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.18890136
       objectReference: {fileID: 0}
+    - target: {fileID: 4071802521883018100, guid: ce5a973532b6c2d47853a30e3800ade3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5286175306441176177, guid: ce5a973532b6c2d47853a30e3800ade3,
         type: 3}
       propertyPath: m_DirtyAABB
@@ -4313,7 +4318,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 901256995}
-  m_PlaneDistance: 25
+  m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5275,7 +5280,7 @@ MonoBehaviour:
         originPos: {x: -1.5, y: 3, z: 16}
         distanceX: 2
         distanceY: -3
-        avoidDistance: 0
+        avoidDistance: 1
         maxXGrid: 5
         highLightingIndex: -1
 --- !u!114 &1841415133
@@ -5957,7 +5962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -450, y: -250}
+  m_AnchoredPosition: {x: -450, y: 240}
   m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977061340

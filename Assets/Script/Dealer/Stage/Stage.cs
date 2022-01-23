@@ -43,8 +43,3 @@ public class Stage : MonoBehaviour
     }
 
 }
-
-public enum DeckType
-{
-    hands, field, discard, trace, deck, right, left
-}

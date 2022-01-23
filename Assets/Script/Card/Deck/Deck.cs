@@ -72,42 +72,34 @@ public class Deck : IDeck
 
     }
 
-    public void Add(ICard c)
+    public bool Add(ICard c)
     {
         _cards.Add(c);
-    }
-    public void Add(List<ICard> cs)
-    {
-        foreach (ICard c in cs)
-        {
-            _cards.Add(c);
-        }
+        return true;
     }
 
-    public void Remove(ICard c) { _cards.Remove(c); }
-    public void Remove(List<ICard> cs)
+    public bool Remove(ICard c)
     {
-        foreach (ICard c in cs)
-        {
-            _cards.Remove(c);
-        };
+        return _cards.Remove(c);
     }
 
-    public List<ICard> Pick(List<ICard> cs)
+    public ICard Pick(ICard c)
     {
-        List<ICard> returnCards = new List<ICard>();
-        foreach (ICard c in cs)
+        if (_cards.Contains(c))
         {
-            if (_cards.Contains(c)) continue;
-            returnCards.Add(c);
-            _cards.Remove(c);
+            //存在を調べてから除いている事を明確にするために二重入れ子で表現
+            if (_cards.Remove(c)) return c;
         }
-        return returnCards;
+        return null;
     }
 
     public bool ExistCheck(ICard c)
     {
         return _cards.Contains(c);
+    }
+    public bool Any()
+    {
+        return _cards.Any();
     }
 
     public List<ICard> Draw(int n)

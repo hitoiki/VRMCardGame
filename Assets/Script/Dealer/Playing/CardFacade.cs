@@ -39,7 +39,7 @@ public class CardFacade
     }
 
     //条件を満たすカードのリストを渡す
-    public Deck DeckKey(DeckType type)
+    public IDeck DeckKey(DeckType type)
     {
         return data.stage.DeckKey(type);
     }
