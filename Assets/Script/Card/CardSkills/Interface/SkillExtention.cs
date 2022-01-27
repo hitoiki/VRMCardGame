@@ -18,7 +18,7 @@ public static class SkillExtention
         return new Skill(drawSkill.SkillName(), x => drawSkill.GetSkillProcess(x, from, to), x => drawSkill.GetIsSkillable(x, from, to));
     }
 
-    public static Skill GetSkill(this IPickingProcess drawSkill, SkillDealableCard card)
+    public static Skill GetSkill(this IPickingProcess drawSkill, ICard card)
     {
         return new Skill(drawSkill.SkillName(), x => drawSkill.GetSkillProcess(x, card), x => drawSkill.GetIsSkillable(x, card));
     }

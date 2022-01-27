@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IDeck
 {
     // Deckの疎結合
+    //主にCardが取り扱うDeck
     //どんなDeckか確認
     DeckType GetDeckType();
     //代入
@@ -13,12 +14,12 @@ public interface IDeck
     bool Add(ICard c);
     //削除
     bool Remove(ICard c);
-    //指定したカードがあるなら取り出し、ないのならnullを返す
-    ICard Pick(ICard cs);
     //指定したカードが存在するかを確認
     bool ExistCheck(ICard c);
     //Deckにカードが存在するか確認
     bool Any();
+    //Deck枚数の確認
+    int Count();
     //ドロー処理
     List<ICard> Draw(int n);
     //山札の上をチェック

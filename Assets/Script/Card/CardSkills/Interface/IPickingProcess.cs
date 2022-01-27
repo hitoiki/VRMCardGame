@@ -7,7 +7,7 @@ using UniRx;
 public interface IPickingProcess : ISkillText
 {
     //Coinを受け取って発動する能力。
-    IObservable<Unit> GetSkillProcess(CardFacade facede, SkillDealableCard dealableCard);
-    bool GetIsSkillable(CardFacade facede, SkillDealableCard dealableCard);
+    IObservable<Unit> GetSkillProcess(CardFacade facede, ICard dealableCard);
+    bool GetIsSkillable(CardFacade facede, ICard dealableCard);
 }
 

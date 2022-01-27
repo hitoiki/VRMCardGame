@@ -51,7 +51,7 @@ public class SkillPack
     {
         return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; })?.ToList();
     }
-    public List<Skill> PickingSkill(SkillDealableCard card)
+    public List<Skill> PickingSkill(ICard card)
     {
         return pickingSkills.Select(y => { return y.GetSkill(card); }).Where(x => { return x != null; })?.ToList();
     }

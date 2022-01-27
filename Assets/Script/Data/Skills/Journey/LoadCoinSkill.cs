@@ -14,7 +14,7 @@ public class LoadCoinSkill : ICoinProcess
         {
             if (facade.skillTarget.GetCoin()[facade.skillTarget.GetCardData().costCoin] >= facade.skillTarget.GetCardData().cost)
             {
-                facade.skillTarget.BootOtherSkill(OtherSkillKind.OnPick);
+                facade.skillTarget.BootOtherSkill(OtherSkillKind.OnPick, facade.skillQueue);
                 facade.MoveCard(facade.skillTarget, DeckType.hands);
                 facade.DeckDraw(DeckType.deck, DeckType.field, drawAmount);
 

@@ -9,35 +9,35 @@ public class CardSelector : MonoBehaviour
 {
     // カードを選択して返すObject
 
-    private Subject<SkillDealableCard> prepareSubject;
+    private Subject<ICard> prepareSubject;
     private List<(DeckType deck, ISkillBool condition)> aiming = new List<(DeckType, ISkillBool)>();
     [SerializeField] private StateDealer state;
     [SerializeField] private string selectingState;
     [SerializeField] private string playingState;
     [SerializeField] private Stage stage;
     [SerializeField] private CardSelectHighLighter highLighter;
-    public IObservable<SkillDealableCard> CardSelect(DeckType deck, ISkillBool condition)
+    public IObservable<ICard> CardSelect(DeckType deck, ISkillBool condition)
     {
-        return Observable.Defer<SkillDealableCard>(() =>
+        return Observable.Defer<ICard>(() =>
         {
             aiming = new List<(DeckType, ISkillBool)>();
             aiming.Add((deck, condition)); ;
             if (aiming.First().deck == DeckType.hands) highLighter.HandHighLight(aiming.First().condition);
             if (aiming.First().deck == DeckType.field) highLighter.FieldHighLight(aiming.First().condition);
             state.ChangeState(selectingState);
-            prepareSubject = new Subject<SkillDealableCard>();
+            prepareSubject = new Subject<ICard>();
             return prepareSubject;
         });
     }
-    public IObservable<SkillDealableCard> CardListSelect(List<(DeckType, ISkillBool)> selectList)
+    public IObservable<ICard> CardListSelect(List<(DeckType, ISkillBool)> selectList)
     {
-        return Observable.Defer<SkillDealableCard>(() =>
+        return Observable.Defer<ICard>(() =>
         {
             aiming = selectList;
             if (aiming.First().deck == DeckType.hands) highLighter.HandHighLight(aiming.First().condition);
             if (aiming.First().deck == DeckType.field) highLighter.FieldHighLight(aiming.First().condition);
             state.ChangeState(selectingState);
-            prepareSubject = new Subject<SkillDealableCard>();
+            prepareSubject = new Subject<ICard>();
             return prepareSubject;
         });
     }
@@ -45,10 +45,10 @@ public class CardSelector : MonoBehaviour
     {
         if (mode != ContactMode.Enter) return;
         if (aiming.First().deck != deck) return;
-        if (aiming.First().condition != null && !aiming.First().condition.SkillBool(new SkillDealableCard(card.GetCard(), stage.DeckKey(deck), stage.queueObject))) return;
+        if (aiming.First().condition != null && !aiming.First().condition.SkillBool(card.GetCard())) return;
         //条件に合うなら、OnNextで通知
-        SkillDealableCard dealCard = new SkillDealableCard(card.GetCard(), stage.DeckKey(deck), stage.queueObject);
-        dealCard.effectPrint = card;
+        ICard dealCard = card.GetCard();
+        // dealCard.effectPrint = card; effectLess
         prepareSubject.OnNext(dealCard);
         highLighter.Erace();
         //使った条件を削除

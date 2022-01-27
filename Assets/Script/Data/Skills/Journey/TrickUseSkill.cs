@@ -15,8 +15,8 @@ public class TrickUseSkill : IUseProcess
     {
         return Observable.Defer<Unit>(() =>
         {
-            IObservable<SkillDealableCard> selected = address.selector.CardListSelect(trick.Select(x => { return (deck, new SuitSkillBool(x) as ISkillBool); }).ToList());
-            List<SkillDealableCard> trash = new List<SkillDealableCard>();
+            IObservable<ICard> selected = address.selector.CardListSelect(trick.Select(x => { return (deck, new SuitSkillBool(x) as ISkillBool); }).ToList());
+            List<ICard> trash = new List<ICard>();
             Subject<Unit> skillSubject = new Subject<Unit>();
             selected.Subscribe(x =>
             {
@@ -24,7 +24,7 @@ public class TrickUseSkill : IUseProcess
             },
             () =>
             {
-                foreach (SkillDealableCard s in trash)
+                foreach (ICard s in trash)
                 {
                     facade.MoveCard(s, DeckType.discard);
                 }

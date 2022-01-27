@@ -14,6 +14,6 @@ public class CardPlayChecker : MonoBehaviour
     public void CardCheck(ICardPrintable cardViewable)
     {
         SkillPack skillPack = cardViewable.GetCard().GetSkillPack();
-        dealer.PrintedCardPlay(skillPack.UseSkill(), cardViewable, stage.DeckKey(DeckType.hands));
+        dealer.PrintedCardPlay(skillPack.UseSkill(), cardViewable.GetCard());
     }
 }

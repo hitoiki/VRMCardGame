@@ -7,27 +7,27 @@ using UniRx;
 public class CardFacade
 {
     //Cardが出来る処理を書く   
-    //SkillDealableの実装に伴い、主にカードの提供、ドロー処理を行うように
+    //主にICardの取得処理を担当する
     FacadeData data;
-    public SkillDealableCard skillTarget;
+    public ICard skillTarget;
     public SkillUsingSubject skillsSubject => data.skillsSubject;
-    public CardFacade(FacadeData Data, SkillDealableCard Source)
+    public SkillQueueObject skillQueue => data.stage.queueObject;
+    public CardFacade(FacadeData Data, ICard Source)
     {
         this.data = Data;
         this.skillTarget = Source;
     }
     //あんま良くない気がするけど暫定これで
-    public CardFacade NewFacade(SkillDealableCard newSource)
+    public CardFacade NewFacade(ICard newSource)
     {
         return new CardFacade(data, newSource);
     }
     public virtual void CostPay()
     {
-        foreach (ICardPrintable c in data.fieldFactory.GetCards())
+        foreach (ICard dealCard in data.fieldFactory.GetCards().Select(x => { return x.GetCard(); }))
         {
-            SkillDealableCard dealCard = new SkillDealableCard(c.GetCard(), data.stage.DeckKey(DeckType.field), data.stage.queueObject);
-            dealCard.effectPrint = c;
-            dealCard.BootOtherSkill(OtherSkillKind.OnAction);
+            // dealCard.effectPrint = c;Kouji
+            dealCard.BootOtherSkill(OtherSkillKind.OnAction, skillQueue);
         };
     }
 
@@ -43,24 +43,22 @@ public class CardFacade
     {
         return data.stage.DeckKey(type);
     }
-    public List<SkillDealableCard> FieldDeck()
+    public List<ICard> FieldDeck()
     {
-        List<SkillDealableCard> fieldDeck = new List<SkillDealableCard>();
-        foreach (ICardPrintable c in data.fieldFactory.GetCards())
+        List<ICard> fieldDeck = new List<ICard>();
+        foreach (ICard dealCard in data.fieldFactory.GetCards().Select(x => { return x.GetCard(); }))
         {
-            SkillDealableCard dealCard = new SkillDealableCard(c.GetCard(), data.stage.DeckKey(DeckType.field), data.stage.queueObject);
-            dealCard.effectPrint = c;
+            //   dealCard.effectPrint = c;
             fieldDeck.Add(dealCard);
         };
         return fieldDeck;
     }
-    public List<SkillDealableCard> HandsDeck()
+    public List<ICard> HandsDeck()
     {
-        List<SkillDealableCard> handDeck = new List<SkillDealableCard>();
-        foreach (ICardPrintable c in data.handFactory.GetCards())
+        List<ICard> handDeck = new List<ICard>();
+        foreach (ICard dealCard in data.handFactory.GetCards().Select(x => { return x.GetCard(); }))
         {
-            SkillDealableCard dealCard = new SkillDealableCard(c.GetCard(), data.stage.DeckKey(DeckType.field), data.stage.queueObject);
-            dealCard.effectPrint = c;
+            // dealCard.effectPrint = c;
             handDeck.Add(dealCard);
         };
         return handDeck;
@@ -84,18 +82,17 @@ public class CardFacade
         }
     }
 
-    public void MoveCard(SkillDealableCard skillCard, DeckType deck)
+    public void MoveCard(ICard skillCard, DeckType deck)
     {
         skillCard.MoveDeck(data.stage.DeckKey(deck));
     }
 
-    public void InformPick(SkillDealableCard pickedCard)
+    public void InformPick(ICard pickedCard)
     {
-        foreach (ICardPrintable c in data.fieldFactory.GetCards())
+        foreach (ICard dealCard in data.fieldFactory.GetCards().Select(x => { return x.GetCard(); }))
         {
-            SkillDealableCard dealCard = new SkillDealableCard(c.GetCard(), data.stage.DeckKey(DeckType.field), data.stage.queueObject);
-            dealCard.effectPrint = c;
-            data.stage.queueObject.Push(c.GetCard().GetSkillPack().PickingSkill(pickedCard), dealCard);
+            // dealCard.effectPrint = c;
+            data.stage.queueObject.Push(dealCard.GetSkillPack().PickingSkill(pickedCard), dealCard);
         }
     }
     public void Shuffle(DeckType deck)

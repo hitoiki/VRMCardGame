@@ -22,6 +22,15 @@ public static class DeckExtention
         }
         return b;
     }
+    public static ICard Pick(this IDeck deck, ICard card)
+    {
+        if (deck.ExistCheck(card))
+        {
+            //存在を調べてから除いている事を明確にするために二重入れ子で表現
+            if (deck.Remove(card)) return card;
+        }
+        return null;
+    }
     public static List<ICard> Pick(this IDeck deck, List<ICard> cs)
     {
         List<ICard> returnCards = new List<ICard>();

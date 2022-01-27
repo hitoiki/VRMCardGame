@@ -23,7 +23,7 @@ public class SkillUsingSubject : IDisposable
         skillEnd = new Subject<Unit>();
     }
 
-    public IObservable<Unit> EffectLoad(ISkillEffect[] effects, SkillDealableCard card)
+    public IObservable<Unit> EffectLoad(ISkillEffect[] effects, ICard card)
     {
         return Observable.Defer<Unit>(() =>
         {
@@ -31,18 +31,15 @@ public class SkillUsingSubject : IDisposable
 
             foreach (ISkillEffect e in effects.Where(x => { return x != null; }))
             {
+                /*Kouji
                 linker.effects.Add(e);
-                effectEvents.Add(card.EffectBoot(e));
+                effectEvents.Add();*/
             }
             return Observable.WhenAll(effectEvents).First();
         });
     }
 
-    public IObservable<SkillDealableCard> CardSelect(DeckType deck, ISkillBool skillBool)
-    {
-        //  参照先のメソッドをそのまま渡す
-        return selector.CardSelect(deck, skillBool);
-    }
+
     //別にメソッドに分ける理由ないのだが、分かりやすくするため
     public void SkillEnd()
     {

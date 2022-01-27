@@ -5,8 +5,7 @@ using UnityEngine;
 using System.Linq;
 using UniRx;
 
-[System.Serializable]
-public class Deck : IDeck
+public class Deck : IStagingDeck
 {
     //カードを纏める所
     public DeckType deckType { get; private set; }
@@ -15,14 +14,11 @@ public class Deck : IDeck
 
     //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)
     public List<ICard> cards => _cards.ToList();
-    //ReactiveCollectionのうちIObservableだけを公開し、処理を登録できるように
-    public IObservable<CollectionReplaceEvent<ICard>> ObservableReplace => _cards.ObserveReplace();
-    public IObservable<CollectionAddEvent<ICard>> ObservableAdd => _cards.ObserveAdd();
-    public IObservable<CollectionRemoveEvent<ICard>> ObservableRemove => _cards.ObserveRemove();
-    public void InspectorInit(DeckType type)
+
+    public void Init(DeckType type)
     {
         deckType = type;
-        Substitution(initCards.Select(x => { return new DefaultCard(x) as ICard; }).ToList());
+        Substitution(initCards.Select(x => { return new DefaultCard(x, this) as ICard; }).ToList());
     }
 
     public DeckType GetDeckType()
@@ -57,9 +53,9 @@ public class Deck : IDeck
         {
             if (i.Index < _cards.Count)
             {
-                _cards[i.Index] = new DefaultCard(i.Value) as ICard;
+                _cards[i.Index] = new DefaultCard(i.Value, this) as ICard;
             }
-            else _cards.Add(new DefaultCard(i.Value) as ICard);
+            else _cards.Add(new DefaultCard(i.Value, this) as ICard);
         }
 
         if (_cards.Count > c.Count)
@@ -82,20 +78,13 @@ public class Deck : IDeck
     {
         return _cards.Remove(c);
     }
-
-    public ICard Pick(ICard c)
-    {
-        if (_cards.Contains(c))
-        {
-            //存在を調べてから除いている事を明確にするために二重入れ子で表現
-            if (_cards.Remove(c)) return c;
-        }
-        return null;
-    }
-
     public bool ExistCheck(ICard c)
     {
         return _cards.Contains(c);
+    }
+    public int Count()
+    {
+        return _cards.Count;
     }
     public bool Any()
     {
@@ -104,7 +93,6 @@ public class Deck : IDeck
 
     public List<ICard> Draw(int n)
     {
-        Shuffle();
         if (1 <= n)
         {
             if (n <= _cards.Count)
@@ -150,5 +138,22 @@ public class Deck : IDeck
     public void Shuffle()
     {
         _cards.OrderBy(a => Guid.NewGuid());
+    }
+    //ReactiveCollectionのうちIObservableだけを公開し、処理を登録できるように
+    public IObservable<CollectionReplaceEvent<ICard>> ObservableReplace()
+    {
+        return _cards.ObserveReplace();
+    }
+    public IObservable<CollectionAddEvent<ICard>> ObservableAdd()
+    {
+        return _cards.ObserveAdd();
+    }
+    public IObservable<CollectionRemoveEvent<ICard>> ObservableRemove()
+    {
+        return _cards.ObserveRemove();
+    }
+    public List<ICard> Cards()
+    {
+        return cards;
     }
 }

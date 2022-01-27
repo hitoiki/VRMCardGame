@@ -11,7 +11,7 @@ public class RawBootOtherSkill : IRawSkill
     {
         return Observable.Defer<Unit>(() =>
         {
-            facade.skillTarget.BootOtherSkill(kind);
+            facade.skillTarget.BootOtherSkill(kind, facade.skillQueue);
             return Observable.Empty<Unit>();
         });
     }

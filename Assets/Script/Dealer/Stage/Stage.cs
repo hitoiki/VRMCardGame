@@ -7,28 +7,28 @@ public class Stage : MonoBehaviour
     //Cardを置く盤面、舞台
     //コイツを読んで処理したりしなかったりする
     //データ等は主にここで握る
-    [SerializeField] public Deck hands;
-    [SerializeField] public Deck field;
-    [SerializeField] public Deck disCard;
-    [SerializeField] public Deck trace;
-    [SerializeField] public Deck senter;
-    [SerializeField] public Deck right;
-    [SerializeField] public Deck left;
+    [SerializeReference, SubclassSelector] public IStagingDeck hands;
+    [SerializeReference, SubclassSelector] public IStagingDeck field;
+    [SerializeReference, SubclassSelector] public IStagingDeck disCard;
+    [SerializeReference, SubclassSelector] public IStagingDeck trace;
+    [SerializeReference, SubclassSelector] public IStagingDeck senter;
+    [SerializeReference, SubclassSelector] public IStagingDeck right;
+    [SerializeReference, SubclassSelector] public IStagingDeck left;
 
     public SkillQueueObject queueObject = new SkillQueueObject();
 
     private void Start()
     {
-        hands.InspectorInit(DeckType.hands);
-        field.InspectorInit(DeckType.field);
-        disCard.InspectorInit(DeckType.discard);
-        trace.InspectorInit(DeckType.trace);
-        senter.InspectorInit(DeckType.deck);
-        right.InspectorInit(DeckType.right);
-        left.InspectorInit(DeckType.left);
+        if (hands != null) hands.Init(DeckType.hands);
+        if (field != null) field.Init(DeckType.field);
+        if (disCard != null) disCard.Init(DeckType.discard);
+        if (trace != null) trace.Init(DeckType.trace);
+        if (senter != null) senter.Init(DeckType.deck);
+        if (right != null) right.Init(DeckType.right);
+        if (left != null) left.Init(DeckType.left);
     }
 
-    public Deck DeckKey(DeckType e)
+    public IStagingDeck DeckKey(DeckType e)
     {
         if (e == DeckType.hands) return hands;
         if (e == DeckType.field) return field;
