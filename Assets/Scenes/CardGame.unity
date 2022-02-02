@@ -1225,7 +1225,7 @@ MonoBehaviour:
       data:
         initCards:
         - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
-        - {fileID: 11400000, guid: 272ad995e85a15c42ae43ff95d17f2d5, type: 2}
+        - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
     00000001:
       type: {class: Deck, ns: , asm: Assembly-CSharp}
       data:

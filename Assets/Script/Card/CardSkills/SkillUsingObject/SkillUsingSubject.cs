@@ -31,9 +31,8 @@ public class SkillUsingSubject : IDisposable
 
             foreach (ISkillEffect e in effects.Where(x => { return x != null; }))
             {
-                /*Kouji
                 linker.effects.Add(e);
-                effectEvents.Add();*/
+                effectEvents.Add(card.GetEffectProjector().EffectBoot(e));
             }
             return Observable.WhenAll(effectEvents).First();
         });

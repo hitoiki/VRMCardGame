@@ -26,7 +26,6 @@ public class CardFacade
     {
         foreach (ICard dealCard in data.fieldFactory.GetCards().Select(x => { return x.GetCard(); }))
         {
-            // dealCard.effectPrint = c;Kouji
             dealCard.BootOtherSkill(OtherSkillKind.OnAction, skillQueue);
         };
     }

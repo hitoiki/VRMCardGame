@@ -140,15 +140,15 @@ public class Deck : IStagingDeck
         _cards.OrderBy(a => Guid.NewGuid());
     }
     //ReactiveCollectionのうちIObservableだけを公開し、処理を登録できるように
-    public IObservable<CollectionReplaceEvent<ICard>> ObservableReplace()
+    public IObservable<CollectionReplaceEvent<ICard>> ReplaceEvent()
     {
         return _cards.ObserveReplace();
     }
-    public IObservable<CollectionAddEvent<ICard>> ObservableAdd()
+    public IObservable<CollectionAddEvent<ICard>> AddEvent()
     {
         return _cards.ObserveAdd();
     }
-    public IObservable<CollectionRemoveEvent<ICard>> ObservableRemove()
+    public IObservable<CollectionRemoveEvent<ICard>> RemoveEvent()
     {
         return _cards.ObserveRemove();
     }

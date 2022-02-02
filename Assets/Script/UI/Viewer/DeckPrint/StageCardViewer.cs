@@ -36,22 +36,18 @@ public class StageCardViewer : MonoBehaviour, IGameState
     public void CrankIn()
     {
         //Deckに変更が起きた際、これが実行される
-        _Replace = stage.DeckKey(observeDeck).ObservableReplace().Subscribe(x =>
+        _Replace = stage.DeckKey(observeDeck).ReplaceEvent().Subscribe(x =>
          {
              //消して（購読を解除して）から、もう一度Print
-             //printableList[x.Index].UnPrint();
-             factory.GetCards()[x.Index].Print(x.NewValue);
+             CardChange(x.NewValue, x.Index);
 
          });
-        _Add = stage.DeckKey(observeDeck).ObservableAdd().Subscribe(x =>
+        _Add = stage.DeckKey(observeDeck).AddEvent().Subscribe(x =>
          {
              //Flyerから新しくICardPrintableを貰って、自分のリストに加える
-             ICardPrintable newCard = factory.CardMake(x.Value, grid.NumberGrid(x.Index));
-             newCard.GetTransform().SetParent(bundle);
-             Align(newCard, x.Index);
-             newCard.Print(x.Value);
+             CardMake(x.Value, x.Index);
          });
-        _Remove = stage.DeckKey(observeDeck).ObservableRemove().Subscribe(x =>
+        _Remove = stage.DeckKey(observeDeck).RemoveEvent().Subscribe(x =>
          {
              //Flyerにカードを使われていない状態にしてもらって、リストから消す
              factory.CardEraceAt(x.Index);
@@ -72,6 +68,18 @@ public class StageCardViewer : MonoBehaviour, IGameState
         _Add.Dispose();
         _Remove.Dispose();
     }
+    private void CardMake(ICard card, int i)
+    {
+        ICardPrintable newCard = factory.CardMake(card, grid.NumberGrid(i));
+        newCard.GetTransform().SetParent(bundle);
+        Align(newCard, i);
+        newCard.Print(card);
+    }
+    private void CardChange(ICard card, int i)
+    {
+        factory.GetCards()[i].UnPrint();
+        factory.GetCards()[i].Print(card);
+    }
     private void DeckInit(List<ICard> c)
     {
         //デッキの初期化
@@ -79,14 +87,11 @@ public class StageCardViewer : MonoBehaviour, IGameState
         {
             if (i.Index < factory.GetCards().Count)
             {
-                factory.GetCards()[i.Index].Print(i.Value);
+                CardChange(i.Value, i.Index);
             }
             else
             {
-                ICardPrintable newCard = factory.CardMake(i.Value, grid.NumberGrid(i.Index));
-                Align(newCard, i.Index);
-                newCard.GetTransform().SetParent(bundle);
-                newCard.Print(i.Value);
+                CardMake(i.Value, i.Index);
             }
         }
 

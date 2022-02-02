@@ -18,5 +18,6 @@ public interface ICard : IDisposable
     void ChangeCoin(Coin c, int n);
     void MoveDeck(IDeck deck);
     //Effectが起こった際に購読する
-    Subject<EffectLocation> EffectSubject();
+    EffectProjector GetEffectProjector();
+    void SetEffectProjector(EffectProjector projector);
 }

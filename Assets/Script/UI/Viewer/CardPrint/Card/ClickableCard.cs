@@ -33,6 +33,7 @@ public class ClickableCard : MonoBehaviour, ICardPrintable, ICardCursolEventUser
             viewable.Print(c);
         }
         activate = true;
+        c.GetEffectProjector().EffectSubScribe(this);
         viewingCard = c;
     }
     public virtual void UnPrint()
@@ -41,8 +42,9 @@ public class ClickableCard : MonoBehaviour, ICardPrintable, ICardCursolEventUser
         {
             viewable.UnPrint();
         }
-        viewingCard = null;
         activate = false;
+        viewingCard.GetEffectProjector().EffectUnSubScribe(this);
+        viewingCard = null;
     }
 
     public virtual void Active(bool b)

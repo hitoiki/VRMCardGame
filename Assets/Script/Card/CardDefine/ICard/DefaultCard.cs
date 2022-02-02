@@ -10,11 +10,10 @@ public class DefaultCard : ICard
     // デフォルトで扱うICard
     // 基本的にこれらを扱うが、いつの日か別のクラスを用いる日も来るだろう
     private readonly ReactiveDictionary<Coin, int> _coins = new ReactiveDictionary<Coin, int>();
-    private Subject<EffectLocation> _effectSubject => new Subject<EffectLocation>();
 
     //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)
     public Dictionary<Coin, int> coins => _coins.ToDictionary(pair => pair.Key, pair => pair.Value);
-
+    private EffectProjector projector = new EffectProjector();
     private CardData card;
     public IDeck onDeck { get; private set; }
     //追加効果
@@ -73,13 +72,18 @@ public class DefaultCard : ICard
         onDeck = deck;
     }
 
-    public Subject<EffectLocation> EffectSubject()
+    public EffectProjector GetEffectProjector()
     {
-        return _effectSubject;
+        return projector;
     }
+    public void SetEffectProjector(EffectProjector proj)
+    {
+        projector = proj;
+    }
+
 
     public void Dispose()
     {
-
+        _coins.Dispose();
     }
 }

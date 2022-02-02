@@ -5,8 +5,8 @@ using System;
 using UniRx;
 public interface IObservableDeck
 {
-    IObservable<CollectionReplaceEvent<ICard>> ObservableReplace();
-    IObservable<CollectionAddEvent<ICard>> ObservableAdd();
-    IObservable<CollectionRemoveEvent<ICard>> ObservableRemove();
+    IObservable<CollectionReplaceEvent<ICard>> ReplaceEvent();
+    IObservable<CollectionAddEvent<ICard>> AddEvent();
+    IObservable<CollectionRemoveEvent<ICard>> RemoveEvent();
     List<ICard> Cards();
 }
