@@ -41,4 +41,14 @@ public static class DeckExtention
         return returnCards;
     }
 
+    public static bool AddPack(this IDeck deck, Pack pack)
+    {
+        bool b = true;
+        foreach (ICard c in pack.GetCards())
+        {
+            b = b && deck.Add(c);
+        }
+        return b;
+    }
+
 }

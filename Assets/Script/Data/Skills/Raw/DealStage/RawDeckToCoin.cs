@@ -13,7 +13,7 @@ public class RawDeckToCoin : IRawSkill
     {
         return Observable.Defer<Unit>(() =>
         {
-            foreach (ICard card in facade.FieldDeck())
+            foreach (ICard card in facade.DeckKey(DeckType.field))
             {
                 card.ChangeCoin(c, number.SkillInt(facade));
             }

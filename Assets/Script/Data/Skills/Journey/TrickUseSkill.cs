@@ -26,7 +26,7 @@ public class TrickUseSkill : IUseProcess
             {
                 foreach (ICard s in trash)
                 {
-                    facade.MoveCard(s, DeckType.discard);
+                    s.MoveDeck(facade.DeckKey(DeckType.discard));
                 }
                 skillSubject.OnCompleted();
             }
@@ -38,7 +38,7 @@ public class TrickUseSkill : IUseProcess
     }
     public bool GetIsSkillable(CardFacade facade)
     {
-        List<Suit> handSuits = facade.HandsDeck().Select(x => { return x.GetCardData().suit; }).ToList();
+        List<Suit> handSuits = facade.DeckKey(DeckType.hands).Select(x => { return x.GetCardData().suit; }).ToList();
         foreach (Suit s in trick)
         {
             if (!handSuits.Contains(s)) return false;

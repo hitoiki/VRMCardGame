@@ -11,7 +11,7 @@ public class RawMoveDeck : IRawSkill
     {
         return Observable.Defer<Unit>(() =>
         {
-            facade.MoveCard(facade.skillTarget, toDeck);
+            facade.skillTarget.MoveDeck(facade.DeckKey(toDeck));
             return Observable.Empty<Unit>();
         });
     }

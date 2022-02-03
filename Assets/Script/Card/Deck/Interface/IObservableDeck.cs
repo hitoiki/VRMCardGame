@@ -8,5 +8,4 @@ public interface IObservableDeck
     IObservable<CollectionReplaceEvent<ICard>> ReplaceEvent();
     IObservable<CollectionAddEvent<ICard>> AddEvent();
     IObservable<CollectionRemoveEvent<ICard>> RemoveEvent();
-    List<ICard> Cards();
 }

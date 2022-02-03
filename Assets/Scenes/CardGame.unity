@@ -1225,15 +1225,21 @@ MonoBehaviour:
     00000000:
       type: {class: Deck, ns: , asm: Assembly-CSharp}
       data:
+        <deckType>k__BackingField: 0
         initCards:
         - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
         - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
+        _cards:
+          disposedValue: 0
     00000001:
       type: {class: Deck, ns: , asm: Assembly-CSharp}
       data:
+        <deckType>k__BackingField: 0
         initCards:
         - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
         - {fileID: 11400000, guid: 10122d1052738cf4db4a818bb6eaf490, type: 2}
+        _cards:
+          disposedValue: 0
     00000002:
       type: {class: , ns: , asm: }
 --- !u!4 &400381650

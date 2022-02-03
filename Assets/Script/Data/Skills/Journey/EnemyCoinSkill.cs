@@ -17,7 +17,7 @@ public class EnemyCoinSkill : ICoinProcess
             if (facade.skillTarget.GetCoin()[costCoin] >= cost)
             {
                 facade.skillTarget.BootOtherSkill(OtherSkillKind.OnPick, facade.skillQueue);
-                facade.AddPack(addPack, DeckType.deck);
+                facade.DeckKey(DeckType.deck).AddPack(addPack);
             }
             return Observable.Empty<Unit>();
         });

@@ -13,7 +13,7 @@ public class RawDrawSkill : IRawSkill
     {
         return Observable.Defer<Unit>(() =>
            {
-               facade.DeckDraw(from, to, number.SkillInt(facade));
+               facade.DrawMove(from, to, number.SkillInt(facade));
                return Observable.Empty<Unit>();
            });
     }

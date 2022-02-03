@@ -53,7 +53,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
              factory.CardEraceAt(x.Index);
              AllAlign();
          });
-        DeckInit(stage.DeckKey(observeDeck).Cards());
+        DeckInit(stage.DeckKey(observeDeck));
     }
     //Update
     public void StateUpdate()
@@ -80,7 +80,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
         factory.GetCards()[i].UnPrint();
         factory.GetCards()[i].Print(card);
     }
-    private void DeckInit(List<ICard> c)
+    private void DeckInit(IEnumerable<ICard> c)
     {
         //デッキの初期化
         foreach (var i in c.Select((Value, Index) => new { Value, Index }))
@@ -95,9 +95,9 @@ public class StageCardViewer : MonoBehaviour, IGameState
             }
         }
 
-        if (factory.GetCards().Count > c.Count)
+        if (factory.GetCards().Count > c.Count())
         {
-            for (int i = factory.GetCards().Count - 1; i > c.Count - 1; i--)
+            for (int i = factory.GetCards().Count - 1; i > c.Count() - 1; i--)
             {
                 factory.CardEraceAt(i);
             }

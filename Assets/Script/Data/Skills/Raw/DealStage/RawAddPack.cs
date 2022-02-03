@@ -12,10 +12,7 @@ public class RawAddPack : IRawSkill
     {
         return Observable.Defer<Unit>(() =>
         {
-            foreach (CardData card in pack.GetCards())
-            {
-                facade.AddCard(new DefaultCard(card, facade.DeckKey(to)), to);
-            }
+            facade.DeckKey(to).AddPack(pack);
             return Observable.Empty<Unit>();
         });
     }

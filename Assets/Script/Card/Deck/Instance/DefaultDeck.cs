@@ -5,7 +5,8 @@ using UnityEngine;
 using System.Linq;
 using UniRx;
 
-public class Deck : IStagingDeck
+[System.Serializable]
+public class DefaultDeck : IStagingDeck
 {
     //カードを纏める所
     public DeckType deckType { get; private set; }
@@ -139,6 +140,15 @@ public class Deck : IStagingDeck
     {
         _cards.OrderBy(a => Guid.NewGuid());
     }
+    //Enumerableの実装
+    public IEnumerator<ICard> GetEnumerator()
+    {
+        return _cards.GetEnumerator();
+    }
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return _cards.GetEnumerator();
+    }
     //ReactiveCollectionのうちIObservableだけを公開し、処理を登録できるように
     public IObservable<CollectionReplaceEvent<ICard>> ReplaceEvent()
     {
@@ -151,9 +161,5 @@ public class Deck : IStagingDeck
     public IObservable<CollectionRemoveEvent<ICard>> RemoveEvent()
     {
         return _cards.ObserveRemove();
-    }
-    public List<ICard> Cards()
-    {
-        return cards;
     }
 }

@@ -33,6 +33,7 @@ public class EffectProjector
     {
         return Observable.Defer<Unit>(() =>
        {
+           if (effectLoaderList == null) return Observable.Empty<Unit>();
            return Observable.Concat<Unit>(effectLoaderList.Select(x => { return effect.Effect(new EffectLocation(x)); }));
        });
     }

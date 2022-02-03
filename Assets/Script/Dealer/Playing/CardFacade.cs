@@ -29,38 +29,10 @@ public class CardFacade
             dealCard.BootOtherSkill(OtherSkillKind.OnAction, skillQueue);
         };
     }
-
-    //カードを引いて、適当な場所に移動
-    public void DeckDraw(DeckType from, DeckType to, int amount)
-    {
-        List<ICard> drawCards = data.stage.DeckKey(from).Draw(amount);
-        data.stage.DeckKey(to).Add(drawCards);
-    }
-
     //条件を満たすカードのリストを渡す
     public IDeck DeckKey(DeckType type)
     {
         return data.stage.DeckKey(type);
-    }
-    public List<ICard> FieldDeck()
-    {
-        List<ICard> fieldDeck = new List<ICard>();
-        foreach (ICard dealCard in data.fieldFactory.GetCards().Select(x => { return x.GetCard(); }))
-        {
-            //   dealCard.effectPrint = c;
-            fieldDeck.Add(dealCard);
-        };
-        return fieldDeck;
-    }
-    public List<ICard> HandsDeck()
-    {
-        List<ICard> handDeck = new List<ICard>();
-        foreach (ICard dealCard in data.handFactory.GetCards().Select(x => { return x.GetCard(); }))
-        {
-            // dealCard.effectPrint = c;
-            handDeck.Add(dealCard);
-        };
-        return handDeck;
     }
     //Playerに対する効果
     //Damege
@@ -68,36 +40,11 @@ public class CardFacade
     {
         data.player.Damage(damage);
     }
-
-    public void AddCard(ICard card, DeckType deck)
+    //Deckから引いてくる効果
+    //
+    public void DrawMove(DeckType from, DeckType to, int n)
     {
-        data.stage.DeckKey(deck).Add(card);
+        DeckKey(to).Add(DeckKey(from).Draw(n));
     }
-    public void AddPack(Pack pack, DeckType deck)
-    {
-        foreach (ICard card in pack.GetCards())
-        {
-            data.stage.DeckKey(deck).Add(card);
-        }
-    }
-
-    public void MoveCard(ICard skillCard, DeckType deck)
-    {
-        skillCard.MoveDeck(data.stage.DeckKey(deck));
-    }
-
-    public void InformPick(ICard pickedCard)
-    {
-        foreach (ICard dealCard in data.fieldFactory.GetCards().Select(x => { return x.GetCard(); }))
-        {
-            // dealCard.effectPrint = c;
-            data.stage.queueObject.Push(dealCard.GetSkillPack().PickingSkill(pickedCard), dealCard);
-        }
-    }
-    public void Shuffle(DeckType deck)
-    {
-        data.stage.DeckKey(deck).Shuffle();
-    }
-
 }
 

@@ -6,7 +6,7 @@ using System.Linq;
 public class DeckEditor : MonoBehaviour
 {
     //Deckに代入してくれます
-    public Deck deck;
+    public DefaultDeck deck;
     public List<CardData> cards;
     public bool alwaysCopy;
     public bool alwaysSubstitution;
