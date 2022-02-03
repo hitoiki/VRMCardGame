@@ -17,7 +17,11 @@ public class CardCursolEffect : ICardCursolEvent
         Vector3 drugPos = Camera.main.ScreenToWorldPoint(pos);
         sprite.transform.position = new Vector3(drugPos.x, drugPos.y, zPos);
     }
-    public void Close(ICardPrintable card, Vector3 pos)
+    public void Open(ICardPrintable card)
+    {
+
+    }
+    public void Close(ICardPrintable card)
     {
 
     }

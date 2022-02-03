@@ -16,7 +16,11 @@ public class CardCursolScaler : ICardCursolEvent
         if (mode == ContactMode.Enter) card.GetTransform().GetComponent<BoxCollider>().size = aimingScale;
         if (mode == ContactMode.Exit) card.GetTransform().GetComponent<BoxCollider>().size = defaultScale;
     }
-    public void Close(ICardPrintable card, Vector3 pos)
+    public void Open(ICardPrintable card)
+    {
+
+    }
+    public void Close(ICardPrintable card)
     {
         card.GetTransform().GetComponent<BoxCollider>().size = defaultScale;
     }

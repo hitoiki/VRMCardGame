@@ -29,7 +29,11 @@ public class CardCursolHighLighter : ICardCursolEvent
         if (mode == ContactMode.Exit) viewer.grid.HighLightIndex(-1);
         viewer.AllAlign();
     }
-    public void Close(ICardPrintable card, Vector3 pos)
+    public void Open(ICardPrintable card)
+    {
+
+    }
+    public void Close(ICardPrintable card)
     {
         viewer.grid.HighLightIndex(-1);
         viewer.AllAlign();

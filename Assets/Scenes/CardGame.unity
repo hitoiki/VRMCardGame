@@ -512,42 +512,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initUsers:
-  - {fileID: 1870451248}
+  - {fileID: 1841415130}
   events:
   - id: 0
   - id: 1
-  - id: 2
-  - id: 3
-  - id: 4
   references:
     version: 1
     00000000:
-      type: {class: VRMViewCursol, ns: , asm: Assembly-CSharp}
+      type: {class: ViewingCursol, ns: , asm: Assembly-CSharp}
       data:
-        vrmPrintCard: {fileID: 322472141}
+        initViewable:
+        - {fileID: 322472140}
     00000001:
-      type: {class: CardCursolHighLighter, ns: , asm: Assembly-CSharp}
-      data:
-        viewer: {fileID: 1870451249}
-        initFactory: {fileID: 1870451248}
-    00000002:
       type: {class: CursolTeleportObject, ns: , asm: Assembly-CSharp}
       data:
-        isRelative: 1
-        gapPos: {x: 0, y: 1, z: 0}
+        isRelative: 0
+        gapPos: {x: -5.8, y: 2, z: 0}
         portObj:
+        - {fileID: 2078429067}
         - {fileID: 81536509}
         - {fileID: 1511498329}
-        - {fileID: 2078429067}
-    00000003:
-      type: {class: CardCursolScaler, ns: , asm: Assembly-CSharp}
-      data:
-        aimingScale: {x: 4, y: 6, z: 1}
-        defaultScale: {x: 2, y: 3, z: 1}
-    00000004:
-      type: {class: DragCursolableCard, ns: , asm: Assembly-CSharp}
-      data:
-        recepter: {fileID: 1464599820}
 --- !u!114 &120783388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,25 +545,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initUsers:
-  - {fileID: 1841415130}
+  - {fileID: 1870451248}
   events:
   - id: 0
   - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
   references:
     version: 1
     00000000:
-      type: {class: VRMViewCursol, ns: , asm: Assembly-CSharp}
+      type: {class: ViewingCursol, ns: , asm: Assembly-CSharp}
       data:
-        vrmPrintCard: {fileID: 322472141}
+        initViewable:
+        - {fileID: 322472140}
     00000001:
+      type: {class: CardCursolHighLighter, ns: , asm: Assembly-CSharp}
+      data:
+        viewer: {fileID: 1841415132}
+        initFactory: {fileID: 1841415130}
+    00000002:
       type: {class: CursolTeleportObject, ns: , asm: Assembly-CSharp}
       data:
-        isRelative: 0
-        gapPos: {x: -5.8, y: 2, z: 0}
+        isRelative: 1
+        gapPos: {x: 0, y: 1, z: 0}
         portObj:
+        - {fileID: 2078429067}
         - {fileID: 81536509}
         - {fileID: 1511498329}
-        - {fileID: 2078429067}
+    00000003:
+      type: {class: CardCursolScaler, ns: , asm: Assembly-CSharp}
+      data:
+        aimingScale: {x: 4, y: 6, z: 1}
+        defaultScale: {x: 2, y: 3, z: 1}
+    00000004:
+      type: {class: DragCursolableCard, ns: , asm: Assembly-CSharp}
+      data:
+        recepter: {fileID: 1464599820}
 --- !u!1 &128778841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,9 +1301,10 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: VRMViewCursol, ns: , asm: Assembly-CSharp}
+      type: {class: ViewingCursol, ns: , asm: Assembly-CSharp}
       data:
-        vrmPrintCard: {fileID: 322472141}
+        initViewable:
+        - {fileID: 322472140}
 --- !u!114 &455742057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3400,7 +3403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initUsers:
-  - {fileID: 1870451248}
+  - {fileID: 1841415130}
   events:
   - id: 0
   - id: 1
@@ -3410,12 +3413,13 @@ MonoBehaviour:
       type: {class: CardSelectorConnecter, ns: , asm: Assembly-CSharp}
       data:
         selector: {fileID: 945379875}
-        stage: {fileID: 0}
-        deck: 0
+        stage: {fileID: 400381648}
+        deck: 1
     00000001:
-      type: {class: VRMViewCursol, ns: , asm: Assembly-CSharp}
+      type: {class: ViewingCursol, ns: , asm: Assembly-CSharp}
       data:
-        vrmPrintCard: {fileID: 322472141}
+        initViewable:
+        - {fileID: 322472140}
 --- !u!114 &1260247258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3429,7 +3433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initUsers:
-  - {fileID: 1841415130}
+  - {fileID: 1870451248}
   events:
   - id: 0
   - id: 1
@@ -3439,12 +3443,13 @@ MonoBehaviour:
       type: {class: CardSelectorConnecter, ns: , asm: Assembly-CSharp}
       data:
         selector: {fileID: 945379875}
-        stage: {fileID: 0}
-        deck: 1
+        stage: {fileID: 400381648}
+        deck: 0
     00000001:
-      type: {class: VRMViewCursol, ns: , asm: Assembly-CSharp}
+      type: {class: ViewingCursol, ns: , asm: Assembly-CSharp}
       data:
-        vrmPrintCard: {fileID: 322472141}
+        initViewable:
+        - {fileID: 322472140}
 --- !u!1 &1301694188
 GameObject:
   m_ObjectHideFlags: 0

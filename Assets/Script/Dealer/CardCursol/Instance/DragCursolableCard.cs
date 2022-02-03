@@ -24,7 +24,11 @@ public class DragCursolableCard : ICardCursolEvent
     {
 
     }
-    public void Close(ICardPrintable card, Vector3 pos)
+    public void Open(ICardPrintable card)
+    {
+
+    }
+    public void Close(ICardPrintable card)
     {
         card.GetTransform().position = card.GetAnchor();
     }

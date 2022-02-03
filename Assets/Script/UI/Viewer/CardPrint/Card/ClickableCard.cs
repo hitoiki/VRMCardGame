@@ -76,18 +76,23 @@ public class ClickableCard : MonoBehaviour, ICardPrintable, ICardCursolEventUser
     //EventUser用
     public void AddCardCursolEvent(ICardCursolEvent c)
     {
+        c.Open(this);
         cursolEvent.Add(c);
     }
     public void RemoveCardCursolEvent(ICardCursolEvent c)
     {
-        c.Close(this, Vector3.zero);
+        c.Close(this);
         cursolEvent.Remove(c);
     }
     public void SubstitutionCardCursolEvent(List<ICardCursolEvent> c)
     {
         foreach (ICardCursolEvent cEvent in cursolEvent.Except(c))
         {
-            cEvent.Close(this, Vector3.zero);
+            cEvent.Close(this);
+        }
+        foreach (ICardCursolEvent cEvent in c.Except(cursolEvent))
+        {
+            cEvent.Open(this);
         }
         cursolEvent = c;
     }
