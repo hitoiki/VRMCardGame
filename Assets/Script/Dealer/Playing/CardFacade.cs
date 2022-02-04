@@ -17,16 +17,29 @@ public class CardFacade
         this.data = Data;
         this.skillTarget = Source;
     }
-    //あんま良くない気がするけど暫定これで
+    //skillTargetを変えたfacadeを生成するやつ
     public CardFacade NewFacade(ICard newSource)
     {
         return new CardFacade(data, newSource);
     }
+    //コスト支払い処理
     public virtual void CostPay()
     {
-        foreach (ICard dealCard in data.fieldFactory.GetCards().Select(x => { return x.GetCard(); }))
+        foreach (ICard dealCard in DeckKey(DeckType.field))
         {
             dealCard.BootOtherSkill(OtherSkillKind.OnAction, skillQueue);
+        };
+    }
+    //ターン終了時処理
+    public virtual void TurnEnd()
+    {
+        foreach (ICard dealCard in DeckKey(DeckType.field))
+        {
+            dealCard.BootOtherSkill(OtherSkillKind.TurnEnd, skillQueue);
+        };
+        foreach (ICard dealCard in DeckKey(DeckType.hands))
+        {
+            dealCard.BootOtherSkill(OtherSkillKind.TurnEnd, skillQueue);
         };
     }
     //条件を満たすカードのリストを渡す
@@ -41,7 +54,6 @@ public class CardFacade
         data.player.Damage(damage);
     }
     //Deckから引いてくる効果
-    //
     public void DrawMove(DeckType from, DeckType to, int n)
     {
         DeckKey(to).Add(DeckKey(from).Draw(n));

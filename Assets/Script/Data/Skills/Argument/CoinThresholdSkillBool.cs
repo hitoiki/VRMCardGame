@@ -6,13 +6,15 @@ public class CoinThresholdSkillBool : ISkillBool
 {
     [SerializeField] private Coin coin;
     [SerializeField] private int threshold;
+    [SerializeField] private ComparisonEnum equalSign;
     public bool SkillBool(ICard dealableCard)
     {
-        return dealableCard.GetCoin()[coin] >= threshold;
+        if (!dealableCard.GetCoin().ContainsKey(coin)) return false;
+        return equalSign.Check(dealableCard.GetCoin()[coin], threshold);
     }
     public string Text()
     {
-        return coin.name + "が" + threshold.ToString() + "以上である";
+        return equalSign.CardText(coin.name, threshold.ToString()) + "なら、";
     }
 
     public string SkillName()

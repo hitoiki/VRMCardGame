@@ -80,8 +80,6 @@ public class DefaultCard : ICard
     {
         projector = proj;
     }
-
-
     public void Dispose()
     {
         _coins.Dispose();

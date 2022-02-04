@@ -7,13 +7,19 @@ using UniRx;
 
 public class CardPlayChecker : MonoBehaviour
 {
-    //Cardを色々勘案して、適宜処置を加える
-    //今は無用の長物になってるので後々消す
+    //DealerにPlay処理を渡すクラス
     [SerializeField] private CardPlayDealer dealer = null;
     [SerializeField] private Stage stage;
     public void CardCheck(ICardPrintable cardViewable)
     {
         SkillPack skillPack = cardViewable.GetCard().GetSkillPack();
-        dealer.PrintedCardPlay(skillPack.UseSkill(), cardViewable.GetCard());
+        dealer.CardPlay(skillPack.UseSkill(), cardViewable.GetCard());
+    }
+
+    public void TurnEnd()
+    {
+        List<Skill> endSkill = new List<Skill>();
+        endSkill.Add(StaticSkill.turnEnd);
+        dealer.CardPlay(endSkill, null);
     }
 }

@@ -54,11 +54,9 @@ public class CardPlayDealer : MonoBehaviour
         // state.ChangeState(defaultState);
     }
 
-    public void PrintedCardPlay(List<Skill> skills, ICard card)
+    public void CardPlay(List<Skill> skills, ICard card)
     {
-
         skillQueueObject.PlayPush(skills, card);
-
         if (!skillQueueObject.Any())
         {
             Debug.Log("nulled");

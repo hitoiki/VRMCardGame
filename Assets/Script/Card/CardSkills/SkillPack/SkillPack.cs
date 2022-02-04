@@ -51,6 +51,7 @@ public class SkillPack
     {
         return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; })?.ToList();
     }
+
     public List<Skill> PickingSkill(ICard card)
     {
         return pickingSkills.Select(y => { return y.GetSkill(card); }).Where(x => { return x != null; })?.ToList();
@@ -60,12 +61,6 @@ public class SkillPack
     {
         return otherSkills.Select(y => { return y.GetSkill(kind); }).Where(x => { return x != null; })?.ToList();
     }
-
-    public bool IsPlayable(CardFacade facade)
-    {
-        return useSkills.Aggregate(true, (b, skill) => { return b && skill.GetIsSkillable(facade); });
-    }
-
     public static SkillPack Concat(SkillPack x, SkillPack y)
     {
         if (x == null) return y;

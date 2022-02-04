@@ -1213,35 +1213,46 @@ MonoBehaviour:
   disCard:
     id: 2
   trace:
-    id: 2
+    id: 3
   senter:
-    id: 2
+    id: 4
   right:
-    id: 2
+    id: 5
   left:
-    id: 2
+    id: 6
   references:
     version: 1
     00000000:
-      type: {class: Deck, ns: , asm: Assembly-CSharp}
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
       data:
-        <deckType>k__BackingField: 0
         initCards:
         - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
-        - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
-        _cards:
-          disposedValue: 0
+        - {fileID: 11400000, guid: b0a9e36ed898db644911cee6efc65e1f, type: 2}
     00000001:
-      type: {class: Deck, ns: , asm: Assembly-CSharp}
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
       data:
-        <deckType>k__BackingField: 0
         initCards:
         - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
-        - {fileID: 11400000, guid: 10122d1052738cf4db4a818bb6eaf490, type: 2}
-        _cards:
-          disposedValue: 0
     00000002:
-      type: {class: , ns: , asm: }
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
+      data:
+        initCards: []
+    00000003:
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
+      data:
+        initCards: []
+    00000004:
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
+      data:
+        initCards: []
+    00000005:
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
+      data:
+        initCards: []
+    00000006:
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
+      data:
+        initCards: []
 --- !u!4 &400381650
 Transform:
   m_ObjectHideFlags: 0
@@ -2882,7 +2893,7 @@ MonoBehaviour:
   state: {fileID: 2140630055}
   selectingState: CardSelect
   playingState: GamePlay
-  stage: {fileID: 400381648}
+  stage: {fileID: 0}
   highLighter: {fileID: 1000712499}
 --- !u!4 &945379876
 Transform:
@@ -3419,7 +3430,7 @@ MonoBehaviour:
       type: {class: CardSelectorConnecter, ns: , asm: Assembly-CSharp}
       data:
         selector: {fileID: 945379875}
-        stage: {fileID: 400381648}
+        stage: {fileID: 0}
         deck: 1
     00000001:
       type: {class: ViewingCursol, ns: , asm: Assembly-CSharp}
@@ -3449,7 +3460,7 @@ MonoBehaviour:
       type: {class: CardSelectorConnecter, ns: , asm: Assembly-CSharp}
       data:
         selector: {fileID: 945379875}
-        stage: {fileID: 400381648}
+        stage: {fileID: 0}
         deck: 0
     00000001:
       type: {class: ViewingCursol, ns: , asm: Assembly-CSharp}

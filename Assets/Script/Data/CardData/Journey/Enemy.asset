@@ -12,30 +12,409 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  textName: 
+  textName: Enemy
   costCoin: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
-  cost: 11
+  cost: 0
   type: 0
   suit: 0
   flavorText: 
   frontSprite: {fileID: 21300000, guid: 7a0dfcd1bf254f14b91a7a8dcda21b9a, type: 3}
   backSprite: {fileID: 21300000, guid: 6fe6d31784f19cb4b94d871f65d28b0b, type: 3}
-  iconSprite: {fileID: 21300000, guid: 792a681157a357b4c8bb467d604ea51c, type: 3}
+  iconSprite: {fileID: 21300000, guid: d06e2dfea3f0df44eab59ea8552d1bcf, type: 3}
+  poseJsonFilePath: Assets/Sozai/PoseJson/normalStand.json
+  poseItem:
+    chest:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    head:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    hips:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    jaw:
+      rotation: []
+    leftEye:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 0
+    leftFoot:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftHand:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftIndexDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftIndexIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftIndexProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftLittleDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftLittleIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftLittleProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftLowerArm:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftLowerLeg:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftMiddleDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftMiddleIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftMiddleProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftRingDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftRingIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftRingProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftShoulder:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftThumbDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftThumbIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftThumbProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftToes:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    leftUpperArm:
+      rotation:
+      - -0.02
+      - -0.01
+      - 0.6
+      - 0.8
+    leftUpperLeg:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    neck:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightEye:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 0
+    rightFoot:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightHand:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightIndexDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightIndexIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightIndexProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightLittleDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightLittleIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightLittleProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightLowerArm:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightLowerLeg:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightMiddleDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightMiddleIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightMiddleProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightRingDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightRingIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightRingProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightShoulder:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightThumbDistal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightThumbIntermediate:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightThumbProximal:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightToes:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    rightUpperArm:
+      rotation:
+      - -0.02
+      - -0.01
+      - -0.6
+      - 0.8
+    rightUpperLeg:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    spine:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
+    upperChest:
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
   skillPack:
-    useSkills: []
-    coinSkills:
+    useSkills:
     - id: 0
-    drawSkills: []
-    pickingSkills:
     - id: 1
+    - id: 2
+    coinSkills: []
+    drawSkills: []
+    pickingSkills: []
     otherSkills: []
   references:
     version: 1
     00000000:
-      type: {class: EnemyCoinSkill, ns: , asm: Assembly-CSharp}
+      type: {class: UseRawSkill, ns: , asm: Assembly-CSharp}
       data:
-        costCoin: {fileID: 11400000, guid: ee8cd05ef9d3c02468cff0b913dc90cd, type: 2}
-        cost: 3
-        addPack: {fileID: 11400000, guid: 165a70fb4e7de904183d2e35276a68af, type: 2}
+        skill:
+          id: 3
     00000001:
-      type: {class: , ns: , asm: }
+      type: {class: UseRawSkill, ns: , asm: Assembly-CSharp}
+      data:
+        skill:
+          id: 4
+    00000002:
+      type: {class: UseRawSkill, ns: , asm: Assembly-CSharp}
+      data:
+        skill:
+          id: 5
+    00000003:
+      type: {class: RawIf, ns: , asm: Assembly-CSharp}
+      data:
+        rawSkill:
+          id: 6
+        condition:
+          id: 7
+    00000004:
+      type: {class: RawSkillEffect, ns: , asm: Assembly-CSharp}
+      data:
+        effect:
+        - id: 8
+    00000005:
+      type: {class: RawChangeCoin, ns: , asm: Assembly-CSharp}
+      data:
+        c: {fileID: 11400000, guid: c4a31d70d2805504898829fea01e4ea7, type: 2}
+        number:
+          id: 9
+    00000006:
+      type: {class: RawChangeCoin, ns: , asm: Assembly-CSharp}
+      data:
+        c: {fileID: 11400000, guid: c4a31d70d2805504898829fea01e4ea7, type: 2}
+        number:
+          id: 10
+    00000007:
+      type: {class: CoinThresholdSkillBool, ns: , asm: Assembly-CSharp}
+      data:
+        coin: {fileID: 11400000, guid: c4a31d70d2805504898829fea01e4ea7, type: 2}
+        threshold: 20
+        equalSign: 2
+    00000008:
+      type: {class: SourceEffect, ns: , asm: Assembly-CSharp}
+      data:
+        appearObj: {fileID: 100326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
+        tweenTime: 1
+    00000009:
+      type: {class: ConstSkillInt, ns: , asm: Assembly-CSharp}
+      data:
+        number: 7
+    0000000A:
+      type: {class: ConstSkillInt, ns: , asm: Assembly-CSharp}
+      data:
+        number: 3

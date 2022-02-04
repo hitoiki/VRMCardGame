@@ -13,7 +13,6 @@ public class ConstSkillInt : ISkillInt
     {
         return number.ToString();
     }
-
     public string SkillName()
     {
         return number.ToString();
