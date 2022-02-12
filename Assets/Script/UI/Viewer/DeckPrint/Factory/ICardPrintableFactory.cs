@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICardFactory
+public interface ICardPrintableFactory
 {
     //StageCardViewerのオブジェクト生成を担うクラス
     //こいつが表示用のオブジェクトを生成するので、それをViewerが並べて、表示する

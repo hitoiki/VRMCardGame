@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SkillQueueObject
+public class SkillQueue
 {
     // SkillProcessをスタックしていくキュー
     private Queue<(Skill skill, ICard source)> skillQueue = new Queue<(Skill skill, ICard source)>();

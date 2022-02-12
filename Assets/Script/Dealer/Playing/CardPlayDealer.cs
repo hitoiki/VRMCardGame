@@ -13,7 +13,7 @@ public class CardPlayDealer : MonoBehaviour
     [SerializeField] private string skillingState;
     [SerializeField] private string defaultState;*/
     [SerializeField] private Stage stage;
-    SkillQueueObject skillQueueObject => stage.queueObject;
+    SkillQueue skillQueueObject => stage.queueObject;
     [SerializeField] FacadeData facadeData;
     private int SkillCount;
     private bool isExecuting = false;

@@ -8,20 +8,20 @@ public class CardSelectHighLighter : MonoBehaviour
     [SerializeField] private GameObject initFieldFactory;
     [SerializeField] private GameObject initHandFactory;
     [SerializeField] private Transform viewingObject;
-    private ICardFactory fieldFactory;
-    private ICardFactory handFactory;
+    private ICardPrintableFactory fieldFactory;
+    private ICardPrintableFactory handFactory;
     private ObjectFlyer<Transform> viewFlyer;
 
     private void OnValidate()
     {
-        if (initFieldFactory == null || initFieldFactory.GetComponent<ICardFactory>() == null) initFieldFactory = null;
-        if (initHandFactory == null || initHandFactory.GetComponent<ICardFactory>() == null) initHandFactory = null;
+        if (initFieldFactory == null || initFieldFactory.GetComponent<ICardPrintableFactory>() == null) initFieldFactory = null;
+        if (initHandFactory == null || initHandFactory.GetComponent<ICardPrintableFactory>() == null) initHandFactory = null;
     }
 
     private void Awake()
     {
-        fieldFactory = initFieldFactory.GetComponent<ICardFactory>();
-        handFactory = initHandFactory.GetComponent<ICardFactory>();
+        fieldFactory = initFieldFactory.GetComponent<ICardPrintableFactory>();
+        handFactory = initHandFactory.GetComponent<ICardPrintableFactory>();
         viewFlyer = new ObjectFlyer<Transform>(viewingObject.transform);
     }
 

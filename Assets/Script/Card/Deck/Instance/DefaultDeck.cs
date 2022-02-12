@@ -15,8 +15,7 @@ public class DefaultDeck : IStagingDeck
 
     //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)
     public List<ICard> cards => _cards.ToList();
-
-    public void Init(DeckType type)
+    public void Init(DeckType type, SkillQueue queue)
     {
         deckType = type;
         Substitution(initCards.Select(x => { return new DefaultCard(x, this) as ICard; }).ToList());

@@ -15,17 +15,17 @@ public class Stage : MonoBehaviour
     [SerializeReference, SubclassSelector] public IStagingDeck right;
     [SerializeReference, SubclassSelector] public IStagingDeck left;
 
-    public SkillQueueObject queueObject = new SkillQueueObject();
+    public SkillQueue queueObject = new SkillQueue();
 
     private void Start()
     {
-        if (hands != null) hands.Init(DeckType.hands);
-        if (field != null) field.Init(DeckType.field);
-        if (disCard != null) disCard.Init(DeckType.discard);
-        if (trace != null) trace.Init(DeckType.trace);
-        if (senter != null) senter.Init(DeckType.deck);
-        if (right != null) right.Init(DeckType.right);
-        if (left != null) left.Init(DeckType.left);
+        if (hands != null) hands.Init(DeckType.hands, queueObject);
+        if (field != null) field.Init(DeckType.field, queueObject);
+        if (disCard != null) disCard.Init(DeckType.discard, queueObject);
+        if (trace != null) trace.Init(DeckType.trace, queueObject);
+        if (senter != null) senter.Init(DeckType.deck, queueObject);
+        if (right != null) right.Init(DeckType.right, queueObject);
+        if (left != null) left.Init(DeckType.left, queueObject);
     }
 
     public IStagingDeck DeckKey(DeckType e)

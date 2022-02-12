@@ -16,19 +16,19 @@ public class StageCardViewer : MonoBehaviour, IGameState
     [SerializeField] private DeckType observeDeck;
     [SerializeField] private float tweenTime;
     [SerializeReference, SubclassSelector] public IAlignGrid grid;
-    private ICardFactory factory;
+    private ICardPrintableFactory factory;
     private IDisposable _Replace;
     private IDisposable _Add;
     private IDisposable _Remove;
 
     private void OnValidate()
     {
-        if (initFactory == null || initFactory.GetComponent<ICardFactory>() == null) initFactory = null;
+        if (initFactory == null || initFactory.GetComponent<ICardPrintableFactory>() == null) initFactory = null;
     }
 
     private void Awake()
     {
-        factory = initFactory.GetComponent<ICardFactory>();
+        factory = initFactory.GetComponent<ICardPrintableFactory>();
     }
 
 

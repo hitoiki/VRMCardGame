@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class ClickableFactory : MonoBehaviour, ICardFactory, ICardCursolEventUser
+public class ClickableFactory : MonoBehaviour, ICardPrintableFactory, ICardCursolEventUser
 {
     [SerializeField] private List<GameObject> initCursol = new List<GameObject>();
     [SerializeField] private ClickableCard clickableCard = null;

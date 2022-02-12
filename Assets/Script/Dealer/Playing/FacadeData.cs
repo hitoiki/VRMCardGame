@@ -9,5 +9,5 @@ public class FacadeData
     [SerializeField] public PlayerData player;
     [SerializeField] public Stage stage = null;
     [SerializeField] public SkillUsingSubject skillsSubject;
-    public SkillQueueObject skillQueue => stage.queueObject;
+    public SkillQueue skillQueue => stage.queueObject;
 }

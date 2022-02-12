@@ -11,7 +11,7 @@ public class CardFacade
     FacadeData data;
     public ICard skillTarget;
     public SkillUsingSubject skillsSubject => data.skillsSubject;
-    public SkillQueueObject skillQueue => data.stage.queueObject;
+    public SkillQueue skillQueue => data.stage.queueObject;
     public CardFacade(FacadeData Data, ICard Source)
     {
         this.data = Data;

@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IStagingDeck : IDeck, IObservableDeck
 {
     //Stageに乗っける用のDeck
-    void Init(DeckType deck);
+    void Init(DeckType deck, SkillQueue skillQueue);
 }
