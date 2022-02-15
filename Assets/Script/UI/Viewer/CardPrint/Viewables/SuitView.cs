@@ -10,7 +10,7 @@ public class SuitView : MonoBehaviour, ICardViewable
     [SerializeField] Sprite violetSuit;
     [SerializeField] Sprite whiteSuit;
 
-    public void Print(ICard card)
+    public void Print(IPermanent card)
     {
         if (card.GetCardData().suit == Suit.Red) spRen.sprite = redSuit;
         if (card.GetCardData().suit == Suit.Cyan) spRen.sprite = cyanSuit;

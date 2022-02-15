@@ -23,7 +23,7 @@ public class SkillUsingSubject : IDisposable
         skillEnd = new Subject<Unit>();
     }
 
-    public IObservable<Unit> EffectLoad(ISkillEffect[] effects, ICard card)
+    public IObservable<Unit> EffectLoad(ISkillEffect[] effects, IPermanent permanent)
     {
         return Observable.Defer<Unit>(() =>
         {
@@ -32,7 +32,7 @@ public class SkillUsingSubject : IDisposable
             foreach (ISkillEffect e in effects.Where(x => { return x != null; }))
             {
                 linker.effects.Add(e);
-                effectEvents.Add(card.GetEffectProjector().EffectBoot(e));
+                effectEvents.Add(permanent.GetEffectProjector().EffectBoot(e));
             }
             return Observable.WhenAll(effectEvents).First();
         });

@@ -13,7 +13,7 @@ public class SkillTextPrinter : MonoBehaviour, ICardViewable
     [SerializeField] private Vector2 displayPoint;
     [SerializeField] private Vector2 anchorPoint;
     [SerializeField] private RectTransform position;
-    public void Print(ICard card)
+    public void Print(IPermanent card)
     {
         SkillText.text = card.GetCardData().CardText();
         this.position.DOAnchorPos(displayPoint, easingTime);

@@ -68,19 +68,19 @@ public class StageCardViewer : MonoBehaviour, IGameState
         _Add.Dispose();
         _Remove.Dispose();
     }
-    private void CardMake(ICard card, int i)
+    private void CardMake(IPermanent card, int i)
     {
         ICardPrintable newCard = factory.CardMake(card, grid.NumberGrid(i));
         newCard.GetTransform().SetParent(bundle);
         Align(newCard, i);
         newCard.Print(card);
     }
-    private void CardChange(ICard card, int i)
+    private void CardChange(IPermanent card, int i)
     {
         factory.GetCards()[i].UnPrint();
         factory.GetCards()[i].Print(card);
     }
-    private void DeckInit(IEnumerable<ICard> c)
+    private void DeckInit(IEnumerable<IPermanent> c)
     {
         //デッキの初期化
         foreach (var i in c.Select((Value, Index) => new { Value, Index }))

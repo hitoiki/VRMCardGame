@@ -14,7 +14,7 @@ public class CostCard : MonoBehaviour, ICardViewable
 
     }
 
-    public void Print(ICard c)
+    public void Print(IPermanent c)
     {
         if (c.GetCardData().costCoin != null) coinSprite.CoinPrint(c.GetCardData().costCoin, c.GetCardData().cost);
     }

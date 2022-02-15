@@ -12,8 +12,8 @@ public class CardPlayChecker : MonoBehaviour
     [SerializeField] private Stage stage;
     public void CardCheck(ICardPrintable cardViewable)
     {
-        SkillPack skillPack = cardViewable.GetCard().GetSkillPack();
-        dealer.CardPlay(skillPack.UseSkill(), cardViewable.GetCard());
+        SkillPack skillPack = cardViewable.GetPermanent().GetSkillPack();
+        dealer.CardPlay(skillPack.UseSkill(), cardViewable.GetPermanent());
     }
 
     public void TurnEnd()

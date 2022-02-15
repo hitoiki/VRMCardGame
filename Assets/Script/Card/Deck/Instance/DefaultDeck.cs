@@ -11,14 +11,15 @@ public class DefaultDeck : IStagingDeck
     //カードを纏める所
     public DeckType deckType { get; private set; }
     public List<CardData> initCards = new List<CardData>();
+    [SerializeReference, SubclassSelector] public IPermanentFactory factory;
     private ReactiveCollection<ICard> _cards = new ReactiveCollection<ICard>(new List<ICard>());
 
     //中身の値だけを公開するためのList(このListの値を変えてもReactiveCollection側は変わらない)
     public List<ICard> cards => _cards.ToList();
-    public void Init(DeckType type, SkillQueue queue)
+    public void Init(DeckType type)
     {
         deckType = type;
-        Substitution(initCards.Select(x => { return new DefaultCard(x, this) as ICard; }).ToList());
+        Substitution(initCards.Select(x => { return new DefaultCard(x) as ICard; }).ToList());
     }
 
     public DeckType GetDeckType()
@@ -35,27 +36,6 @@ public class DefaultDeck : IStagingDeck
                 _cards[i.Index] = i.Value;
             }
             else _cards.Add(i.Value);
-        }
-
-        if (_cards.Count > c.Count)
-        {
-            for (int i = _cards.Count - 1; i > c.Count - 1; i--)
-            {
-                _cards.RemoveAt(i);
-            }
-        }
-
-    }
-
-    public void SubstitutionCard(List<CardData> c)
-    {
-        foreach (var i in c.Select((Value, Index) => new { Value, Index }))
-        {
-            if (i.Index < _cards.Count)
-            {
-                _cards[i.Index] = new DefaultCard(i.Value, this) as ICard;
-            }
-            else _cards.Add(new DefaultCard(i.Value, this) as ICard);
         }
 
         if (_cards.Count > c.Count)
@@ -130,35 +110,39 @@ public class DefaultDeck : IStagingDeck
         }
         return null;
     }
-    public static List<ICard> CardListShuffle(List<ICard> c)
-    {
-        return c.OrderBy(a => Guid.NewGuid()).ToList();
-    }
-
     public void Shuffle()
     {
         _cards.OrderBy(a => Guid.NewGuid());
     }
     //Enumerableの実装
-    public IEnumerator<ICard> GetEnumerator()
+    public IEnumerator<IPermanent> GetEnumerator()
     {
-        return _cards.GetEnumerator();
+        return _cards.Select(x => { return factory.CardMake(x, this); }).ToList().GetEnumerator();
     }
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return _cards.GetEnumerator();
+        return _cards.Select(x => { return factory.CardMake(x, this); }).ToList().GetEnumerator();
     }
     //ReactiveCollectionのうちIObservableだけを公開し、処理を登録できるように
-    public IObservable<CollectionReplaceEvent<ICard>> ReplaceEvent()
+    public IObservable<CollectionReplaceEvent<IPermanent>> ReplaceEvent()
     {
-        return _cards.ObserveReplace();
+        return _cards.ObserveReplace().Select(x =>
+        {
+            return new CollectionReplaceEvent<IPermanent>(x.Index, factory.CardMake(x.OldValue, this), factory.CardMake(x.NewValue, this));
+        });
     }
-    public IObservable<CollectionAddEvent<ICard>> AddEvent()
+    public IObservable<CollectionAddEvent<IPermanent>> AddEvent()
     {
-        return _cards.ObserveAdd();
+        return _cards.ObserveAdd().Select(x =>
+        {
+            return new CollectionAddEvent<IPermanent>(x.Index, factory.CardMake(x.Value, this));
+        });
     }
-    public IObservable<CollectionRemoveEvent<ICard>> RemoveEvent()
+    public IObservable<CollectionRemoveEvent<IPermanent>> RemoveEvent()
     {
-        return _cards.ObserveRemove();
+        return _cards.ObserveRemove().Select(x =>
+        {
+            return new CollectionRemoveEvent<IPermanent>(x.Index, factory.CardMake(x.Value, this));
+        });
     }
 }

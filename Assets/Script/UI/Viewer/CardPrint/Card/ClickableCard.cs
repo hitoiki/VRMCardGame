@@ -9,7 +9,7 @@ public class ClickableCard : MonoBehaviour, ICardPrintable, ICardCursolEventUser
     // Clickする処理のところだけ括りだして親クラスとする
     [SerializeField] List<Component> initViews;
     public List<ICardViewable> viewables;
-    private ICard viewingCard;
+    private IPermanent viewingCard;
     public List<ICardCursolEvent> cursolEvent = new List<ICardCursolEvent>();
     private bool activate;
     private Vector3 anchor;
@@ -26,7 +26,7 @@ public class ClickableCard : MonoBehaviour, ICardPrintable, ICardCursolEventUser
     }
 
     //ICardPrintable用
-    public virtual void Print(ICard c)
+    public virtual void Print(IPermanent c)
     {
         foreach (ICardViewable viewable in viewables)
         {
@@ -60,7 +60,7 @@ public class ClickableCard : MonoBehaviour, ICardPrintable, ICardCursolEventUser
     {
         return this.transform;
     }
-    public ICard GetCard()
+    public IPermanent GetPermanent()
     {
         return viewingCard;
     }

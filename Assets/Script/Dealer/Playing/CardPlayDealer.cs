@@ -27,7 +27,7 @@ public class CardPlayDealer : MonoBehaviour
         {
 
             //SkillをQueueから取り出し
-            (Skill skill, ICard source) runningSkill = skillQueueObject.Dequeue();
+            (Skill skill, IPermanent source) runningSkill = skillQueueObject.Dequeue();
             CardFacade skillFacade = new CardFacade(facadeData, runningSkill.source);
             //発動可能なら実行
             if (runningSkill.skill == null)
@@ -54,7 +54,7 @@ public class CardPlayDealer : MonoBehaviour
         // state.ChangeState(defaultState);
     }
 
-    public void CardPlay(List<Skill> skills, ICard card)
+    public void CardPlay(List<Skill> skills, IPermanent card)
     {
         skillQueueObject.PlayPush(skills, card);
         if (!skillQueueObject.Any())

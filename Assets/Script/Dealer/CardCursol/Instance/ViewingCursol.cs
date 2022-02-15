@@ -21,7 +21,7 @@ public class ViewingCursol : ICardCursolEvent
         foreach (ICardViewable v in viewables)
         {
             v.UnPrint();
-            v.Print(card.GetCard());
+            v.Print(card.GetPermanent());
         }
 
     }

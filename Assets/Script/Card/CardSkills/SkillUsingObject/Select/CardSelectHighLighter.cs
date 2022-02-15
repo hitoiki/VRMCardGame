@@ -37,7 +37,7 @@ public class CardSelectHighLighter : MonoBehaviour
         if (condition != null)
         {
             positions = handFactory.GetCards()
-                   .Where(x => { return condition.SkillBool(x.GetCard()); })
+                   .Where(x => { return condition.SkillBool(x.GetPermanent()); })
                    .Select(x => { return x.GetTransform().position; });
         }
 
@@ -59,7 +59,7 @@ public class CardSelectHighLighter : MonoBehaviour
 
         if (condition != null)
         {
-            positions = fieldFactory.GetCards().Where(x => { return condition.SkillBool(x.GetCard()); })
+            positions = fieldFactory.GetCards().Where(x => { return condition.SkillBool(x.GetPermanent()); })
                 .Select(x => { return x.GetTransform().position; });
         }
 

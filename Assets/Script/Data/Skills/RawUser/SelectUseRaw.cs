@@ -16,7 +16,7 @@ public class SelectUseRaw : IUseProcess
     {
         return Observable.Defer<Unit>(() =>
         {
-            IObservable<ICard> selected = address.selector.CardSelect(deck, cardCondition);
+            IObservable<IPermanent> selected = address.selector.CardSelect(deck, cardCondition);
 
             Subject<Unit> skillSubject = new Subject<Unit>();
             selected.Subscribe(x =>

@@ -5,6 +5,6 @@ using UnityEngine;
 public interface ISkillCard : ISkillText
 {
     //SkillでfacadeからICardを取ってくるもの
-    ICard SkillCard(CardFacade facade);
+    IPermanent SkillCard(CardFacade facade);
 }
 

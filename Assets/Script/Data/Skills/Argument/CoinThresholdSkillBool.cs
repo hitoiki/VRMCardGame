@@ -7,7 +7,7 @@ public class CoinThresholdSkillBool : ISkillBool
     [SerializeField] private Coin coin;
     [SerializeField] private int threshold;
     [SerializeField] private ComparisonEnum equalSign;
-    public bool SkillBool(ICard dealableCard)
+    public bool SkillBool(IPermanent dealableCard)
     {
         if (!dealableCard.GetCoin().ContainsKey(coin)) return false;
         return equalSign.Check(dealableCard.GetCoin()[coin], threshold);

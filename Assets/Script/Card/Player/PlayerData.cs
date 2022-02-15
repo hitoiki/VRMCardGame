@@ -28,7 +28,7 @@ public class PlayerData : MonoBehaviour
     private void Awake()
     {
         _hp.Value = initHP;
-        playerCard = new DefaultCard(initPlayerCard, null);
+        playerCard = new DefaultCard(initPlayerCard);
         PoseSet();
     }
 

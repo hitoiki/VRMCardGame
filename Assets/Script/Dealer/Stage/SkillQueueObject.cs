@@ -6,10 +6,10 @@ using UnityEngine;
 public class SkillQueue
 {
     // SkillProcessをスタックしていくキュー
-    private Queue<(Skill skill, ICard source)> skillQueue = new Queue<(Skill skill, ICard source)>();
-    private Queue<(List<Skill> skills, ICard source)> playQueue = new Queue<(List<Skill> skills, ICard source)>();
+    private Queue<(Skill skill, IPermanent source)> skillQueue = new Queue<(Skill skill, IPermanent source)>();
+    private Queue<(List<Skill> skills, IPermanent source)> playQueue = new Queue<(List<Skill> skills, IPermanent source)>();
 
-    public void Push(List<Skill> skills, ICard source)
+    public void Push(List<Skill> skills, IPermanent source)
     {
         if (!skills.Any()) return;
         foreach (Skill s in skills)
@@ -17,7 +17,7 @@ public class SkillQueue
             skillQueue.Enqueue((s, source));
         }
     }
-    public (Skill skill, ICard source) Dequeue()
+    public (Skill skill, IPermanent source) Dequeue()
     {
         Debug.Log("Dequeue");
         if (!skillQueue.Any())
@@ -32,7 +32,7 @@ public class SkillQueue
     {
         return skillQueue.Any() || playQueue.Any();
     }
-    public void PlayPush(List<Skill> skills, ICard source)
+    public void PlayPush(List<Skill> skills, IPermanent source)
     {
         if (!skills.Any()) return;
         playQueue.Enqueue((skills, source));

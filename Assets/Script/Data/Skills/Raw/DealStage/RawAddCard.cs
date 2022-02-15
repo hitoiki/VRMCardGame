@@ -12,7 +12,7 @@ public class RawAddCard : IRawSkill
     {
         return Observable.Defer<Unit>(() =>
         {
-            facade.DeckKey(to).Add(new DefaultCard(card, facade.DeckKey(to)));
+            facade.DeckKey(to).Add(new DefaultCard(card));
             return Observable.Empty<Unit>();
         });
     }

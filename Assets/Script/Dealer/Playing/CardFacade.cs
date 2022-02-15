@@ -9,23 +9,23 @@ public class CardFacade
     //Cardが出来る処理を書く   
     //主にICardの取得処理を担当する
     FacadeData data;
-    public ICard skillTarget;
+    public IPermanent skillTarget;
     public SkillUsingSubject skillsSubject => data.skillsSubject;
     public SkillQueue skillQueue => data.stage.queueObject;
-    public CardFacade(FacadeData Data, ICard Source)
+    public CardFacade(FacadeData Data, IPermanent Source)
     {
         this.data = Data;
         this.skillTarget = Source;
     }
     //skillTargetを変えたfacadeを生成するやつ
-    public CardFacade NewFacade(ICard newSource)
+    public CardFacade NewFacade(IPermanent newSource)
     {
         return new CardFacade(data, newSource);
     }
     //コスト支払い処理
     public virtual void CostPay()
     {
-        foreach (ICard dealCard in DeckKey(DeckType.field))
+        foreach (IPermanent dealCard in DeckKey(DeckType.field))
         {
             dealCard.BootOtherSkill(OtherSkillKind.OnAction, skillQueue);
         };
@@ -33,11 +33,11 @@ public class CardFacade
     //ターン終了時処理
     public virtual void TurnEnd()
     {
-        foreach (ICard dealCard in DeckKey(DeckType.field))
+        foreach (IPermanent dealCard in DeckKey(DeckType.field))
         {
             dealCard.BootOtherSkill(OtherSkillKind.TurnEnd, skillQueue);
         };
-        foreach (ICard dealCard in DeckKey(DeckType.hands))
+        foreach (IPermanent dealCard in DeckKey(DeckType.hands))
         {
             dealCard.BootOtherSkill(OtherSkillKind.TurnEnd, skillQueue);
         };
@@ -56,7 +56,10 @@ public class CardFacade
     //Deckから引いてくる効果
     public void DrawMove(DeckType from, DeckType to, int n)
     {
-        DeckKey(to).Add(DeckKey(from).Draw(n));
+        foreach (IPermanent permanent in DeckKey(from).Draw(n))
+        {
+            permanent.MoveDeck(DeckKey(to));
+        }
     }
 }
 

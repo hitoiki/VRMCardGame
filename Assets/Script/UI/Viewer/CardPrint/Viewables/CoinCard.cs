@@ -39,8 +39,9 @@ public class CoinCard : MonoBehaviour, ICardViewable
         }
     }
 
-    public void Print(ICard c)
-    {
+    public void Print(IPermanent c)
+    {/*
+    Kouji
         _replace = c.GetObserveCoin().ObserveReplace().Subscribe(changeCoin =>
         {
             sprites.Where(x => { return x.Item1 == changeCoin.Key; }).First().Item2.CoinPrint(changeCoin.Key, changeCoin.NewValue);
@@ -54,7 +55,7 @@ public class CoinCard : MonoBehaviour, ICardViewable
              sprites.Where(x => { return x.Item1 == removeCoin.Key; }).First().Item2.gameObject.SetActive(false);
 
          });
-
+*/
         CoinInit(c.GetCoin());
     }
 

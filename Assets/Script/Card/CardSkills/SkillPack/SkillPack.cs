@@ -52,9 +52,9 @@ public class SkillPack
         return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; })?.ToList();
     }
 
-    public List<Skill> PickingSkill(ICard card)
+    public List<Skill> PickingSkill(IPermanent permanent)
     {
-        return pickingSkills.Select(y => { return y.GetSkill(card); }).Where(x => { return x != null; })?.ToList();
+        return pickingSkills.Select(y => { return y.GetSkill(permanent); }).Where(x => { return x != null; })?.ToList();
     }
 
     public List<Skill> OtherSkill(OtherSkillKind kind)

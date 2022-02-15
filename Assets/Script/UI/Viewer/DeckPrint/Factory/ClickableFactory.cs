@@ -24,7 +24,7 @@ public class ClickableFactory : MonoBehaviour, ICardPrintableFactory, ICardCurso
         firstCursols = initCursol.SelectMany(x => { return x.GetComponents<ICardCursolEvent>(); }).ToList();
         if (clickableCard != null) flyer = new ObjectFlyer<ClickableCard>(clickableCard);
     }
-    public ICardPrintable CardMake(ICard card, Vector3 position)
+    public ICardPrintable CardMake(IPermanent card, Vector3 position)
     {
         ClickableCard printedObj = flyer.GetMob(position, y =>
         {

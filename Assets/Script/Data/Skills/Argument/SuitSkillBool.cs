@@ -9,7 +9,7 @@ public class SuitSkillBool : ISkillBool
     {
         boolSuit = suit;
     }
-    public bool SkillBool(ICard dealableCard)
+    public bool SkillBool(IPermanent dealableCard)
     {
         return dealableCard.GetCardData().suit == boolSuit;
     }

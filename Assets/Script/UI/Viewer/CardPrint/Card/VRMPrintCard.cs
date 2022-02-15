@@ -15,16 +15,16 @@ public class VRMPrintCard : MonoBehaviour, ICardViewable, ICardObservable
     [SerializeField] private Image FrontImage;
     [SerializeField] private Text nameText;
     [SerializeField] private PlayerData player;
-    public void Print(ICard card)
+    public void Print(IPermanent card)
     {
-        this.card.Value = card;
-        nameText.text = card.GetCardData().textName;
-        BackImage.sprite = card.GetCardData().backSprite;
-        FrontImage.sprite = card.GetCardData().frontSprite;
+        this.card.Value = card.GetCard();
+        nameText.text = card.GetCard().GetCardData().textName;
+        BackImage.sprite = card.GetCard().GetCardData().backSprite;
+        FrontImage.sprite = card.GetCard().GetCardData().frontSprite;
 
         //ここでVRMのポーズを変える
         if (player.vrmAnimator == null) return;
-        PoseItem cardPose = card.GetCardData().poseItem;
+        PoseItem cardPose = card.GetCard().GetCardData().poseItem;
         //Chestのrotetionの配列数で確認
         if (cardPose.chest.rotation.Length < 4) cardPose = player.defaultPoseItem;
 

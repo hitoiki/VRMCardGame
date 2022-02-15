@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDeck : IEnumerable<ICard>
+public interface IDeck : IEnumerable<IPermanent>
 {
     // Deckの疎結合
     //主にCardが取り扱うDeck

@@ -7,7 +7,7 @@ public class CardViewSprite : MonoBehaviour, ICardViewable
     // Spriteにカードを表示するだけ
     [SerializeField] SpriteRenderer r;
 
-    public void Print(ICard card)
+    public void Print(IPermanent card)
     {
         r.sprite = card.GetCardData().iconSprite;
     }

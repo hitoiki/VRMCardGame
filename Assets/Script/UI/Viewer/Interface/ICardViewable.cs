@@ -5,7 +5,7 @@ using UnityEngine;
 public interface ICardViewable
 {
     //描画のみ出来るinterfaceを分離
-    void Print(ICard card);
+    void Print(IPermanent card);
     //仮に購読していたのなら、それを解除
     void UnPrint();
     void Active(bool active);
