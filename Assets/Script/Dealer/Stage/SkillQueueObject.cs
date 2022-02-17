@@ -19,7 +19,6 @@ public class SkillQueue
     }
     public (Skill skill, IPermanent source) Dequeue()
     {
-        Debug.Log("Dequeue");
         if (!skillQueue.Any())
         {
             var play = playQueue.Dequeue();

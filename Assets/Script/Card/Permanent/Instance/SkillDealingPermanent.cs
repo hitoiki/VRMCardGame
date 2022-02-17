@@ -5,14 +5,14 @@ using System;
 using UniRx;
 using System.Linq;
 
-public class SkillDealingCard : IPermanent
+public class SkillDealingPermanent : IPermanent
 {
     SkillQueue skillQueue;
     ICard card;
     IDeck deck;
     EffectProjector projector = new EffectProjector();
 
-    public SkillDealingCard(ICard newCard, IDeck newDeck, SkillQueue queue)
+    public SkillDealingPermanent(ICard newCard, IDeck newDeck, SkillQueue queue)
     {
         skillQueue = queue;
         card = newCard;
@@ -30,7 +30,7 @@ public class SkillDealingCard : IPermanent
     {
         return deck;
     }
-    public void ChangeCoin(Coin c, int n)
+    public (Coin coin, int result) ChangeCoin(Coin c, int n)
     {
 
         if (card.GetCoin().ContainsKey(c)) card.GetCoin()[c] += n;
@@ -39,18 +39,28 @@ public class SkillDealingCard : IPermanent
         //負数なら削除
         if (card.GetCoin()[c] < 0) card.GetCoin().Remove(c);
         skillQueue.Push(card.GetSkillPack().CoinSkill(c, n), this);
+        return (c, card.GetCoin()[c]);
     }
 
-    public void MoveDeck(IDeck toDeck)
+    public bool MoveDeck(IDeck toDeck)
     {
-        skillQueue.Push(card.GetSkillPack().DrawSkill(deck, toDeck), this);
-        deck.Remove(this.card);
-        toDeck.Add(this.card);
-        //これDrawするはずのPermanent消えちゃいますね
+        if (deck.RemoveCheck(this.card) && toDeck.AddCheck(this.card))
+        {
+            deck.Remove(this.card);
+            toDeck.Add(this.card);
+            return true;
+        }
+        Debug.Log("fail");
+        return false;
     }
 
     public EffectProjector GetEffectProjector()
     {
         return projector;
+    }
+
+    public void Dispose()
+    {
+
     }
 }

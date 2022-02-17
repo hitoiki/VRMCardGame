@@ -21,15 +21,138 @@ MonoBehaviour:
   frontSprite: {fileID: 21300000, guid: b1fca92c1318eb542a6bd866d6ba52b3, type: 3}
   backSprite: {fileID: 21300000, guid: 92457c02592f7884aa04467f378db341, type: 3}
   iconSprite: {fileID: 21300000, guid: 0f6e329d47b8754418184b860129a6de, type: 3}
+  poseJsonFilePath: 
+  poseItem:
+    chest:
+      rotation: []
+    head:
+      rotation: []
+    hips:
+      rotation: []
+    jaw:
+      rotation: []
+    leftEye:
+      rotation: []
+    leftFoot:
+      rotation: []
+    leftHand:
+      rotation: []
+    leftIndexDistal:
+      rotation: []
+    leftIndexIntermediate:
+      rotation: []
+    leftIndexProximal:
+      rotation: []
+    leftLittleDistal:
+      rotation: []
+    leftLittleIntermediate:
+      rotation: []
+    leftLittleProximal:
+      rotation: []
+    leftLowerArm:
+      rotation: []
+    leftLowerLeg:
+      rotation: []
+    leftMiddleDistal:
+      rotation: []
+    leftMiddleIntermediate:
+      rotation: []
+    leftMiddleProximal:
+      rotation: []
+    leftRingDistal:
+      rotation: []
+    leftRingIntermediate:
+      rotation: []
+    leftRingProximal:
+      rotation: []
+    leftShoulder:
+      rotation: []
+    leftThumbDistal:
+      rotation: []
+    leftThumbIntermediate:
+      rotation: []
+    leftThumbProximal:
+      rotation: []
+    leftToes:
+      rotation: []
+    leftUpperArm:
+      rotation: []
+    leftUpperLeg:
+      rotation: []
+    neck:
+      rotation: []
+    rightEye:
+      rotation: []
+    rightFoot:
+      rotation: []
+    rightHand:
+      rotation: []
+    rightIndexDistal:
+      rotation: []
+    rightIndexIntermediate:
+      rotation: []
+    rightIndexProximal:
+      rotation: []
+    rightLittleDistal:
+      rotation: []
+    rightLittleIntermediate:
+      rotation: []
+    rightLittleProximal:
+      rotation: []
+    rightLowerArm:
+      rotation: []
+    rightLowerLeg:
+      rotation: []
+    rightMiddleDistal:
+      rotation: []
+    rightMiddleIntermediate:
+      rotation: []
+    rightMiddleProximal:
+      rotation: []
+    rightRingDistal:
+      rotation: []
+    rightRingIntermediate:
+      rotation: []
+    rightRingProximal:
+      rotation: []
+    rightShoulder:
+      rotation: []
+    rightThumbDistal:
+      rotation: []
+    rightThumbIntermediate:
+      rotation: []
+    rightThumbProximal:
+      rotation: []
+    rightToes:
+      rotation: []
+    rightUpperArm:
+      rotation: []
+    rightUpperLeg:
+      rotation: []
+    spine:
+      rotation: []
+    upperChest:
+      rotation: []
   skillPack:
-    useSkills: []
-    coinSkills:
+    useSkills:
     - id: 0
+    coinSkills:
+    - id: 1
     drawSkills: []
+    pickingSkills: []
     otherSkills: []
   references:
     version: 1
     00000000:
+      type: {class: UseRawSkill, ns: , asm: Assembly-CSharp}
+      data:
+        skill:
+          id: 2
+    00000001:
       type: {class: LoadCoinSkill, ns: , asm: Assembly-CSharp}
       data:
         drawAmount: 1
+    00000002:
+      type: {class: RawMoveDeck, ns: , asm: Assembly-CSharp}
+      data:
+        toDeck: 1

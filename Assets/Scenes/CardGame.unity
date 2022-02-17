@@ -1230,33 +1230,45 @@ MonoBehaviour:
       type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
       data:
         initCards:
-        - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
+        - {fileID: 11400000, guid: 10122d1052738cf4db4a818bb6eaf490, type: 2}
         - {fileID: 11400000, guid: b0a9e36ed898db644911cee6efc65e1f, type: 2}
+        factory:
+          id: 7
     00000001:
       type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
       data:
         initCards:
         - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
+        factory:
+          id: 8
     00000002:
-      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
-      data:
-        initCards: []
+      type: {class: NullDeck, ns: , asm: Assembly-CSharp}
     00000003:
-      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
-      data:
-        initCards: []
+      type: {class: NullDeck, ns: , asm: Assembly-CSharp}
     00000004:
-      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
-      data:
-        initCards: []
+      type: {class: NullDeck, ns: , asm: Assembly-CSharp}
     00000005:
-      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
-      data:
-        initCards: []
+      type: {class: NullDeck, ns: , asm: Assembly-CSharp}
     00000006:
-      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
+      type: {class: NullDeck, ns: , asm: Assembly-CSharp}
+    00000007:
+      type: {class: CoinViewingPermanentDecoFactory, ns: , asm: Assembly-CSharp}
       data:
-        initCards: []
+        factory:
+          id: 9
+    00000008:
+      type: {class: CoinViewingPermanentDecoFactory, ns: , asm: Assembly-CSharp}
+      data:
+        factory:
+          id: 10
+    00000009:
+      type: {class: SkillDealingCardFactory, ns: , asm: Assembly-CSharp}
+      data:
+        stage: {fileID: 400381648}
+    0000000A:
+      type: {class: SkillDealingCardFactory, ns: , asm: Assembly-CSharp}
+      data:
+        stage: {fileID: 400381648}
 --- !u!4 &400381650
 Transform:
   m_ObjectHideFlags: 0
@@ -5247,7 +5259,7 @@ MonoBehaviour:
   bundle: {fileID: 682222266}
   initFactory: {fileID: 1841415130}
   stage: {fileID: 400381648}
-  observeDeck: 1
+  observeDeckType: 1
   tweenTime: 0.5
   grid:
     id: 0
@@ -5310,7 +5322,7 @@ MonoBehaviour:
   bundle: {fileID: 1422898548}
   initFactory: {fileID: 1870451248}
   stage: {fileID: 400381648}
-  observeDeck: 0
+  observeDeckType: 0
   tweenTime: 0.3
   grid:
     id: 0

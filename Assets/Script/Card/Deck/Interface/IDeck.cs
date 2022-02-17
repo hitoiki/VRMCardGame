@@ -12,8 +12,10 @@ public interface IDeck : IEnumerable<IPermanent>
     void Substitution(List<ICard> c);
     //追加
     bool Add(ICard c);
+    bool AddCheck(ICard c);
     //削除
     bool Remove(ICard c);
+    bool RemoveCheck(ICard c);
     //指定したカードが存在するかを確認
     bool ExistCheck(ICard c);
     //Deckにカードが存在するか確認

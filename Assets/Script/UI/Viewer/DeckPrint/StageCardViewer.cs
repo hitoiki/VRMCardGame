@@ -13,7 +13,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
     [SerializeField] private Transform bundle;
     [SerializeField] private GameObject initFactory;
     [SerializeField] private Stage stage;
-    [SerializeField] private DeckType observeDeck;
+    [SerializeField] private DeckType observeDeckType;
     [SerializeField] private float tweenTime;
     [SerializeReference, SubclassSelector] public IAlignGrid grid;
     private ICardPrintableFactory factory;
@@ -35,25 +35,31 @@ public class StageCardViewer : MonoBehaviour, IGameState
     //Start
     public void CrankIn()
     {
+        IObservableDeck observableDeck = stage.DeckKey(observeDeckType) as IObservableDeck;
+        if (observableDeck == null)
+        {
+            DeckInit(stage.DeckKey(observeDeckType));
+            Debug.Log("can't Stage Observeinging" + observeDeckType.ToStringFast());
+        }
         //Deckに変更が起きた際、これが実行される
-        _Replace = stage.DeckKey(observeDeck).ReplaceEvent().Subscribe(x =>
+        _Replace = observableDeck.ReplaceEvent().Subscribe(x =>
          {
              //消して（購読を解除して）から、もう一度Print
              CardChange(x.NewValue, x.Index);
 
          });
-        _Add = stage.DeckKey(observeDeck).AddEvent().Subscribe(x =>
+        _Add = observableDeck.AddEvent().Subscribe(x =>
          {
              //Flyerから新しくICardPrintableを貰って、自分のリストに加える
              CardMake(x.Value, x.Index);
          });
-        _Remove = stage.DeckKey(observeDeck).RemoveEvent().Subscribe(x =>
+        _Remove = observableDeck.RemoveEvent().Subscribe(x =>
          {
              //Flyerにカードを使われていない状態にしてもらって、リストから消す
              factory.CardEraceAt(x.Index);
              AllAlign();
          });
-        DeckInit(stage.DeckKey(observeDeck));
+        DeckInit(stage.DeckKey(observeDeckType));
     }
     //Update
     public void StateUpdate()

@@ -65,7 +65,6 @@ public class CardPlayDealer : MonoBehaviour
         if (!isExecuting)
         {
             //  state.ChangeState(skillingState);
-            Debug.Log("SkilliStart");
             StartCoroutine("SkillExecute");
         }
         else

@@ -28,7 +28,7 @@ public class Stage : MonoBehaviour
         if (left != null) left.Init(DeckType.left);
     }
 
-    public IStagingDeck DeckKey(DeckType e)
+    public IDeck DeckKey(DeckType e)
     {
         if (e == DeckType.hands) return hands;
         if (e == DeckType.field) return field;

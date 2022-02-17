@@ -16,9 +16,7 @@ public class CoinCard : MonoBehaviour, ICardViewable
     [SerializeField] AlignGrid grid;
     [SerializeField] Vector3 origin = new Vector3(100, 0, 0);
     private List<(Coin, CoinSprite)> sprites = new List<(Coin, CoinSprite)>();
-    private IDisposable _add;
-    private IDisposable _replace;
-    private IDisposable _remove;
+    private IDisposable _change;
     private void Awake()
     {
         if (initFlyer != null) flyer = initFlyer.flyer;
@@ -30,9 +28,7 @@ public class CoinCard : MonoBehaviour, ICardViewable
 
     public void UnPrint()
     {
-        _replace.Dispose();
-        _add.Dispose();
-        _remove.Dispose();
+        _change.Dispose();
         foreach ((Coin coin, CoinSprite sprite) c in sprites)
         {
             c.sprite.UnPrint();
@@ -40,22 +36,23 @@ public class CoinCard : MonoBehaviour, ICardViewable
     }
 
     public void Print(IPermanent c)
-    {/*
-    Kouji
-        _replace = c.GetObserveCoin().ObserveReplace().Subscribe(changeCoin =>
+    {
+        ICoinObservable coinObservable = c as ICoinObservable;
+        if (coinObservable == null)
         {
-            sprites.Where(x => { return x.Item1 == changeCoin.Key; }).First().Item2.CoinPrint(changeCoin.Key, changeCoin.NewValue);
+            CoinInit(c.GetCoin());
+            Debug.Log("Can'tObserveCoins");
+            return;
+        }
+        _change = coinObservable.GetObservableCoin().Subscribe(changeCoin =>
+        {
+            if (sprites.Any(x => { return x.Item1 == changeCoin.key; }))
+            {
+                sprites.Where(x => { return x.Item1 == changeCoin.key; }).First().Item2.CoinPrint(changeCoin.key, changeCoin.result);
+                if (changeCoin.result < 0) sprites.Where(x => { return x.Item1 == changeCoin.key; }).First().Item2.gameObject.SetActive(false);
+            }
+            else CoinMake(changeCoin.key, changeCoin.result);
         });
-        _add = c.GetObserveCoin().ObserveAdd().Subscribe(addCoin =>
-          {
-              CoinMake(addCoin.Key, addCoin.Value);
-          });
-        _remove = c.GetObserveCoin().ObserveRemove().Subscribe(removeCoin =>
-         {
-             sprites.Where(x => { return x.Item1 == removeCoin.Key; }).First().Item2.gameObject.SetActive(false);
-
-         });
-*/
         CoinInit(c.GetCoin());
     }
 

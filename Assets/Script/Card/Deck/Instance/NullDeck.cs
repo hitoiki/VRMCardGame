@@ -20,8 +20,10 @@ public class NullDeck : IStagingDeck
     public void Substitution(List<ICard> c) { }
     //追加
     public bool Add(ICard c) { return false; }
+    public bool AddCheck(ICard c) { return false; }
     //削除
     public bool Remove(ICard c) { return false; }
+    public bool RemoveCheck(ICard c) { return false; }
     //指定したカードが存在するかを確認
     public bool ExistCheck(ICard c) { return false; }
     //Deckにカードが存在するか確認
