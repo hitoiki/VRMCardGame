@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UniRx;
 
-public class UseRawSkill : IUseProcess
+public class UseRawSkill : ISkillProcessUse
 {
     [SerializeReference, SubclassSelector] public IRawSkill skill;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)

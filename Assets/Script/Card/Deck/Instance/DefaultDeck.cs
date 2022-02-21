@@ -6,7 +6,7 @@ using System.Linq;
 using UniRx;
 
 [System.Serializable]
-public class DefaultDeck : IStagingDeck, IObservableDeck
+public class DefaultDeck : IStagingDeck, INoticeDeck
 {
     //カードを纏める所
     public DeckType deckType { get; private set; }

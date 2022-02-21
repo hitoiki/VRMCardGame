@@ -15,8 +15,8 @@ public class CardData : ScriptableObject
     public CardType type;
     public Suit suit;
     [TextArea] public string flavorText;
-    public Sprite frontSprite;
     public Sprite backSprite;
+    public Sprite frontSprite;
     public Sprite iconSprite;
     [PathAttribute] public string poseJsonFilePath = "";
     public PoseItem poseItem;

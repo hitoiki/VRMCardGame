@@ -5,12 +5,12 @@ using System;
 using UniRx;
 
 [System.Serializable]
-public class CoinTriggerSkill : ICoinProcess
+public class CoinTriggerSkill : ISkillProcessCoin
 {
     [SerializeField] private Coin ReactiveCoin;
     [SerializeReference, SubclassSelector] private IRawSkill rawSkill;
 
-    public IObservable<Unit> GetSkillProcess(CardFacade facade, Coin c, int n)
+    public IObservable<Unit> GetSkillProcess(CardFacade facade, (Coin c, int n) value)
     {
         return Observable.Defer<Unit>(() =>
         {
@@ -21,10 +21,10 @@ public class CoinTriggerSkill : ICoinProcess
     }
 
 
-    public bool GetIsSkillable(CardFacade facade, Coin coin, int n)
+    public bool GetIsSkillable(CardFacade facade, (Coin c, int n) value)
     {
 
-        return ReactiveCoin == coin;
+        return ReactiveCoin == value.c;
 
     }
 

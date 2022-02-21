@@ -10,13 +10,15 @@ public class SkillDealingPermanent : IPermanent
     SkillQueue skillQueue;
     ICard card;
     IDeck deck;
+    Context context;
     EffectProjector projector = new EffectProjector();
 
-    public SkillDealingPermanent(ICard newCard, IDeck newDeck, SkillQueue queue)
+    public SkillDealingPermanent(ICard newCard, IDeck newDeck, Context newContext, SkillQueue queue)
     {
         skillQueue = queue;
         card = newCard;
         deck = newDeck;
+        context = newContext;
     }
     public ICard GetCard()
     {
@@ -38,7 +40,7 @@ public class SkillDealingPermanent : IPermanent
         else card.GetCoin().Add(c, n);
         //負数なら削除
         if (card.GetCoin()[c] < 0) card.GetCoin().Remove(c);
-        skillQueue.Push(card.GetSkillPack().CoinSkill(c, n), this);
+        skillQueue.Push(card.GetSkillPack().SkillProcess<(Coin, int)>((c, n)), this);
         return (c, card.GetCoin()[c]);
     }
 
@@ -53,7 +55,10 @@ public class SkillDealingPermanent : IPermanent
         Debug.Log("fail");
         return false;
     }
-
+    public Context GetContext()
+    {
+        return context;
+    }
     public EffectProjector GetEffectProjector()
     {
         return projector;

@@ -13,7 +13,7 @@ public class CardPlayChecker : MonoBehaviour
     public void CardCheck(ICardPrintable cardViewable)
     {
         SkillPack skillPack = cardViewable.GetPermanent().GetSkillPack();
-        dealer.CardPlay(skillPack.UseSkill(), cardViewable.GetPermanent());
+        dealer.CardPlay(skillPack.UseProcess(), cardViewable.GetPermanent());
     }
 
     public void TurnEnd()

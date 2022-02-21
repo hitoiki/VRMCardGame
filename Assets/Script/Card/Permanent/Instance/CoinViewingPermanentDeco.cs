@@ -35,12 +35,14 @@ public class CoinViewingPermanentDeco : IPermanent, ICoinObservable
         coinSubject.OnNext((changeResult.coin, n, changeResult.result));
         return changeResult;
     }
-
     public bool MoveDeck(IDeck toDeck)
     {
         return permanent.MoveDeck(toDeck);
     }
-
+    public Context GetContext()
+    {
+        return permanent.GetContext();
+    }
     public EffectProjector GetEffectProjector()
     {
         return permanent.GetEffectProjector();

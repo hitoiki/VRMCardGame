@@ -13,7 +13,6 @@ public interface IPermanent : IDisposable
     (Coin coin, int result) ChangeCoin(Coin c, int n);
     bool MoveDeck(IDeck deck);
     //Effectが起こった際に購読する
+    Context GetContext();
     EffectProjector GetEffectProjector();
-
-    //Coin購読用の奴 IReadOnlyReactiveDictionary<Coin, int> GetObserveCoin();
 }

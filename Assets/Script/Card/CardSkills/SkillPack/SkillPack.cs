@@ -8,28 +8,16 @@ public class SkillPack
 {
     //Skillを纏めるクラス
 
-    [SerializeReference, SubclassSelector] private List<IUseProcess> useSkills;
-    [SerializeReference, SubclassSelector] private List<ICoinProcess> coinSkills;
-    [SerializeReference, SubclassSelector] private List<IDrawProcess> drawSkills;
-    [SerializeReference, SubclassSelector] private List<IPickingProcess> pickingSkills;
-    [SerializeField] private List<OtherSkill> otherSkills;
+    [SerializeReference, SubclassSelector] private List<ISkillProcessTag> skills;
 
-    public SkillPack(List<IUseProcess> UseSkills, List<ICoinProcess> CoinSkills, List<IDrawProcess> DrawSkills, List<IPickingProcess> PickingSkills, List<OtherSkill> OtherSkills)
+    public SkillPack(List<ISkillProcessTag> newSkills)
     {
-        this.useSkills = UseSkills;
-        this.coinSkills = CoinSkills;
-        this.drawSkills = DrawSkills;
-        this.pickingSkills = PickingSkills;
-        this.otherSkills = OtherSkills;
+        this.skills = newSkills;
     }
     public string SkillText()
     {
         string skillTexts = "";
-        if (useSkills.Any()) skillTexts += useSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
-        if (coinSkills.Any()) skillTexts += coinSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
-        if (drawSkills.Any()) skillTexts += drawSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
-        if (pickingSkills.Any()) skillTexts += pickingSkills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
-        if (otherSkills.Any()) skillTexts += otherSkills.Select(x => { return x.rawSkill.Text(); }).Aggregate((str1, str2) => str1 + str2);
+        if (skills.Any()) skillTexts += skills.Select(x => { return x.Text(); }).Aggregate((str1, str2) => str1 + str2);
         if (skillTexts == "")
         {
             Debug.Log("nullCardsText");
@@ -37,40 +25,19 @@ public class SkillPack
         return skillTexts;
     }
 
-    public List<Skill> UseSkill()
+    public List<Skill> UseProcess()
     {
-        return useSkills.Select(y => { return y.GetSkill(); }).Where(x => { return x != null; })?.ToList();
+        return skills.OfType<ISkillProcessUse>().Select(y => { return y?.GetSkill(); }).Where(x => { return x != null; })?.ToList();
     }
-
-    public List<Skill> CoinSkill(Coin coin, int n)
+    public List<Skill> SkillProcess<T>(T t)
     {
-        return coinSkills.Select(y => { return y.GetSkill(coin, n); }).Where(x => { return x != null; })?.ToList();
-    }
-
-    public List<Skill> DrawSkill(IDeck from, IDeck to)
-    {
-        return drawSkills.Select(y => { return y.GetSkill(from, to); }).Where(x => { return x != null; })?.ToList();
-    }
-
-    public List<Skill> PickingSkill(IPermanent permanent)
-    {
-        return pickingSkills.Select(y => { return y.GetSkill(permanent); }).Where(x => { return x != null; })?.ToList();
-    }
-
-    public List<Skill> OtherSkill(OtherSkillKind kind)
-    {
-        return otherSkills.Select(y => { return y.GetSkill(kind); }).Where(x => { return x != null; })?.ToList();
+        return skills.OfType<ISkillProcess<T>>().Select(y => { return y?.GetSkill(t); }).Where(x => { return x != null; })?.ToList();
     }
     public static SkillPack Concat(SkillPack x, SkillPack y)
     {
         if (x == null) return y;
         if (y == null) return x;
-        return new SkillPack(x.useSkills.Concat(y.useSkills).ToList(),
-        x.coinSkills.Concat(y.coinSkills).ToList(),
-        x.drawSkills.Concat(y.drawSkills).ToList(),
-        x.pickingSkills.Concat(y.pickingSkills).ToList(),
-        x.otherSkills.Concat(y.otherSkills).ToList()
-        );
+        return new SkillPack(x.skills.Concat(y.skills).ToList());
     }
 
 

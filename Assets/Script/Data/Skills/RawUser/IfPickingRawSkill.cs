@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UniRx;
-public class IfPickingRawSkill : IPickingProcess
+public class IfPickingRawSkill : ISkillProcessPermanent
 {
     //一つカードを選択して、それを対象にRawSkillを発動する
     [SerializeReference, SubclassSelector] IRawSkill rawSkill;

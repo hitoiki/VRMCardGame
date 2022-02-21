@@ -5,7 +5,7 @@ using System;
 using UniRx;
 using System.Linq;
 
-public class SelectUseRaw : IUseProcess
+public class SelectUseRaw : ISkillProcessUse
 {
     //一つカードを選択して、それを対象にRawSkillを発動する
     [SerializeReference, SubclassSelector] IRawSkill rawSkill;

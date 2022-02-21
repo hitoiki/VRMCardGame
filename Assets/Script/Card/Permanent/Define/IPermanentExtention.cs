@@ -16,9 +16,8 @@ public static class IPermanentExtention
     {
         return permanent.GetCard().GetSkillPack();
     }
-
     public static void BootOtherSkill(this IPermanent card, OtherSkillKind kind, SkillQueue skillQueue)
     {
-        skillQueue.Push(card.GetSkillPack().OtherSkill(kind), card);
+        skillQueue.Push(card.GetSkillPack().SkillProcess<OtherSkillKind>(kind), card);
     }
 }

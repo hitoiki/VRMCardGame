@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UniRx;
 
 [System.Serializable]
-public class OtherSkill
+public class OtherSkill : ISkillProcessKind
 {
     //ターン終了時など、その他特定の状況で発動する
     //SkillTimingごとに違った対応をするのはSkillの意味の把握を困難にする
@@ -16,10 +18,24 @@ public class OtherSkill
         this.rawSkill = RawSkill;
     }
 
-    public Skill GetSkill(OtherSkillKind Timing)
+    public IObservable<Unit> GetSkillProcess(CardFacade facade, OtherSkillKind Timing)
     {
-        if (timing == Timing) return new Skill(rawSkill.SkillName(), x => rawSkill.GetSkillProcess(x), x => true);
-        else return null;
+        if (timing == Timing) return rawSkill.GetSkillProcess(facade);
+        else return Observable.Empty<Unit>();
+    }
+
+    public bool GetIsSkillable(CardFacade facade, OtherSkillKind Timing)
+    {
+        return timing == Timing;
+    }
+
+    public string Text()
+    {
+        return rawSkill.Text();
+    }
+    public string SkillName()
+    {
+        return rawSkill.SkillName();
     }
 }
 

@@ -1230,15 +1230,15 @@ MonoBehaviour:
       type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
       data:
         initCards:
-        - {fileID: 11400000, guid: 10122d1052738cf4db4a818bb6eaf490, type: 2}
-        - {fileID: 11400000, guid: b0a9e36ed898db644911cee6efc65e1f, type: 2}
+        - {fileID: 11400000, guid: ff6624cbff777fb45bdad65627ffd1df, type: 2}
+        - {fileID: 11400000, guid: ff6624cbff777fb45bdad65627ffd1df, type: 2}
         factory:
           id: 7
     00000001:
       type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
       data:
         initCards:
-        - {fileID: 11400000, guid: b1aa476b96bedc94f975ec2709db041e, type: 2}
+        - {fileID: 11400000, guid: ff6624cbff777fb45bdad65627ffd1df, type: 2}
         factory:
           id: 8
     00000002:
@@ -1265,10 +1265,14 @@ MonoBehaviour:
       type: {class: SkillDealingCardFactory, ns: , asm: Assembly-CSharp}
       data:
         stage: {fileID: 400381648}
+        context:
+          cast: 0
     0000000A:
       type: {class: SkillDealingCardFactory, ns: , asm: Assembly-CSharp}
       data:
         stage: {fileID: 400381648}
+        context:
+          cast: 0
 --- !u!4 &400381650
 Transform:
   m_ObjectHideFlags: 0
@@ -2374,7 +2378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vrmAnimator: {fileID: 1495285395}
-  initPlayerCard: {fileID: 11400000, guid: 272ad995e85a15c42ae43ff95d17f2d5, type: 2}
+  initPlayerCard: {fileID: 0}
   initHP: 10
   flag:
     value: 0

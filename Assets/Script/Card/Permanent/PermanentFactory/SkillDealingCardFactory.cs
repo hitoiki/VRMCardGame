@@ -6,8 +6,9 @@ using UnityEngine;
 public class SkillDealingCardFactory : IPermanentFactory
 {
     [SerializeField] private Stage stage;
+    [SerializeField] private Context context;
     public IPermanent CardMake(ICard card, IDeck deck)
     {
-        return new SkillDealingPermanent(card, deck, stage.queueObject);
+        return new SkillDealingPermanent(card, deck, context, stage.queueObject);
     }
 }

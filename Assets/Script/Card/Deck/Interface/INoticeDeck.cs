@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UniRx;
-public interface IObservableDeck
+public interface INoticeDeck
 {
     IObservable<CollectionReplaceEvent<IPermanent>> ReplaceEvent();
     IObservable<CollectionAddEvent<IPermanent>> AddEvent();

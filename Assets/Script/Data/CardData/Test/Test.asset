@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
-  m_Name: Flag
+  m_Name: Test
   m_EditorClassIdentifier: 
-  textName: "\u30B4\u30FC\u30EB"
+  textName: 1111
   costCoin: {fileID: 11400000, guid: e598d2b863204064fb4a5b18da06d16f, type: 2}
-  cost: 0
+  cost: 13
   type: 0
-  suit: 0
+  suit: 2
   flavorText: 
-  frontSprite: {fileID: 21300000, guid: b1fca92c1318eb542a6bd866d6ba52b3, type: 3}
-  backSprite: {fileID: 21300000, guid: 92457c02592f7884aa04467f378db341, type: 3}
+  backSprite: {fileID: 21300000, guid: c0a025275f6b20543be717f24bfb4c8b, type: 3}
+  frontSprite: {fileID: 21300000, guid: d82787dc8bc047645b4c29705fecc50c, type: 3}
   iconSprite: {fileID: 21300000, guid: 0f6e329d47b8754418184b860129a6de, type: 3}
   poseJsonFilePath: 
   poseItem:
@@ -134,13 +134,9 @@ MonoBehaviour:
     upperChest:
       rotation: []
   skillPack:
-    useSkills:
+    skills:
     - id: 0
-    coinSkills:
     - id: 1
-    drawSkills: []
-    pickingSkills: []
-    otherSkills: []
   references:
     version: 1
     00000000:
@@ -149,10 +145,29 @@ MonoBehaviour:
         skill:
           id: 2
     00000001:
-      type: {class: LoadCoinSkill, ns: , asm: Assembly-CSharp}
+      type: {class: CoinTriggerSkill, ns: , asm: Assembly-CSharp}
       data:
-        drawAmount: 1
+        ReactiveCoin: {fileID: 11400000, guid: c4a31d70d2805504898829fea01e4ea7, type: 2}
+        rawSkill:
+          id: 3
     00000002:
-      type: {class: RawMoveDeck, ns: , asm: Assembly-CSharp}
+      type: {class: RawChangeCoin, ns: , asm: Assembly-CSharp}
       data:
-        toDeck: 1
+        c: {fileID: 11400000, guid: c4a31d70d2805504898829fea01e4ea7, type: 2}
+        number:
+          id: 4
+    00000003:
+      type: {class: RawSkillEffect, ns: , asm: Assembly-CSharp}
+      data:
+        effect:
+        - id: 5
+    00000004:
+      type: {class: ConstSkillInt, ns: , asm: Assembly-CSharp}
+      data:
+        number: 3
+    00000005:
+      type: {class: SourceEffect, ns: , asm: Assembly-CSharp}
+      data:
+        appearObj: {fileID: 7153739766229675834, guid: ce5a973532b6c2d47853a30e3800ade3,
+          type: 3}
+        tweenTime: 2

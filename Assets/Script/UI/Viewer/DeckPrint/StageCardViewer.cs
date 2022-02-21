@@ -35,7 +35,7 @@ public class StageCardViewer : MonoBehaviour, IGameState
     //Start
     public void CrankIn()
     {
-        IObservableDeck observableDeck = stage.DeckKey(observeDeckType) as IObservableDeck;
+        INoticeDeck observableDeck = stage.DeckKey(observeDeckType) as INoticeDeck;
         if (observableDeck == null)
         {
             DeckInit(stage.DeckKey(observeDeckType));
