@@ -25,7 +25,7 @@ public class CardSelectHighLighter : MonoBehaviour
         viewFlyer = new ObjectFlyer<Transform>(viewingObject.transform);
     }
 
-    public void HandHighLight(ISkillBool condition)
+    public void HandHighLight(ISkillCardBool condition)
     {
         IEnumerable<Vector3> positions = new List<Vector3>();
 
@@ -47,7 +47,7 @@ public class CardSelectHighLighter : MonoBehaviour
         }
     }
 
-    public void FieldHighLight(ISkillBool condition)
+    public void FieldHighLight(ISkillCardBool condition)
     {
 
         IEnumerable<Vector3> positions = new List<Vector3>();

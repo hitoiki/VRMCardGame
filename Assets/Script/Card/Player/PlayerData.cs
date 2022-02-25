@@ -17,8 +17,11 @@ public class PlayerData : MonoBehaviour
     [SerializeField] int initHP;
     private ReactiveProperty<int> _hp = new ReactiveProperty<int>();
     public IReadOnlyReactiveProperty<int> hp => _hp;
-    //勝利条件。スコアチックにしたいのでintで作る
-    public ReactiveProperty<int> flag = new ReactiveProperty<int>();
+    //DeckBuilding用
+    public ReactiveProperty<int> instantMoney = new ReactiveProperty<int>();
+    public ReactiveProperty<int> actionTimes = new ReactiveProperty<int>();
+    [SerializeField] int initTurn;
+    public ReactiveProperty<int> turn = new ReactiveProperty<int>();
 
     //デフォルトのポーズ
     [SerializeField, PathAttribute] private string defaultPoseFilePath = "";
@@ -28,6 +31,9 @@ public class PlayerData : MonoBehaviour
     private void Awake()
     {
         _hp.Value = initHP;
+        turn.Value = initTurn;
+        instantMoney.Value = 0;
+        actionTimes.Value = 1;
         playerCard = new DefaultCard(initPlayerCard);
         PoseSet();
     }
@@ -47,7 +53,7 @@ public class PlayerData : MonoBehaviour
         if (_hp.Value <= 0) GameOver();
     }
 
-    public void Flag(int amount)
+    public void GameEnd()
     {
         //本来はスコア用
         //間に合わせとして、クリア処理に

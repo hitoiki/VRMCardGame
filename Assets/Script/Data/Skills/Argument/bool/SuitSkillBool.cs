@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuitSkillBool : ISkillBool
+public class SuitSkillBool : ISkillCardBool
 {
     [SerializeField] private Suit boolSuit;
     public SuitSkillBool(Suit suit)

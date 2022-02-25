@@ -9,7 +9,7 @@ public class SelectUseRaw : ISkillProcessUse
 {
     //一つカードを選択して、それを対象にRawSkillを発動する
     [SerializeReference, SubclassSelector] IRawSkill rawSkill;
-    [SerializeReference, SubclassSelector] ISkillBool cardCondition;
+    [SerializeReference, SubclassSelector] ISkillCardBool cardCondition;
     [SerializeField] private DeckType deck;
     [SerializeField] SkillUsingObjectAddress address;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)

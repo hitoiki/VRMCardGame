@@ -10,17 +10,17 @@ public class CardSelector : MonoBehaviour
     // カードを選択して返すObject
 
     private Subject<IPermanent> prepareSubject;
-    private List<(DeckType deck, ISkillBool condition)> aiming = new List<(DeckType, ISkillBool)>();
+    private List<(DeckType deck, ISkillCardBool condition)> aiming = new List<(DeckType, ISkillCardBool)>();
     [SerializeField] private StateDealer state;
     [SerializeField] private string selectingState;
     [SerializeField] private string playingState;
     [SerializeField] private Stage stage;
     [SerializeField] private CardSelectHighLighter highLighter;
-    public IObservable<IPermanent> CardSelect(DeckType deck, ISkillBool condition)
+    public IObservable<IPermanent> CardSelect(DeckType deck, ISkillCardBool condition)
     {
         return Observable.Defer<IPermanent>(() =>
         {
-            aiming = new List<(DeckType, ISkillBool)>();
+            aiming = new List<(DeckType, ISkillCardBool)>();
             aiming.Add((deck, condition)); ;
             if (aiming.First().deck == DeckType.hands) highLighter.HandHighLight(aiming.First().condition);
             if (aiming.First().deck == DeckType.field) highLighter.FieldHighLight(aiming.First().condition);
@@ -29,7 +29,7 @@ public class CardSelector : MonoBehaviour
             return prepareSubject;
         });
     }
-    public IObservable<IPermanent> CardListSelect(List<(DeckType, ISkillBool)> selectList)
+    public IObservable<IPermanent> CardListSelect(List<(DeckType, ISkillCardBool)> selectList)
     {
         return Observable.Defer<IPermanent>(() =>
         {

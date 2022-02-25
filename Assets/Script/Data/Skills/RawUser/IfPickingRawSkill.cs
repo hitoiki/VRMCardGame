@@ -7,7 +7,7 @@ public class IfPickingRawSkill : ISkillProcessPermanent
 {
     //一つカードを選択して、それを対象にRawSkillを発動する
     [SerializeReference, SubclassSelector] IRawSkill rawSkill;
-    [SerializeReference, SubclassSelector] ISkillBool cardCondition;
+    [SerializeReference, SubclassSelector] ISkillCardBool cardCondition;
     public IObservable<Unit> GetSkillProcess(CardFacade facade, IPermanent card)
     {
         return Observable.Defer<Unit>(() =>

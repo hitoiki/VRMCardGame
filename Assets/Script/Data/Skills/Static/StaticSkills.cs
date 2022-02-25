@@ -18,7 +18,7 @@ public static class StaticSkill
             {
                 return Observable.Defer<Unit>(() =>
                    {
-                       x.CostPay();
+                       x.TurnEnd();
                        return Observable.Empty<Unit>();
                    });
             },

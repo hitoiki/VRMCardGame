@@ -7,7 +7,7 @@ using System.Linq;
 public class SkillBooledRandomSkillCard : ISkillCard
 {
     //条件の合う中からランダム
-    [SerializeReference, SubclassSelector] ISkillBool skillBool;
+    [SerializeReference, SubclassSelector] ISkillCardBool skillBool;
     [SerializeField] DeckType deck;
     public IPermanent SkillCard(CardFacade facade)
     {

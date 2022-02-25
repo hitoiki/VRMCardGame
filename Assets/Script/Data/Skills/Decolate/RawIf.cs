@@ -7,7 +7,7 @@ using UniRx;
 public class RawIf : IRawSkill
 {
     [SerializeReference, SubclassSelector] private IRawSkill rawSkill;
-    [SerializeReference, SubclassSelector] private ISkillBool condition;
+    [SerializeReference, SubclassSelector] private ISkillCardBool condition;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         return Observable.Defer<Unit>(() =>

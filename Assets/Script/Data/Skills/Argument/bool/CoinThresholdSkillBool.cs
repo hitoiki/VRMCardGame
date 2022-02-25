@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinThresholdSkillBool : ISkillBool
+public class CoinThresholdSkillBool : ISkillCardBool
 {
     [SerializeField] private Coin coin;
     [SerializeField] private int threshold;

@@ -12,6 +12,18 @@ public class CardFacade
     public IPermanent skillTarget;
     public SkillUsingSubject skillsSubject => data.skillsSubject;
     public SkillQueue skillQueue => data.stage.queueObject;
+
+    public int instantMoney
+    {
+        get { return data.player.instantMoney.Value; }
+        set { data.player.instantMoney.Value = value; }
+    }
+
+    public int actionTimes
+    {
+        get { return data.player.actionTimes.Value; }
+        set { data.player.actionTimes.Value = value; }
+    }
     public CardFacade(FacadeData Data, IPermanent Source)
     {
         this.data = Data;
@@ -41,6 +53,11 @@ public class CardFacade
         {
             dealCard.BootOtherSkill(OtherSkillKind.TurnEnd, skillQueue);
         };
+        instantMoney = 0;
+        actionTimes = 1;
+        data.player.turn.Value += 1;
+        if (data.player.turn.Value >= 11) data.player.GameEnd();
+        Debug.Log("End");
     }
     //条件を満たすカードのリストを渡す
     public IDeck DeckKey(DeckType type)
