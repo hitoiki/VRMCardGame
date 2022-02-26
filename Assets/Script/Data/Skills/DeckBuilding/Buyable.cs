@@ -7,14 +7,16 @@ using UniRx;
 public class Buyable : ISkillProcessKind
 {
     [SerializeReference, SubclassSelector] ISkillInt skillInt;
-    [SerializeReference, SubclassSelector] ISkillEffect[] unBuyEffect;
     [SerializeReference, SubclassSelector] ISkillEffect[] buyEffect;
+    [SerializeReference, SubclassSelector] ISkillEffect[] unBuyEffect;
     public IObservable<Unit> GetSkillProcess(CardFacade facade, OtherSkillKind timing)
     {
         return Observable.Defer<Unit>(() =>
         {
-            if (timing == OtherSkillKind.Click) return Observable.Empty<Unit>();
-            if (facade.instantMoney >= skillInt.SkillInt(facade)) return facade.skillsSubject.EffectLoad(unBuyEffect, facade.skillTarget);
+            Debug.Log("購入");
+            if (timing != OtherSkillKind.Click) return Observable.Empty<Unit>();
+            if (facade.instantMoney < skillInt.SkillInt(facade)) return facade.skillsSubject.EffectLoad(unBuyEffect, facade.skillTarget);
+
             facade.instantMoney -= skillInt.SkillInt(facade);
             facade.skillTarget.MoveDeck(facade.DeckKey(DeckType.discard));
             return facade.skillsSubject.EffectLoad(buyEffect, facade.skillTarget); ;

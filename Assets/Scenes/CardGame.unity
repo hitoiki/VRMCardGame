@@ -516,6 +516,8 @@ MonoBehaviour:
   events:
   - id: 0
   - id: 1
+  - id: 2
+  - id: 3
   references:
     version: 1
     00000000:
@@ -526,12 +528,21 @@ MonoBehaviour:
     00000001:
       type: {class: CursolTeleportObject, ns: , asm: Assembly-CSharp}
       data:
-        isRelative: 0
-        gapPos: {x: -5.8, y: 2, z: 0}
+        isRelative: 1
+        gapPos: {x: 0, y: 1, z: 0}
         portObj:
         - {fileID: 2078429067}
         - {fileID: 81536509}
         - {fileID: 1511498329}
+    00000002:
+      type: {class: CardCursolScaler, ns: , asm: Assembly-CSharp}
+      data:
+        aimingScale: {x: 3.2, y: 4.8, z: 1}
+        defaultScale: {x: 2, y: 3, z: 1}
+    00000003:
+      type: {class: CardCursolClickSkill, ns: , asm: Assembly-CSharp}
+      data:
+        dealer: {fileID: 200107286}
 --- !u!114 &120783388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,7 +1249,7 @@ MonoBehaviour:
       type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
       data:
         initCards:
-        - {fileID: 11400000, guid: ff6624cbff777fb45bdad65627ffd1df, type: 2}
+        - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
         factory:
           id: 8
     00000002:
@@ -2032,7 +2043,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737738371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.36002576, y: -0.27708417, z: 0.16017297}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 120783386}
