@@ -28,13 +28,15 @@ public class SkillUsingSubject : IDisposable
         return Observable.Defer<Unit>(() =>
         {
             List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
+            IObservable<Unit> observable = Observable.Empty<Unit>();
 
             foreach (ISkillEffect e in effects.Where(x => { return x != null; }))
             {
                 linker.effects.Add(e);
-                effectEvents.Add(permanent.GetEffectProjector().EffectBoot(e));
+                IObservable<Unit> effectObservable = permanent.GetEffectProjector().EffectBoot(e);
+                observable = observable.Concat(effectObservable);
             }
-            return Observable.WhenAll(effectEvents).First();
+            return observable;
         });
     }
 

@@ -21,16 +21,16 @@ MonoBehaviour:
     00000000:
       type: {class: RotateEffect, ns: , asm: Assembly-CSharp}
       data:
-        rotateVector: {x: 0, y: 0, z: 30}
+        rotateVector: {x: 0, y: 0, z: 10}
         isRelative: 1
-        tweenTime: 0.1
+        tweenTime: 0.08
     00000001:
       type: {class: RotateEffect, ns: , asm: Assembly-CSharp}
       data:
-        rotateVector: {x: 0, y: 0, z: -60}
+        rotateVector: {x: 0, y: 0, z: -10}
         isRelative: 1
-        tweenTime: 0.1
+        tweenTime: 0.08
     00000002:
       type: {class: ResetEffect, ns: , asm: Assembly-CSharp}
       data:
-        tweenTime: 0.1
+        tweenTime: 0.08

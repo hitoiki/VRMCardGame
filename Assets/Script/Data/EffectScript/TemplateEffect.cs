@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 using UniRx;
 
 public class TemplateEffect : ISkillEffect
@@ -15,17 +16,15 @@ public class TemplateEffect : ISkillEffect
         return Observable.Defer<Unit>(() =>
         {
             effectEvents = new List<IObservable<Unit>>();
+            IObservable<Unit> observable = Observable.Empty<Unit>();
 
             foreach (ISkillEffect e in template.effect)
             {
-                effectEvents.Add(e.Effect(location));
+                IObservable<Unit> effectObservable = e.Effect(location);
+                effectEvents.Add(effectObservable);
+                observable = observable.Concat(effectObservable);
             }
-            Observable.WhenAll(effectEvents).First().Subscribe(x => { },
-              () =>
-              {
-                  effectEvents = new List<IObservable<Unit>>();
-              });
-            return Observable.WhenAll(effectEvents).First();
+            return observable;
         });
     }
     public void Pause()
