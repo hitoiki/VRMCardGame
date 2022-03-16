@@ -1229,7 +1229,7 @@ MonoBehaviour:
     id: 2
   trace:
     id: 3
-  senter:
+  deck:
     id: 4
   right:
     id: 5
@@ -1241,8 +1241,10 @@ MonoBehaviour:
       type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
       data:
         initCards:
-        - {fileID: 11400000, guid: ff6624cbff777fb45bdad65627ffd1df, type: 2}
-        - {fileID: 11400000, guid: ff6624cbff777fb45bdad65627ffd1df, type: 2}
+        - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
+        - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
+        - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
+        - {fileID: 11400000, guid: 5be8165f00f480146a45e985c1a5c5f9, type: 2}
         factory:
           id: 7
     00000001:
@@ -1250,38 +1252,59 @@ MonoBehaviour:
       data:
         initCards:
         - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
+        - {fileID: 11400000, guid: e8f89c1e738ffde4780fad1aaf797514, type: 2}
+        - {fileID: 11400000, guid: ca991c41c2e533e4bba192a4aa0f0364, type: 2}
+        - {fileID: 11400000, guid: 2a0e1c52b29cd964cb4466665f5beafd, type: 2}
+        - {fileID: 11400000, guid: 96d43d63fe1048343a6def0b5fa4450c, type: 2}
         factory:
           id: 8
     00000002:
-      type: {class: NullDeck, ns: , asm: Assembly-CSharp}
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
+      data:
+        initCards: []
+        factory:
+          id: 9
     00000003:
-      type: {class: NullDeck, ns: , asm: Assembly-CSharp}
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
+      data:
+        initCards: []
+        factory:
+          id: 10
     00000004:
-      type: {class: NullDeck, ns: , asm: Assembly-CSharp}
+      type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
+      data:
+        initCards: []
+        factory:
+          id: 11
     00000005:
       type: {class: NullDeck, ns: , asm: Assembly-CSharp}
     00000006:
       type: {class: NullDeck, ns: , asm: Assembly-CSharp}
     00000007:
-      type: {class: CoinViewingPermanentDecoFactory, ns: , asm: Assembly-CSharp}
+      type: {class: CoinViewingPermanentFactory, ns: , asm: Assembly-CSharp}
       data:
-        factory:
-          id: 9
+        stage: {fileID: 400381648}
+        context:
+          cast: 2
     00000008:
-      type: {class: CoinViewingPermanentDecoFactory, ns: , asm: Assembly-CSharp}
-      data:
-        factory:
-          id: 10
-    00000009:
-      type: {class: SkillDealingCardFactory, ns: , asm: Assembly-CSharp}
+      type: {class: CoinViewingPermanentFactory, ns: , asm: Assembly-CSharp}
       data:
         stage: {fileID: 400381648}
         context:
           cast: 0
-    0000000A:
-      type: {class: SkillDealingCardFactory, ns: , asm: Assembly-CSharp}
+    00000009:
+      type: {class: DataPermanentFactory, ns: , asm: Assembly-CSharp}
       data:
-        stage: {fileID: 400381648}
+        context:
+          cast: 3
+    0000000A:
+      type: {class: DataPermanentFactory, ns: , asm: Assembly-CSharp}
+      data:
+        context:
+          cast: 3
+    0000000B:
+      type: {class: DataPermanentFactory, ns: , asm: Assembly-CSharp}
+      data:
         context:
           cast: 0
 --- !u!4 &400381650
@@ -3195,8 +3218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initFieldFactory: {fileID: 1841415130}
   initHandFactory: {fileID: 1870451248}
-  viewingObject: {fileID: 6866076890951012693, guid: d7270451a3cbe054caa073a4e0de6bb0,
-    type: 3}
+  viewingObject: {fileID: 1297290598}
 --- !u!4 &1000712500
 Transform:
   m_ObjectHideFlags: 0
@@ -3532,6 +3554,12 @@ MonoBehaviour:
       data:
         initViewable:
         - {fileID: 322472140}
+--- !u!4 &1297290598 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7501415864458460466, guid: ce5a973532b6c2d47853a30e3800ade3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1361715754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1301694188
 GameObject:
   m_ObjectHideFlags: 0
@@ -4479,7 +4507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dealer: {fileID: 200107286}
-  stage: {fileID: 400381648}
+  stage: {fileID: 0}
 --- !u!4 &1459236230
 Transform:
   m_ObjectHideFlags: 0

@@ -7,16 +7,18 @@ using UniRx;
 public class RawIf : IRawSkill
 {
     [SerializeReference, SubclassSelector] private IRawSkill rawSkill;
-    [SerializeReference, SubclassSelector] private ISkillCardBool condition;
+    [SerializeReference, SubclassSelector] private IRawSkill elseRawSkill;
+    [SerializeReference, SubclassSelector] private ISkillFacadeBool condition;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         return Observable.Defer<Unit>(() =>
         {
             IObservable<Unit> skillObservable = Observable.Empty<Unit>();
-            if (condition.SkillBool(facade.skillTarget))
+            if (condition.SkillBool(facade))
             {
                 skillObservable = rawSkill.GetSkillProcess(facade);
             }
+            else if (elseRawSkill != null) skillObservable = elseRawSkill.GetSkillProcess(facade);
             return skillObservable;
         });
     }
@@ -24,6 +26,7 @@ public class RawIf : IRawSkill
 
     public string Text()
     {
+        if (elseRawSkill != null) return condition.Text() + "ならば、" + rawSkill.Text() + "そうでないなら、" + elseRawSkill.Text();
         return condition.Text() + "ならば、" + rawSkill.Text();
     }
 

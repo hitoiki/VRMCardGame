@@ -9,37 +9,61 @@ public class SelectUseRaw : ISkillProcessUse
 {
     //一つカードを選択して、それを対象にRawSkillを発動する
     [SerializeReference, SubclassSelector] IRawSkill rawSkill;
-    [SerializeReference, SubclassSelector] ISkillCardBool cardCondition;
-    [SerializeField] private DeckType deck;
+    [SerializeField] private List<SelectTape> selectTapes;
     [SerializeField] SkillUsingObjectAddress address;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         return Observable.Defer<Unit>(() =>
         {
-            IObservable<IPermanent> selected = address.selector.CardSelect(deck, cardCondition);
-
-            Subject<Unit> skillSubject = new Subject<Unit>();
-            selected.Subscribe(x =>
+            IObservable<IPermanent> selected = address.selector.CardListSelect(selectTapes.Select(x => { return (x.deck, x.cardCondition); }).ToList());
+            Subject<Unit> selectSubject = new Subject<Unit>();
+            List<IPermanent> selectedList = new List<IPermanent>();
+            selected.Subscribe(
+                selectedList.Add,
+            () =>
             {
-                rawSkill.GetSkillProcess(facade.NewFacade(x)).Subscribe(x => { }, () => { skillSubject.OnCompleted(); });
-            },
-            () => { skillSubject.OnCompleted(); }
+                IObservable<Unit> skillSubject = Observable.Empty<Unit>();
+                foreach (IPermanent x in selectedList)
+                {
+                    skillSubject = skillSubject.Concat(rawSkill.GetSkillProcess(facade.NewFacade(x)));
+                }
+                skillSubject.Subscribe(x => { }, () => { selectSubject.OnCompleted(); });
+            }
             );
-            return skillSubject;
+            return selectSubject;
         });
 
     }
     public bool GetIsSkillable(CardFacade facade)
     {
-        return facade.DeckKey(deck).Any();
+
+        foreach (var tape in selectTapes)
+        {
+            if (tape.cardCondition == null)
+            {
+                if (facade.DeckKey(tape.deck).Any()) continue;
+                else return false;
+            }
+            if (!facade.DeckKey(tape.deck).Any(x => { return tape.cardCondition.SkillBool(x); })) return false;
+        }
+        return true;
+
     }
     public string Text()
     {
-        return "カードを一枚選ぶ。それは" + rawSkill.Text();
+        if (selectTapes.Count == 1) return "カードを1枚選ぶ。それは" + rawSkill.Text();
+        return "カードを" + selectTapes.Count.ToString() + "枚選ぶ。それらは" + rawSkill.Text();
     }
 
     public string SkillName()
     {
         return "SelectUse" + rawSkill.SkillName();
+    }
+
+    [System.Serializable]
+    private class SelectTape
+    {
+        [SerializeReference, SubclassSelector] public ISkillCardBool cardCondition;
+        [SerializeField] public DeckType deck;
     }
 }

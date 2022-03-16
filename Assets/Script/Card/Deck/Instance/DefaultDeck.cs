@@ -50,18 +50,19 @@ public class DefaultDeck : IStagingDeck, INoticeDeck
 
     }
 
-    public bool Add(ICard c)
+    public virtual IPermanent Add(ICard c)
     {
-        _permanents.Add(factory.CardMake(c, this));
+        IPermanent newPermanent = factory.CardMake(c, this);
+        _permanents.Add(newPermanent);
+        return newPermanent;
+    }
+
+    public virtual bool AddCheck(ICard c)
+    {
         return true;
     }
 
-    public bool AddCheck(ICard c)
-    {
-        return true;
-    }
-
-    public bool Remove(ICard c)
+    public virtual bool Remove(ICard c)
     {
         if (!_permanents.Any(x => { return x.GetCard() == c; })) return false;
 
@@ -70,7 +71,7 @@ public class DefaultDeck : IStagingDeck, INoticeDeck
         removePer.Dispose();
         return true;
     }
-    public bool RemoveCheck(ICard c)
+    public virtual bool RemoveCheck(ICard c)
     {
         if (!_permanents.Any(x => { return x.GetCard() == c; })) return false;
         return true;
@@ -86,46 +87,6 @@ public class DefaultDeck : IStagingDeck, INoticeDeck
     public bool Any()
     {
         return _permanents.Any();
-    }
-
-    public List<ICard> Draw(int n)
-    {
-        if (1 <= n)
-        {
-            if (n <= _permanents.Count)
-            {
-                List<ICard> returnCards = _permanents.Select(x => { return x.GetCard(); }).ToList().GetRange(0, n);
-                for (int i = 0; i < n; i++)
-                {
-                    _permanents.RemoveAt(0);
-                }
-                return returnCards;
-            }
-            else
-            {
-                List<ICard> returnCards = _permanents.Select(x => { return x.GetCard(); }).ToList();
-                _permanents.Clear();
-                return returnCards;
-
-            }
-        }
-        return null;
-    }
-
-    public List<ICard> DrawCheck(int i)
-    {
-        if (1 <= i)
-        {
-            if (i <= _permanents.Count)
-            {
-                return _permanents.Select(x => { return x.GetCard(); }).ToList().GetRange(0, i - 1);
-            }
-            else
-            {
-                return _permanents.Select(x => { return x.GetCard(); }).ToList();
-            }
-        }
-        return null;
     }
     public void Shuffle()
     {

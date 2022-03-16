@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum CastContext
 {
-    player, enemy, stageSleeve
+    player, enemy, facility, stageSleeve
 }

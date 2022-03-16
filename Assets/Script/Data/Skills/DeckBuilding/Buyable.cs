@@ -18,7 +18,7 @@ public class Buyable : ISkillProcessKind
                             .Concat(Observable.Defer<Unit>(() =>
                                 {
                                     facade.instantMoney -= facade.skillTarget.GetCardData().cost;
-                                    facade.skillTarget.MoveDeck(facade.DeckKey(DeckType.hands));
+                                    facade.skillTarget.MoveDeck(facade.DeckKey(DeckType.discard));
                                     return Observable.Empty<Unit>();
                                 })
             );

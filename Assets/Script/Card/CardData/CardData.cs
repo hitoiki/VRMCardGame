@@ -12,7 +12,6 @@ public class CardData : ScriptableObject
     public string textName;
     public Coin costCoin;
     public short cost;
-    public CardType type;
     public Suit suit;
     [TextArea] public string flavorText;
     public Sprite backSprite;
@@ -43,12 +42,6 @@ public class CardData : ScriptableObject
 
 
 }
-
-public enum CardType
-{
-    Item, Enemy
-}
-
 public enum Suit
 {
     Red, Violet, Cyan, White

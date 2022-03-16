@@ -5,10 +5,6 @@ using UnityEngine;
 public class SuitSkillBool : ISkillCardBool
 {
     [SerializeField] private Suit boolSuit;
-    public SuitSkillBool(Suit suit)
-    {
-        boolSuit = suit;
-    }
     public bool SkillBool(IPermanent dealableCard)
     {
         return dealableCard.GetCardData().suit == boolSuit;

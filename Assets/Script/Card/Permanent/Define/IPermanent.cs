@@ -11,7 +11,8 @@ public interface IPermanent : IDisposable
     void SetCard(ICard card);
     IDeck OnDeck();
     (Coin coin, int result) ChangeCoin(Coin c, int n);
-    bool MoveDeck(IDeck deck);
+    IPermanent MoveDeck(IDeck deck);
+    bool MoveCheck(IDeck deck);
     //Effectが起こった際に購読する
     Context GetContext();
     EffectProjector GetEffectProjector();

@@ -58,6 +58,13 @@ public class CardFacade
         data.player.turn.Value += 1;
         if (data.player.turn.Value >= 11) data.player.GameEnd();
         Debug.Log("End");
+        //Deckをリセット
+        foreach (IPermanent p in data.stage.DeckKey(DeckType.hands))
+        {
+            p.MoveDeck(data.stage.DeckKey(DeckType.discard));
+        }
+        Draw(DeckType.deck, DeckType.hands, 5);
+
     }
     //条件を満たすカードのリストを渡す
     public IDeck DeckKey(DeckType type)
@@ -71,9 +78,18 @@ public class CardFacade
         data.player.Damage(damage);
     }
     //Deckから引いてくる効果
-    public void DrawMove(DeckType from, DeckType to, int n)
+    public virtual void Draw(DeckType from, DeckType to, int n)
     {
-        foreach (IPermanent permanent in DeckKey(from).Draw(n))
+        if (from == DeckType.deck && to == DeckType.hands && DeckKey(from).Count() <= n)
+        {
+            //Deckが足りない時に捨て札を追加する処理
+            foreach (IPermanent permanent in DeckKey(DeckType.discard))
+            {
+                permanent.MoveDeck(DeckKey(DeckType.deck));
+            }
+        }
+        IEnumerable<IPermanent> draws = DeckKey(from).Take(n);
+        foreach (IPermanent permanent in draws)
         {
             permanent.MoveDeck(DeckKey(to));
         }

@@ -11,7 +11,7 @@ public interface IDeck : IEnumerable<IPermanent>
     //代入
     void Substitution(List<ICard> c);
     //追加
-    bool Add(ICard c);
+    IPermanent Add(ICard c);
     bool AddCheck(ICard c);
     //削除
     bool Remove(ICard c);
@@ -22,10 +22,6 @@ public interface IDeck : IEnumerable<IPermanent>
     bool Any();
     //Deck枚数の確認
     int Count();
-    //ドロー処理
-    List<ICard> Draw(int n);
-    //山札の上をチェック
-    List<ICard> DrawCheck(int n);
     //シャッフル
     void Shuffle();
 }

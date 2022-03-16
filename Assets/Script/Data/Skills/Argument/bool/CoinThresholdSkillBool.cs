@@ -14,7 +14,7 @@ public class CoinThresholdSkillBool : ISkillCardBool
     }
     public string Text()
     {
-        return equalSign.CardText(coin.name, threshold.ToString()) + "なら、";
+        return equalSign.CardText(coin.name, threshold.ToString());
     }
 
     public string SkillName()

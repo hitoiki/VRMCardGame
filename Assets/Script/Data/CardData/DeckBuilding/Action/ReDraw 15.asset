@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52037bfe1a8960640a9ec2c0bec953c3, type: 3}
-  m_Name: BronzeCoin
+  m_Name: ReDraw 15
   m_EditorClassIdentifier: 
-  textName: "\u9285\u8CA8"
+  textName: "\u767A\u60F3\u306E\u8EE2\u63DB"
   costCoin: {fileID: 11400000, guid: c4a31d70d2805504898829fea01e4ea7, type: 2}
-  cost: 0
-  type: 0
+  cost: 2
   suit: 0
   flavorText: 
   backSprite: {fileID: 21300000, guid: 72f6fe411b1c9dc458db84958f30a375, type: 3}
-  frontSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  frontSprite: {fileID: 21300000, guid: a1126a353ab43934fb3f2b1c6a4d6df8, type: 3}
   iconSprite: {fileID: 21300000, guid: b3f217656b289954fac8b58c32b7a9c1, type: 3}
   poseJsonFilePath: 
   poseItem:

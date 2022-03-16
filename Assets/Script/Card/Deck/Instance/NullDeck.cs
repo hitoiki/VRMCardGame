@@ -19,7 +19,7 @@ public class NullDeck : IStagingDeck
     //代入
     public void Substitution(List<ICard> c) { }
     //追加
-    public bool Add(ICard c) { return false; }
+    public IPermanent Add(ICard c) { return null; }
     public bool AddCheck(ICard c) { return false; }
     //削除
     public bool Remove(ICard c) { return false; }
@@ -30,10 +30,6 @@ public class NullDeck : IStagingDeck
     public bool Any() { return false; }
     //Deck枚数の確認
     public int Count() { return 0; }
-    //ドロー処理
-    public List<ICard> Draw(int n) { return null; }
-    //山札の上をチェック
-    public List<ICard> DrawCheck(int n) { return null; }
     //シャッフル
     public void Shuffle() { }
 

@@ -8,7 +8,7 @@ using UniRx;
 public class TemplateEffect : ISkillEffect
 {
     [SerializeField] EffectTemplate template;
-    List<IObservable<Unit>> effectEvents;
+    List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
 
     public IObservable<Unit> Effect(EffectLocation location)
     {
@@ -29,6 +29,7 @@ public class TemplateEffect : ISkillEffect
     }
     public void Pause()
     {
+        if (!effectEvents.Any()) return;
         foreach (ISkillEffect e in effectEvents)
         {
             e.Pause();
@@ -37,6 +38,7 @@ public class TemplateEffect : ISkillEffect
 
     public void Play()
     {
+        if (!effectEvents.Any()) return;
         foreach (ISkillEffect e in effectEvents)
         {
             e.Play();

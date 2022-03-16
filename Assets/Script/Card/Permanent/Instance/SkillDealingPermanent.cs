@@ -44,16 +44,19 @@ public class SkillDealingPermanent : IPermanent
         return (c, card.GetCoin()[c]);
     }
 
-    public bool MoveDeck(IDeck toDeck)
+    public IPermanent MoveDeck(IDeck toDeck)
     {
         if (deck.RemoveCheck(this.card) && toDeck.AddCheck(this.card))
         {
             deck.Remove(this.card);
-            toDeck.Add(this.card);
-            return true;
+            return toDeck.Add(this.card);
         }
         Debug.Log("fail");
-        return false;
+        return null;
+    }
+    public bool MoveCheck(IDeck toDeck)
+    {
+        return deck.RemoveCheck(this.card) && toDeck.AddCheck(this.card);
     }
     public Context GetContext()
     {

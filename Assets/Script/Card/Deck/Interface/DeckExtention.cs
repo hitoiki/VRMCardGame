@@ -4,14 +4,14 @@ using UnityEngine;
 
 public static class DeckExtention
 {
-    public static bool Add(this IDeck deck, List<ICard> cards)
+    public static List<IPermanent> Add(this IDeck deck, List<ICard> cards)
     {
-        bool b = true;
+        List<IPermanent> l = new List<IPermanent>();
         foreach (ICard c in cards)
         {
-            b = b && deck.Add(c);
+            l.Add(deck.Add(c));
         }
-        return b;
+        return l;
     }
     public static bool Remove(this IDeck deck, List<ICard> cards)
     {
@@ -41,14 +41,14 @@ public static class DeckExtention
         return returnCards;
     }
 
-    public static bool AddPack(this IDeck deck, Pack pack)
+    public static List<IPermanent> AddPack(this IDeck deck, Pack pack)
     {
-        bool b = true;
+        List<IPermanent> l = new List<IPermanent>();
         foreach (ICard c in pack.GetCards())
         {
-            b = b && deck.Add(c);
+            l.Add(deck.Add(c));
         }
-        return b;
+        return l;
     }
 
 }

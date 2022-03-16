@@ -6,11 +6,13 @@ using System;
 
 public class ActionLock : ISkillProcessUse
 {
+    [SerializeReference, SubclassSelector] IRawSkill rawSkill;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         return Observable.Defer<Unit>(() =>
         {
             facade.actionTimes -= 1;
+            facade.skillTarget.MoveDeck(facade.DeckKey(DeckType.discard));
             return Observable.Empty<Unit>();
         });
     }
