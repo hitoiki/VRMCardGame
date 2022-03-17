@@ -4507,7 +4507,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dealer: {fileID: 200107286}
-  stage: {fileID: 0}
+  data:
+    player: {fileID: 0}
+    stage: {fileID: 0}
+    skillsSubject:
+      selector: {fileID: 0}
+      linker: {fileID: 0}
+  stage: {fileID: 400381648}
 --- !u!4 &1459236230
 Transform:
   m_ObjectHideFlags: 0

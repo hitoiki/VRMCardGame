@@ -13,7 +13,11 @@ public class CardPlayChecker : MonoBehaviour
     public void CardCheck(ICardPrintable cardViewable)
     {
         SkillPack skillPack = cardViewable.GetPermanent().GetSkillPack();
-        dealer.CardPlay(skillPack.UseProcess(), cardViewable.GetPermanent());
+        //ActionLockでActionをLockするコード
+        if (!skillPack.CheckProcess().Any(x => { return !x.IsPlayable(new CardFacade(dealer.facadeData, cardViewable.GetPermanent())); }))
+        {
+            dealer.CardPlay(skillPack.UseProcess(), cardViewable.GetPermanent());
+        }
     }
 
     public void TurnEnd()

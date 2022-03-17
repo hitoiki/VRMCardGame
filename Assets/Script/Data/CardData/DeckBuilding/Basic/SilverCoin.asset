@@ -136,37 +136,34 @@ MonoBehaviour:
     skills:
     - id: 0
     - id: 1
-    - id: 2
   references:
     version: 1
     00000000:
       type: {class: Buyable, ns: , asm: Assembly-CSharp}
       data:
         buyEffect:
-        - id: 3
+        - id: 2
         unBuyEffect:
-        - id: 4
+        - id: 3
     00000001:
-      type: {class: ActionLock, ns: , asm: Assembly-CSharp}
-    00000002:
       type: {class: UseRawSkill, ns: , asm: Assembly-CSharp}
       data:
         skill:
-          id: 5
-    00000003:
+          id: 4
+    00000002:
       type: {class: TemplateEffect, ns: , asm: Assembly-CSharp}
       data:
         template: {fileID: 11400000, guid: 792aae32f9b872d4296a76313357ae97, type: 2}
-    00000004:
+    00000003:
       type: {class: TemplateEffect, ns: , asm: Assembly-CSharp}
       data:
         template: {fileID: 11400000, guid: 0e5660691395d684a937ff15cba0d887, type: 2}
-    00000005:
+    00000004:
       type: {class: GetMoney, ns: , asm: Assembly-CSharp}
       data:
         number:
-          id: 6
-    00000006:
+          id: 5
+    00000005:
       type: {class: ConstSkillInt, ns: , asm: Assembly-CSharp}
       data:
         number: 2

@@ -4,9 +4,8 @@ using UnityEngine;
 using UniRx;
 using System;
 
-public class ActionLock : ISkillProcessUse
+public class ActionLock : ISkillProcessUse, ISkillProcessCheck
 {
-    [SerializeReference, SubclassSelector] IRawSkill rawSkill;
     public IObservable<Unit> GetSkillProcess(CardFacade facade)
     {
         return Observable.Defer<Unit>(() =>
@@ -17,6 +16,10 @@ public class ActionLock : ISkillProcessUse
         });
     }
     public bool GetIsSkillable(CardFacade facade)
+    {
+        return facade.actionTimes >= 1;
+    }
+    public bool IsPlayable(CardFacade facade)
     {
         return facade.actionTimes >= 1;
     }

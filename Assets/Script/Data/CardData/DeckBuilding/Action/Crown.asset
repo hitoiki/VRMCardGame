@@ -173,7 +173,7 @@ MonoBehaviour:
         - id: 7
         - id: 8
     00000006:
-      type: {class: , ns: , asm: }
+      type: {class: TrueSkillBool, ns: , asm: Assembly-CSharp}
     00000007:
       type: {class: RawBootUseSkill, ns: , asm: Assembly-CSharp}
     00000008:
