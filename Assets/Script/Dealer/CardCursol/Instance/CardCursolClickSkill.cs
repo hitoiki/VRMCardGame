@@ -9,7 +9,7 @@ public class CardCursolClickSkill : ICardCursolEvent
     {
         if (mode == ContactMode.Enter)
         {
-            dealer.CardPlay(card.GetPermanent().GetSkillPack().SkillProcess<OtherSkillKind>(OtherSkillKind.Click), card.GetPermanent());
+            dealer.CardPlay(card.GetPermanent().GetSkillPack().ArgumentProcess<OtherSkillKind>(OtherSkillKind.Click), card.GetPermanent());
         }
     }
     public void CardCursol(ICardPrintable card, Vector3 pos, ContactMode mode)

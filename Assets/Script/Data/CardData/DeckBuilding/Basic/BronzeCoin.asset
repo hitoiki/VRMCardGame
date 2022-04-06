@@ -20,150 +20,377 @@ MonoBehaviour:
   backSprite: {fileID: 21300000, guid: 72f6fe411b1c9dc458db84958f30a375, type: 3}
   frontSprite: {fileID: 21300000, guid: a1126a353ab43934fb3f2b1c6a4d6df8, type: 3}
   iconSprite: {fileID: 21300000, guid: b3f217656b289954fac8b58c32b7a9c1, type: 3}
-  poseJsonFilePath: 
+  poseJsonFilePath: Assets/Sozai/PoseJson/kazasuPose.json
   poseItem:
     chest:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     head:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     hips:
-      rotation: []
+      rotation:
+      - -0.013192243
+      - 0.23083267
+      - -0.010851918
+      - 0.9728435
     jaw:
       rotation: []
     leftEye:
-      rotation: []
+      rotation:
+      - -0.006109171
+      - 0.049709186
+      - 0.0003040635
+      - 0.998745
     leftFoot:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftHand:
-      rotation: []
+      rotation:
+      - 0.44665253
+      - 0.07988096
+      - -0.09661082
+      - 0.88588196
     leftIndexDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftIndexIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftIndexProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftLittleDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftLittleIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftLittleProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftLowerArm:
-      rotation: []
+      rotation:
+      - -0.14140567
+      - 0.3028451
+      - -0.63707006
+      - 0.69457257
     leftLowerLeg:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftMiddleDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftMiddleIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftMiddleProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftRingDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftRingIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftRingProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftShoulder:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftThumbDistal:
-      rotation: []
+      rotation:
+      - 0.049249772
+      - 0.04540143
+      - -0.04828098
+      - 0.99658525
     leftThumbIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - -0.0824465
+      - 0.9965955
     leftThumbProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftToes:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftUpperArm:
-      rotation: []
+      rotation:
+      - -0.39514494
+      - -0.38668948
+      - 0.109286755
+      - 0.82606786
     leftUpperLeg:
-      rotation: []
+      rotation:
+      - 0.062489975
+      - 0.026413066
+      - -0.074167825
+      - 0.9949354
     neck:
-      rotation: []
+      rotation:
+      - 0
+      - 0.07352483
+      - 0
+      - 0.9972934
     rightEye:
-      rotation: []
+      rotation:
+      - -0.006109171
+      - 0.049709186
+      - 0.0003040635
+      - 0.998745
     rightFoot:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightHand:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightIndexDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightIndexIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightIndexProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightLittleDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightLittleIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightLittleProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightLowerArm:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightLowerLeg:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightMiddleDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightMiddleIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightMiddleProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightRingDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightRingIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightRingProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightShoulder:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightThumbDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightThumbIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightThumbProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightToes:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightUpperArm:
-      rotation: []
+      rotation:
+      - 0.011033155
+      - -0.005038823
+      - -0.3737048
+      - 0.92746836
     rightUpperLeg:
-      rotation: []
+      rotation:
+      - -0.023868764
+      - -0.0014029654
+      - 0.038234454
+      - 0.9989827
     spine:
-      rotation: []
+      rotation:
+      - 0.007630516
+      - 0.03572306
+      - 0.005231325
+      - 0.9993189
     upperChest:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
   skillPack:
     skills:
     - id: 0
     - id: 1
+    - id: 2
+  isViewingFlavorText: 0
   references:
     version: 1
     00000000:
       type: {class: Buyable, ns: , asm: Assembly-CSharp}
       data:
         buyEffect:
-        - id: 2
-        unBuyEffect:
         - id: 3
+        unBuyEffect:
+        - id: 4
     00000001:
       type: {class: UseRawSkill, ns: , asm: Assembly-CSharp}
       data:
         skill:
-          id: 4
+          id: 5
     00000002:
-      type: {class: TemplateEffect, ns: , asm: Assembly-CSharp}
+      type: {class: UseRawSkill, ns: , asm: Assembly-CSharp}
       data:
-        template: {fileID: 11400000, guid: 792aae32f9b872d4296a76313357ae97, type: 2}
+        skill:
+          id: 6
     00000003:
       type: {class: TemplateEffect, ns: , asm: Assembly-CSharp}
       data:
-        template: {fileID: 11400000, guid: 0e5660691395d684a937ff15cba0d887, type: 2}
+        template: {fileID: 11400000, guid: 792aae32f9b872d4296a76313357ae97, type: 2}
     00000004:
+      type: {class: TemplateEffect, ns: , asm: Assembly-CSharp}
+      data:
+        template: {fileID: 11400000, guid: 0e5660691395d684a937ff15cba0d887, type: 2}
+    00000005:
       type: {class: GetMoney, ns: , asm: Assembly-CSharp}
       data:
         number:
-          id: 5
-    00000005:
+          id: 7
+    00000006:
+      type: {class: RawMoveDeck, ns: , asm: Assembly-CSharp}
+      data:
+        toDeck: 2
+    00000007:
       type: {class: ConstSkillInt, ns: , asm: Assembly-CSharp}
       data:
         number: 1

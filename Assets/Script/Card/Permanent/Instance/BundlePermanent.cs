@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UniRx;
 
-public class BundlePermanent : IPermanent
+public class BundlePermanent : IPermanent, ICoinObservable
 {
     SkillQueue skillQueue;
     ICard card;
@@ -13,6 +13,7 @@ public class BundlePermanent : IPermanent
     EffectProjector projector = new EffectProjector();
     ReactiveProperty<int> _quantity = new ReactiveProperty<int>();
     public IReadOnlyReactiveProperty<int> quantity => _quantity as IReactiveProperty<int>;
+    Subject<(Coin key, int changeValue, int result)> coinSubject = new Subject<(Coin key, int changeValue, int result)>();
 
     public BundlePermanent(ICard newCard, IDeck newDeck, Context newContext, SkillQueue queue, int newQuantity)
     {
@@ -41,7 +42,8 @@ public class BundlePermanent : IPermanent
         else card.GetCoin().Add(c, n);
         //負数なら削除
         if (card.GetCoin()[c] < 0) card.GetCoin().Remove(c);
-        skillQueue.Push(card.GetSkillPack().SkillProcess<(Coin, int)>((c, n)), this);
+        skillQueue.Push(card.GetSkillPack().ArgumentProcess<(Coin, int)>((c, n)), this);
+        coinSubject.OnNext((c, n, card.GetCoin()[c]));
         return (c, card.GetCoin()[c]);
     }
 
@@ -68,9 +70,14 @@ public class BundlePermanent : IPermanent
     {
         return projector;
     }
+    public IObservable<(Coin key, int changeValue, int result)> GetObservableCoin()
+    {
+        return coinSubject as IObservable<(Coin key, int changeValue, int result)>;
+    }
 
     public void Dispose()
     {
         _quantity.Dispose();
+        coinSubject.Dispose();
     }
 }

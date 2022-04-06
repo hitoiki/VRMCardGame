@@ -22,8 +22,14 @@ public class CardData : ScriptableObject
     //効果を入れるクラス
     public SkillPack skillPack;
 
+    public bool isViewingFlavorText = false;
+
     public string CardText()
     {
+        if (isViewingFlavorText)
+        {
+            return flavorText;
+        }
         if (flavorText != "") return skillPack.SkillText() + "\n(" + flavorText + ")";
         else return skillPack.SkillText();
     }

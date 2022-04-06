@@ -137,6 +137,7 @@ MonoBehaviour:
     - id: 0
     - id: 1
     - id: 2
+  isViewingFlavorText: 0
   references:
     version: 1
     00000000:
@@ -157,15 +158,6 @@ MonoBehaviour:
         - cardCondition:
             id: 6
           deck: 0
-        - cardCondition:
-            id: 6
-          deck: 0
-        - cardCondition:
-            id: 6
-          deck: 0
-        - cardCondition:
-            id: 6
-          deck: 0
         address: {fileID: 11400000, guid: eb6ab697bad779d45b33431d1a0fd810, type: 2}
     00000003:
       type: {class: TemplateEffect, ns: , asm: Assembly-CSharp}
@@ -176,8 +168,13 @@ MonoBehaviour:
       data:
         template: {fileID: 11400000, guid: 0e5660691395d684a937ff15cba0d887, type: 2}
     00000005:
+      type: {class: RawList, ns: , asm: Assembly-CSharp}
+      data:
+        rawSkills:
+        - id: 7
+    00000006:
+      type: {class: , ns: , asm: }
+    00000007:
       type: {class: RawMoveDeck, ns: , asm: Assembly-CSharp}
       data:
         toDeck: 3
-    00000006:
-      type: {class: , ns: , asm: }

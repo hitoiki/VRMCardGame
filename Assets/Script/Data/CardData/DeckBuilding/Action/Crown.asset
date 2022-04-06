@@ -16,7 +16,7 @@ MonoBehaviour:
   costCoin: {fileID: 11400000, guid: c4a31d70d2805504898829fea01e4ea7, type: 2}
   cost: 4
   suit: 0
-  flavorText: 
+  flavorText: "\u30AB\u30FC\u30C9\u3092\u4E00\u679A\u9078\u629E\u3057\u3066\u3001\u305D\u308C\u30922\u56DE\u4F7F\u7528\u3059\u308B"
   backSprite: {fileID: 21300000, guid: 72f6fe411b1c9dc458db84958f30a375, type: 3}
   frontSprite: {fileID: 21300000, guid: a1126a353ab43934fb3f2b1c6a4d6df8, type: 3}
   iconSprite: {fileID: 21300000, guid: a0b5cf687936a214fa53cdf6634b6f4c, type: 3}
@@ -137,6 +137,7 @@ MonoBehaviour:
     - id: 0
     - id: 1
     - id: 2
+  isViewingFlavorText: 1
   references:
     version: 1
     00000000:

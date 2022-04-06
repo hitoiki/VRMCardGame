@@ -573,8 +573,8 @@ MonoBehaviour:
     00000001:
       type: {class: CardCursolHighLighter, ns: , asm: Assembly-CSharp}
       data:
-        viewer: {fileID: 1841415132}
-        initFactory: {fileID: 1841415130}
+        viewer: {fileID: 1870451249}
+        initFactory: {fileID: 1870451248}
     00000002:
       type: {class: CursolTeleportObject, ns: , asm: Assembly-CSharp}
       data:
@@ -1244,7 +1244,7 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
         - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
         - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
-        - {fileID: 11400000, guid: 5be8165f00f480146a45e985c1a5c5f9, type: 2}
+        - {fileID: 11400000, guid: 0d56d5b5fbaf31440b1625eb16f8f33f, type: 2}
         factory:
           id: 7
     00000001:
@@ -1254,8 +1254,15 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
         - {fileID: 11400000, guid: e8f89c1e738ffde4780fad1aaf797514, type: 2}
         - {fileID: 11400000, guid: ca991c41c2e533e4bba192a4aa0f0364, type: 2}
+        - {fileID: 11400000, guid: 0d56d5b5fbaf31440b1625eb16f8f33f, type: 2}
+        - {fileID: 11400000, guid: d4b818607a9dc5e489faf07d4fb43dab, type: 2}
+        - {fileID: 11400000, guid: 39dabb14f9f83e1458cd679b6b5aa465, type: 2}
+        - {fileID: 11400000, guid: 5be8165f00f480146a45e985c1a5c5f9, type: 2}
+        - {fileID: 11400000, guid: 666a87bcc381d554496f4d869862cd96, type: 2}
+        - {fileID: 11400000, guid: 9d9cfaa3f7a4adc47a807660d2f2af3b, type: 2}
+        - {fileID: 11400000, guid: 1a4c78b7cd93462478520bf2977ae518, type: 2}
+        - {fileID: 11400000, guid: 1302efb1babf80d4cb35477335ca2bcf, type: 2}
         - {fileID: 11400000, guid: 2a0e1c52b29cd964cb4466665f5beafd, type: 2}
-        - {fileID: 11400000, guid: 96d43d63fe1048343a6def0b5fa4450c, type: 2}
         factory:
           id: 8
     00000002:
@@ -1273,7 +1280,11 @@ MonoBehaviour:
     00000004:
       type: {class: DefaultDeck, ns: , asm: Assembly-CSharp}
       data:
-        initCards: []
+        initCards:
+        - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
+        - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
+        - {fileID: 11400000, guid: 6925f9bd766e0584f933e21606d13801, type: 2}
+        - {fileID: 11400000, guid: 0d56d5b5fbaf31440b1625eb16f8f33f, type: 2}
         factory:
           id: 11
     00000005:
@@ -1285,13 +1296,14 @@ MonoBehaviour:
       data:
         stage: {fileID: 400381648}
         context:
-          cast: 2
+          cast: 0
     00000008:
-      type: {class: CoinViewingPermanentFactory, ns: , asm: Assembly-CSharp}
+      type: {class: BundlePermanertFactory, ns: , asm: Assembly-CSharp}
       data:
         stage: {fileID: 400381648}
         context:
           cast: 0
+        amount: 10
     00000009:
       type: {class: DataPermanentFactory, ns: , asm: Assembly-CSharp}
       data:
@@ -2500,6 +2512,7 @@ MonoBehaviour:
   initTurn: 0
   turn:
     value: 0
+  winPoint: 0
   defaultPoseFilePath: Assets/Sozai/PoseJson/normalStand.json
   defaultPoseItem:
     chest:
@@ -3031,8 +3044,7 @@ MonoBehaviour:
   state: {fileID: 2140630055}
   selectingState: CardSelect
   playingState: GamePlay
-  stage: {fileID: 0}
-  highLighter: {fileID: 1000712499}
+  stage: {fileID: 400381648}
 --- !u!4 &945379876
 Transform:
   m_ObjectHideFlags: 0
@@ -3043,8 +3055,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1000712500}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3187,52 +3198,6 @@ Transform:
   m_Father: {fileID: 2140630054}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1000712498
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1000712500}
-  - component: {fileID: 1000712499}
-  m_Layer: 0
-  m_Name: HighLighter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1000712499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000712498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 758db615b1041d14780ab1e4c33816da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initFieldFactory: {fileID: 1841415130}
-  initHandFactory: {fileID: 1870451248}
-  viewingObject: {fileID: 1297290598}
---- !u!4 &1000712500
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000712498}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34.07545, y: 3.0982919, z: -2.7920675}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 945379876}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1070427068
 GameObject:
   m_ObjectHideFlags: 0
@@ -3265,6 +3230,7 @@ RectTransform:
   m_Children:
   - {fileID: 1716127376}
   - {fileID: 1301694189}
+  - {fileID: 1237610635}
   m_Father: {fileID: 1782399785}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3462,6 +3428,100 @@ MonoBehaviour:
   - {fileID: 1907018133}
   - {fileID: 128778841}
   - {fileID: 1260247255}
+--- !u!1 &1237610634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1237610635}
+  - component: {fileID: 1237610638}
+  - component: {fileID: 1237610637}
+  - component: {fileID: 1237610636}
+  m_Layer: 5
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1237610635
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237610634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1070427069}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 40, y: 100}
+  m_SizeDelta: {x: 1000, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1237610636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237610634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f8c1b97f9edd84aa24a750c0cb3291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 931306950}
+  text: {fileID: 1237610637}
+--- !u!114 &1237610637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237610634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 3489a944eb8a4aa45ab6a85048d2b102, type: 3}
+    m_FontSize: 150
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 150
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Score
+--- !u!222 &1237610638
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237610634}
+  m_CullTransparentMesh: 1
 --- !u!1 &1260247255
 GameObject:
   m_ObjectHideFlags: 0
@@ -3517,7 +3577,7 @@ MonoBehaviour:
       type: {class: CardSelectorConnecter, ns: , asm: Assembly-CSharp}
       data:
         selector: {fileID: 945379875}
-        stage: {fileID: 0}
+        stage: {fileID: 400381648}
         deck: 1
     00000001:
       type: {class: ViewingCursol, ns: , asm: Assembly-CSharp}
@@ -3547,19 +3607,13 @@ MonoBehaviour:
       type: {class: CardSelectorConnecter, ns: , asm: Assembly-CSharp}
       data:
         selector: {fileID: 945379875}
-        stage: {fileID: 0}
+        stage: {fileID: 400381648}
         deck: 0
     00000001:
       type: {class: ViewingCursol, ns: , asm: Assembly-CSharp}
       data:
         initViewable:
         - {fileID: 322472140}
---- !u!4 &1297290598 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7501415864458460466, guid: ce5a973532b6c2d47853a30e3800ade3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1361715754}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1301694188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3915,6 +3969,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1407172565}
+  - {fileID: 1977061338}
+  - {fileID: 1682273902}
 --- !u!1 &1361304684
 GameObject:
   m_ObjectHideFlags: 0
@@ -4507,12 +4563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dealer: {fileID: 200107286}
-  data:
-    player: {fileID: 0}
-    stage: {fileID: 0}
-    skillsSubject:
-      selector: {fileID: 0}
-      linker: {fileID: 0}
   stage: {fileID: 400381648}
 --- !u!4 &1459236230
 Transform:
@@ -4573,7 +4623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checker: {fileID: 1459236229}
-  areaFrom: {x: -2, y: 0}
+  areaFrom: {x: -9, y: 0}
   areaTo: {x: 9, y: 6}
 --- !u!95 &1495285395 stripped
 Animator:
@@ -5295,8 +5345,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: 180}
-  m_SizeDelta: {x: 250, y: 200}
+  m_AnchoredPosition: {x: 156, y: 250}
+  m_SizeDelta: {x: 750, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768802690
 MonoBehaviour:
@@ -5535,11 +5585,11 @@ MonoBehaviour:
     00000000:
       type: {class: AlignGrid, ns: , asm: Assembly-CSharp}
       data:
-        originPos: {x: -1.5, y: 3, z: 16}
+        originPos: {x: -2.5, y: 3, z: 16}
         distanceX: 2
         distanceY: -3
         avoidDistance: 1
-        maxXGrid: 5
+        maxXGrid: 6
         highLightingIndex: -1
 --- !u!114 &1841415133
 MonoBehaviour:
@@ -5598,7 +5648,7 @@ MonoBehaviour:
     00000000:
       type: {class: AlignGrid, ns: , asm: Assembly-CSharp}
       data:
-        originPos: {x: -7, y: -3, z: 15}
+        originPos: {x: -7, y: -3.5, z: 15}
         distanceX: 2.8
         distanceY: 0
         avoidDistance: 1
@@ -5829,6 +5879,7 @@ MonoBehaviour:
   - {fileID: 128778841}
   - {fileID: 1782399784}
   - {fileID: 21466619}
+  - {fileID: 1237610634}
 --- !u!1 &1937032018
 GameObject:
   m_ObjectHideFlags: 0
@@ -6760,6 +6811,7 @@ MonoBehaviour:
   - {fileID: 1841415130}
   - {fileID: 120783385}
   - {fileID: 1690570823}
+  - {fileID: 1334022786}
 --- !u!4 &2135460887
 Transform:
   m_ObjectHideFlags: 0

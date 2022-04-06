@@ -8,20 +8,21 @@ public class ObjectFlyer<T> where T : Component
     //一種類毎に扱う感じ
     //コイツを介してObject生成をする事で、処理が軽くなる魔法のコード
     public T DealMob;
-    private List<T> MobList;
+    private List<T> _MobList;
+    public IReadOnlyList<T> MobList => _MobList;
 
     public delegate void GeneTask(T t);
 
     public ObjectFlyer(T mob)
     {
         DealMob = mob;
-        MobList = new List<T>();
+        _MobList = new List<T>();
     }
 
     //Objectを渡す。
     public T GetMob(Vector3 pos)
     {
-        foreach (var obj in MobList)
+        foreach (var obj in _MobList)
         {
             //Debug.Log(obj.name + ";" + obj.gameObject.activeSelf.ToString());
             if (obj.gameObject.activeSelf == false)
@@ -35,13 +36,13 @@ public class ObjectFlyer<T> where T : Component
 
 
         T newMob = GameObject.Instantiate(DealMob, pos, Quaternion.identity) as T;
-        MobList.Add(newMob);
+        _MobList.Add(newMob);
         return newMob;
     }
 
     public T GetMob(Vector3 pos, GeneTask init)
     {
-        foreach (var obj in MobList)
+        foreach (var obj in _MobList)
         {
             if (obj.gameObject.activeSelf == false)
             {
@@ -54,13 +55,13 @@ public class ObjectFlyer<T> where T : Component
 
         T newMob = GameObject.Instantiate(DealMob, pos, Quaternion.identity) as T;
         init(newMob);
-        MobList.Add(newMob);
+        _MobList.Add(newMob);
         return newMob;
     }
 
     public T GetMob(Vector3 pos, GeneTask init, GeneTask calling)
     {
-        foreach (var obj in MobList)
+        foreach (var obj in _MobList)
         {
             if (obj.gameObject.activeSelf == false)
             {
@@ -74,27 +75,27 @@ public class ObjectFlyer<T> where T : Component
 
         T newMob = GameObject.Instantiate(DealMob, pos, Quaternion.identity) as T;
         init(newMob);
-        MobList.Add(newMob);
+        _MobList.Add(newMob);
         return newMob;
     }
 
     public void Erace()
     {
-        foreach (T obj in MobList)
+        foreach (T obj in _MobList)
         {
             Transform.Destroy(obj.gameObject);
         }
-        MobList = new List<T>();
+        _MobList = new List<T>();
     }
 
     public void Release()
     {
-        foreach (T obj in MobList)
+        foreach (T obj in _MobList)
         {
             if (obj.gameObject.activeSelf == false)
             {
                 Transform.Destroy(obj.gameObject);
-                MobList.Remove(obj);
+                _MobList.Remove(obj);
             }
         }
     }

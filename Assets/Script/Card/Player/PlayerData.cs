@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UniRx;
+using System.Linq;
 
 public class PlayerData : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class PlayerData : MonoBehaviour
     public ReactiveProperty<int> actionTimes = new ReactiveProperty<int>();
     [SerializeField] int initTurn;
     public ReactiveProperty<int> turn = new ReactiveProperty<int>();
+
+
+    public int winPoint;
 
     //デフォルトのポーズ
     [SerializeField, PathAttribute] private string defaultPoseFilePath = "";
@@ -53,10 +57,21 @@ public class PlayerData : MonoBehaviour
         if (_hp.Value <= 0) GameOver();
     }
 
-    public void GameEnd()
+    public void GameEnd(CardFacade facade)
     {
-        //本来はスコア用
-        //間に合わせとして、クリア処理に
+        //クリア処理
+        foreach (IPermanent permanent in facade.DeckKey(DeckType.deck))
+        {
+            if (permanent.GetCardData().skillPack.GetSkillProcess<VictoryPoint>().Any()) winPoint += permanent.GetCardData().skillPack.GetSkillProcess<VictoryPoint>().Select(x => { return x.GetVictoryPoint(facade); }).Aggregate((x, y) => { return x + y; });
+        }
+        foreach (IPermanent permanent in facade.DeckKey(DeckType.discard))
+        {
+            if (permanent.GetCardData().skillPack.GetSkillProcess<VictoryPoint>().Any()) winPoint += permanent.GetCardData().skillPack.GetSkillProcess<VictoryPoint>().Select(x => { return x.GetVictoryPoint(facade); }).Aggregate((x, y) => { return x + y; });
+        }
+        foreach (IPermanent permanent in facade.DeckKey(DeckType.hands))
+        {
+            if (permanent.GetCardData().skillPack.GetSkillProcess<VictoryPoint>().Any()) winPoint += permanent.GetCardData().skillPack.GetSkillProcess<VictoryPoint>().Select(x => { return x.GetVictoryPoint(facade); }).Aggregate((x, y) => { return x + y; });
+        }
         dealer.ChangeState(gameClearState);
     }
 

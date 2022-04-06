@@ -15,15 +15,15 @@ public class CardSelector : MonoBehaviour
     [SerializeField] private string selectingState;
     [SerializeField] private string playingState;
     [SerializeField] private Stage stage;
-    [SerializeField] private CardSelectHighLighter highLighter;
+    //[SerializeField] private CardSelectHighLighter highLighter;
     public IObservable<IPermanent> CardSelect(DeckType deck, ISkillCardBool condition)
     {
         return Observable.Defer<IPermanent>(() =>
         {
             aiming = new List<(DeckType, ISkillCardBool)>();
             aiming.Add((deck, condition)); ;
-            if (aiming.First().deck == DeckType.hands) highLighter.HandHighLight(aiming.First().condition);
-            if (aiming.First().deck == DeckType.field) highLighter.FieldHighLight(aiming.First().condition);
+            // if (aiming.First().deck == DeckType.hands) highLighter.HandHighLight(aiming.First().condition);
+            //if (aiming.First().deck == DeckType.field) highLighter.FieldHighLight(aiming.First().condition);
             state.ChangeState(selectingState);
             prepareSubject = new Subject<IPermanent>();
             return prepareSubject;
@@ -34,8 +34,8 @@ public class CardSelector : MonoBehaviour
         return Observable.Defer<IPermanent>(() =>
         {
             aiming = selectList;
-            if (aiming.First().deck == DeckType.hands) highLighter.HandHighLight(aiming.First().condition);
-            if (aiming.First().deck == DeckType.field) highLighter.FieldHighLight(aiming.First().condition);
+            //  if (aiming.First().deck == DeckType.hands) highLighter.HandHighLight(aiming.First().condition);
+            //  if (aiming.First().deck == DeckType.field) highLighter.FieldHighLight(aiming.First().condition);
             state.ChangeState(selectingState);
             prepareSubject = new Subject<IPermanent>();
             return prepareSubject;
@@ -49,13 +49,13 @@ public class CardSelector : MonoBehaviour
         //条件に合うなら、OnNextで通知
         IPermanent dealCard = card.GetPermanent();
         prepareSubject.OnNext(dealCard);
-        highLighter.Erace();
+        //   highLighter.Erace();
         //使った条件を削除
         aiming = aiming.Skip(1).ToList();
         if (aiming.Any())
         {
-            if (aiming.First().deck == DeckType.hands) highLighter.HandHighLight(aiming.First().condition);
-            if (aiming.First().deck == DeckType.field) highLighter.FieldHighLight(aiming.First().condition);
+            //if (aiming.First().deck == DeckType.hands) highLighter.HandHighLight(aiming.First().condition);
+            //if (aiming.First().deck == DeckType.field) highLighter.FieldHighLight(aiming.First().condition);
         }
         else
         {
@@ -68,7 +68,7 @@ public class CardSelector : MonoBehaviour
     {
         //nullSubjectを扱う可能性に注意
         prepareSubject.OnCompleted();
-        highLighter.Erace();
+        // highLighter.Erace();
         state.ChangeState(playingState);
     }
 

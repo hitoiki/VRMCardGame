@@ -44,7 +44,7 @@ public class CoinViewingPermanent : IPermanent, ICoinObservable
         else card.GetCoin().Add(c, n);
         //負数なら削除
         if (card.GetCoin()[c] < 0) card.GetCoin().Remove(c);
-        skillQueue.Push(card.GetSkillPack().SkillProcess<(Coin, int)>((c, n)), this);
+        skillQueue.Push(card.GetSkillPack().ArgumentProcess<(Coin, int)>((c, n)), this);
         coinSubject.OnNext((c, n, card.GetCoin()[c]));
         return (c, card.GetCoin()[c]);
     }

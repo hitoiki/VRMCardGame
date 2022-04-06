@@ -21,7 +21,7 @@ public static class DeckTypeMethod
         if (e == DeckType.hands) return "手札";
         if (e == DeckType.field) return "場";
         if (e == DeckType.discard) return "捨て札";
-        if (e == DeckType.trace) return "跡札";
+        if (e == DeckType.trace) return "廃棄札";
         if (e == DeckType.deck) return "デッキ";
         if (e == DeckType.right) return "右のデッキ";
         if (e == DeckType.left) return "左のデッキ";

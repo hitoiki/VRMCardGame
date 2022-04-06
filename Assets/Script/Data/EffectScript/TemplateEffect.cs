@@ -8,20 +8,20 @@ using UniRx;
 public class TemplateEffect : ISkillEffect
 {
     [SerializeField] EffectTemplate template;
-    List<IObservable<Unit>> effectEvents = new List<IObservable<Unit>>();
+    List<ISkillEffect> effectEvents = new List<ISkillEffect>();
 
     public IObservable<Unit> Effect(EffectLocation location)
     {
 
         return Observable.Defer<Unit>(() =>
         {
-            effectEvents = new List<IObservable<Unit>>();
+            effectEvents = new List<ISkillEffect>();
             IObservable<Unit> observable = Observable.Empty<Unit>();
 
             foreach (ISkillEffect e in template.effect)
             {
+                effectEvents.Add(e);
                 IObservable<Unit> effectObservable = e.Effect(location);
-                effectEvents.Add(effectObservable);
                 observable = observable.Concat(effectObservable);
             }
             return observable;

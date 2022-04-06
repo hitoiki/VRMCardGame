@@ -25,15 +25,21 @@ public class SkillPack
         return skillTexts;
     }
 
+    public List<T> GetSkillProcess<T>()
+    {
+        return skills.OfType<T>().Where(x => { return x != null; })?.ToList();
+    }
+
     public List<Skill> UseProcess()
     {
         return skills.OfType<ISkillProcessUse>().Select(y => { return y?.GetSkill(); }).Where(x => { return x != null; })?.ToList();
     }
+
     public List<ISkillProcessCheck> CheckProcess()
     {
         return skills.OfType<ISkillProcessCheck>().Where(x => { return x != null; })?.ToList();
     }
-    public List<Skill> SkillProcess<T>(T t)
+    public List<Skill> ArgumentProcess<T>(T t)
     {
         return skills.OfType<ISkillProcess<T>>().Select(y => { return y?.GetSkill(t); }).Where(x => { return x != null; })?.ToList();
     }

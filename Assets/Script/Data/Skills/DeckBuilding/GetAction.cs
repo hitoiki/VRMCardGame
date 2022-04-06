@@ -18,7 +18,7 @@ public class GetAction : IRawSkill
 
     public string Text()
     {
-        return "金を" + number.Text() + "加える。";
+        return "アクション回数を" + number.Text() + "増やす。";
     }
 
     public string SkillName()

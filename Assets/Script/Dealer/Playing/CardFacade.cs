@@ -56,14 +56,14 @@ public class CardFacade
         instantMoney = 0;
         actionTimes = 1;
         data.player.turn.Value += 1;
-        if (data.player.turn.Value >= 11) data.player.GameEnd();
+        if (data.player.turn.Value >= 11) data.player.GameEnd(this);
         Debug.Log("End");
         //Deckをリセット
         foreach (IPermanent p in data.stage.DeckKey(DeckType.hands))
         {
             p.MoveDeck(data.stage.DeckKey(DeckType.discard));
         }
-        Draw(DeckType.deck, DeckType.hands, 5);
+        Draw(DeckType.deck, DeckType.hands, 4);
 
     }
     //条件を満たすカードのリストを渡す

@@ -28,7 +28,7 @@ public class CoinCard : MonoBehaviour, ICardViewable
 
     public void UnPrint()
     {
-        _change.Dispose();
+        if (_change != null) _change.Dispose();
         foreach ((Coin coin, CoinSprite sprite) c in sprites)
         {
             c.sprite.UnPrint();

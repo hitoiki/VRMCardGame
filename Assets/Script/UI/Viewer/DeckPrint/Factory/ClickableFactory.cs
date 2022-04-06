@@ -50,7 +50,7 @@ public class ClickableFactory : MonoBehaviour, ICardPrintableFactory, ICardCurso
     public void AddCardCursolEvent(ICardCursolEvent cursolEvent)
     {
         firstCursols.Add(cursolEvent);
-        foreach (ICardCursolEventUser u in printableList.Select(x => { return x as ICardCursolEventUser; }))
+        foreach (ICardCursolEventUser u in flyer.MobList.Select(x => { return x as ICardCursolEventUser; }))
         {
             u.AddCardCursolEvent(cursolEvent);
         }
@@ -58,7 +58,7 @@ public class ClickableFactory : MonoBehaviour, ICardPrintableFactory, ICardCurso
     public void RemoveCardCursolEvent(ICardCursolEvent cursolEvent)
     {
         firstCursols.Remove(cursolEvent);
-        foreach (ICardCursolEventUser u in printableList.Select(x => { return x as ICardCursolEventUser; }))
+        foreach (ICardCursolEventUser u in flyer.MobList.Select(x => { return x as ICardCursolEventUser; }))
         {
             u.RemoveCardCursolEvent(cursolEvent);
         }
@@ -66,7 +66,7 @@ public class ClickableFactory : MonoBehaviour, ICardPrintableFactory, ICardCurso
     public void SubstitutionCardCursolEvent(List<ICardCursolEvent> cursolEvent)
     {
         firstCursols = cursolEvent;
-        foreach (ICardCursolEventUser u in printableList.Select(x => { return x as ICardCursolEventUser; }))
+        foreach (ICardCursolEventUser u in flyer.MobList.Select(x => { return x as ICardCursolEventUser; }))
         {
             u.SubstitutionCardCursolEvent(cursolEvent);
         }

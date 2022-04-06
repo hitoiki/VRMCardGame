@@ -16,7 +16,7 @@ MonoBehaviour:
   costCoin: {fileID: 11400000, guid: c4a31d70d2805504898829fea01e4ea7, type: 2}
   cost: 3
   suit: 0
-  flavorText: 
+  flavorText: "\u91D1\u30922\u52A0\u3048\u308B\u3002\n\u30C7\u30C3\u30AD\u306E\u4E00\u756A\u4E0A\u306E\u30AB\u30FC\u30C9\u304C\u30A2\u30AF\u30B7\u30E7\u30F3\u30AB\u30FC\u30C9\u306A\u3089\u4F7F\u7528\u3059\u308B\u3002\n\u305D\u3046\u3067\u306A\u3044\u306A\u3089\u3001\u305D\u306E\u307E\u307E\u6368\u3066\u672D\u3078\u9001\u308B\u3002"
   backSprite: {fileID: 21300000, guid: 72f6fe411b1c9dc458db84958f30a375, type: 3}
   frontSprite: {fileID: 21300000, guid: a1126a353ab43934fb3f2b1c6a4d6df8, type: 3}
   iconSprite: {fileID: 21300000, guid: a0b5cf687936a214fa53cdf6634b6f4c, type: 3}
@@ -137,6 +137,7 @@ MonoBehaviour:
     - id: 0
     - id: 1
     - id: 2
+  isViewingFlavorText: 1
   references:
     version: 1
     00000000:
@@ -208,7 +209,6 @@ MonoBehaviour:
         cardBool:
           id: 14
     0000000E:
-      type: {class: CostSkillBool, ns: , asm: Assembly-CSharp}
+      type: {class: SuitSkillBool, ns: , asm: Assembly-CSharp}
       data:
-        threshold: 4
-        equalSign: 4
+        boolSuit: 0
