@@ -17,17 +17,12 @@ public class IroiroViewUI : MonoBehaviour
         player.instantMoney.Subscribe(x =>
         {
             money = "金:" + x.ToString();
-            text.text = money + " " + actionTime + " " + turn;
+            text.text = money + " " + actionTime;
         });
         player.actionTimes.Subscribe(x =>
         {
             actionTime = "アクション回数:" + x.ToString();
-            text.text = money + " " + actionTime + " " + turn;
-        });
-        player.turn.Subscribe(x =>
-        {
-            turn = "残りターン:" + x.ToString();
-            text.text = money + " " + actionTime + " " + turn;
+            text.text = money + " " + actionTime;
         });
 
     }

@@ -55,8 +55,7 @@ public class CardFacade
         };
         instantMoney = 0;
         actionTimes = 1;
-        data.player.turn.Value += 1;
-        if (data.player.turn.Value >= 11) data.player.GameEnd(this);
+        if (data.stage.DeckKey(DeckType.field).Count() < 12) data.player.GameEnd(this);
         Debug.Log("End");
         //Deckをリセット
         foreach (IPermanent p in data.stage.DeckKey(DeckType.hands))

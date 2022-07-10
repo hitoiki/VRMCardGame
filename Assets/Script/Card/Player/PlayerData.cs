@@ -21,9 +21,6 @@ public class PlayerData : MonoBehaviour
     //DeckBuilding用
     public ReactiveProperty<int> instantMoney = new ReactiveProperty<int>();
     public ReactiveProperty<int> actionTimes = new ReactiveProperty<int>();
-    [SerializeField] int initTurn;
-    public ReactiveProperty<int> turn = new ReactiveProperty<int>();
-
 
     public int winPoint;
 
@@ -35,7 +32,6 @@ public class PlayerData : MonoBehaviour
     private void Awake()
     {
         _hp.Value = initHP;
-        turn.Value = initTurn;
         instantMoney.Value = 0;
         actionTimes.Value = 1;
         playerCard = new DefaultCard(initPlayerCard);

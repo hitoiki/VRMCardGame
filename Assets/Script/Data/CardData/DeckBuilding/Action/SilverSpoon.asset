@@ -20,118 +20,334 @@ MonoBehaviour:
   backSprite: {fileID: 21300000, guid: 72f6fe411b1c9dc458db84958f30a375, type: 3}
   frontSprite: {fileID: 21300000, guid: a1126a353ab43934fb3f2b1c6a4d6df8, type: 3}
   iconSprite: {fileID: 21300000, guid: ae1a91e0e06912b43946511a270f8ed7, type: 3}
-  poseJsonFilePath: 
+  poseJsonFilePath: Assets/Sozai/PoseJson/walking.json
   poseItem:
     chest:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     head:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     hips:
-      rotation: []
+      rotation:
+      - 0.037703265
+      - 0.6764955
+      - -0.03471817
+      - 0.7346611
     jaw:
       rotation: []
     leftEye:
-      rotation: []
+      rotation:
+      - 0.008508349
+      - -0.06975394
+      - 0.00059496175
+      - 0.9975278
     leftFoot:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftHand:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftIndexDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftIndexIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftIndexProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftLittleDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftLittleIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftLittleProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftLowerArm:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftLowerLeg:
-      rotation: []
+      rotation:
+      - -0.22688426
+      - 0.025673602
+      - -0.011246026
+      - 0.9735183
     leftMiddleDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftMiddleIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftMiddleProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftRingDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftRingIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftRingProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftShoulder:
-      rotation: []
+      rotation:
+      - -0.16166146
+      - 0
+      - 0
+      - 0.98684627
     leftThumbDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftThumbIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftThumbProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftToes:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     leftUpperArm:
-      rotation: []
+      rotation:
+      - -0.116199404
+      - 0.20859548
+      - 0.47256795
+      - 0.8483308
     leftUpperLeg:
-      rotation: []
+      rotation:
+      - -0.26780158
+      - 0.13987157
+      - -0.04580989
+      - 0.9521658
     neck:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightEye:
-      rotation: []
+      rotation:
+      - 0.008482402
+      - -0.104524665
+      - 0.0008915364
+      - 0.99448574
     rightFoot:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightHand:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightIndexDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightIndexIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightIndexProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightLittleDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightLittleIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightLittleProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightLowerArm:
-      rotation: []
+      rotation:
+      - -0.09030073
+      - 0.424781
+      - -0.04263084
+      - 0.8997719
     rightLowerLeg:
-      rotation: []
+      rotation:
+      - -0.16460268
+      - 0
+      - 0
+      - 0.98635995
     rightMiddleDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightMiddleIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightMiddleProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightRingDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightRingIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightRingProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightShoulder:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightThumbDistal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightThumbIntermediate:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightThumbProximal:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightToes:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     rightUpperArm:
-      rotation: []
+      rotation:
+      - 0.099651136
+      - 0.16331455
+      - -0.51124936
+      - 0.83786756
     rightUpperLeg:
-      rotation: []
+      rotation:
+      - 0.32746354
+      - 0
+      - 0
+      - 0.9448638
     spine:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
     upperChest:
-      rotation: []
+      rotation:
+      - 0
+      - 0
+      - 0
+      - 1
   skillPack:
     skills:
     - id: 0
